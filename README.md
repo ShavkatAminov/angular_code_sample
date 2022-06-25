@@ -1,1 +1,1 @@
-# angular_code_sample
+# This is sample code from my project
