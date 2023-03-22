@@ -1,0 +1,25 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card  px-1"
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-input class="mt-2"  [showError]="showError('code')" formControlName="code"
+                   [errorMessage]="errorMessage('code')"
+                   [label]="'GENERAL.CODE'" [required]="true">
+        </het-input>
+
+        <het-input formControlName="nameUz" [showError]="showError('nameUz')" [label]="'GENERAL.HEAD_BANK_NAME'"
+                   [errorMessage]="errorMessage('nameUz')"
+                   [required]="true">
+        </het-input>
+
+
+        <het-radio-static type="status" formControlName="status" [showError]="showError('status')"
+                          [label]="'GENERAL.STATUS'" [required]="true">
+        </het-radio-static>
+
+        <het-radio-static type="yesNo" formControlName="paymentRequirement"
+                          [showError]="showError('paymentRequirement')"
+                          [label]="'REFERENCE.BANK_PAYMENT_REQUESTS'"
+                          [required]="true">
+        </het-radio-static>
+    </div>
+</form>

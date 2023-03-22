@@ -1,0 +1,22 @@
+<div class="hel-select-row flex flex-row items-center relative">
+    <mat-label class="font-bold" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+        {{label | transloco}}
+        <span *ngIf="required" style="color: red">*</span>
+    </mat-label>
+    <mat-radio-group
+            [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }"
+            [(ngModel)]="value" (change)="onselectionchange(value)"
+            [disabled]="disabled"
+            [ngClass]="{'has-error': showError}">
+        <mat-radio-button
+                [color]="color"
+                class="mb-2"
+                [disableRipple]="true"
+                *ngFor="let option of options" [value]="option.id">
+            {{option.name | transloco}}
+        </mat-radio-button>
+    </mat-radio-group>
+    <div *ngIf="showError" error-popover>
+        {{errorMessage}}
+    </div>
+</div>

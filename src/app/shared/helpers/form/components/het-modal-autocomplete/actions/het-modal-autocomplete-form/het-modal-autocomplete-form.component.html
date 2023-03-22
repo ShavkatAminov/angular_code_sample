@@ -1,0 +1,28 @@
+<div class="flex">
+    <form [formGroup]="form" class="flex gap-x-2 w-full flex-auto items-center ml-3">
+        <ng-container *ngFor="let item of this.data.fields">
+            <ng-container class="w-1/2" [ngSwitch]="item.type" *ngIf="item.isFilter">
+                <het-input class="w-1/3" *ngSwitchCase="'input'" formControlName="{{item.name}}" [label]="item.label"></het-input>
+                <het-datepicker *ngSwitchCase="'date'" formControlName="{{item.name}}" [label]="item.label"></het-datepicker>
+                <het-datepicker *ngSwitchCase="'datetime'" [timePicker]="true" formControlName="{{item.name}}" [label]="item.label"></het-datepicker>
+                <het-radio-button *ngSwitchCase="'radio'" [options]="item.options" formControlName="{{item.name}}" [label]="item.label"></het-radio-button>
+                <het-checkbox *ngSwitchCase="'checkbox'" formControlName="{{item.name}}" [label]="item.label"></het-checkbox>
+                <het-textarea *ngSwitchCase="'textarea'" formControlName="{{item.name}}" [label]="item.label"></het-textarea>
+                <het-autocomplete *ngSwitchCase="'autocomplete'" [request]="item.options" formControlName="{{item.name}}" [label]="item.label"></het-autocomplete>
+                <het-radio-static *ngSwitchCase="'yesNo'" [type]="'yesNo'" formControlName="{{item.name}}" [label]="item.label"></het-radio-static>
+                <het-radio-static *ngSwitchCase="'status'" [type]="'status'" formControlName="{{item.name}}" [label]="item.label"></het-radio-static>
+                <het-select *ngSwitchCase="'select'" [options]="item.options"  formControlName="{{item.name}}" [label]="item.label"></het-select>
+            </ng-container>
+        </ng-container>
+    </form>
+</div>
+<div class="w-full">
+    <het-datatable #table
+                   [showFilter]="false"
+                   (gridReady)="reload()"
+                   [request]="request"
+                   (onSelectionChanged)="changeSelection($event)"
+                   (onRowDoubleClicked)="handleRowDoubleClicked($event)"
+                   [columnDefs]="columnDefs">
+    </het-datatable>
+</div>

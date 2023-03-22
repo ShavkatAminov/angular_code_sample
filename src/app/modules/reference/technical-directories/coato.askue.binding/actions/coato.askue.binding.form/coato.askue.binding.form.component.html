@@ -1,0 +1,51 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-autocomplete
+                class="mt-2"
+                formControlName="coatoBranchId"
+                [errorMessage]="errorMessage('coatoBranchId')"
+                [showError]="showError('coatoBranchId')"
+                [label]="'GENERAL.COATO'"
+                [required]="true"
+                [request]="coatoBranchesRequest"
+        >
+        </het-autocomplete>
+
+        <het-autocomplete
+                formControlName="askueTypeId"
+                [errorMessage]="errorMessage('askueTypeId')"
+                [showError]="showError('askueTypeId')"
+                [label]="'GENERAL.ASKUE_TYPE'"
+                [required]="true"
+                [request]="askueTypesRequest"
+        >
+        </het-autocomplete>
+
+        <het-input
+                formControlName="urlAddress"
+                [showError]="showError('urlAddress')"
+                [errorMessage]="errorMessage('urlAddress')"
+                [label]="'GENERAL.URL'"
+                [required]="true">
+        </het-input>
+
+        <het-autocomplete
+                formControlName="processNumberId"
+                [errorMessage]="errorMessage('processNumberId')"
+                [showError]="showError('processNumberId')"
+                [label]="'GENERAL.PROCESS_NUMBER'"
+                [required]="true"
+                [request]="processNumbersRequest"
+        >
+        </het-autocomplete>
+
+        <het-radio-static
+                type="status"
+                formControlName="status"
+                [showError]="showError('status')"
+                [label]="'GENERAL.STATUS'"
+                [required]="true">
+        </het-radio-static>
+    </div>
+</form>

@@ -1,0 +1,36 @@
+<div class="hel-select-row flex flex-row items-center relative">
+    <mat-label class="font-bold" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+        {{ label | transloco}}
+        <span style="color:red" *ngIf="required">*</span>
+    </mat-label>
+    <mat-form-field [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }"
+                    [ngClass]="{'errorInput' : showError}">
+        <input type="text"
+               matInput
+               [readonly]="readonly"
+               [disabled]=disabled
+               [matAutocomplete]="auto"
+               [formControl]="control"
+               (touchend)="onTouch()"
+               (focus)="loadAndCreate()"
+               [(ngModel)]="value"
+               [matAutocompleteDisabled] = disabled
+        >
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunction"
+                          (optionSelected)='onValueChange($event)'>
+            <mat-option *ngFor="let suggestion of filteredSuggestions | async" [value]="suggestion">
+                {{ CodeAndName(suggestion) }}
+            </mat-option>
+        </mat-autocomplete>
+        <span *ngIf="value && !readonly" (click)="toNull()" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix
+              mat-icon-button>
+            <mat-icon class="font-black text-black">close</mat-icon>
+        </span>
+        <div *ngIf="!value" class="pointer-events-none absolute inset-y-0 right-0 flex items-center mr-2">
+            <mat-icon svgIcon="arrow_drop_down"></mat-icon>
+        </div>
+    </mat-form-field>
+    <div *ngIf="showError" error-popover>
+        {{errorMessage}}
+    </div>
+</div>

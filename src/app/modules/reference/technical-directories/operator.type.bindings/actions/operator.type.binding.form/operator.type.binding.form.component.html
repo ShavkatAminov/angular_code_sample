@@ -1,0 +1,48 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-input
+                class="mt-2"
+
+                formControlName="code"
+                [showError]="showError('code')"
+                [errorMessage]="errorMessage('code')"
+                [label]="'GENERAL.CODE_NUMBER'"
+                [required]="true">
+        </het-input>
+
+        <het-input
+                formControlName="nameUz"
+                [showError]="showError('nameUz')"
+                [errorMessage]="errorMessage('nameUz')"
+                [label]="'GENERAL.OPERATOR_NAME'"
+                [required]="true">
+        </het-input>
+
+        <het-autocomplete
+                formControlName="providerId"
+                [errorMessage]="errorMessage('providerId')"
+                [showError]="showError('providerId')"
+                [label]="'GENERAL.PROVIDER_NAME'"
+                [required]="true"
+                [request]="providerNameRequest"
+        >
+        </het-autocomplete>
+
+        <het-radio-static
+                type="status"
+                formControlName="status"
+                [showError]="showError('status')"
+                [label]="'GENERAL.STATUS'"
+                [required]="true">
+        </het-radio-static>
+
+        <het-radio-static
+                type="yesNo"
+                formControlName="receiveSmsFromRes"
+                [showError]="showError('receiveSmsFromRes')"
+                [label]="'GENERAL.RECEIVE_SMS_FROM_RES'"
+                [required]="true">
+        </het-radio-static>
+    </div>
+</form>

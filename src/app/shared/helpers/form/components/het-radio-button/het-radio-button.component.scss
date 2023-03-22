@@ -1,0 +1,30 @@
+::ng-deep .has-error {
+  .mdc-radio__outer-circle {
+    border-color: rgba(255, 0, 0, 0.7) !important;
+  }
+}
+
+::ng-deep .mat-mdc-radio-button .mdc-radio{
+  height: 16px !important;
+  width: 16px !important;
+  top: 1px !important;
+  left: 1px !important;
+}
+
+::ng-deep .mdc-radio__outer-circle {
+  height: 16px !important;
+  width: 16px !important;
+  border-width: 1px !important;
+}
+
+::ng-deep .mdc-radio__inner-circle {
+  height: 10px !important;
+  width: 10px !important;
+  top: -2px !important;
+  left: -2px !important;
+}
+
+::ng-deep .mdc-form-field>label{
+  padding-left: 0 !important;
+  padding-top: 4px!important;
+}

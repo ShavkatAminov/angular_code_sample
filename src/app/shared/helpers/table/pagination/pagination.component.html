@@ -1,0 +1,28 @@
+<ng-container [formGroup]="paginationForm">
+    <div class="mr-2 flex items-center">
+        <div class="w-40">
+            <het-select formControlName="size" [label]="'PAGINATION.SHOW'" [options]="paginationSelectOptions"></het-select>
+        </div>
+    </div>
+    <div class="flex items-center justify-start">
+        <div class="w-40">
+            <het-input formControlName="page" [label]="'PAGINATION.PAGE'"></het-input>
+        </div>
+        <span class="ml-2"> {{'PAGINATION.FROM' | transloco}} {{totalPages}}</span>
+    </div>
+    <div class="flex flex-nowrap ml-1 w-40">
+        <button [disabled]="paginationForm.get('page')?.value === 1" (click)="setValue(1)" mat-icon-button>
+            <mat-icon>first_page</mat-icon>
+        </button>
+        <button [disabled]="paginationForm.get('page')?.value === 1" (click)="addToPage(-1)" mat-icon-button>
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button [disabled]="paginationForm.get('page')?.value === totalPages || totalPages === 0" (click)="addToPage(1)" mat-icon-button>
+            <mat-icon>chevron_right</mat-icon>
+        </button>
+        <button [disabled]="paginationForm.get('page')?.value === totalPages || totalPages === 0" (click)="setValue(totalPages)" mat-icon-button>
+            <mat-icon>last_page</mat-icon>
+        </button>
+    </div>
+    <het-button *ngIf="showFilter" (btnClick)="filterBtnClicked.emit()" class="ml-1" [label]="'FORM.FILTER'" [color]="'primary'"></het-button>
+</ng-container>

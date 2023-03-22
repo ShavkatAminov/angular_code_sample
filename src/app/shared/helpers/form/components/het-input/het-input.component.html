@@ -1,0 +1,31 @@
+<div class="hel-select-row flex flex-row items-center relative">
+    <mat-label class="font-bold" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
+        {{label | transloco}} <span *ngIf="required" style="color: red">*</span>
+    </mat-label>
+
+    <mat-form-field [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'errorInput' : showError}">
+        <input
+                matInput
+                (focusout)="onTouch()"
+                [(ngModel)]="value"
+                (input)="valueChange(value)"
+                [placeholder]="placeholder"
+                [type]="inputType"
+                [mask]="mask"
+                [patterns]="patterns"
+                min="0"
+                [readonly]="readonly"
+                [disabled]="disabled"
+                [maxlength]="maxLength"
+                (keypress)="!allowCrl ? checkLatin($event) :null"
+        >
+        <mat-icon *ngIf="svgIcon"
+                  class="icon-size-5"
+                  matPrefix
+                  [svgIcon]="svgIcon"
+        ></mat-icon>
+    </mat-form-field>
+    <div *ngIf="showError" error-popover>
+        {{errorMessage}}
+    </div>
+</div>

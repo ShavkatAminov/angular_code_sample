@@ -1,0 +1,88 @@
+import {Component, OnInit, ViewChild, Inject} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {InjectorInstance} from "../../shared.module";
+import {HostDirective} from "./host.directive";
+import {Observable} from "rxjs";
+import {ModalComponentInterface} from "./modal.component.interface";
+
+@Component({
+    selector: 'het-modal',
+    styleUrls: ['./modal.component.scss'],
+    templateUrl: './modal.component.html'
+})
+export class ModalComponent implements OnInit {
+    constructor(protected dialogRef: MatDialogRef<ModalComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: { component: any, title: string, formData: any}) {
+        this.component = data.component
+        this.title = data.title
+    }
+
+    ngOnInit(): void {
+        this.loadingData()
+    }
+
+    @ViewChild(HostDirective, {static: true}) appHost!: HostDirective
+    public component: any
+    public componentModal: any
+    public title: string
+    public size: string
+
+    public loadingData() {
+        const _viewContainerRef = this.appHost.viewContainerRef;
+        _viewContainerRef.clear();
+        this.componentModal = _viewContainerRef.createComponent<any>(this.component);
+        (this.componentModal.instance as ModalComponentInterface)?.setData?.(this.data.formData);
+        this.componentModal.instance?.sendClose?.subscribe(x => {
+            this.dialogRef.close(x)
+        })
+    }
+
+    public static setSize(size) {
+        let modalSize = "100%"
+        if (size === 0) {
+            modalSize = "30vw"
+        }
+        if (size === 1) {
+            modalSize = "50vw"
+        }
+        if (size === 2) {
+            modalSize = "60vw"
+        }
+        if (size === 3) {
+            modalSize = "70vw"
+        }
+        if (size === 4) {
+            modalSize = "80vw"
+        }
+        if (size === 5) {
+            modalSize = "90vw"
+        }
+        if (size === 6) {
+            modalSize = "100vw"
+        }
+        return modalSize
+    }
+
+    public dialog: MatDialog = InjectorInstance.get(MatDialog)
+
+    static showModal(component: any, title: string, formData: any = null, size: SizeModal = SizeModal.lg): Observable<any> {
+        let dialog: MatDialog = InjectorInstance.get(MatDialog)
+        // @ts-ignore
+        let dialogRef = dialog.open(ModalComponent, {
+            data: {component: component, title: title, formData: formData},
+            width: ModalComponent.setSize(size)
+        });
+        return dialogRef.afterClosed();
+    }
+
+}
+
+export enum SizeModal {
+    'xsm' = 0,
+    'sm' = 1,
+    'md' = 2,
+    'lg' = 3,
+    'xlg' = 4,
+    'xxl' = 5,
+    'fs' = 6,
+}

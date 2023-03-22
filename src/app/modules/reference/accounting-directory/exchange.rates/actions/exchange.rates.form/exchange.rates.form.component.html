@@ -1,0 +1,28 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-autocomplete formControlName="currencyId" [label]="'GENERAL.CURRENCY_CODE'"
+                          [request]="currenciesAllRequest" [showError]="showError('currencyId')"
+                          [errorMessage]="errorMessage('currencyId')" [required]="true"></het-autocomplete>
+
+        <het-input [inputType]="'number'" [showError]="showError('exchangeRate')"
+                   [errorMessage]="errorMessage('exchangeRate')" formControlName="exchangeRate"
+                   [label]="'GENERAL.EXCHANGE_RATE'" [required]="true">
+        </het-input>
+
+        <het-input [inputType]="'number'" [showError]="showError('currencyUnit')"
+                   [errorMessage]="errorMessage('currencyUnit')" formControlName="currencyUnit"
+                   [label]="'GENERAL.CURRENCY_UNIT'" [required]="true">
+        </het-input>
+
+
+        <het-datepicker [showError]="showError('activationDate')" [errorMessage]="errorMessage('activationDate')"
+                        formControlName="activationDate"
+                        [label]="'GENERAL.ACTIVATION_DATE'" [required]="true">
+        </het-datepicker>
+
+        <het-radio-static type="status" formControlName="status" [showError]="showError('status')"
+                          [label]="'GENERAL.STATUS'" [required]="true">
+        </het-radio-static>
+    </div>
+</form>

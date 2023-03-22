@@ -1,0 +1,74 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex-auto p-6 sm:p-10">
+
+        <div class="max-w-3xl">
+            <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden"
+                  [formGroup]="form">
+                <div class="flex flex-col gt-xs:flex-row">
+                    <het-button
+                             color="primary" label="Submit" icon="home" ></het-button>
+                    <het-select
+                             [required]="true" [label]="'FirstName'" [options]="options" formControlName="select"></het-select>
+                    <het-datepicker
+                            [required]="true" [label]="'Date'" formControlName="date" [minDate]="minDate" [maxDate]="maxDate"></het-datepicker>
+                    <het-radio-button
+                             [label]="'Choose gender'" [class]="'flex flex-col'" [showError]="false" [errorMessage]="'this is it'" [options]="options" formControlName="radio"></het-radio-button>
+                    <het-checkbox
+                             [required]="true" label="Checkbox component" [disabled]="false"></het-checkbox>
+                    <het-input
+                            
+                            [label]="'Default Input'"
+                            [placeholder]="'Placeholder'"
+                            inputType="text"
+                            formControlName="textInput"
+                    ></het-input>
+                    <het-input
+                            
+                            [label]="'Card Text Input'"
+                            [placeholder]="'#### #### #### ####'"
+                            [mask]="'9999 9999 9999 9999'"
+                            inputType="text"
+                            formControlName="textInput"
+                    ></het-input>
+                    <het-input
+                            
+                            [label]="'Date Text Input'"
+                            [placeholder]="'00/00/0000'"
+                            [mask]="'00/00/0000'"
+                            inputType="text"
+                            formControlName="textInput"
+                    ></het-input>
+                    <het-input
+                            [label]="'Phone Input'"
+                            [placeholder]="'+99(899)-999-99-99'"
+                            [mask]="'+000(00)-000-00-00'"
+
+                            inputType="text"
+                            formControlName="textInput"
+                    ></het-input>
+                    <het-autocomplete  [label]="'This is text'" [request]="request"></het-autocomplete>
+                    <het-checkbox-list formControlName="checkboxlist" [label]="'This is checkbox list'" [request]="request"></het-checkbox-list>
+                    <het-modal-autocomplete
+                            [opts]="modalAutoCompleteOpts"
+                            formControlName="autocompleteModal"
+                            [label]="'This is text'"
+                            [disabled]="true"
+                            (rowDataChange)="onModalAutoCompleteChange($event)"
+                    ></het-modal-autocomplete>
+                </div>
+                <div class="flex">
+                    <button (click)="openModal()" mat-raised-button color="primary">Open Modal</button>
+                </div>
+                <div class="flex">
+                    <button (click)="sendClose.next(  1)" mat-raised-button color="primary">Close Modal</button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    <div>
+        <het-datatable [columnDefs]="columnDefs" [rowData]="rowData">
+        </het-datatable>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<ng-container>
+    <div class="hel-select-row flex flex-row items-center relative" [ngClass]="computedClasses()">
+        <div class="het-select__title font-bold" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+            {{ label | transloco}} <span *ngIf="required">*</span>
+        </div>
+
+        <mat-form-field
+                appearance="fill"
+                [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }"
+        >
+            <mat-select
+                    [id]="color"
+                    [placeholder]="placeholder"
+                    [(ngModel)]="value"
+                    (selectionChange)="onSelectChange(value)"
+                    [disabled]="disabled"
+            >
+                <mat-option
+                        [value]="item.id" *ngFor="let item of options">{{item.name | transloco}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div *ngIf="showError" error-popover>
+            {{errorMessage}}
+        </div>
+    </div>
+</ng-container>

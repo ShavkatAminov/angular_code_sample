@@ -1,0 +1,14 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card"
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-input  [errorMessage]="errorMessage('code')" formControlName="code" [label]="'GENERAL.CODE'" [required]="true" [showError]="showError('code')"></het-input>
+        <het-input formControlName="nameUz" [errorMessage]="errorMessage('nameUz')" [label]="'GENERAL.NAME'" [required]="true" [showError]="showError('nameUz')"></het-input>
+        <het-autocomplete formControlName="psFiderTpTypeId" [errorMessage]="errorMessage('psFiderTpTypeId')" [label]="'MENU.REFERENCE.GENERAL_GUIDES.PS_FIDER_TP_TYPE'" [required]="true" [request]="psFiderTpType" [showError]="showError('psFiderTpTypeId')"></het-autocomplete>
+        <het-autocomplete formControlName="affiliationId" [errorMessage]="errorMessage('affiliationId')" [label]="'MENU.REFERENCE.GENERAL_GUIDES.AFFILIATION'" [required]="true" [request]="affiliation" [showError]="showError('affiliationId')"></het-autocomplete>
+        <het-autocomplete formControlName="upSteamSubstationId" [errorMessage]="errorMessage('upSteamSubstationId')" [label]="'MENU.REFERENCE.GENERAL_GUIDES.SUBSTATION'" [required]="true" [request]="upSteamSubstation" [showError]="showError('upSteamSubstationId')"></het-autocomplete>
+        <het-autocomplete formControlName="coatoBranchId" [errorMessage]="errorMessage('coatoBranchId')" [label]="'MENU.REFERENCE.GENERAL_GUIDES.COATO_BRANCH'" [required]="true" [request]="coatoBranch" [showError]="showError('coatoBranchId')"></het-autocomplete>
+        <het-autocomplete formControlName="upSteamFiderId" [errorMessage]="errorMessage('upSteamFiderId')" [label]="'MENU.REFERENCE.GENERAL_GUIDES.UP_STEAM_FIDER'" [request]="upSteamFider" [showError]="showError('upSteamFiderId')"></het-autocomplete>
+        <het-input [inputType]="'number'" [errorMessage]="errorMessage('capacity')" formControlName="capacity" [label]="'MENU.REFERENCE.GENERAL_GUIDES.СAPACITY'" [required]="true" [showError]="showError('capacity')"></het-input>
+        <het-radio-static type="status" [errorMessage]="errorMessage('status')" formControlName="status" [label]="'GENERAL.STATUS'" [required]="true" [showError]="showError('status')"></het-radio-static>
+    </div>
+</form>

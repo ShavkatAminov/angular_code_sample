@@ -1,0 +1,42 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-autocomplete
+                formControlName="regionCode"
+                [label]="'REFERENCE.AREA_CODE'"
+                [request]="currenciesRegions"
+                [showError]="showError('regionCode')"
+                [errorMessage]="errorMessage('regionCode')"
+                [required]="true">
+        </het-autocomplete>
+        <het-autocomplete
+            formControlName="bankId"
+            [label]="'REFERENCE.BANK_CODE'"
+            [request]="currenciesBank"
+            [showError]="showError('bankId')"
+            [errorMessage]="errorMessage('bankId')"
+            [required]="true">
+        </het-autocomplete>
+        <het-input
+            [showError]="showError('bankMfo')"
+            [errorMessage]="errorMessage('bankMfo')"
+            formControlName="bankMfo"
+            [label]="'REFERENCE.MFO'"
+            [required]="true">
+        </het-input>
+        <het-input
+                [showError]="showError('nameUz')"
+                [errorMessage]="errorMessage('nameUz')"
+                formControlName="nameUz"
+                [label]="'REFERENCE.NAME_BANK_THEIR_BRANCHES'"
+                [required]="true">
+        </het-input>
+        <het-radio-static
+            type="status"
+            formControlName="status"
+            [showError]="showError('status')"
+            [label]="'GENERAL.STATUS'"
+            [required]="true">
+        </het-radio-static>
+    </div>
+</form>

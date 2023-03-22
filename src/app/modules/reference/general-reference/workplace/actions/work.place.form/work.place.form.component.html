@@ -1,0 +1,43 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+
+        <het-input [showError]="showError('code')" [errorMessage]="errorMessage('code')"
+                    formControlName="code" [label]="'GENERAL.CODE'" [required]="true">
+        </het-input>
+
+        <het-input formControlName="nameUz" [label]="'GENERAL.NAME'" [required]="true"
+                   [showError]="showError('nameUz')" [errorMessage]="errorMessage('nameUz')">
+        </het-input>
+
+        <het-autocomplete formControlName="organizationId" [request]="organizations" [label]="'REFERENCE.ORGANIZATION'"
+                          [showError]="showError('organizationId')" [errorMessage]="errorMessage('organizationId')">
+        </het-autocomplete>
+
+        <het-autocomplete formControlName="stateGovernmentOrganizationId" [request]="governmentOrganization"
+                          [label]="'REFERENCE.GOVERNMENT_ORGANIZATION'" [required]="true"
+                          [showError]="showError('stateGovernmentOrganizationId')"
+                          [errorMessage]="errorMessage('stateGovernmentOrganizationId')">
+        </het-autocomplete>
+
+        <het-input formControlName="tin" [label]="'REFERENCE.TIN'" [required]="true"
+                   [showError]="showError('tin')" [errorMessage]="errorMessage('tin')">
+        </het-input>
+
+        <het-autocomplete formControlName="higherOrganizationId" [request]="organizations"
+                          [label]="'REFERENCE.HIGHER_ORGANIZATION'"
+                          [showError]="showError('higherOrganizationId')"
+                          [errorMessage]="errorMessage('higherOrganizationId')">
+        </het-autocomplete>
+
+        <het-radio-static type="status" formControlName="processed"
+                          [label]="'REFERENCE.PROCESSED'" [showError]="showError('processed')">
+        </het-radio-static>
+
+        <het-radio-static type="status" formControlName="status"
+                          [label]="'GENERAL.STATUS'" [required]="true" [showError]="showError('status')">
+        </het-radio-static>
+
+    </div>
+</form>
+

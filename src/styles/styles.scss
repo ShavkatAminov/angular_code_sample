@@ -1,0 +1,367 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-alpine.css";
+
+
+.ag-theme-alpine {
+  /* disable all borders */
+  --ag-borders: solid 1px;
+  --ag-border-color: rgba(148, 163, 184, 1);
+  --ag-header-background-color: rgba(var(--fuse-primary-rgb),var(--tw-bg-opacity));
+  --ag-header-foreground-color: rgb(255 255 255 / var(--tw-text-opacity));
+  --ag-row-border-style: solid;
+  --ag-row-border-width: 1px;
+  --ag-row-border-color: rgba(199, 210, 254, 0.5);
+  --ag-cell-horizontal-border: solid rgba(199, 210, 254, 0.5) 1px;
+  --ag-row-height: 32px
+}
+.mdc-radio:hover .mdc-radio__ripple::before, .mdc-radio.mdc-ripple-surface--hover .mdc-radio__ripple::before {
+  opacity: 0 !important;
+}
+
+.mdc-radio .mdc-radio__background::before {
+  background-color: transparent !important;
+}
+.mdc-radio__native-control{
+  opacity: 0 !important;
+}
+.mat-mdc-form-field-subscript-wrapper{
+  display: none !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-infix{
+  min-height: 28px !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-icon-suffix  {
+  height:28px;
+}
+
+.matTooltipForSelect .mdc-tooltip__surface{
+  background-color: #FFFFFF !important;
+  color: #F43F5E !important;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+}
+
+.matTooltipForSelect::after {
+  content: "";
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid white;
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -7px;
+  z-index: 121;
+}
+
+// error color by default
+.error .mat-mdc-form-field.mat-form-field-appearance-fill .mat-mdc-text-field-wrapper {
+  --tw-border-opacity: 1 !important;
+  border-color:  #F43F5E !important;
+}
+
+.error .mat-mdc-form-field.mat-form-field-appearance-fill .mat-mdc-select-arrow svg{
+  fill: #F43F5E;
+}
+
+.mat-mdc-form-field.mat-form-field-appearance-fill .mat-mdc-text-field-wrapper:has( .mat-datepicker-toggle-active ) {
+  border-color: #CBD5E1 !important;
+}
+
+// rose color
+.rose .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-text-field-wrapper {
+  --tw-border-opacity: 1 !important;
+  border-color:  #F43F5E !important;
+}
+
+.rose .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-select-arrow svg {
+  fill: #F43F5E;
+}
+
+.rose .mat-calendar-body-cell:hover .mat-calendar-body-cell-content,
+.rose .mat-calendar-body-cell:focus .mat-calendar-body-cell-content{
+  background-color: rgba(244, 63, 94, .3) !important;
+}
+
+.rose .mat-calendar-body-cell:hover .mat-calendar-body-selected,
+.rose .mat-calendar-body-cell:focus .mat-calendar-body-selected,
+.rose .mat-calendar-body-selected {
+  background-color: #F43F5E !important;
+}
+
+.rose .mat-calendar-content th {
+  color: #F43F5E;
+}
+
+#rose-panel .mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+  color: #F43F5E !important;
+}
+
+//default color
+.default .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-text-field-wrapper {
+  --tw-border-opacity: 1 !important;
+  border-color:  #4f46e5 !important;
+}
+
+.default .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-select-arrow svg {
+  fill: #4f46e5;
+}
+
+.default .mat-calendar-body-cell:hover .mat-calendar-body-cell-content,
+.default .mat-calendar-body-cell:focus .mat-calendar-body-cell-content{
+  background-color: rgba(79, 70, 229, 0.3) !important;
+}
+
+.default .mat-calendar-body-cell:hover .mat-calendar-body-selected,
+.default .mat-calendar-body-cell:focus .mat-calendar-body-selected,
+.default .mat-calendar-body-selected {
+  background-color: #4f46e5 !important;
+}
+
+.default .mat-calendar-content th {
+  color: #4f46e5;
+}
+
+#default-panel .mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+  color: #4f46e5 !important;
+}
+
+//brand color
+.brand .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-text-field-wrapper {
+  --tw-border-opacity: 1 !important;
+  border-color:  #2196f3 !important;
+}
+
+.brand .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-select-arrow svg {
+  fill: #2196f3;
+}
+
+.brand .mat-calendar-body-cell:hover .mat-calendar-body-cell-content,
+.brand .mat-calendar-body-cell:focus .mat-calendar-body-cell-content{
+  background-color: rgba(33, 150, 243, .3) !important;
+}
+
+.brand .mat-calendar-body-cell:hover .mat-calendar-body-selected,
+.brand .mat-calendar-body-cell:focus .mat-calendar-body-selected,
+.brand .mat-calendar-body-selected {
+  background-color: #2196f3 !important;
+}
+
+.brand .mat-calendar-content th {
+  color: #2196f3;
+}
+
+#brand-panel .mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+  color: #2196f3 !important;
+}
+
+//teal color
+.teal .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-text-field-wrapper {
+  --tw-border-opacity: 1 !important;
+  border-color:  #0d9488 !important;
+}
+
+.teal .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-select-arrow svg {
+  fill: #0d9488;
+}
+
+.teal .mat-calendar-body-cell:hover .mat-calendar-body-cell-content,
+.teal .mat-calendar-body-cell:focus .mat-calendar-body-cell-content{
+  background-color: rgba(13, 148, 136, .3) !important;
+}
+
+.teal .mat-calendar-body-cell:hover .mat-calendar-body-selected,
+.teal .mat-calendar-body-cell:focus .mat-calendar-body-selected,
+.teal .mat-calendar-body-selected {
+  background-color: #0d9488 !important;
+}
+
+.teal .mat-calendar-content th {
+  color: #0d9488;
+}
+
+#teal-panel .mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+  color: #0d9488 !important;
+}
+
+// purple color
+.purple .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-text-field-wrapper {
+  --tw-border-opacity: 1 !important;
+  border-color: #9333ea !important;
+}
+
+.purple .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-select-arrow svg {
+  fill: #9333ea;
+}
+
+.purple .mat-calendar-body-cell:hover .mat-calendar-body-cell-content,
+.purple .mat-calendar-body-cell:focus .mat-calendar-body-cell-content{
+  background-color: rgba(147, 51, 234, .3) !important;
+}
+
+.purple .mat-calendar-body-cell:hover .mat-calendar-body-selected,
+.purple .mat-calendar-body-cell:focus .mat-calendar-body-selected,
+.purple .mat-calendar-body-selected {
+  background-color: #9333ea !important;
+}
+
+.purple .mat-calendar-content th {
+  color: #9333ea;
+}
+
+#purple-panel .mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+  color: #9333ea !important;
+}
+
+// amber color
+.amber .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-text-field-wrapper {
+  --tw-border-opacity: 1 !important;
+  border-color: #f59e0b !important;
+}
+
+.amber .mat-mdc-form-field.mat-form-field-appearance-fill.mat-focused:not(.mat-form-field-invalid) .mat-mdc-select-arrow svg {
+  fill: #f59e0b;
+}
+
+.amber .mat-calendar-body-cell:hover .mat-calendar-body-cell-content,
+.amber .mat-calendar-body-cell:focus .mat-calendar-body-cell-content{
+  background-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+.amber .mat-calendar-body-cell:hover .mat-calendar-body-selected,
+.amber .mat-calendar-body-cell:focus .mat-calendar-body-selected,
+.amber .mat-calendar-body-selected {
+  background-color: #f59e0b !important;
+}
+
+.amber .mat-calendar-content th {
+  color: #f59e0b;
+}
+
+#amber-panel .mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+  color: #f59e0b !important;
+}
+.mat-mdc-form-field.mat-form-field-appearance-fill .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix textarea.mat-mdc-input-element {
+margin: 5px 0 !important;
+}
+
+.checkbox-section .mat-mdc-checkbox .mdc-form-field .mdc-checkbox .mdc-checkbox__native-control {
+  display: none;
+}
+
+.colorRed .mdc-checkbox .mdc-checkbox__background {
+  border-color: red !important;
+}
+
+.textWarnColor {
+  color: red;
+}
+
+.mat-mdc-checkbox .mdc-form-field .mdc-checkbox .mdc-checkbox__background .mdc-checkbox__checkmark {
+  background-color: #0049B0;
+}
+
+.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
+  border-color: #0049B0 !important;
+}
+
+.mdc-checkbox__ripple {
+  display: none;
+}
+
+.theme-default.light .mat-mdc-checkbox .mdc-checkbox__ripple {
+  background: none;
+}
+
+.example-section .mat-mdc-checkbox .mdc-form-field .mdc-checkbox .mdc-checkbox__native-control {
+  display: none !important;
+}
+
+.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control[disabled]:not(:checked):not(:indeterminate):not([data-indeterminate=true]) ~ .mdc-checkbox__background {
+  border-color: #C7D2FE !important;
+}
+
+.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true]) ~ .mdc-checkbox__background:hover {
+  border-color: #4F46E5 !important;
+}
+
+.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled ~ .mdc-checkbox__background .mdc-checkbox__mixedmark :hover {
+  border-color: #4F46E5 !important;
+}
+
+.het-datepicker .mat-mdc-button-persistent-ripple{
+  display: none;
+}
+.errorInput.mat-form-field-appearance-fill .mat-mdc-text-field-wrapper {
+  border-color: red !important;
+}
+
+// new button style
+.het-button-row {
+  .mat-mdc-button, .mat-mdc-raised-button, .mat-mdc-outlined-button, .mat-mdc-unelevated-button, .mat-mdc-icon-button, .mat-mdc-fab, .mat-mdc-mini-fab {
+    min-height: 20px !important;
+    max-height: 35px !important;
+    height: 32px !important;
+  }
+
+  .mat-mdc-button, .mat-mdc-raised-button, .mat-mdc-outlined-button, .mat-mdc-unelevated-button {
+    padding: 0 8px !important;
+    border-radius: 4px !important;
+    font-size: var(--mdc-typography-button-font-size, 0.775rem);
+  }
+}
+
+
+
+
+
+ //Custom table style
+.ag-theme-alpine .ag-root-wrapper.ag-layout-auto-height.ag-ltr  {
+  border-radius: 6px;
+}
+
+.ag-theme-alpine .ag-root-wrapper.ag-layout-auto-height.ag-ltr .ag-header-cell.ag-header-cell-wrap-text.ag-header-cell-auto-height.bg-primary.text-white.ag-focus-managed:nth-child(1) {
+  border-top-left-radius: 6px;
+}
+.ag-theme-alpine .ag-root-wrapper.ag-layout-auto-height.ag-ltr .ag-header-cell.ag-header-cell-wrap-text.ag-header-cell-auto-height.bg-primary.text-white.ag-focus-managed:nth-last-child(1) {
+  border-top-right-radius: 6px;
+}
+.ag-root-wrapper{
+  border-radius: 6px;
+}
+
+.ag-header-cell:last-child .ag-header-cell-resize{
+  display: none;
+}
+
+.cdk-overlay-pane .mat-mdc-option.mat-mdc-focus-indicator.mdc-list-item {
+  min-height: 25px !important;
+}
+
+
+
+
+
+
+
+.theme-default .light .mat-mdc-unelevated-button.mat-unthemed, .theme-default.light .mat-mdc-unelevated-button.mat-unthemed {
+  --mdc-filled-button-label-text-color: #000;
+  background: rgba(199, 210, 254, 0.5) !important;
+}
+
+.datepicker-readonly .mat-mdc-form-field-icon-suffix {
+  position: absolute;
+  z-index: -1;
+  right: 16px;
+}
+
+mat-label{
+  line-height: 16px !important;
+}

@@ -1,0 +1,83 @@
+<form (ngSubmit)="saveProcess()"
+      [formGroup]="form">
+    <div class="grid grid-cols-2 gap-4">
+        <het-input formControlName="code" [label]="'REFERENCE.UPSTREAM_METER_CODE'" [required]="true"
+                   [errorMessage]="errorMessage('code')" [showError]="showError('code')">
+        </het-input>
+        <het-autocomplete formControlName="meterTypeId"
+                          [label]="'REFERENCE.TYPE_METER_BORDER_SECTION'"
+                          [errorMessage]="errorMessage('meterTypeId')"
+                          [showError]="showError('meterTypeId')"
+                          [request]="meterTypesRequest">
+        </het-autocomplete>
+        <het-input formControlName="meterSerialNumber" [label]="'REFERENCE.SERIAL_METER'" [required]="true"
+                   [errorMessage]="errorMessage('meterSerialNumber')" [showError]="showError('meterSerialNumber')">
+        </het-input>
+        <het-input formControlName="coefficient" [label]="'REFERENCE.TRANSFORMATION_RATIO_CALCULATION'"
+                   [required]="true" [errorMessage]="errorMessage('coefficient')"
+                   [showError]="showError('coefficient')">
+        </het-input>
+        <het-input formControlName="lostAmount" [label]="'REFERENCE.LOSS_AMOUNT'" [required]="false"
+                   [errorMessage]="errorMessage('lostAmount')" [showError]="showError('lostAmount')">
+        </het-input>
+        <het-datepicker formControlName="sealSetupDate" [label]="'REFERENCE.DATE_OF_FILLING_INSTALLATION'"
+                   [required]="false" [errorMessage]="errorMessage('sealSetupDate')"
+                   [showError]="showError('sealSetupDate')">
+        </het-datepicker>
+        <het-input formControlName="sealNumber" [label]="'REFERENCE.NUMBER_SEALS_UZSTANDARD'" [required]="false"
+                   [errorMessage]="errorMessage('sealNumber')" [showError]="showError('sealNumber')">
+        </het-input>
+        <het-datepicker formControlName="standardSealDate" [label]="'REFERENCE.DATE_OF_THE_SEAL_UZSTANDARD'"
+                   [required]="false" [errorMessage]="errorMessage('standardSealDate')"
+                   [showError]="showError('standardSealDate')">
+        </het-datepicker>
+        <het-input formControlName="askueConnection" [label]="'REFERENCE.CONNECTION_TO_ASKUE'" [required]="false"
+                   [errorMessage]="errorMessage('askueConnection')" [showError]="showError('askueConnection')">
+        </het-input>
+        <het-datepicker formControlName="installationDate" [label]="'REFERENCE.DATE_INSTALLATION'" [required]="false"
+                   [errorMessage]="errorMessage('installationDate')" [showError]="showError('installationDate')">
+        </het-datepicker>
+        <het-input formControlName="sealedCalculationAmountActive"
+                   [label]="'REFERENCE.INDICATIONS_DURING_INSTALLATION'" [required]="false"
+                   [errorMessage]="errorMessage('sealedCalculationAmountActive')"
+                   [showError]="showError('sealedCalculationAmountActive')">
+        </het-input>
+        <het-input formControlName="sealedCalculationAmountReactive"
+                   [label]="'REFERENCE.INDICATIONS_FOR_REAGENT_INSTALLATION'" [required]="false"
+                   [errorMessage]="errorMessage('sealedCalculationAmountReactive')"
+                   [showError]="showError('sealedCalculationAmountReactive')">
+        </het-input>
+        <het-autocomplete formControlName="substationId"
+                          [request]="substationsRequest"
+                          [label]="'REFERENCE.INDICATIONS_DURING_INSTALLATION'"
+                          [required]="false"
+                          [errorMessage]="errorMessage('substationId')"
+                          [showError]="showError('substationId')">
+        </het-autocomplete>
+        <het-input formControlName="cableLineCode" [label]="'REFERENCE.CABLE_AIR_LINE'" [required]="false"
+                   [errorMessage]="errorMessage('cableLineCode')" [showError]="showError('cableLineCode')">
+        </het-input>
+        <het-input formControlName="part1" [label]="'REFERENCE.SECTION_1'" [required]="false"
+                   [errorMessage]="errorMessage('part1')" [showError]="showError('part1')">
+        </het-input>
+        <het-input formControlName="inputOutput1" [label]="'REFERENCE.INPUT_OUTPUT_1'" [required]="false"
+                   [errorMessage]="errorMessage('inputOutput1')" [showError]="showError('inputOutput1')">
+        </het-input>
+        <het-input formControlName="part2" [label]="'REFERENCE.SECTION_2'" [required]="false"
+                   [errorMessage]="errorMessage('part2')" [showError]="showError('part2')">
+        </het-input>
+        <het-input formControlName="inputOutput2" [label]="'REFERENCE.INPUT_OUTPUT_2'" [required]="false"
+                   [errorMessage]="errorMessage('inputOutput2')" [showError]="showError('inputOutput2')">
+        </het-input>
+        <het-autocomplete formControlName="agentId"
+                          [request]="orcAgentsRequest"
+                          [label]="'REFERENCE.AGENT_ORC'"
+                          [required]="true"
+                          [errorMessage]="errorMessage('agentId')"
+                          [showError]="showError('agentId')">
+        </het-autocomplete>
+        <het-radio-static type="status" formControlName="status" [label]="'GENERAL.STATUS'" [required]="true"
+                          [errorMessage]="errorMessage('status')" [showError]="showError('status')">
+        </het-radio-static>
+    </div>
+</form>

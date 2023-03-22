@@ -1,0 +1,52 @@
+<ng-container>
+    <div class="het-datepicker flex flex-row items-center relative" [ngClass]="computedClasses()">
+        <div class="het-select__title font-bold"  [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+            {{ label | transloco }} <span *ngIf="required">*</span>
+        </div>
+        <mat-form-field *ngIf="timePicker" appearance="fill" [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }">
+            <input matInput
+                   [placeholder]="placeholder"
+                   [readonly]="readonly"
+                   [disabled]="disabled"
+                   [(ngModel)]="value"
+            >
+            <input matInput
+                   hidden="hidden"
+                   [ngxMatDatetimePicker]="picker"
+                   [(ngModel)]="value"
+                   (dateChange)="onDatePickerChange($event.value)"
+                   [disabled]="disabled"
+                   [min]="minDate"
+                   [max]="maxDate">
+            <mat-datepicker-toggle [disabled]="readonly" matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="timePicker === false" appearance="fill" [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }">
+            <input matInput
+                   [mask]="mask"
+                   [specialCharacters]="['.']"
+                   [dropSpecialCharacters]="false"
+                   [leadZeroDateTime]="true"
+                   [placeholder]="placeholder"
+                   [readonly]="readonly"
+                   [disabled]="disabled"
+                   [(ngModel)]="strValue"
+            >
+            <input matInput
+                   hidden="hidden"
+                   [matDatepicker]="picker"
+                   [(ngModel)]="value"
+                   (dateChange)="onDatePickerChange($event.value)"
+                   [disabled]="disabled"
+                   [min]="minDate"
+                   [max]="maxDate"
+            >
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker [panelClass]="color" #picker></mat-datepicker>
+        </mat-form-field>
+        <div *ngIf="showError" error-popover>
+            {{errorMessage + extraErrorMessage}}
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,58 @@
+<div class="flex flex-col">
+    <div class="flex-auto">
+        <div class="max-w-3xl">
+            <form (ngSubmit)="saveProcess()"
+                  class="flex flex-col"
+                  [formGroup]="form">
+                <div class="flex flex-col gt-xs:flex-row">
+                    <het-input
+                            class="mb-2"
+
+                            [showError]="showError('code')"
+                            [errorMessage]="errorMessage('code')"
+                            formControlName="code"
+                            [label]="'REFERENCE.DOCUMENT_TYPE_CODE'"
+                            [required]="true">
+                    </het-input>
+                    <het-input
+                            class="mb-2"
+                            formControlName="nameUz"
+                            [showError]="showError('nameUz')"
+                            [errorMessage]="errorMessage('nameUz')"
+                            [label]="'REFERENCE.DOCUMENT_TYPE_NAME'"
+                            [required]="true">
+                    </het-input>
+                    <het-radio-static
+                            type="yesNo"
+                            formControlName="specialAccount"
+                            [showError]="showError('specialAccount')"
+                            [errorMessage]="errorMessage('specialAccount')"
+                            [label]="'REFERENCE.SPECIAL_ACCOUNT'">
+                    </het-radio-static>
+                    <het-radio-static
+                            type="yesNo"
+                            formControlName="checkingAccountAmount"
+                            [showError]="showError('checkingAccountAmount')"
+                            [errorMessage]="errorMessage('checkingAccountAmount')"
+                            [label]="'REFERENCE.MONEY_CHECKING_ACCOUNT'">
+                    </het-radio-static>
+                    <het-radio-static
+                            type="yesNo"
+                            formControlName="specialAccountTranche"
+                            [showError]="showError('specialAccountTranche')"
+                            [errorMessage]="errorMessage('specialAccountTranche')"
+                            [label]="'REFERENCE.JN_ACCOUNT_TRANCHE'">
+                    </het-radio-static>
+                    <het-radio-static
+                            type="status"
+                            formControlName="status"
+                            [showError]="showError('status')"
+                            [errorMessage]="errorMessage('status')"
+                            [label]="'GENERAL.STATUS'"
+                            [required]="true">
+                    </het-radio-static>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

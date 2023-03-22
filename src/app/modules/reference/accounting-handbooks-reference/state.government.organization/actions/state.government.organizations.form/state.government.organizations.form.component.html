@@ -1,0 +1,62 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-input
+                   [errorMessage]="errorMessage('code')"
+                   [showError]="showError('code')"
+                   formControlName="code"
+                   [label]="'REFERENCE.CODE_GOVERNMENT_ORGANIZATION'"
+                   [required]="true">
+        </het-input>
+        <het-input formControlName="nameUz"
+                   [errorMessage]="errorMessage('nameUz')"
+                   [showError]="showError('nameUz')"
+                   [label]="'REFERENCE.NAME_GOVERNMENT_ORGANIZATION'"
+                   [required]="true">
+        </het-input>
+        <het-input formControlName="shortName"
+                   [errorMessage]="errorMessage('shortName')"
+                   [showError]="showError('shortName')"
+                   [label]="'REFERENCE.SHORT_NAME'"
+                   [required]="true">
+        </het-input>
+
+        <het-input
+                [inputType]="'number'"
+                formControlName="ps9Number"
+                   [errorMessage]="errorMessage('ps9Number')"
+                   [showError]="showError('ps9Number')"
+                   [label]="'REFERENCE.PS9NUMBER'"
+                   [required]="true">
+        </het-input>
+        <het-input formControlName="budgetCode"
+                   [errorMessage]="errorMessage('budgetCode')"
+                   [showError]="showError('budgetCode')"
+                   [label]="'REFERENCE.BUDGET_CODE'"
+        >
+        </het-input>
+
+        <het-autocomplete
+                formControlName="stateComplexId"
+                [label]="'REFERENCE.COMPLEX'"
+                [request]=stateComplex
+                [required]="true"
+                [errorMessage]="errorMessage('stateComplexId')"
+                [showError]="showError('stateComplexId')">
+        </het-autocomplete>
+
+        <het-input formControlName="managingOrganizationCode"
+                   [errorMessage]="errorMessage('managingOrganizationCode')"
+                   [showError]="showError('managingOrganizationCode')"
+                   [label]="'REFERENCE.MANAGING_ORGANIZATION_CODE'"
+                   [required]="true">
+        </het-input>
+        <het-radio-static type="status"
+                          formControlName="status"
+                          [errorMessage]="errorMessage('status')"
+                          [showError]="showError('status')"
+                          [label]="'REFERENCE.PRESENCE_OF_CHARACTERS'"
+                          [required]="true">
+        </het-radio-static>
+    </div>
+</form>

@@ -1,0 +1,27 @@
+<div class="mt-1" style="padding: 10px; background: #fff; border-radius: 10px">
+    <div class="flex flex-wrap w-full gap-2 mb-3">
+
+            <ng-content></ng-content>
+            <div class="flex justify-end ml-auto items-center" [showFilter]="showFilter" (filterBtnClicked)="filterButtonClick.emit()" (changeEvent)="paginationChanged($event)" het-pagination #paginationComponent></div>
+
+
+    </div>
+    <ag-grid-angular #agGrid style="width: 100%; height: 100%;" class="ag-theme-alpine"
+                     (rowDoubleClicked)="handleRowDoubleClicked($event)"
+                     [domLayout]="'autoHeight'"
+                     [gridOptions]="gridOptions"
+                     [isFullWidthCell]="isFullWidthCell"
+                     [headerHeight]="32"
+                     (gridReady)="onGridReady($event)"
+                     [rowHeight]="32"
+                     [defaultColDef]="basicDefaultColumnDef"
+                     rowSelection="single"
+                     [suppressMovableColumns]="true"
+                     (selectionChanged)="onSelectionChangedEvent()"
+                     (rowClicked)='handleRowClicked($event)'
+                     [columnDefs]="columnDefs"
+                     [columnTypes]="columnTypes"
+                     [stopEditingWhenCellsLoseFocus]="true"
+                     [rowData]="rowData">
+    </ag-grid-angular>
+</div>

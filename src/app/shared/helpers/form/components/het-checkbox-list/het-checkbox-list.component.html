@@ -1,0 +1,23 @@
+<div class="hel-select-row flex flex-row items-start  relative">
+    <mat-label class="font-bold pt-2" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
+        {{ label | transloco}}
+        <span style="color:red" *ngIf="required">*</span>
+    </mat-label>
+    <div [ngStyle]="label? { 'width': (widthInput-widthLabel) + '%'} : { 'width': '100%' }">
+        <div *ngFor="let item of suggestions">
+            <mat-checkbox
+                    [(ngModel)]="item.checked"
+                    [ngClass]="{'colorRed': showError}"
+                    [disabled]="disabled"
+                    [required]="required"
+                    (ngModelChange)="onValueChange()"
+                    [disableRipple]="true"
+                    class="font-bold h-auto">
+                <span [ngClass]="{'textWarnColor': showError}">{{displayFunction(item)}}</span>
+            </mat-checkbox>
+        </div>
+    </div>
+    <div *ngIf="showError" error-popover>
+        {{errorMessage}}
+    </div>
+</div>

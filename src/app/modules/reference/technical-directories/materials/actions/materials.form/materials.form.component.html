@@ -1,0 +1,56 @@
+<form (ngSubmit)="saveProcess()" class=" "
+      [formGroup]="form">
+    <div class="grid grid-cols-1 gap-4">
+        <het-input
+                [inputType]="'number'"
+                formControlName="code"
+                [label]="'GENERAL.CODE'"
+                [required]="true"
+                [errorMessage]="errorMessage('code')"
+                [showError]="showError('code')">
+        </het-input>
+        <het-autocomplete
+                formControlName="transformerTypeId"
+                [errorMessage]="errorMessage('transformerTypeId')"
+                [showError]="showError('transformerTypeId')"
+                [label]="'REFERENCE.TRANSFORMER_TYPE_NAME'"
+                [required]="true"
+                [request]="autoTransformerType">
+        </het-autocomplete>
+        <het-input
+                [inputType]="'number'"
+                formControlName="sectionMm2"
+                [label]="'REFERENCE.SECTION_MM2'"
+                [required]="true" [errorMessage]="errorMessage('sectionMm2')"
+                [showError]="showError('sectionMm2')">
+        </het-input>
+         <het-input
+                 [inputType]="'number'"
+                 formControlName="resistance"
+                 [label]="'REFERENCE.RESISTANCE_OHM_KM'"
+                 [required]="true" [errorMessage]="errorMessage('resistance')"
+                 [showError]="showError('resistance')">
+        </het-input>
+        <het-radio-static
+                type="status" formControlName="status"
+                [label]="'GENERAL.STATUS'" [required]="true"
+                [errorMessage]="errorMessage('status')"
+                [showError]="showError('status')">
+        </het-radio-static>
+        <het-datepicker
+                formControlName="createdDate"
+                [label]="'GENERAL.CREATED_AT'"
+                [required]="true"
+                [errorMessage]="errorMessage('createdDate')"
+                [showError]="showError('createdDate')">
+        </het-datepicker>
+        <het-datepicker
+                formControlName="updatedDate"
+                [label]="'GENERAL.UPDATED_AT'"
+                [required]="false"
+                [errorMessage]="errorMessage('updatedDate')"
+                [showError]="showError('updatedDate')">
+        </het-datepicker>
+
+    </div>
+</form>

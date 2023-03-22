@@ -1,0 +1,16 @@
+<div class="checkbox-section">
+    <mat-checkbox
+            [(ngModel)]="value" (change)="onSelectionChange(value)"
+            [ngClass]="{'colorRed': showError}"
+            [disabled]="disabled"
+            [required]="required"
+            [disableRipple]="true"
+            class="font-bold"
+    >
+        <span  class="font-bold" style="color: red" *ngIf="required">* </span>
+        <span  class="font-bold" [ngClass]="{'textWarnColor': showError}">{{label | transloco}}</span>
+    </mat-checkbox>
+    <div *ngIf="showError" error-popover>
+        {{errorMessage}}
+    </div>
+</div>

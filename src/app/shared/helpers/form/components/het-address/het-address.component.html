@@ -1,0 +1,11 @@
+<div [formGroup]="form">
+    <het-autocomplete formControlName="habitationDivisionId"
+                      [request]="habitationDivisionsRequest"
+                      [label]="'ACCOUNTING_SETTLEMENT_HC.HABIBATION_DIVISION'"></het-autocomplete>
+
+    <het-autocomplete formControlName="streetId" [label]="'ACCOUNTING_SETTLEMENT_HC.STREET'"
+                      [request]="streetsRequest"></het-autocomplete>
+    <het-input formControlName="buildingNumber" [label]="'ACCOUNTING_SETTLEMENT_HC.BUILDING_NUMBER'"></het-input>
+    <het-input formControlName="flatNumber" [label]="'ACCOUNTING_SETTLEMENT_HC.FLAT_NUMBER'"></het-input>
+    <het-input formControlName="corpusNumber" [label]="'ACCOUNTING_SETTLEMENT_HC.CORPUS_NUMBER'"></het-input>
+</div>

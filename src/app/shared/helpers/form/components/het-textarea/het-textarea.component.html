@@ -1,0 +1,20 @@
+<div class="flex flex-row relative">
+    <div  class="font-bold" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+        {{ label | transloco}} <span *ngIf="required" style="color: red">*</span>
+    </div>
+    <mat-form-field  [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }">
+        <textarea
+                [rows]="rows"
+                [id]="color"
+                matInput
+                [placeholder]="placeholder"
+                [(ngModel)]="value"
+                [readonly]="readonly"
+                [disabled]="disabled"
+                (input)="onTextareaChange(value)"
+        ></textarea>
+    </mat-form-field>
+    <div *ngIf="showError" error-popover>
+        {{errorMessage}}
+    </div>
+</div>

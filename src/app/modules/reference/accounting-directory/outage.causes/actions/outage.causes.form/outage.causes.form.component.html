@@ -1,0 +1,26 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-input
+                formControlName="code"
+                [showError]="showError('code')"
+                [label]="'GENERAL.CODE'"
+                [errorMessage]="errorMessage('code')"
+                [required]="true">
+        </het-input>
+        <het-input
+                formControlName="nameUz"
+                [showError]="showError('nameUz')"
+                [label]="'GENERAL.NAME'"
+                [errorMessage]="errorMessage('nameUz')"
+                [required]="true">
+        </het-input>
+        <het-radio-static
+                type="status"
+                formControlName="status"
+                [showError]="showError('status')"
+                [label]="'GENERAL.STATUS'"
+                [required]="true">
+        </het-radio-static>
+    </div>
+</form>

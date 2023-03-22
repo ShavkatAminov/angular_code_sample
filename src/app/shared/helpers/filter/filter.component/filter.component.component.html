@@ -1,0 +1,28 @@
+<form (ngSubmit)="submit()" class="flex flex-col bg-card"
+      [formGroup]="form">
+    <h3 class="font-semibold text-gray-900 dark:text-white">
+        {{"GENERAL.FIELD_TO_BE_FILTERED" | transloco}}
+    </h3>
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <ng-container *ngFor="let item of listFields | keyvalue: originalOrder">
+            <ng-container [ngSwitch]="item.value.type">
+                <het-input *ngSwitchCase="'input'" formControlName="{{item.key}}" [label]="item.value.label"></het-input>
+                <het-datepicker *ngSwitchCase="'date'" formControlName="{{item.key}}" [label]="item.value.label"></het-datepicker>
+                <het-datepicker *ngSwitchCase="'datetime'" [timePicker]="true" formControlName="{{item.key}}" [label]="item.value.label"></het-datepicker>
+                <het-radio-button *ngSwitchCase="'radio'" [options]="item.value.options" formControlName="{{item.key}}" [label]="item.value.label"></het-radio-button>
+                <het-checkbox *ngSwitchCase="'checkbox'" formControlName="{{item.key}}" [label]="item.value.label"></het-checkbox>
+                <het-textarea *ngSwitchCase="'textarea'" formControlName="{{item.key}}" [label]="item.value.label"></het-textarea>
+                <het-autocomplete *ngSwitchCase="'autocomplete'" [request]="item.value.options" formControlName="{{item.key}}" [label]="item.value.label"></het-autocomplete>
+                <het-radio-static *ngSwitchCase="'yesNo'" [type]="'yesNo'" formControlName="{{item.key}}" [label]="item.value.label"></het-radio-static>
+                <het-radio-static *ngSwitchCase="'status'" [type]="'status'" formControlName="{{item.key}}" [label]="item.value.label"></het-radio-static>
+                <het-select *ngSwitchCase="'select'"  formControlName="{{item.key}}" [label]="item.value.label"></het-select>
+            </ng-container>
+        </ng-container>
+        <div class="text-right">
+            <het-button type="submit" (click)="submit()" label="FORM.APPLY"></het-button>
+            <het-button class="ml-1" (click)="clear()" label="FORM.CLEAR"></het-button>
+            <het-button class="ml-1" label="FORM.CANCEL" (click)="close()"></het-button>
+        </div>
+    </div>
+</form>
+

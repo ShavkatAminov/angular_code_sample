@@ -1,0 +1,107 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-input formControlName="code"
+
+                   [label]="'GENERAL.CODE'"
+                   [errorMessage]="errorMessage('code')"
+                   [showError]="showError('code')"
+                   [required]="true">
+        </het-input>
+        <het-input formControlName="nameUz"
+                   [label]="'GENERAL.NAME'"
+                   [errorMessage]="errorMessage('nameUz')"
+                   [showError]="showError('nameUz')"
+                   [required]="true">
+        </het-input>
+        <het-input formControlName="physicalConsumerAmount"
+                   [label]="'REFERENCE.PHYSICAL_CONSUMER_AMOUNT'"
+                   [inputType]="'number'"
+                   [errorMessage]="errorMessage('physicalConsumerAmount')"
+                   [showError]="showError('physicalConsumerAmount')">
+        </het-input>
+        <het-input formControlName="legalConsumerAmount"
+                   [label]="'REFERENCE.LEGAL_CONSUMER_AMOUNT'"
+                   [inputType]="'number'"
+                   [errorMessage]="errorMessage('legalConsumerAmount')"
+                   [showError]="showError('legalConsumerAmount')">
+        </het-input>
+        <het-input formControlName="admissibleCurrentAmper"
+                   [label]="'REFERENCE.ADMISSIBLE_AMPERE'"
+                   [inputType]="'number'"
+                   [errorMessage]="errorMessage('admissibleCurrentAmper')"
+                   [showError]="showError('admissibleCurrentAmper')"
+                   [required]="true">
+        </het-input>
+        <het-input formControlName="average"
+                   [label]="'REFERENCE.AVERAGE'"
+                   [inputType]="'number'"
+                   [errorMessage]="errorMessage('average')"
+                   [showError]="showError('average')">
+        </het-input>
+        <het-input formControlName="meterCapacity"
+                   [label]="'REFERENCE.METER_CAPACITY'"
+                   [inputType]="'number'"
+                   [errorMessage]="errorMessage('meterCapacity')"
+                   [showError]="showError('meterCapacity')"
+                   [required]="true">
+        </het-input>
+        <het-input formControlName="meterView"
+                   [label]="'REFERENCE.METER_VIEW'"
+                   [errorMessage]="errorMessage('meterView')"
+                   [showError]="showError('meterView')"
+                   [required]="true">
+        </het-input>
+        <het-radio-static type="yesNo"
+                          formControlName="measurementType"
+                          [showError]="showError('measurementType')"
+                          [errorMessage]="errorMessage('measurementType')"
+                          [label]="'REFERENCE.MEASUREMENT_TYPE'"
+                          [required]="true">
+        </het-radio-static>
+        <het-input formControlName="askueCompatibility"
+                   [label]="'REFERENCE.ASKUE_COMPATIBILITY'"
+                   [errorMessage]="errorMessage('askueCompatibility')"
+                   [showError]="showError('askueCompatibility')"
+                   [required]="true">
+        </het-input>
+        <het-radio-static type="yesNo" formControlName="multiTariff"
+                          [showError]="showError('multiTariff')"
+                          [errorMessage]="errorMessage('multiTariff')"
+                          [label]="'REFERENCE.MULTI_TARIFF'"
+                          [required]="true">
+        </het-radio-static>
+        <het-radio-static type="yesNo" formControlName="realMeter"
+                          [showError]="showError('realMeter')"
+                          [errorMessage]="errorMessage('realMeter')"
+                          [label]="'REFERENCE.REAL_METER'"
+                          [required]="true">
+        </het-radio-static>
+        <het-input formControlName="transferred"
+                   [label]="'REFERENCE.TRANSFERRED'"
+                   [inputType]="'number'"
+                   [errorMessage]="errorMessage('transferred')"
+                   [showError]="showError('transferred')"
+                   [required]="true">
+        </het-input>
+        <het-autocomplete formControlName="meterManufacturerId"
+                          [label]="'REFERENCE.METER_MANUFACTURER'"
+                          [errorMessage]="errorMessage('meterManufacturerId')"
+                          [showError]="showError('meterManufacturerId')"
+                          [request]="meterManufacturesRequest">
+        </het-autocomplete>
+        <het-radio-static type="yesNo"
+                          formControlName="detail"
+                          [label]="'REFERENCE.DETAIL'"
+                          [showError]="showError('detail')"
+                          [errorMessage]="errorMessage('detail')">
+        </het-radio-static>
+        <het-radio-static type="status"
+                          formControlName="status"
+                          [label]="'GENERAL.STATUS'"
+                          [required]="true"
+                          [showError]="showError('status')"
+                          [errorMessage]="errorMessage('status')">
+        </het-radio-static>
+    </div>
+</form>
