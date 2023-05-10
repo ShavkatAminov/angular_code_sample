@@ -1,0 +1,45 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card"
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-input
+                formControlName="code"
+                [label]="'GENERAL.CODE'"
+                [required]="true"
+                [errorMessage]="errorMessage('code')"
+                [showError]="showError('code')">
+        </het-input>
+        <het-input formControlName="nameUz"
+                   [errorMessage]="errorMessage('nameUz')"
+                   [showError]="showError('nameUz')"
+                   [required]="true"
+                   [label]="'GENERAL.NAME'"
+        ></het-input>
+        <het-input formControlName="shortName"
+                   [errorMessage]="errorMessage('shortName')"
+                   [showError]="showError('shortName')"
+                   [required]="true"
+                   [label]="'REFERENCE.SHORT_NAME'"
+        ></het-input>
+        <het-input formControlName="prefix"
+                   [errorMessage]="errorMessage('prefix')"
+                   [showError]="showError('prefix')"
+                   [required]="true"
+                   [label]="'REFERENCE.PREFIX'"
+                   maxLength="5"
+        ></het-input>
+        <het-input formControlName="percent"
+                   [errorMessage]="errorMessage('percent')"
+                   [showError]="showError('percent')"
+                   [required]="true"
+                   [label]="'REFERENCE.PERCENTAGE'"
+                   [mask]="'0*'"
+        ></het-input>
+        <het-radio-static
+                type="status"
+                formControlName="status"
+                [label]="'GENERAL.STATUS'"
+                [required]="true"
+                [showError]="showError('status')">
+        </het-radio-static>
+    </div>
+</form>

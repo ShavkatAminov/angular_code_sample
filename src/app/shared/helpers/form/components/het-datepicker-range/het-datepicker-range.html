@@ -1,0 +1,18 @@
+<ng-container>
+    <div class="het-datepicker flex flex-row items-center relative" [ngClass]="computedClasses()">
+        <div class="het-select__title font-bold" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
+            {{ label | transloco }} <span *ngIf="required">*</span>
+        </div>
+        <mat-form-field [formGroup]="form" *ngIf="timePicker === false" appearance="fill" [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'readonly-bg-color' : readonly}">
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate formControlName="from" [readonly]="readonly">
+                <input matEndDate formControlName="to" [readonly]="readonly">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <div *ngIf="showError" error-popover>
+            {{errorMessage + extraErrorMessage}}
+        </div>
+    </div>
+</ng-container>

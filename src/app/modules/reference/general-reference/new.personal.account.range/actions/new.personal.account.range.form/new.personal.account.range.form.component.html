@@ -1,0 +1,36 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card"
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-input formControlName="accountRangeFrom"
+                   [errorMessage]="errorMessage('accountRangeFrom')"
+                   [showError]="showError('accountRangeFrom')"
+                   [label]="'ACCOUNTING_SETTLEMENT_HC.COUNTING_RANGE_FROM'"
+                   inputType="number"
+                   [required]="true"
+        ></het-input>
+        <het-input
+                formControlName="accountRangeTo"
+                [errorMessage]="errorMessage('accountRangeTo')"
+                [showError]="showError('accountRangeTo')"
+                [label]="'ACCOUNTING_SETTLEMENT_HC.ACCOUNT_RANGE_UP_TO'"
+                inputType="number"
+                [required]="true"
+        ></het-input>
+        <het-autocomplete
+                formControlName="coatoBranchId"
+                [errorMessage]="errorMessage('coatoBranchId')"
+                [showError]="showError('coatoBranchId')"
+                [label]="'ACCOUNTING_SETTLEMENT_HC.COATO_BRANCH_ID'"
+                [request]="coatoBranchRequest"
+                [required]="true"
+        ></het-autocomplete>
+        <het-autocomplete
+                formControlName="consumerActivityTypeId"
+                [errorMessage]="errorMessage('consumerActivityTypeId')"
+                [showError]="showError('consumerActivityTypeId')"
+                [label]="'ACCOUNTING_SETTLEMENT_HC.TYPE_OF_CONSUMER_ACTIVITY'"
+                [request]="consumerActivityTypeRequest"
+                [required]="true"
+        ></het-autocomplete>
+    </div>
+</form>

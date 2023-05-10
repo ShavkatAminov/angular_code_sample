@@ -1,0 +1,18 @@
+export enum MEASUREMENT_TYPE_ENUM {
+    ACTIVE = "ACTIVE",
+    REACTIVE = "REACTIVE",
+    ACTIVE_REACTIVE  = "ACTIVE_REACTIVE",
+}
+export enum ASKUE_COMPATABILITY {
+    YES = "YES",
+    NO = "NO",
+    SMARTCARD  = "SMARTCARD",
+}
+export enum PHASE_TYPE {
+    SINGLE_PHASE = "SINGLE_PHASE",
+    THREE_PHASE = "THREE_PHASE"
+}
+export enum METER_VIEW {
+    ELECTRONIC = "ELECTRONIC",
+    DISK = "DISK"
+}
