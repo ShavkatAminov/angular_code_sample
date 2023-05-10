@@ -55,9 +55,6 @@ export class ReceiverOrganizationsComponent extends BasicReferencePage {
             field: 'percentage',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             headerName: 'GENERAL.STATUS',
             field: 'status',
             type: 'status',

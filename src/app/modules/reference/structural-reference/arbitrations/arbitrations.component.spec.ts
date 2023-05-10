@@ -5,22 +5,19 @@ import {TranslocoModule} from "@ngneat/transloco";
 import {HttpClientModule} from "@angular/common/http";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('ArbitrationsComponent', () => {
     let component: ArbitrationsComponent;
     let fixture: ComponentFixture<ArbitrationsComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                TranslocoModule,
-                HttpClientModule,
-                TranslocoModule,
-                AppModule,
-            ],
+        imports: imports,
             declarations: [ ArbitrationsComponent ]
         })
             .compileComponents();
+    login();
 
         fixture = TestBed.createComponent(ArbitrationsComponent);
         component = fixture.componentInstance;

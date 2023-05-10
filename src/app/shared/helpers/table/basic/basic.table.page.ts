@@ -5,12 +5,18 @@ import {FilterFieldGroup} from "../../filter/filter.component/filterField";
 import {ModalComponent, SizeModal} from "../../modal/modal.component";
 import {FilterComponent} from "../../filter/filter.component/filter.component.component";
 import {ColDef} from "ag-grid-community";
+import {HttpClientService} from "@shared/helpers/service/http/http.client.service";
+import {ConfirmComponent} from "@shared/helpers/dialog-confirm/confirm.component";
+import {AlertServiceComponent} from "@shared/helpers/alerts/services/alert.service.component";
 
 @Component({
     template: "",
 })
 export class BasicTablePage {
 
+    constructor(protected http: HttpClientService, protected alert: AlertServiceComponent) {
+
+    }
     defaultColumnDef: ColDef = {
         floatingFilter: true,
         filter: true,
@@ -49,6 +55,20 @@ export class BasicTablePage {
     }
 
     addUpdate(id){};
+
+    remove(request):void {
+        ModalComponent.showModal(ConfirmComponent,"FORM.DELETE", "MESSAGES.ARE_YOU_SURE_DELETE", SizeModal.xsm).subscribe((data:boolean) => {
+            if(data) {
+                this.http.request(request,'delete').subscribe(data => {
+                    this.reload()
+                    this.alert.success('ALERT.DELETE_SUCCESS',{
+                        autoClose:true,
+                        keepAfterRouteChange:false
+                    })
+                })
+            }
+        })
+    }
 
     handleDoubleClick(data, func = this.addUpdate) {
         func.call(this, data.id);

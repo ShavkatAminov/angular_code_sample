@@ -8,8 +8,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
@@ -33,27 +31,19 @@ export class OperationTypesComponent extends BasicReferencePage{
       headerName: 'REFERENCE.CREDIT_ACCOUNT_CODE',
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       field: 'status',
       headerName: 'GENERAL.STATUS',
       type: 'status'
     },
   ];
+
+
   request = new ReferenceListRequest(ReferenceApiUrls.OPERATION_TYPES);
   title = 'MENU.REFERENCE.ACCOUNTING_HANDBOOKS.DIRECTORY_OF_OPERATION_TYPES';
   addUpdate(id = null) {
-    FormModalComponent.showModal(OperationTypesFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+    FormModalComponent.showModal(OperationTypesFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
       if (res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('REFERENCE.OPERATION_CODE', 'input'),
-    nameUz: new FilterField('GENERAL.NAME', 'input'),
-    debitAccountCode: new FilterField('REFERENCE.DEBIT_ACCOUNT_CODE', 'input'),
-    creditAccountCode: new FilterField('REFERENCE.CREDIT_ACCOUNT_CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

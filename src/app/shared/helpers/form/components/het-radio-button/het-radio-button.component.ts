@@ -21,8 +21,13 @@ export class HetRadioButtonComponent extends BasicFormInput{
   @Input() class: string='';
   @Input() color:string='primary'
   @Output() selectionChanged: EventEmitter<number> = new EventEmitter<number>();
+  setBorder: boolean = false;
   onselectionchange(value){
     this.onChange(this.value)
     this.selectionChanged.emit(this.value)
+  }
+
+  setborder(){
+    return this.setBorder=!this.setBorder;
   }
 }

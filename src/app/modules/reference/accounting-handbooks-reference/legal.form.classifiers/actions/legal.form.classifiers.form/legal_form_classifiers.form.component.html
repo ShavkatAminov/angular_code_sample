@@ -5,6 +5,7 @@
                    [errorMessage]="errorMessage('code')"
                    [showError]="showError('code')"
                    formControlName="code"
+                   [mask]="'0000'"
                    [label]="'GENERAL.CODE'"
                    [required]="true">
         </het-input>
@@ -20,7 +21,7 @@
                           [errorMessage]="errorMessage('status')"
                           [showError]="showError('status')"
                           [label]="'GENERAL.STATUS'"
-                          [required]="true">
+                          >
         </het-radio-static>
     </div>
 </form>

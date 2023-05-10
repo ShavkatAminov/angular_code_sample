@@ -3,7 +3,7 @@
         {{label | transloco}} <span *ngIf="required" style="color: red">*</span>
     </mat-label>
 
-    <mat-form-field [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'errorInput' : showError}">
+    <mat-form-field [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'errorInput' : showError, 'readonly-bg-color' : readonly}">
         <input
                 matInput
                 (focusout)="onTouch()"
@@ -18,12 +18,19 @@
                 [disabled]="disabled"
                 [maxlength]="maxLength"
                 (keypress)="!allowCrl ? checkLatin($event) :null"
+                (keydown)="onKeyDown($event)"
+                (select)="onTextSelect($event)"
+                #myInput
         >
         <mat-icon *ngIf="svgIcon"
                   class="icon-size-5"
                   matPrefix
                   [svgIcon]="svgIcon"
         ></mat-icon>
+        <span *ngIf="value?.length && !disabled && !readonly" (click)="toNull($event)" class="flex items-center py-2 bg-white clear-btn" matSuffix
+              mat-icon-button>
+            <mat-icon class="font-black text-black">close</mat-icon>
+        </span>
     </mat-form-field>
     <div *ngIf="showError" error-popover>
         {{errorMessage}}

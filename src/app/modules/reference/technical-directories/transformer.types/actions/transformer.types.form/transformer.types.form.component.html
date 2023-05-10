@@ -1,14 +1,6 @@
 <form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
-        <het-input
-                class="mb-2"
-                formControlName="code"
-                [label]="'GENERAL.CODE'"
-                [required]="true"
-                [errorMessage]="errorMessage('code')"
-                [showError]="showError('code')">
-        </het-input>
         <het-radio-button
                 [label]="'REFERENCE.PTES_REP_SIGN'"
                 formControlName="ptesRepSign"
@@ -26,7 +18,8 @@
         </het-input>
         <het-input
                 class="mb-2"
-                [inputType]="'number'"
+                [maxLength]="10"
+                [mask]="'0*.00'"
                 formControlName="windingSign"
                 [label]="'REFERENCE.WINDING_SIGN'"
                 [required]="true"
@@ -35,19 +28,102 @@
         </het-input>
         <het-input
                 class="mb-2"
-                [inputType]="'number'"
                 formControlName="ratedPower"
                 [label]="'REFERENCE.RATED_POWER'"
                 [required]="true"
+                [maxLength]="10"
+
                 [errorMessage]="errorMessage('ratedPower')"
                 [showError]="showError('ratedPower')">
         </het-input>
-        <het-radio-static
-                type="status"
-                formControlName="status"
-                [label]="'GENERAL.STATUS'"
+        <het-number-input
+                class="mb-2"
+                formControlName="highVoltage"
+                [label]="'REFERENCE.HIGH_VOLTAGE'"
                 [required]="true"
-                [showError]="showError('status')">
-        </het-radio-static>
+                [maxLength]="10"
+                [mask]="'0*.00'"
+                [errorMessage]="errorMessage('highVoltage')"
+                [showError]="showError('highVoltage')">
+        </het-number-input>
+        <het-number-input
+                class="mb-2"
+                formControlName="middleVoltage"
+                [label]="'REFERENCE.MIDDLE_VOLTAGE'"
+                [required]="true"
+                [mask]="'0*.00'"
+                [maxLength]="10"
+                [errorMessage]="errorMessage('middleVoltage')"
+                [showError]="showError('middleVoltage')">
+        </het-number-input>
+        <het-number-input
+                class="mb-2"
+                formControlName="lowVoltage"
+                [label]="'REFERENCE.LOW_VOLTAGE'"
+                [required]="true"
+                [mask]="'0*.00'"
+                [maxLength]="10"
+                [errorMessage]="errorMessage('lowVoltage')"
+                [showError]="showError('lowVoltage')">
+        </het-number-input>
+        <het-number-input
+                class="mb-2"
+                formControlName="lossIdlePower"
+                [label]="'REFERENCE.LOSS_IDLE_POWER'"
+                [required]="true"
+                [mask]="'0*.00'"
+                [maxLength]="10"
+                [errorMessage]="errorMessage('lossIdlePower')"
+                [showError]="showError('lossIdlePower')">
+        </het-number-input>
+        <het-number-input
+                class="mb-2"
+                formControlName="lossShortCircuit"
+                [label]="'REFERENCE.LOSS_SHORT_CIRCUIT'"
+                [required]="true"
+                [mask]="'0*.00'"
+                [maxLength]="10"
+                [errorMessage]="errorMessage('lossShortCircuit')"
+                [showError]="showError('lossShortCircuit')">
+        </het-number-input>
+        <het-number-input
+                class="mb-2"
+                formControlName="lossHighToLowTransition"
+                [label]="'REFERENCE.LOSS_HIGH_TO_LOW_TRANSITION'"
+                [required]="true"
+                [mask]="'0*.00'"
+                [maxLength]="10"
+                [errorMessage]="errorMessage('lossHighToLowTransition')"
+                [showError]="showError('lossHighToLowTransition')">
+        </het-number-input>
+        <het-number-input
+                class="mb-2"
+                formControlName="lossMediumToLowTransition"
+                [label]="'REFERENCE.LOSS_MEDIUM_TO_LOW_TRANSITION'"
+                [required]="true"
+                [mask]="'0*.00'"
+                [maxLength]="10"
+                [errorMessage]="errorMessage('lossMediumToLowTransition')"
+                [showError]="showError('lossMediumToLowTransition')">
+        </het-number-input>
+        <het-number-input
+                class="mb-2"
+                formControlName="lossNoLoadCurrent"
+                [label]="'REFERENCE.LOSS_NO_LOAD_CURRENT'"
+                [required]="true"
+                [mask]="'0*.00'"
+                [maxLength]="10"
+                [errorMessage]="errorMessage('lossNoLoadCurrent')"
+                [showError]="showError('lossNoLoadCurrent')">
+        </het-number-input>
+        <het-input
+                class="mb-2"
+                formControlName="numberPer"
+                [label]="'REFERENCE.REG_NUMBER'"
+                [required]="true"
+                [maxLength]="10"
+                [errorMessage]="errorMessage('numberPer')"
+                [showError]="showError('numberPer')">
+        </het-input>
     </div>
 </form>

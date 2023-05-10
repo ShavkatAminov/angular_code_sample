@@ -1,22 +1,17 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import { HetTextareaComponent } from './het-textarea.component';
-import {SharedModule} from "../../../../shared.module";
-import {AppModule} from "../../../../../app.module";
-import {asapScheduler} from "rxjs";
 
 
 
+import {imports} from "@test/imports";
 describe('HetTextareaComponent', () => {
   let component: HetTextareaComponent;
   let fixture: ComponentFixture<HetTextareaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        AppModule
-      ],
+        imports: imports,
       declarations: [ HetTextareaComponent ]
     })
     .compileComponents();

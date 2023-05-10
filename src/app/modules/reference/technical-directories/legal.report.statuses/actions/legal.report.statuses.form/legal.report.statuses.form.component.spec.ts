@@ -6,18 +6,14 @@ import {TranslocoModule} from "@ngneat/transloco";
 import {HttpClientModule} from "@angular/common/http";
 import {AppModule} from "../../../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('LegalReportStatusesFormComponent', () => {
   let component: LegalReportStatusesFormComponent;
   let fixture: ComponentFixture<LegalReportStatusesFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ LegalReportStatusesFormComponent ]
     })
     .compileComponents();

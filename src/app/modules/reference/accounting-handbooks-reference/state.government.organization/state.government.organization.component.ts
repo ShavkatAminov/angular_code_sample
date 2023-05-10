@@ -1,22 +1,28 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {
     StateGovernmentOrganizationsFormComponent
 } from "./actions/state.government.organizations.form/state.government.organizations.form.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
+import {ReferenceDropDownRequest} from "@app/modules/reference/basic/ReferenceDropDownRequest";
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions" ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
-export class StateGovernmentOrganizationComponent extends BasicReferencePage {
+export class StateGovernmentOrganizationComponent extends BasicReferencePage implements OnInit {
+    ngOnInit(): void {
+        this.defaultColumnDef['minWidth'] = 150
+    }
+
     columnDefs: ColDef[] = [
         {
             flex:3,
@@ -24,50 +30,49 @@ export class StateGovernmentOrganizationComponent extends BasicReferencePage {
             field: 'code',
         },
         {
-            flex:15,
+            minWidth:250,
             headerName: "REFERENCE.NAME_GOVERNMENT_ORGANIZATION",
             field: 'nameUz',
         },
         {
+            minWidth:200,
             headerName: "REFERENCE.SHORT_NAME",
             field: 'shortName',
         },
         {
-            flex:3,
+            minWidth:150,
             headerName: "REFERENCE.PS9NUMBER",
             field: 'ps9Number',
+
         },
         {
-            flex:4,
+            minWidth:150,
             headerName: "REFERENCE.BUDGET_CODE",
             field: 'budgetCode',
         },
         {
-            floatingFilter: false,
-            filter: false,
-            flex: 4,
+            minWidth:150,
             headerName: "REFERENCE.CODE_COMPLEX",
             field: 'stateComplex.code',
-        },
-        {
+            colId: 'stateComplexId',
             floatingFilterComponentParams: {
                 type: 'autocomplete',
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.STATE_COMPLEX)
             },
-            flex:13,
+        },
+        {
+            minWidth:200,
             headerName: "REFERENCE.NAME_COMPLEX",
+            filter:false,
             field: 'stateComplex.nameUz',
         },
         {
-            flex:5,
+            minWidth:150,
             headerName: "REFERENCE.MANAGING_ORGANIZATION_CODE",
             field: 'managingOrganizationCode',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
-            flex:5,
+            minWidth:150,
             headerName: "GENERAL.STATUS",
             field: 'status',
             type: 'status'
@@ -78,19 +83,9 @@ export class StateGovernmentOrganizationComponent extends BasicReferencePage {
     request = new ReferenceListRequest(ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS);
 
     addUpdate(id = null) {
-        FormModalComponent.showModal(StateGovernmentOrganizationsFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+        FormModalComponent.showModal(StateGovernmentOrganizationsFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
             if (res)
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('nameUz', 'input'),
-    code: new FilterField('code', 'input'),
-    status: new FilterField('status', 'status'),
-    shortName: new FilterField('shortName', 'input'),
-    ps9Number: new FilterField('ps9Number', 'input'),
-    budgetCode: new FilterField('budgetCode', 'input'),
-    stateComplexId: new FilterField('', 'input'),
-    managingOrganizationCode: new FilterField('managingOrganizationCode', 'input'),
-  }
 }

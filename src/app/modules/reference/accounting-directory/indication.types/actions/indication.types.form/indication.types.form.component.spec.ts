@@ -4,16 +4,14 @@ import { AppModule } from 'app/app.module';
 import { IndicationTypesFormComponent } from './indication.types.form.component';
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('IndicationTypesFormComponent', () => {
   let component: IndicationTypesFormComponent;
   let fixture: ComponentFixture<IndicationTypesFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ IndicationTypesFormComponent ]
     })
     .compileComponents();

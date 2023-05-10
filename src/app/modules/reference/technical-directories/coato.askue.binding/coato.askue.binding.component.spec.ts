@@ -5,29 +5,26 @@ import {ReferenceListRequest} from '../../basic/ReferenceListRequest';
 import {ReferenceApiUrls} from '../../referenceApiUrls';
 import {CoatoAskueBindingComponent} from './coato.askue.binding.component';
 import {CoatoAskueBindingFormComponent} from "./actions/coato.askue.binding.form/coato.askue.binding.form.component";
-import {AppModule} from "../../../../app.module";
+import {AppModule} from "@app/app.module";
 import {SharedModule} from "@shared/shared.module";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {AgGridModule} from "ag-grid-angular";
 import {TranslocoModule} from "@ngneat/transloco";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('CoatoAskueBindingComponent', () => {
     let component: CoatoAskueBindingComponent;
     let fixture: ComponentFixture<CoatoAskueBindingComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                HttpClientTestingModule,
-                AgGridModule,
-                AppModule,
-                SharedModule,
-                TranslocoModule,
-            ],
+        imports: imports,
             providers: [FormModalComponent],
             declarations: [CoatoAskueBindingComponent, CoatoAskueBindingFormComponent]
         })
             .compileComponents();
+    login();
 
         fixture = TestBed.createComponent(CoatoAskueBindingComponent);
         component = fixture.componentInstance;

@@ -11,20 +11,23 @@
         </het-autocomplete>
         <het-autocomplete
             formControlName="bankId"
-            [label]="'REFERENCE.BANK_CODE'"
             [request]="currenciesBank"
+            label="REFERENCE.BANK_CODE"
             [showError]="showError('bankId')"
             [errorMessage]="errorMessage('bankId')"
             [required]="true">
         </het-autocomplete>
         <het-input
+
             [showError]="showError('bankMfo')"
             [errorMessage]="errorMessage('bankMfo')"
             formControlName="bankMfo"
+            [mask]="'00000'"
             [label]="'REFERENCE.MFO'"
             [required]="true">
         </het-input>
         <het-input
+
                 [showError]="showError('nameUz')"
                 [errorMessage]="errorMessage('nameUz')"
                 formControlName="nameUz"

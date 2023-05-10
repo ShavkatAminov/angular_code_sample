@@ -4,18 +4,22 @@ import {
     OwnershipClassifierFormComponent
 } from "./actions/ownership.classifier.form/ownership.classifier.form.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
-import {BasicTablePage} from "../../../../shared/helpers/table/basic/basic.table.page";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {BasicTablePage} from "@shared/helpers/table/basic/basic.table.page";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup} from 'app/shared/helpers/filter/filter.component/filterField';
+import {BasicReferencePage} from "@app/modules/reference/basic.reference.page";
+;
 
 @Component({
-    template: basicTemplate(),
+    template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions"  ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
-export class OwnershipClassifierComponent extends BasicTablePage {
+export class OwnershipClassifierComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
         {
             flex: 2,
@@ -23,14 +27,10 @@ export class OwnershipClassifierComponent extends BasicTablePage {
             field: 'code',
         },
         {
-            headerName: "GENERAL.NAME",
+            headerName: "REFERENCE.NAMING_OWNERSHIP_CLASSIFIER",
             field: 'nameUz',
         },
         {
-
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             flex: 4,
             headerName: "GENERAL.STATUS",
             type: 'status',
@@ -42,15 +42,9 @@ export class OwnershipClassifierComponent extends BasicTablePage {
     request = new ReferenceListRequest(ReferenceApiUrls.OWNERSHIP_CLASSIFIER);
 
     addUpdate(id = null) {
-        FormModalComponent.showModal(OwnershipClassifierFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+        FormModalComponent.showModal(OwnershipClassifierFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
             if (res)
                 this.reload();
         });
-    }
-
-    override filter: FilterFieldGroup = {
-        code: new FilterField('GENERAL.CODE', 'input'),
-        nameUz: new FilterField('GENERAL.NAME', 'input'),
-        status: new FilterField('GENERAL.STATUS', 'status'),
     }
 }

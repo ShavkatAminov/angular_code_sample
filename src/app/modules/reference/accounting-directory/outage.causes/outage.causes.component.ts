@@ -7,18 +7,21 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
+;
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions" value="HTML" ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class OutageCausesComponent extends BasicReferencePage {
   columnDefs: ColDef[] = [
       {
         headerName: 'GENERAL.CODE',
-        field: 'code',
-        maxWidth: 70,
+        field: 'id',
+        maxWidth: 200,
         cellStyle: { textAlign: 'center' }
       },
       {
@@ -27,16 +30,14 @@ export class OutageCausesComponent extends BasicReferencePage {
         cellStyle: { textAlign: 'center' }
       },
       {
-        floatingFilterComponentParams: {
-            type: 'status',
-        },
         headerName: 'REFERENCE.GENERAL_STATUS',
         field: 'status',
         type: 'status',
-        maxWidth: 120,
+        maxWidth: 200,
         cellStyle: { textAlign: 'center' }
       },
   ];
+
 
   title = 'MENU.REFERENCE.ACCOUNTING_HANDBOOKS.OUTAGE_CAUSE_DIRECTORY';
   request = new ReferenceListRequest(ReferenceApiUrls.OUTAGE_CAUSES);
@@ -46,10 +47,5 @@ export class OutageCausesComponent extends BasicReferencePage {
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('REFERENCE.NAME_TRIP_TYPE', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('REFERENCE.GENERAL_STATUS', 'status'),
   }
 }

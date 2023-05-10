@@ -3,29 +3,29 @@
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <het-input formControlName="code"
 
-                   [label]="'GENERAL.CODE'"
+                   [label]="'ACCOUNTING_SETTLEMENT_LC.METER_CODE'"
                    [errorMessage]="errorMessage('code')"
                    [showError]="showError('code')"
                    [required]="true">
         </het-input>
         <het-input formControlName="nameUz"
-                   [label]="'GENERAL.NAME'"
+                   [label]="'ACCOUNTING_SETTLEMENT_LC.METER_BRAND'"
                    [errorMessage]="errorMessage('nameUz')"
                    [showError]="showError('nameUz')"
                    [required]="true">
         </het-input>
-        <het-input formControlName="physicalConsumerAmount"
-                   [label]="'REFERENCE.PHYSICAL_CONSUMER_AMOUNT'"
-                   [inputType]="'number'"
-                   [errorMessage]="errorMessage('physicalConsumerAmount')"
-                   [showError]="showError('physicalConsumerAmount')">
-        </het-input>
-        <het-input formControlName="legalConsumerAmount"
-                   [label]="'REFERENCE.LEGAL_CONSUMER_AMOUNT'"
-                   [inputType]="'number'"
-                   [errorMessage]="errorMessage('legalConsumerAmount')"
-                   [showError]="showError('legalConsumerAmount')">
-        </het-input>
+<!--        <het-input formControlName="physicalConsumerAmount"-->
+<!--                   [label]="'REFERENCE.PHYSICAL_CONSUMER_AMOUNT'"-->
+<!--                   [inputType]="'number'"-->
+<!--                   [errorMessage]="errorMessage('physicalConsumerAmount')"-->
+<!--                   [showError]="showError('physicalConsumerAmount')">-->
+<!--        </het-input>-->
+<!--        <het-input formControlName="legalConsumerAmount"-->
+<!--                   [label]="'REFERENCE.LEGAL_CONSUMER_AMOUNT'"-->
+<!--                   [inputType]="'number'"-->
+<!--                   [errorMessage]="errorMessage('legalConsumerAmount')"-->
+<!--                   [showError]="showError('legalConsumerAmount')">-->
+<!--        </het-input>-->
         <het-input formControlName="admissibleCurrentAmper"
                    [label]="'REFERENCE.ADMISSIBLE_AMPERE'"
                    [inputType]="'number'"
@@ -33,12 +33,14 @@
                    [showError]="showError('admissibleCurrentAmper')"
                    [required]="true">
         </het-input>
-        <het-input formControlName="average"
-                   [label]="'REFERENCE.AVERAGE'"
-                   [inputType]="'number'"
-                   [errorMessage]="errorMessage('average')"
-                   [showError]="showError('average')">
-        </het-input>
+
+<!--        <het-input formControlName="average"-->
+<!--                   [label]="'REFERENCE.AVERAGE'"-->
+<!--                   [inputType]="'number'"-->
+<!--                   [errorMessage]="errorMessage('average')"-->
+<!--                   [showError]="showError('average')">-->
+<!--        </het-input>-->
+
         <het-input formControlName="meterCapacity"
                    [label]="'REFERENCE.METER_CAPACITY'"
                    [inputType]="'number'"
@@ -46,30 +48,80 @@
                    [showError]="showError('meterCapacity')"
                    [required]="true">
         </het-input>
-        <het-input formControlName="meterView"
-                   [label]="'REFERENCE.METER_VIEW'"
-                   [errorMessage]="errorMessage('meterView')"
-                   [showError]="showError('meterView')"
+        <het-input formControlName="distributionPeriod"
+                   [label]="'MENU.REFERENCE.TECHNICAL_GUIDES.OVERHAUL_PERIOD'"
+                   [errorMessage]="errorMessage('distributionPeriod')"
+                   [showError]="showError('distributionPeriod')"
+                   [mask]="'0*'" [maxLength]="14"
                    [required]="true">
         </het-input>
-        <het-radio-static type="yesNo"
-                          formControlName="measurementType"
-                          [showError]="showError('measurementType')"
-                          [errorMessage]="errorMessage('measurementType')"
-                          [label]="'REFERENCE.MEASUREMENT_TYPE'"
+        <het-input formControlName="transformationCoefficient"
+                   [label]="'ACCOUNTING_SETTLEMENT_HC.TRANSFORMATION_RATIO'"
+                   [errorMessage]="errorMessage('transformationCoefficient')"
+                   [showError]="showError('transformationCoefficient')"
+                   [mask]="'0*'" [maxLength]="14"
+                   [required]="true">
+        </het-input>
+
+<!--        <het-select [label]="'ACCOUNTING_SETTLEMENT_LC.SIGN_COUNTER_COUNTING'"-->
+<!--                    formControlName="measurementType"-->
+<!--                    [errorMessage]="errorMessage('measurementType')"-->
+<!--                    [showError]="showError('measurementType')"-->
+<!--                    [required]="true"-->
+<!--                    [options]="measurementTypeOption"-->
+<!--        ></het-select>-->
+
+        <het-input formControlName="permissibleVoltage"
+                   [label]="'MENU.REFERENCE.TECHNICAL_GUIDES.PERMISSIBLE_VOLTAGE'"
+                   [errorMessage]="errorMessage('permissibleVoltage')"
+                   [showError]="showError('permissibleVoltage')"
+                   [mask]="'0*'" [maxLength]="14"
+                   [required]="true">
+        </het-input>
+        <het-input formControlName="accuracyClass"
+                   [label]="'MENU.REFERENCE.TECHNICAL_GUIDES.ACCURACY_CLASS'"
+                   [errorMessage]="errorMessage('accuracyClass')"
+                   [showError]="showError('accuracyClass')"
+                   [mask]="'0*'" [maxLength]="14"
+                   [required]="true">
+        </het-input>
+        <het-radio-button formControlName="meterView"
+                          [label]="'REFERENCE.METER_TYPE'"
+                          [options]="meterView"
+                          [errorMessage]="errorMessage('meterView')"
+                          [showError]="showError('meterView')"
                           [required]="true">
-        </het-radio-static>
-        <het-input formControlName="askueCompatibility"
-                   [label]="'REFERENCE.ASKUE_COMPATIBILITY'"
+        </het-radio-button>
+        <het-radio-button
+                          formControlName="phaseType"
+                          [showError]="showError('phaseType')"
+                          [errorMessage]="errorMessage('phaseType')"
+                          [label]="'MENU.REFERENCE.TECHNICAL_GUIDES.PHASE_TYPE'"
+                          [required]="true"
+                          [options]="options">
+        </het-radio-button>
+        <het-radio-button
+                formControlName="measurementType"
+                [showError]="showError('measurementType')"
+                [errorMessage]="errorMessage('measurementType')"
+                [label]="'REFERENCE.MEASUREMENT_TYPE'"
+                [required]="true"
+                [options]="measurementTypeOption">
+        </het-radio-button>
+
+        <het-radio-button formControlName="askueCompatibility"
+                   [label]="'REFERENCE.COMPATIBILITY_WITH_ASKUE'"
                    [errorMessage]="errorMessage('askueCompatibility')"
                    [showError]="showError('askueCompatibility')"
-                   [required]="true">
-        </het-input>
-        <het-radio-static type="yesNo" formControlName="multiTariff"
-                          [showError]="showError('multiTariff')"
-                          [errorMessage]="errorMessage('multiTariff')"
-                          [label]="'REFERENCE.MULTI_TARIFF'"
-                          [required]="true">
+                   [required]="true"
+                [options]="YesNoSmart">
+        </het-radio-button>
+        <het-radio-static type="status"
+                          formControlName="status"
+                          [label]="'GENERAL.STATUS'"
+                          [required]="true"
+                          [showError]="showError('status')"
+                          [errorMessage]="errorMessage('status')">
         </het-radio-static>
         <het-radio-static type="yesNo" formControlName="realMeter"
                           [showError]="showError('realMeter')"
@@ -77,15 +129,22 @@
                           [label]="'REFERENCE.REAL_METER'"
                           [required]="true">
         </het-radio-static>
-        <het-input formControlName="transferred"
-                   [label]="'REFERENCE.TRANSFERRED'"
-                   [inputType]="'number'"
-                   [errorMessage]="errorMessage('transferred')"
-                   [showError]="showError('transferred')"
-                   [required]="true">
-        </het-input>
+
+        <het-radio-static type="yesNo" formControlName="multiTariff"
+                          [showError]="showError('multiTariff')"
+                          [errorMessage]="errorMessage('multiTariff')"
+                          [label]="'REFERENCE.MULTI_TARIFF'"
+                          [required]="true">
+        </het-radio-static>
+<!--        <het-input formControlName="transferred"-->
+<!--                   [label]="'REFERENCE.TRANSFERRED'"-->
+<!--                   [inputType]="'number'"-->
+<!--                   [errorMessage]="errorMessage('transferred')"-->
+<!--                   [showError]="showError('transferred')"-->
+<!--                   [required]="true">-->
+<!--        </het-input>-->
         <het-autocomplete formControlName="meterManufacturerId"
-                          [label]="'REFERENCE.METER_MANUFACTURER'"
+                          [label]="'GENERAL.PRODUCER'"
                           [errorMessage]="errorMessage('meterManufacturerId')"
                           [showError]="showError('meterManufacturerId')"
                           [request]="meterManufacturesRequest">
@@ -94,14 +153,9 @@
                           formControlName="detail"
                           [label]="'REFERENCE.DETAIL'"
                           [showError]="showError('detail')"
-                          [errorMessage]="errorMessage('detail')">
+                          [errorMessage]="errorMessage('detail')"
+                            [required]="true">
         </het-radio-static>
-        <het-radio-static type="status"
-                          formControlName="status"
-                          [label]="'GENERAL.STATUS'"
-                          [required]="true"
-                          [showError]="showError('status')"
-                          [errorMessage]="errorMessage('status')">
-        </het-radio-static>
+
     </div>
 </form>

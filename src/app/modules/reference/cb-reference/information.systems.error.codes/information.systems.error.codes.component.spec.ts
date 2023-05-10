@@ -6,21 +6,19 @@ import {SharedModule} from "@shared/shared.module";
 import {AppModule} from "../../../../app.module";
 
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('InformationSystemsErrorCodesComponent', () => {
   let component: InformationSystemsErrorCodesComponent;
   let fixture: ComponentFixture<InformationSystemsErrorCodesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ InformationSystemsErrorCodesComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(InformationSystemsErrorCodesComponent);
     component = fixture.componentInstance;

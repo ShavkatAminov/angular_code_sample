@@ -7,18 +7,14 @@ import {SharedModule} from "../../../../shared.module";
 import {TranslocoModule} from "@ngneat/transloco";
 
 
+import {imports} from "@test/imports";
 describe('HetButtonComponent', () => {
   let component: HetButtonComponent;
   let fixture: ComponentFixture<HetButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        AppModule,
-        SharedModule,
-        TranslocoModule,
-        MatButtonModule,
-      ],
+        imports: imports,
       declarations: [ HetButtonComponent ]
     })
     .compileComponents();

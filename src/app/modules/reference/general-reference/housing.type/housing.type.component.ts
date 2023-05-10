@@ -6,10 +6,7 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {SizeModal} from "@shared/helpers/modal/modal.component";
-
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 
 @Component({
   template: basicTemplate(),
@@ -18,11 +15,7 @@ export class HousingTypeComponent extends BasicReferencePage {
   columnDefs: ColDef[] = [
       {field: 'code', flex: 1, headerName: 'GENERAL.CODE'},
       {field: 'nameUz', headerName: 'REFERENCE.NAME_OF_TYPE_HOUSING'},
-      {
-        floatingFilterComponentParams: {
-          type: 'status',
-        },
-        field: 'status', type: 'status', flex: 2, headerName: 'GENERAL.STATUS'},
+      {field: 'status', type: 'status', flex: 2, headerName: 'GENERAL.STATUS'},
   ];
 
   title = 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_OF_HOUSING_TYPES';
@@ -33,10 +26,5 @@ export class HousingTypeComponent extends BasicReferencePage {
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CODE', 'input'),
-    nameUz: new FilterField('REFERENCE.NAME_OF_TYPE_HOUSING', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

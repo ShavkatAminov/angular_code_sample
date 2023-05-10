@@ -2,14 +2,6 @@
       class="flex flex-col bg-card "
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
-        <het-input
-
-                formControlName="code"
-                [showError]="showError('code')"
-                [errorMessage]="errorMessage('code')"
-                [label]="'GENERAL.NUMBER'"
-                [required]="true" >
-        </het-input>
         <het-autocomplete
                 formControlName="managementLevelId"
                 [showError]="showError('managementLevelId')"
@@ -22,6 +14,7 @@
                 [errorMessage]="errorMessage('nameUz')"
                 [showError]="showError('nameUz')"
                 [label]="'GENERAL.NAME'"
+                [inputType]="'text'"
                 [required]="true">
         </het-input>
         <het-radio-static

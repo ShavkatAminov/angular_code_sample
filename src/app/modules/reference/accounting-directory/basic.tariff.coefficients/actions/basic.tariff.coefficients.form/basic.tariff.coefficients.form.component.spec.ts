@@ -3,16 +3,14 @@ import { BasicTariffCoefficientsFormComponent } from './basic.tariff.coefficient
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('BasicTariffCoefficientsFormComponent', () => {
   let component: BasicTariffCoefficientsFormComponent;
   let fixture: ComponentFixture<BasicTariffCoefficientsFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ BasicTariffCoefficientsFormComponent ]
     })
     .compileComponents();

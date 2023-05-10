@@ -1,29 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {TranslocoTestingModule} from "@ngneat/transloco";
-import {BasicModalForm} from "../../../../../../shared/helpers/form/modal/basic.modal.form";
+import {BasicModalForm} from "@shared/helpers/form/modal/basic.modal.form";
 import {FormGroup} from "@angular/forms";
 import {ReferenceDropDownRequest} from "../../../../basic/ReferenceDropDownRequest";
 import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
-import {SharedModule} from "../../../../../../shared/shared.module";
 
 import {CoatoAskueBindingFormComponent} from './coato.askue.binding.form.component';
-import {AppModule} from "../../../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('CoatoAskueBindingFormComponent', () => {
     let component: CoatoAskueBindingFormComponent;
     let fixture: ComponentFixture<CoatoAskueBindingFormComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                AppModule,
-                ReactiveFormsModule,
-                HttpClientTestingModule,
-                TranslocoTestingModule,
-                SharedModule
-            ],
+        imports: imports,
             declarations: [CoatoAskueBindingFormComponent]
         })
             .compileComponents();

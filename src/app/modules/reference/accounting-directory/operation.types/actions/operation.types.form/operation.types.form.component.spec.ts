@@ -4,16 +4,14 @@ import { OperationTypesFormComponent } from './operation.types.form.component';
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "@shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('OperationTypesFormComponent', () => {
   let component: OperationTypesFormComponent;
   let fixture: ComponentFixture<OperationTypesFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ OperationTypesFormComponent ]
     })
     .compileComponents();

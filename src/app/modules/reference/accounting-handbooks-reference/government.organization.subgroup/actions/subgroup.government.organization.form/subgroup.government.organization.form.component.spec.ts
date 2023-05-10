@@ -4,16 +4,14 @@ import { SubgroupGovernmentOrganizationFormComponent } from './subgroup.governme
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('SubgroupGovernmentOrganizationFormComponent', () => {
   let component: SubgroupGovernmentOrganizationFormComponent;
   let fixture: ComponentFixture<SubgroupGovernmentOrganizationFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        AppModule,
-        SharedModule,
-      ],
+        imports: imports,
       declarations: [ SubgroupGovernmentOrganizationFormComponent ]
     })
     .compileComponents();

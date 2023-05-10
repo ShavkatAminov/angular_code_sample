@@ -11,20 +11,16 @@ import {ReferenceDropDownRequest} from "../../../../basic/ReferenceDropDownReque
   styleUrls: ['./account.directory.form.component.scss']
 })
 export class AccountDirectoryFormComponent extends BasicModalForm{
-  
 
   override form = new FormGroup({
     account: new FormControl(null, [Validators.required]),
     nameUz: new FormControl(null, [Validators.required]),
     accountGroupId: new FormControl(null, [Validators.required]),
     currencyTypeId: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.ACCOUNT_DIRECTORY);
   accountGroup = new ReferenceDropDownRequest(ReferenceApiUrls.ACCOUNT_GROUP);
   currencyTypes = new ReferenceDropDownRequest(ReferenceApiUrls.CURRENCY_TYPE);
-  setData(data: any) {
-    super.setData(data);
-  }
 }

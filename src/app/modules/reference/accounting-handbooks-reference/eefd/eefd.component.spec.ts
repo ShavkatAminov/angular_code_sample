@@ -6,19 +6,14 @@ import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "@shared/shared.module";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('EefdComponent', () => {
   let component: EefdComponent;
   let fixture: ComponentFixture<EefdComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ EefdComponent ]
     })
     .compileComponents();

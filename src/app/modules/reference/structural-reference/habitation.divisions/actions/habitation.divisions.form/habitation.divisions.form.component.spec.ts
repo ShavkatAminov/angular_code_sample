@@ -4,16 +4,14 @@ import { AppModule } from 'app/app.module';
 import { HabitationDivisionsFormComponent } from './habitation.divisions.form.component';
 import {SharedModule} from "@shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('HabitationDivisionsFormComponent', () => {
   let component: HabitationDivisionsFormComponent;
   let fixture: ComponentFixture<HabitationDivisionsFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ HabitationDivisionsFormComponent ]
     })
     .compileComponents();

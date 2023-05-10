@@ -1,21 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HetAutocompleteComponent } from './het-autocomplete.component';
-import {AppModule} from "../../../../../app.module";
-import {SharedModule} from "../../../../shared.module";
-import {ReferenceDropDownRequest} from "../../../../../modules/reference/basic/ReferenceDropDownRequest";
-import {ReferenceApiUrls} from "../../../../../modules/reference/referenceApiUrls";
+import {AppModule} from "@app/app.module";
+import {SharedModule} from "@shared/shared.module";
+import {ReferenceDropDownRequest} from "@app/modules/reference/basic/ReferenceDropDownRequest";
+import {ReferenceApiUrls} from "@app/modules/reference/referenceApiUrls";
 
+import {imports} from "@test/imports";
 describe('HetAutocompleteComponent', () => {
   let component: HetAutocompleteComponent;
   let fixture: ComponentFixture<HetAutocompleteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ HetAutocompleteComponent ]
     })
     .compileComponents();

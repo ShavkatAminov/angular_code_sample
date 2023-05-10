@@ -8,8 +8,6 @@ import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.componen
 import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
@@ -17,11 +15,7 @@ export class HousingCategoryComponent extends BasicReferencePage {
   columnDefs: ColDef[] = [
       {field: 'code', flex: 1, headerName: 'GENERAL.CODE'},
       {field: 'nameUz', headerName: 'REFERENCE.NAME_OF_HOUSING_CATEGORY'},
-      {
-        floatingFilterComponentParams: {
-          type: 'status',
-        },
-        field: 'status', type: 'status', flex: 2, headerName: 'GENERAL.STATUS'},
+      {field: 'status', type: 'status', flex: 2, headerName: 'GENERAL.STATUS'},
   ];
 
   title = 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_OF_HOUSING_CATEGORIES';
@@ -33,10 +27,5 @@ export class HousingCategoryComponent extends BasicReferencePage {
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CODE', 'input'),
-    nameUz: new FilterField('REFERENCE.NAME_OF_HOUSING_CATEGORY', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

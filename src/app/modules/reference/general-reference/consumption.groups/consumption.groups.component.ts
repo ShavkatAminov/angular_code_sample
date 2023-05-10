@@ -8,8 +8,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
@@ -26,9 +24,6 @@ export class ConsumptionGroupsComponent extends BasicReferencePage{
       headerName: 'GENERAL.NAMING_CONSUMPTION_GROUPS_BY_CODES',
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       field: 'status',
       headerName: 'GENERAL.STATUS',
       type: 'status'
@@ -43,11 +38,5 @@ export class ConsumptionGroupsComponent extends BasicReferencePage{
       if(res)
         this.reload();
     });
-  }
-
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('GENERAL.NAMING_CONSUMPTION_GROUPS_BY_CODES', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

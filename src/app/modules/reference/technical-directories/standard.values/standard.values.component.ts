@@ -8,13 +8,13 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
 export class StandardValuesComponent extends BasicReferencePage {
-
+  ngOnInit(): void {
+    this.defaultColumnDef['minWidth'] = 150
+  }
   title = 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_STANDARD_VALUES';
   request = new ReferenceListRequest(ReferenceApiUrls.STANDARD_VALUES)
   addUpdate(id = null){
@@ -24,24 +24,13 @@ export class StandardValuesComponent extends BasicReferencePage {
     });
   }
   columnDefs: ColDef[] = [
-    { field: 'id', colId:"0", headerName: 'GENERAL.NUMBER', flex:2 },
-    { field: 'code', headerName: 'GENERAL.CODE', flex:2 },
-    { field: 'voltageLevelNetwork',  headerName:"REFERENCE.VOLTAGE_LEVEL", flex:4},
+    { field: 'id', colId:"id", headerName: 'GENERAL.NUMBER', flex:2 },
+    { field: 'voltageLevelNetwork',  headerName:"REFERENCE.VOLTAGE_LEVEL_SET", flex:4},
     { field: 'value',  headerName: 'REFERENCE.VALUE', flex:3},
     { field:"createdAt",headerName: 'GENERAL.CREATED_AT', flex:3, type:"date"},
-    { field:"createdBy",headerName: 'GENERAL.CREATED_BY', flex:3},
+    { field:"createdByName", colId:"createdBy",headerName: 'GENERAL.CREATED_BY', type: 'user', flex:3},
     { field:"updatedAt",headerName: 'GENERAL.UPDATED_AT', flex:3, type:"date"},
-    { field:"updatedBy",headerName: 'GENERAL.UPDATED_BY', flex:3},
-    {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
-      field: 'status', headerName: 'GENERAL.STATUS', type:'status', flex:3 },
+    { field:"updatedByName", colId:"updatedBy",headerName: 'GENERAL.UPDATED_BY', type: 'user', flex:3},
+    { field: 'status', headerName: 'GENERAL.STATUS', type:'status', flex:3 },
   ];
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CODE', 'input'),
-    voltageLevelNetwork: new FilterField('REFERENCE.NETWORK', 'input'),
-    value: new FilterField('REFERENCE.NORMATIVE_VALUE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

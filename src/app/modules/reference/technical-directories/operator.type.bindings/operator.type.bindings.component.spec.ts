@@ -8,22 +8,21 @@ import { OperatorTypeBindingsComponent } from './operator.type.bindings.componen
 import {AppModule} from "../../../../app.module";
 import {SharedModule} from "@shared/shared.module";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('OperatorTypeBindingComponent', () => {
   let component: OperatorTypeBindingsComponent;
   let fixture: ComponentFixture<OperatorTypeBindingsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule, SharedModule],
-      declarations: [
-        OperatorTypeBindingsComponent,
-        OperatorTypeBindingFormComponent
-      ],
+        imports: imports,
       providers: [
         FormModalComponent
       ]
     })
         .compileComponents();
+    login();
   });
 
   beforeEach(() => {

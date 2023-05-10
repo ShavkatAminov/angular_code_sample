@@ -3,16 +3,14 @@ import { StreetsDirectoryFormComponent } from './streets.directory.form.componen
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "@shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('StreetsDirectoryFormComponent', () => {
   let component: StreetsDirectoryFormComponent;
   let fixture: ComponentFixture<StreetsDirectoryFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ StreetsDirectoryFormComponent ]
     })
     .compileComponents();

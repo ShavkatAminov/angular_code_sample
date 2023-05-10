@@ -7,6 +7,7 @@ import {ReferenceDropDownRequest} from "../../../../basic/ReferenceDropDownReque
 import {ReferenceApiUrls} from "../../../../referenceApiUrls";
 import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
 import {AlertServiceComponent} from "../../../../../../shared/helpers/alerts/services/alert.service.component";
+import {ReferenceListRequest} from "@app/modules/reference/basic/ReferenceListRequest";
 
 @Component({
   selector: 'app-subgroup.government.organization.form',
@@ -16,15 +17,15 @@ import {AlertServiceComponent} from "../../../../../../shared/helpers/alerts/ser
 export class SubgroupGovernmentOrganizationFormComponent extends BasicModalForm {
   
   override form = new FormGroup({
-    code: new FormControl(null, [Validators.required,Validators.maxLength(20)]),
-    nameUz: new FormControl(null, [Validators.required]),
-    shortName: new FormControl(null, [Validators.required,Validators.maxLength(50)]),
+    code:new FormControl(null,[Validators.required]),
+    name:new FormControl(null,[Validators.required]),
     ps9Code: new FormControl(null, [Validators.required,Validators.maxLength(10)]),
     subgroupType: new FormControl(null, [Validators.maxLength(10)]),
     stateGovernmentOrganizationId: new FormControl(null, [Validators.required]),
     availability: new FormControl(null, [Validators.required,Validators.maxLength(1)]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
+
 
   stateGovernment = new ReferenceDropDownRequest(ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS)
 

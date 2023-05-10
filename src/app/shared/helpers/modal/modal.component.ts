@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, Inject} from '@angular/core';
+import {Component, OnInit, ViewChild, Inject, ChangeDetectorRef} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {InjectorInstance} from "../../shared.module";
 import {HostDirective} from "./host.directive";
@@ -12,13 +12,15 @@ import {ModalComponentInterface} from "./modal.component.interface";
 })
 export class ModalComponent implements OnInit {
     constructor(protected dialogRef: MatDialogRef<ModalComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: { component: any, title: string, formData: any}) {
+                @Inject(MAT_DIALOG_DATA) public data: { component: any, title: string, formData: any},
+                protected dc: ChangeDetectorRef) {
         this.component = data.component
         this.title = data.title
     }
 
     ngOnInit(): void {
-        this.loadingData()
+        this.loadingData();
+        this.dc.detectChanges();
     }
 
     @ViewChild(HostDirective, {static: true}) appHost!: HostDirective
@@ -70,7 +72,9 @@ export class ModalComponent implements OnInit {
         // @ts-ignore
         let dialogRef = dialog.open(ModalComponent, {
             data: {component: component, title: title, formData: formData},
-            width: ModalComponent.setSize(size)
+            width: ModalComponent.setSize(size),
+            maxWidth: ModalComponent.setSize(size),
+            disableClose: true
         });
         return dialogRef.afterClosed();
     }

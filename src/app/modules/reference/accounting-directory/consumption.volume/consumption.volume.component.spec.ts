@@ -5,22 +5,19 @@ import {SharedModule} from "@shared/shared.module";
 import {AppModule} from "../../../../app.module";
 import {ConsumptionVolumeComponent} from "./consumption.volume.component";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('ConsumptionVolumeComponent', () => {
   let component: ConsumptionVolumeComponent;
   let fixture: ComponentFixture<ConsumptionVolumeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ ConsumptionVolumeComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(ConsumptionVolumeComponent);
     component = fixture.componentInstance;

@@ -2,38 +2,83 @@ import {Component} from '@angular/core';
 import {ColDef} from "ag-grid-community";
 import {BasicReferencePage} from '../../basic.reference.page';
 import {MeterTypeFormComponent} from "./actions/meter.type.form/meter.type.form.component";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup} from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
+import {
+    ASKUE_COMPATABILITY,
+    MEASUREMENT_TYPE_ENUM, METER_VIEW, PHASE_TYPE
+} from "@app/modules/reference/technical-directories/meter.type/enum/measurement.type.enum";
+import {TranslocoService} from "@ngneat/transloco";
+import {HttpClientService} from "@shared/helpers/service/http/http.client.service";
+import {AlertServiceComponent} from "@shared/helpers/alerts/services/alert.service.component";
+import {OptionsObj} from "@shared/helpers/form/interfaces/options";
 
 @Component({
     template: basicTemplate(),
 })
 export class MeterTypeComponent extends BasicReferencePage {
+    constructor(private translate: TranslocoService, public http: HttpClientService, public alert: AlertServiceComponent) {
+        super(http, alert);
+    }
+    ngOnInit(): void {
+        this.defaultColumnDef['minWidth'] = 150
+    }
+    measurementTypeOption = [
+        {
+            id: MEASUREMENT_TYPE_ENUM.ACTIVE,
+            name: this.translate.translate("GENERAL.ACTIVE")
+        },
+        {
+            id: MEASUREMENT_TYPE_ENUM.REACTIVE,
+            name: this.translate.translate("GENERAL.REACTIVE")
+        },
+        {
+            id: MEASUREMENT_TYPE_ENUM.ACTIVE_REACTIVE,
+            name: this.translate.translate("GENERAL.ACTIVE_REACTIVE")
+        },
+    ]
+    options: OptionsObj[] = [{
+        id: PHASE_TYPE.SINGLE_PHASE,
+        name: 'REFERENCE.1PHASE',
+    },{
+        id: PHASE_TYPE.THREE_PHASE,
+        name: 'REFERENCE.3PHASE',
+    }]
+    meterView: OptionsObj[] = [{
+        id: METER_VIEW.ELECTRONIC,
+        name: 'REFERENCE.ELECTRONIC',
+    },{
+        id: METER_VIEW.DISK,
+        name: 'REFERENCE.DISK',
+    }]
+    YesNoSmart: OptionsObj[] = [{
+        id: ASKUE_COMPATABILITY.YES,
+        name: 'GENERAL.YES',
+    },{
+        id: ASKUE_COMPATABILITY.NO,
+        name: 'GENERAL.NO',
+    },{
+        id: ASKUE_COMPATABILITY.SMARTCARD,
+        name: 'GENERAL.SMARTCARD',
+    }
+    ]
     columnDefs: ColDef[] = [
         {
             headerName: 'REFERENCE.METER_TYPE_CODE',
             field: 'code',
         },
         {
-            headerName: 'GENERAL.NAME',
+            headerName: 'REFERENCE.METER_TYPE',
+
             field: 'nameUz',
         },
+
         {
-            floatingFilterComponentParams: {
-                type: 'yesNo',
-            },
-            headerName: 'REFERENCE.TYPE_METER',
-            field: 'measurementType',
-            type: 'yesNo',
-        },
-        {
-            headerName: 'REFERENCE.AVERAGE',
+            headerName: 'REFERENCE.TOTAL',
             field: 'average',
         },
         {
@@ -55,31 +100,41 @@ export class MeterTypeComponent extends BasicReferencePage {
         {
             headerName: 'REFERENCE.METER_VIEW',
             field: 'meterView',
+            floatingFilterComponentParams: {
+                type: 'select',
+                options: this.meterView,
+            },
+            cellRenderer: params => params.value ? this.translate.translate('REFERENCE.' + params.value) : '',
+        },
+        {
+            headerName: 'REFERENCE.MEASUREMENT_TYPE',
+            field: 'measurementType',
+            floatingFilterComponentParams: {
+                type: 'select',
+                options: this.measurementTypeOption,
+            },
+            cellRenderer: params => params.value ? this.translate.translate('GENERAL.' + params.value) : '',
         },
         {
             headerName: 'REFERENCE.COMPATIBILITY_WITH_ASKUE',
             field: 'askueCompatibility',
+            floatingFilterComponentParams: {
+                type: 'select',
+                options: this.YesNoSmart,
+            },
+            cellRenderer: params => params.value ? this.translate.translate('GENERAL.' + params.value) : '',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'yesNo',
-            },
             headerName: "REFERENCE.MULTI_TARIFF",
             type: 'yesNo',
             field: 'multiTariff',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             headerName: 'GENERAL.STATUS',
             type: 'status',
             field: 'status',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'yesNo',
-            },
             headerName: 'REFERENCE.REAL_METER',
             type: 'yesNo',
             field: 'realMeter',
@@ -89,6 +144,7 @@ export class MeterTypeComponent extends BasicReferencePage {
             field: 'transferred',
         },
         {
+            colId: 'meterManufacturerId',
             floatingFilterComponentParams: {
                 type: 'autocomplete',
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.METER_MANUFACTURER),
@@ -97,14 +153,13 @@ export class MeterTypeComponent extends BasicReferencePage {
             field: 'meterManufacturer.nameUz',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'yesNo',
-            },
             headerName: 'REFERENCE.DETAIL',
             field: 'detail',
             type: 'yesNo',
         },
     ];
+
+
 
     title = 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_COUNTER_TYPES';
     request = new ReferenceListRequest(ReferenceApiUrls.METER_TYPE);
@@ -114,24 +169,5 @@ export class MeterTypeComponent extends BasicReferencePage {
             if (res)
                 this.reload();
         });
-    }
-
-    override filter: FilterFieldGroup = {
-        code: new FilterField('GENERAL.CODE', 'input'),
-        nameUz: new FilterField('GENERAL.NAME', 'input'),
-        physicalConsumerAmount: new FilterField('REFERENCE.PHYSICAL_CONSUMER_AMOUNT', 'input'),
-        legalConsumerAmount: new FilterField('REFERENCE.LEGAL_CONSUMER_AMOUNT', 'input'),
-        admissibleCurrentAmper: new FilterField('REFERENCE.ADMISSIBLE_AMPERE', 'input'),
-        average: new FilterField('REFERENCE.AVERAGE', 'input'),
-        meterCapacity: new FilterField('REFERENCE.METER_CAPACITY', 'input'),
-        meterView: new FilterField('REFERENCE.METER_VIEW', 'input'),
-        measurementType: new FilterField('REFERENCE.MEASUREMENT_TYPE', 'yesNo'),
-        askueCompatibility: new FilterField('REFERENCE.ASKUE_COMPATIBILITY', 'input'),
-        multiTariff: new FilterField('REFERENCE.MULTI_TARIFF', 'yesNo'),
-        realMeter: new FilterField('REFERENCE.REAL_METER', 'yesNo'),
-        transferred: new FilterField('REFERENCE.TRANSFERRED', 'input'),
-        meterManufacturerId: new FilterField('REFERENCE.METER_MANUFACTURER', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.METER_MANUFACTURER)),
-        detail: new FilterField('REFERENCE.DETAIL', 'yesNo'),
-        status: new FilterField('GENERAL.STATUS', 'status'),
     }
 }

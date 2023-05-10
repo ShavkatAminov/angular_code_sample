@@ -6,19 +6,14 @@ import {TreasuryOrganizationalFormComponent} from "./treasury.organizational.for
 import {SharedModule} from "../../../../shared/shared.module";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('TreasuryOrganizationalComponent', () => {
   let component: TreasuryOrganizationalFormComponent;
   let fixture: ComponentFixture<TreasuryOrganizationalFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ TreasuryOrganizationalFormComponent ]
     })
         .compileComponents();

@@ -10,19 +10,14 @@ import {SharedModule} from "../../../../../../shared/shared.module";
 
 import {AppModule} from "../../../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('DirectoryOfComplexesFormComponent', () => {
     let component: DirectoryOfComplexesFormComponent;
     let fixture: ComponentFixture<DirectoryOfComplexesFormComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                AppModule,
-                ReactiveFormsModule,
-                HttpClientTestingModule,
-                TranslocoTestingModule,
-                SharedModule
-            ],
+        imports: imports,
             declarations: [DirectoryOfComplexesFormComponent]
         })
             .compileComponents();

@@ -7,8 +7,6 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
@@ -21,6 +19,7 @@ export class ExchangeRatesComponent extends BasicReferencePage {
                 type: 'autocomplete',
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.CURRENCIES),
             },
+            colId: 'currencyId',
             field: 'currency.code',
             headerName: 'GENERAL.CURRENCY_CODE',
         },
@@ -33,15 +32,13 @@ export class ExchangeRatesComponent extends BasicReferencePage {
             headerName: 'GENERAL.CURRENCY_UNIT',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'date',
-            },
             field: 'activationDate',
             headerName: 'GENERAL.ACTIVATION_DATE',
             type: 'date',
         },
         {
-            field: 'updatedBy',
+            field: 'updatedByName',
+            type: 'user',
             headerName: 'GENERAL.UPDATED_BY',
         },
         {
@@ -49,16 +46,12 @@ export class ExchangeRatesComponent extends BasicReferencePage {
             headerName: 'GENERAL.CREATED_AT',
             type: 'date',
         },
-
         {
-            floatingFilter: false,
-            field: 'createdBy',
+            type: 'user',
+            field: 'createdByName',
             headerName: 'GENERAL.CREATED_BY',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             type: 'status',
             headerName: 'GENERAL.STATUS',
@@ -75,12 +68,4 @@ export class ExchangeRatesComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-
-  override filter: FilterFieldGroup = {
-    currencyId: new FilterField('GENERAL.CURRENCY_CODE', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.CURRENCIES)),
-    exchangeRate: new FilterField('GENERAL.EXCHANGE_RATE', 'input'),
-    currencyUnit: new FilterField('GENERAL.CURRENCY_UNIT', 'input'),
-    activationDate: new FilterField('GENERAL.ACTIVATION_DATE', 'date'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

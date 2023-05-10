@@ -6,19 +6,14 @@ import {CurrenciesComponent} from "./currencies.component";
 import {SharedModule} from "@shared/shared.module";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('CurrenciesComponent', () => {
   let component: CurrenciesComponent;
   let fixture: ComponentFixture<CurrenciesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ CurrenciesComponent ]
     })
     .compileComponents();

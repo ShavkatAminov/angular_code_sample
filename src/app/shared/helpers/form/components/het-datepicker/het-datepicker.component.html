@@ -1,14 +1,14 @@
 <ng-container>
     <div class="het-datepicker flex flex-row items-center relative" [ngClass]="computedClasses()">
         <div class="het-select__title font-bold"  [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
-            {{ label | transloco }} <span *ngIf="required">*</span>
+            {{ label | transloco }} <span *ngIf="required" >*</span>
         </div>
-        <mat-form-field *ngIf="timePicker" appearance="fill" [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }">
+        <mat-form-field *ngIf="timePicker" appearance="fill" [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'readonly-bg-color' : readonly}">
             <input matInput
                    [placeholder]="placeholder"
                    [readonly]="readonly"
                    [disabled]="disabled"
-                   [(ngModel)]="value"
+                   [formControl]="control"
             >
             <input matInput
                    hidden="hidden"
@@ -18,11 +18,18 @@
                    [disabled]="disabled"
                    [min]="minDate"
                    [max]="maxDate">
+            <mat-datepicker-toggle matSuffix  *ngIf="value?.length" class="px-0"  (click)="toNull($event)">
+                <mat-icon  matDatepickerToggleIcon >
+                    close
+                </mat-icon>
+            </mat-datepicker-toggle>
+
             <mat-datepicker-toggle [disabled]="readonly" matIconSuffix [for]="picker"></mat-datepicker-toggle>
+
             <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
         </mat-form-field>
 
-        <mat-form-field *ngIf="timePicker === false" appearance="fill" [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }">
+        <mat-form-field *ngIf="timePicker === false" appearance="fill" [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'readonly-bg-color' : readonly}">
             <input matInput
                    [mask]="mask"
                    [specialCharacters]="['.']"
@@ -30,8 +37,9 @@
                    [leadZeroDateTime]="true"
                    [placeholder]="placeholder"
                    [readonly]="readonly"
+                   [formControl]="control"
                    [disabled]="disabled"
-                   [(ngModel)]="strValue"
+
             >
             <input matInput
                    hidden="hidden"
@@ -42,7 +50,10 @@
                    [min]="minDate"
                    [max]="maxDate"
             >
+
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+
+
             <mat-datepicker [panelClass]="color" #picker></mat-datepicker>
         </mat-form-field>
         <div *ngIf="showError" error-popover>

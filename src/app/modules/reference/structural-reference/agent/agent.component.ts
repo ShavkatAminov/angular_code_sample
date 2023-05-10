@@ -2,12 +2,11 @@ import {Component} from '@angular/core';
 import {ColDef} from "ag-grid-community";
 import {AgentsFormComponent} from "./actions/agents.form/agents.form.component";
 import {BasicReferencePage} from "../../basic.reference.page";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
@@ -39,9 +38,7 @@ export class AgentComponent extends BasicReferencePage {
             headerName:'REFERENCE.BRIGADE',
         },
         {
-            filter: false,
-            floatingFilter: false,
-            colId: "3",
+            colId: "fullName",
             headerName:'GENERAL.FULL_NAME',
             valueGetter: "data.firstName + ' ' + data.lastName + ' ' + data.middleName"
         },
@@ -50,13 +47,15 @@ export class AgentComponent extends BasicReferencePage {
             headerName:'GENERAL.MOBILE_PHONE'
         },
         {
+            floatingFilterComponentParams: {
+                type: 'autocomplete',
+                request: new ReferenceDropDownRequest(ReferenceApiUrls.CONSUMER_TYPE),
+            },
+            colId: 'byTypeId',
             field: 'byType.nameUz',
             headerName:'REFERENCE.CONSUMER_TYPE'
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName:'GENERAL.STATUS',
             type:"status"
@@ -72,15 +71,4 @@ export class AgentComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('REFERENCE.AGENT_CODE', 'input'),
-    positionId: new FilterField('', 'input'),
-    brigadeId: new FilterField('', 'input'),
-    firstName: new FilterField('', 'input'),
-    lastName: new FilterField('', 'input'),
-    middleName: new FilterField('', 'input'),
-    mobilePhone: new FilterField('GENERAL.MOBILE_PHONE', 'input'),
-    byTypeId: new FilterField('', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

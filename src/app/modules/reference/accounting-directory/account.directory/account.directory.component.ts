@@ -7,18 +7,21 @@ import { SizeModal} from "@shared/helpers/modal/modal.component";
 import {AccountDirectoryFormComponent} from "./actions/account.directory.form/account.directory.form.component";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
+
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-select [options]="printOptions" value="HTML" ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class AccountDirectoryComponent extends BasicReferencePage{
   columnDefs: ColDef[] = [
     {
       field: 'account',
       headerName: 'REFERENCE.ACCOUNT',
-      flex:2
+      flex:4
     },
     {
       field: 'nameUz',
@@ -46,9 +49,6 @@ export class AccountDirectoryComponent extends BasicReferencePage{
       flex: 10
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       field: 'status',
       type: 'status',
       headerName: 'GENERAL.STATUS',
@@ -58,18 +58,12 @@ export class AccountDirectoryComponent extends BasicReferencePage{
 
   request = new ReferenceListRequest(ReferenceApiUrls.ACCOUNT_DIRECTORY);
 
+
   title = 'MENU.REFERENCE.ACCOUNTING_HANDBOOKS.ACCOUNT_DIRECTORY';
   addUpdate(id = null) {
     FormModalComponent.showModal(AccountDirectoryFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
       if (res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    account: new FilterField('REFERENCE.ACCOUNT', 'input'),
-    nameUz: new FilterField('GENERAL.NAME', 'input'),
-    accountGroupId: new FilterField('REFERENCE.ACCOUNT_GROUP', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.ACCOUNT_GROUP)),
-    currencyTypeId: new FilterField('REFERENCE.CURRENCY_TYPE', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.CURRENCY_TYPE)),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

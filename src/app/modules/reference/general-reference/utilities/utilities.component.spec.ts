@@ -1,13 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { AppModule } from "app/app.module";
-import { SharedModule } from "app/shared/shared.module";
-import { TranslocoModule } from "@ngneat/transloco";
 import { UtilitiesComponent } from "./utilities.component";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { By } from "@angular/platform-browser";
-import { AgGridModule } from "ag-grid-angular";
-import { UtilitiesFormComponent } from "./actions/utilities.form/utilities.form.component";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
+import {imports} from "@test/imports";
 
 describe("UtilitiesComponent", () => {
   let component: UtilitiesComponent;
@@ -15,14 +10,8 @@ describe("UtilitiesComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UtilitiesComponent, UtilitiesFormComponent],
-      imports: [
-        HttpClientTestingModule,
-        AgGridModule,
-        AppModule,
-        SharedModule,
-        TranslocoModule,
-      ],
+      declarations: [UtilitiesComponent],
+      imports: imports,
       providers: [FormModalComponent],
     }).compileComponents();
   });

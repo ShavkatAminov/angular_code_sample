@@ -6,18 +6,14 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {SharedModule} from "../../../../../../shared/shared.module";
 import {AppModule} from "../../../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('WorkPlaceFormComponent', () => {
   let component: WorkPlaceFormComponent;
   let fixture: ComponentFixture<WorkPlaceFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-        HttpClientTestingModule,
-        SharedModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ WorkPlaceFormComponent ]
     })
     .compileComponents();

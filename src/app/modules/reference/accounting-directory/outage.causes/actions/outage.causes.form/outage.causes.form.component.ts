@@ -15,8 +15,7 @@ export class OutageCausesFormComponent extends BasicModalForm{
     nameUz: new FormControl(null, [Validators.required]),
     nameRu: new FormControl(null, []),
     nameCrl: new FormControl(null, []),
-    code: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
 });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.OUTAGE_CAUSES);

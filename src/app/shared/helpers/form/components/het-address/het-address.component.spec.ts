@@ -4,16 +4,14 @@ import { HetAddressComponent } from './het-address.component';
 import {AppModule} from "../../../../../app.module";
 import {SharedModule} from "../../../../shared.module";
 
+import {imports} from "@test/imports";
 describe('HetAutocompleteComponent', () => {
   let component: HetAddressComponent;
   let fixture: ComponentFixture<HetAddressComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ HetAddressComponent ]
     })
     .compileComponents();

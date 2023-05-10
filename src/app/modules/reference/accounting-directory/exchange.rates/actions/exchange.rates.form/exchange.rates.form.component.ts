@@ -23,6 +23,7 @@ export class ExchangeRatesFormComponent extends BasicModalForm{
   override request = new ReferenceFormRequest(ReferenceApiUrls.EXCHANGE_RATES);
   currenciesAllRequest = new ReferenceDropDownRequest(ReferenceApiUrls.CURRENCIES);
 
+
   override beforeSave() {
     super.beforeSave();
     console.log(this.request.body);

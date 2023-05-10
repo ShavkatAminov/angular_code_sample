@@ -4,6 +4,9 @@
         <span *ngIf="required" style="color: red">*</span>
     </mat-label>
     <mat-radio-group
+            [class]="setBorder?'border border-indigo-600 rounded-md':''"
+            (focusin)="setborder()"
+            (focusout)="setborder()"
             [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }"
             [(ngModel)]="value" (change)="onselectionchange(value)"
             [disabled]="disabled"

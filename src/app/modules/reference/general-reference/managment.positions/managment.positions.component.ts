@@ -7,8 +7,6 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
@@ -16,7 +14,7 @@ import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 })
 export class ManagmentPositionsComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
-        {field: 'code', maxWidth: 102, headerName: 'GENERAL.NUMBER'},
+        {field: 'id', maxWidth: 102, headerName: 'GENERAL.NUMBER'},
         {
             floatingFilterComponentParams: {
                 type: 'autocomplete',
@@ -25,13 +23,9 @@ export class ManagmentPositionsComponent extends BasicReferencePage {
             colId: 'managementLevelId',
             field: 'managementLevel.nameUz', maxWidth: 132, headerName: 'GENERAL.LEVEL'},
         {field: 'nameUz', headerName: 'GENERAL.NAME'},
-        {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
-            field: 'status', type: 'status', maxWidth: 132, headerName: 'GENERAL.STATUS'},
-        {field: 'updatedAt', type: 'date', maxWidth: 204, headerName: 'GENERAL.UPDATED_AT'},
-        {field: 'createdBy', maxWidth: 216, headerName: 'GENERAL.USER'},
+        {field: 'status', type: 'status', maxWidth: 132, headerName: 'GENERAL.STATUS'},
+        {field: 'updatedAt', type: 'date', headerName: 'GENERAL.UPDATED_AT'},
+        {field: 'createdByName', headerName: 'GENERAL.USER', type: 'user'},
     ];
 
     title='MENU.REFERENCE.GENERAL_GUIDES.MANAGEMENT_POSITIONS';
@@ -43,10 +37,4 @@ export class ManagmentPositionsComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.NUMBER', 'input'),
-    managementLevelId: new FilterField('GENERAL.LEVEL', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS)),
-    nameUz: new FilterField('GENERAL.NAME', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

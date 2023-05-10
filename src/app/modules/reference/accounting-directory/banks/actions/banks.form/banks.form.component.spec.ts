@@ -9,6 +9,7 @@ import { HetInputComponent } from "app/shared/helpers/form/components/het-input/
 import { HetRadioStaticComponent } from "app/shared/helpers/form/components/het-radio-static/het-radio-static.component";
 import { BanksFormComponent } from './banks.form.component';
 
+import {login} from "@test/login";
 describe('BanksDirectoryFormComponent', () => {
   let component: BanksFormComponent;
   let fixture: ComponentFixture<BanksFormComponent>;
@@ -29,6 +30,7 @@ describe('BanksDirectoryFormComponent', () => {
       ],
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(BanksFormComponent);
     component = fixture.componentInstance;

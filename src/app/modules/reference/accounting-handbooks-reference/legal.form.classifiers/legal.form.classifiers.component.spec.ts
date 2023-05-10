@@ -6,18 +6,14 @@ import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "../../../../shared/shared.module";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('Egal_form_classifiersComponent', () => {
   let component: LegalFormClassifiersComponent;
   let fixture: ComponentFixture<LegalFormClassifiersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ LegalFormClassifiersComponent ]
     })
     .compileComponents();

@@ -1,10 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { #compoentClassNameComponent } from './#fileName.component';
-import {SharedModule} from "../../../shared/shared.module";
-import {TranslocoModule} from "@ngneat/transloco";
-import {HttpClientModule} from "@angular/common/http";
-import {AppModule} from "../../../app.module";
+import {imports} from "@test/imports";
 
 describe('#compoentClassNameComponent', () => {
   let component: #compoentClassNameComponent;
@@ -12,12 +7,7 @@ describe('#compoentClassNameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+      imports: imports,
       declarations: [ #compoentClassNameComponent ]
     })
     .compileComponents();

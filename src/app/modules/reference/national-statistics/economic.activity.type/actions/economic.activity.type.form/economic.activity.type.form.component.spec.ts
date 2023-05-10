@@ -4,16 +4,14 @@ import { EconomicActivityTypeFormComponent } from './economic.activity.type.form
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('EconomicActivityTypeFormComponent', () => {
   let component: EconomicActivityTypeFormComponent;
   let fixture: ComponentFixture<EconomicActivityTypeFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ EconomicActivityTypeFormComponent ]
     })
     .compileComponents();

@@ -4,16 +4,14 @@ import { PsFiderTpFormComponent } from './ps.fider.tp.form.component';
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('PsFiderTpFormComponent', () => {
   let component: PsFiderTpFormComponent;
   let fixture: ComponentFixture<PsFiderTpFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ PsFiderTpFormComponent ]
     })
     .compileComponents();

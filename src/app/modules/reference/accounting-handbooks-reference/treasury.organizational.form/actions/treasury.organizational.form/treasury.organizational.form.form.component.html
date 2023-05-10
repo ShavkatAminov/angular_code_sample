@@ -5,7 +5,6 @@
                   [formGroup]="form">
                 <het-input
                         class="mb-2"
-
                         [errorMessage]="errorMessage('code')"
                         [showError]="showError('code')"
                         formControlName="code"
@@ -22,10 +21,9 @@
                 </het-input>
                 <het-autocomplete
                         class="mb-2"
-                        formControlName="stateGovernmentOrganizationId"
-                        [label]="'REFERENCE.NAME_GOVERNMENT_ORGANIZATION'"
                         [request]="governmentRequest"
-                        [required]="true"
+                        formControlName="stateGovernmentOrganizationId"
+                        label="REFERENCE.GOVERNMENT_ORGANIZATION"
                         [errorMessage]="errorMessage('stateGovernmentOrganizationId')"
                         [showError]="showError('stateGovernmentOrganizationId')">
                 </het-autocomplete>

@@ -1,5 +1,5 @@
 import {ControlValueAccessor} from "@angular/forms";
-import {Component, Input} from "@angular/core";
+import {Component, HostListener, Input} from "@angular/core";
 
 @Component({
     template: '',
@@ -24,6 +24,9 @@ export abstract class BasicFormInput implements ControlValueAccessor {
     protected onChange: Function = (value) => {};
     protected onTouch: Function = () => {};
 
+
+
+
     registerOnChange(fn: any): void {
         this.onChange = fn;
     }
@@ -43,6 +46,28 @@ export abstract class BasicFormInput implements ControlValueAccessor {
 
     writeValue(obj: any): void {
         this.value = obj;
+    }
+
+    @HostListener('keydown.enter')
+    onKeyDownEnter() {
+        const nextEl = this.getNextFocusableElement();
+        if (nextEl) {
+            nextEl.focus();
+        }
+    }
+
+    protected getNextFocusableElement(): HTMLElement | null {
+        const focusableElements = document.querySelectorAll(
+            'input:not([hidden],[readonly=true]), select:not([hidden],[readonly=true]), textarea:not([hidden],[readonly=true])'
+        ) as NodeListOf<HTMLElement>;
+
+        const currentIndex = Array.from(focusableElements).indexOf(document.activeElement as HTMLElement);
+        const nextIndex = currentIndex + 1;
+
+        if (nextIndex < focusableElements.length) {
+            return focusableElements[nextIndex];
+        }
+        return null;
     }
 
 }

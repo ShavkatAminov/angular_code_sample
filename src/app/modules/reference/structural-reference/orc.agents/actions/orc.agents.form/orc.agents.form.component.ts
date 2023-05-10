@@ -18,7 +18,7 @@ export class OrcAgentsFormComponent extends BasicModalForm {
     lastName: new FormControl(null, [Validators.required]),
     middleName: new FormControl(null, [Validators.required]),
     mobilePhone: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.ORC_AGENT);

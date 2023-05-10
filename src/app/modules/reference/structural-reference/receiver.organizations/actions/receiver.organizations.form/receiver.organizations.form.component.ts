@@ -13,11 +13,10 @@ export class ReceiverOrganizationsFormComponent extends BasicModalForm {
   override form = new FormGroup({
     nameUz: new FormControl(null, [Validators.required]),
     code: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
     sendersTypeId: new FormControl(null, [Validators.required]),
-    paymentSystemId: new FormControl(null, [Validators.required]),
     mfo: new FormControl(null, [Validators.required]),
-    account: new FormControl(null, [Validators.required]),
+    account: new FormControl(null, []),
     percentage: new FormControl(null, [Validators.required]),
 });
 

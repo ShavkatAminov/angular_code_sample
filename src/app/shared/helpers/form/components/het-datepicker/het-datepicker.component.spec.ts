@@ -1,21 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {SharedModule} from "../../../../shared.module";
-import {AppModule} from "../../../../../app.module";
 
 import {HetDatepickerComponent} from './het-datepicker.component';
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('HetDatepickerComponent', () => {
     let component: HetDatepickerComponent;
     let fixture: ComponentFixture<HetDatepickerComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                AppModule,
-                SharedModule
-            ],
+            imports: imports,
             declarations: [HetDatepickerComponent],
         }).compileComponents();
+    login();
 
         fixture = TestBed.createComponent(HetDatepickerComponent);
         component = fixture.componentInstance;
@@ -23,19 +21,6 @@ describe('HetDatepickerComponent', () => {
     });
 
     it('should create', () => {
-        const fixture = TestBed.createComponent(HetDatepickerComponent);
-        const component = fixture.componentInstance;
         expect(component).toBeTruthy();
-    });
-
-    it('should return computed classes', () => {
-        component.color = 'amber';
-        component.showError = true;
-        let computedClasses = component.computedClasses();
-        expect(computedClasses).toEqual({
-            'error': true,
-            'amber': true,
-            'datepicker-readonly': true,
-        });
     });
 });

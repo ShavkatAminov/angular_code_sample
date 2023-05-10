@@ -10,18 +10,15 @@ import {HetRadioStaticComponent} from "app/shared/helpers/form/components/het-ra
 import {ProviderTypeFormComponent} from './provider.type.form.component';
 
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('ProviderTypeFormComponent', () => {
     let component: ProviderTypeFormComponent;
     let fixture: ComponentFixture<ProviderTypeFormComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule,
-                HttpClientTestingModule,
-                SharedModule,
-                AppModule,
-            ],
+        imports: imports,
             declarations: [
                 ProviderTypeFormComponent,
                 HetButtonComponent,
@@ -29,6 +26,7 @@ describe('ProviderTypeFormComponent', () => {
                 HetRadioStaticComponent,
             ]
         }).compileComponents();
+    login();
 
         fixture = TestBed.createComponent(ProviderTypeFormComponent);
         component = fixture.componentInstance;
@@ -40,7 +38,6 @@ describe('ProviderTypeFormComponent', () => {
     });
 
     it("should have a form with form controls", () => {
-        expect(component.form.get("code")).toBeTruthy();
         expect(component.form.get("nameUz")).toBeTruthy();
         expect(component.form.get("url")).toBeTruthy();
         expect(component.form.get("status")).toBeTruthy();
@@ -48,7 +45,6 @@ describe('ProviderTypeFormComponent', () => {
 
     it("should call the saveProcess method on form submission", () => {
         spyOn(component, "saveProcess");
-        component.form.controls["code"].setValue(1);
         component.form.controls["nameUz"].setValue("test");
         component.form.controls["url"].setValue("test");
         component.form.controls["status"].setValue(true);

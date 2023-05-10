@@ -38,9 +38,7 @@ import {MeterTypeComponent} from "./technical-directories/meter.type/meter.type.
 import {
     LevelsOfElectricityLosesComponent
 } from "./technical-directories/levels.of.electricity.loses/levels.of.electricity.loses.component";
-import {
-    PostOfficesComponent
-} from "./structural-reference/post.offices/post.offices.component";
+import {PostOfficesComponent} from "./structural-reference/post.offices/post.offices.component";
 import {
     BasicTariffCoefficientsComponent
 } from "./accounting-directory/basic.tariff.coefficients/basic.tariff.coefficients.component";
@@ -59,10 +57,14 @@ import {BankMfosComponent} from "./accounting-directory/bank.mfos/bank.mfos.comp
 import {AccountDirectoryComponent} from "./accounting-directory/account.directory/account.directory.component";
 import {SubstationComponent} from "./technical-directories/substation/substation.component";
 import {IndicationTypesComponent} from "./accounting-directory/indication.types/indication.types.component";
-import { OperatorTypeBindingsComponent } from './technical-directories/operator.type.bindings/operator.type.bindings.component';
+import {
+    OperatorTypeBindingsComponent
+} from './technical-directories/operator.type.bindings/operator.type.bindings.component';
 
 import {ReferenceApiUrls} from "./referenceApiUrls";
-import {InformationSystemsErrorCodesComponent} from "./cb-reference/information.systems.error.codes/information.systems.error.codes.component";
+import {
+    InformationSystemsErrorCodesComponent
+} from "./cb-reference/information.systems.error.codes/information.systems.error.codes.component";
 import {TransformerTypesComponent} from "./technical-directories/transformer.types/transformer.types.component";
 import {CoatoBranchesComponent} from "./general-reference/coato.branches/coato.branches.component";
 import {StreetsDirectoryComponent} from "./structural-reference/streets.directory/streets.directory.component";
@@ -75,11 +77,13 @@ import {
 import {ConsumerTypeComponent} from "./structural-reference/consumer.type/consumer.type.component";
 import {OrganizationsComponent} from "./general-reference/organizations/organizations.component";
 import {ConsumerStatesComponent} from "./technical-directories/consumer.states/consumer.states.component";
-import {NationalEconomyBranchComponent} from "./accounting-handbooks-reference/national.economy.branch/national.economy.branch.component";
 import {
-    StateComplexComponent
-} from "./national-statistics/state.complex/state.complex.component";
-import {EconomicActivityTypeComponent} from "./national-statistics/economic.activity.type/economic.activity.type.component";
+    NationalEconomyBranchComponent
+} from "./accounting-handbooks-reference/national.economy.branch/national.economy.branch.component";
+import {StateComplexComponent} from "./national-statistics/state.complex/state.complex.component";
+import {
+    EconomicActivityTypeComponent
+} from "./national-statistics/economic.activity.type/economic.activity.type.component";
 import {TariffsComponent} from "./accounting-directory/tariffs/tariffs.component";
 import {
     OwnershipClassifierComponent
@@ -102,6 +106,11 @@ import {
     LegalReportStatusesComponent
 } from "./technical-directories/legal.report.statuses/legal.report.statuses.component";
 import {BusinessActivitiesComponent} from "./general-reference/business.activities/business.activities.component";
+import {
+    FinePercentagesComponent
+} from "@app/modules/reference/accounting-handbooks-reference/fine.percentages/fine.percentages.component";
+import {PaymentSystemComponent} from "@app/modules/reference/general-reference/payment.system/payment.system.component";
+import {NewPersonalAccountRangeComponent} from "@app/modules/reference/general-reference/new.personal.account.range/new.personal.account.range.component";
 
 export const referenceRoutes: Route[] = [
     {
@@ -391,5 +400,17 @@ export const referenceRoutes: Route[] = [
     {
         path     : AccountingSettlementLCApiUrls.LEGAL_REPORT_STATUSES,
         component: LegalReportStatusesComponent
+    },
+    {
+        path     : AccountingSettlementLCApiUrls.FINE_PERCENTAGES,
+        component: FinePercentagesComponent
+    },
+    {
+        path     : ReferenceApiUrls.PAYMENT_SYSTEM,
+        component: PaymentSystemComponent
+    },
+    {
+        path     : ReferenceApiUrls.NEW_PERSONAL_ACCOUNT_RANGE,
+        component: NewPersonalAccountRangeComponent
     },
 ];

@@ -9,8 +9,6 @@ import {
     OperatorTypeBindingFormComponent
 } from "./actions/operator.type.binding.form/operator.type.binding.form.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup} from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
@@ -38,22 +36,18 @@ export class OperatorTypeBindingsComponent extends BasicReferencePage {
             flex: 15,
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             type: 'status'
         },
         {
+            type: 'user',
             field: 'login',
             headerName: 'GENERAL.LOGIN',
             flex: 20,
         },
         {
-            floatingFilterComponentParams: {
-                type: 'yesNo',
-            },
+            type: 'yesNo',
             field: 'receiveSmsFromRes',
             headerName: 'GENERAL.RECEIVE_SMS_FROM_RES',
         },
@@ -67,13 +61,5 @@ export class OperatorTypeBindingsComponent extends BasicReferencePage {
             if (res)
                 this.reload();
         });
-    }
-
-    override filter: FilterFieldGroup = {
-        code: new FilterField('GENERAL.CODE_NUMBER', 'input'),
-        nameUz: new FilterField('GENERAL.OPERATOR_NAME', 'input'),
-        providerId: new FilterField('GENERAL.PROVIDER_NAME', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.PROVIDER_TYPE)),
-        status: new FilterField('GENERAL.STATUS', 'status'),
-        receiveSmsFromRes: new FilterField('GENERAL.RECEIVE_SMS_FROM_RES', 'yesNo'),
     }
 }

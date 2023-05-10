@@ -6,22 +6,19 @@ import {HttpClientModule} from "@angular/common/http";
 import {AppModule} from "../../../../app.module";
 import {SharedModule} from "../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('ReactiveActiveComponent', () => {
   let component: ReactiveActiveComponent;
   let fixture: ComponentFixture<ReactiveActiveComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ ReactiveActiveComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(ReactiveActiveComponent);
     component = fixture.componentInstance;

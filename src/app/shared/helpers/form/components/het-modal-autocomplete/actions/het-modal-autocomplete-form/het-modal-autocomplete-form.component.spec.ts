@@ -4,16 +4,14 @@ import { HetModalAutocompleteFormComponent } from './het-modal-autocomplete-form
 import {AppModule} from "../../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared.module";
 
+import {imports} from "@test/imports";
 describe('HetModalAutocompleteFormComponent', () => {
   let component: HetModalAutocompleteFormComponent;
   let fixture: ComponentFixture<HetModalAutocompleteFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule
-      ],
+        imports: imports,
       declarations: [ HetModalAutocompleteFormComponent ]
     })
     .compileComponents();

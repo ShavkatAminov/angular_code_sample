@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
 import {SizeModal} from "@shared/helpers/modal/modal.component";
@@ -7,34 +7,40 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
   template: basicTemplate(),
 })
-export class ManagersComponent extends BasicReferencePage {
+export class ManagersComponent extends BasicReferencePage implements OnInit {
+    ngOnInit(): void {
+        this.defaultColumnDef["minWidth"] = 150;
+    }
     columnDefs: ColDef[] = [
         {
             field: 'id',
             headerName: 'GENERAL.NUMBER',
             flex: 5
         },
+
         {
-            field: 'code',
-            headerName: 'GENERAL.CODE',
-        },
-        {
+            minWidth: 200,
             floatingFilterComponentParams: {
                 type: 'autocomplete',
-                request: new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS),
+                request: new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS,
+                    {
+                        pageable: {
+                            sort: ["code"],
+                            direction: 'ASC'
+                        }
+                    }),
             },
             colId: 'managementLevelId',
             field: 'managementLevel.nameUz',
             headerName: 'GENERAL.LEVEL',
         },
         {
+            minWidth: 200,
             field: 'firstName',
             headerName: 'GENERAL.F_I_O',
             valueFormatter: function ({data}) {
@@ -45,6 +51,7 @@ export class ManagersComponent extends BasicReferencePage {
             flex: 20
         },
         {
+            minWidth: 200,
             floatingFilterComponentParams: {
                 type: 'autocomplete',
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_TYPES),
@@ -58,9 +65,6 @@ export class ManagersComponent extends BasicReferencePage {
             headerName: 'GENERAL.MOBILE_PHONE'
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             type: 'status'
@@ -71,7 +75,8 @@ export class ManagersComponent extends BasicReferencePage {
             type: 'date'
         },
         {
-            field: 'createdBy',
+            type: 'user',
+            field: 'createdByName',
             headerName: 'GENERAL.USER',
         },
     ];
@@ -85,14 +90,4 @@ export class ManagersComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CODE', 'input'),
-    firstName: new FilterField('GENERAL.FIRST_NAME', 'input'),
-    lastName: new FilterField('GENERAL.LAST_NAME', 'input'),
-    middleName: new FilterField('GENERAL.MIDDLE_NAME', 'input'),
-    managementLevelId: new FilterField('GENERAL.LEVEL', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS)),
-    managementTypeId: new FilterField('GENERAL.TYPE', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_TYPES)),
-    mobilePhone: new FilterField('GENERAL.MOBILE_PHONE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

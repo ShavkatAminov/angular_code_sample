@@ -11,13 +11,15 @@ export class AbstractSearch implements IRequest {
     pageable: new Pageable(),
   };
 
-  constructor(protected url: string) {
+  constructor(protected url: string, body = {}) {
     this.url = this.url + '/filter';
+
+    this.body = {...this.body, ...body}
   }
 
-  setFilterProperties(filter) {
+  setFilterProperties(filter, previousParams) {
     Object.keys(this.body).forEach(key => {
-      if(key !== 'pageable') {
+      if(previousParams.hasOwnProperty(key)) {
         delete this.body[key];
       }
     });

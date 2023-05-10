@@ -6,18 +6,18 @@ import {AppModule} from "../../../../../app.module";
 import {HetSelectComponent} from "./het-select.component";
 
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('HetSelectComponent', () => {
     let component: HetSelectComponent;
     let fixture: ComponentFixture<HetSelectComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                AppModule
-            ],
+        imports: imports,
             declarations: [HetSelectComponent]
         }).compileComponents();
+    login();
 
         fixture = TestBed.createComponent(HetSelectComponent);
         component = fixture.componentInstance;

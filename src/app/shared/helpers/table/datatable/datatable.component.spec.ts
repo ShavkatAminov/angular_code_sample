@@ -4,6 +4,7 @@ import { DatatableComponent } from './datatable.component';
 import {HttpClientService} from "../../service/http/http.client.service";
 import {AppModule} from "../../../../app.module";
 
+import {login} from "@test/login";
 describe('DatatableComponent', () => {
   let component: DatatableComponent;
   let fixture: ComponentFixture<DatatableComponent>;
@@ -14,6 +15,7 @@ describe('DatatableComponent', () => {
       declarations: [ DatatableComponent ],
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(DatatableComponent);
     component = fixture.componentInstance;

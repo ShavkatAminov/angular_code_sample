@@ -14,18 +14,22 @@ export class ManagersFormComponent extends BasicModalForm {
 
   
   override form = new FormGroup({
-    code: new FormControl(null, [Validators.required]),
-    firstName: new FormControl(null, [Validators.required]),
-    lastName: new FormControl(null, []),
-    middleName: new FormControl(null, []),
+    firstName: new FormControl(null, [Validators.required,Validators.maxLength(50)]),
+    lastName: new FormControl(null, [Validators.required,Validators.maxLength(50)]),
+    middleName: new FormControl(null, [Validators.required,Validators.maxLength(50)]),
     managementLevelId: new FormControl(null, [Validators.required]),
     managementTypeId: new FormControl(null, [Validators.required]),
-    mobilePhone: new FormControl(null, [Validators.required, Validators.maxLength(12)]),
-    status: new FormControl(null, [Validators.required]),
+    mobilePhone: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+    status: new FormControl(true, [Validators.required]),
 });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.MANAGERS);
-  managementLevelDropRequest = new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS);
+  managementLevelDropRequest = new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS, {
+    pageable: {
+      sort: ["code"],
+      direction: 'ASC'
+    }
+  });
   managementTypeDropRequest = new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_TYPES);
   override beforeSave() {
     super.beforeSave();

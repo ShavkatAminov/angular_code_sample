@@ -1,36 +1,51 @@
 <form (ngSubmit)="saveProcess()"
       [formGroup]="form">
     <div class="grid grid-cols-1 gap-2">
-        <het-datepicker  formControlName="validityDate" [label]="'REFERENCE.VALIDITY_DATE'"></het-datepicker>
-        <het-autocomplete formControlName="coatoId" [request]="coatoRequest" [label]="'REFERENCE.COATO'" [required]="true"
+        <het-datepicker formControlName="validityDate" [label]="'REFERENCE.VALIDITY_DATE'"></het-datepicker>
+        <het-autocomplete formControlName="coatoId" [request]="coatoRequest" [label]="'REFERENCE.COATO'"
+                          [required]="true"
                           [errorMessage]="errorMessage('coatoId')" [showError]="showError('coatoId')">
         </het-autocomplete>
-        <het-input [inputType]="'number'" formControlName="networkSuppliedEnery" [label]="'REFERENCE.NETWORK_SUPPIED_ENERGY'"
-                   [required]="true" [errorMessage]="errorMessage('networkSuppliedEnery')" [showError]="showError('networkSuppliedEnery')">
-        </het-input>
-        <het-input [inputType]="'number'" formControlName="losses" [label]="'REFERENCE.AVERAGE_LOSS_IN_GENERAL'" [required]="true"
-                   [errorMessage]="errorMessage('losses')" [showError]="showError('losses')">
-        </het-input>
-        <het-input [inputType]="'number'" formControlName="avgLossPercentage" [label]="'REFERENCE.AVERAGE_LOSS_IN_GENERAL_IN_PERCENTAGE'"
-                   [required]="true" [errorMessage]="errorMessage('avgLossPercentage')" [showError]="showError('avgLossPercentage')">
-        </het-input>
-        <het-input [inputType]="'number'" formControlName="minimumLoss" [label]="'REFERENCE.MINIMUM_LOSS_IN_GENERAL'" [required]="true"
-                   [errorMessage]="errorMessage('minimumLoss')" [showError]="showError('minimumLoss')">
-        </het-input>
-        <het-input [inputType]="'number'" formControlName="minimumLossPercentage" [label]="'REFERENCE.MINIMUM_LOSS_IN_GENERAL_IN_PERCENTAGE'"
-                   [required]="true" [errorMessage]="errorMessage('minimumLossPercentage')" [showError]="showError('minimumLossPercentage')">
-        </het-input>
-        <het-input [inputType]="'number'" formControlName="maximumLoss" [label]="'REFERENCE.MAXIMUM_LOSS_IN_GENERAL'" [required]="true"
-                   [errorMessage]="errorMessage('maximumLoss')" [showError]="showError('maximumLoss')">
-        </het-input>
-        <het-input [inputType]="'number'" formControlName="maximumLossPercentage" [label]="'REFERENCE.MAXIMUM_LOSS_IN_GENERAL_IN_PERCENTAGE'"
-                   [required]="true" [errorMessage]="errorMessage('maximumLossPercentage')" [showError]="showError('maximumLossPercentage')">
-        </het-input>
-        <het-autocomplete formControlName="standardValuesId" [request]="autocompleteRequest"  [label]="'REFERENCE.STANDARD_VALUE_ID'" [required]="true"
+        <het-autocomplete formControlName="standardValuesId" [request]="autocompleteRequest"
+                          [label]="'REFERENCE.NETWORK'" [required]="true"
                           [errorMessage]="errorMessage('standardValuesId')" [showError]="showError('standardValuesId')">
         </het-autocomplete>
-        <het-radio-static type="status" formControlName="status" [label]="'GENERAL.STATUS'"
-                          [required]="true" [errorMessage]="errorMessage('status')" [showError]="showError('status')">
-        </het-radio-static>
+        <het-input [inputType]="'number'" formControlName="networkSuppliedEnery"
+                   [label]="'REFERENCE.NETWORK_SUPPIED_ENERGY'"
+                   [required]="true" [errorMessage]="errorMessage('networkSuppliedEnery')"
+                   [showError]="showError('networkSuppliedEnery')">
+        </het-input>
+        <fieldset class="border border-solid border-gray-300 rounded-md p-3 mt-3">
+            <legend class="font-bold text-primary ">{{'REFERENCE.LOSS_IN_GENERAL' |transloco }}</legend>
+            <div class="flex grid gap-x-10 gap-y-3">
+            <het-input [inputType]="'number'" formControlName="losses" [label]="'REFERENCE.AVERAGE_LOSS'"
+                       [required]="true"
+                       [errorMessage]="errorMessage('losses')" [showError]="showError('losses')">
+            </het-input>
+            <het-input [inputType]="'number'" formControlName="avgLossPercentage"
+                       [label]="'REFERENCE.PERCENTAGE_AVERAGE'"
+                       [required]="true" [errorMessage]="errorMessage('avgLossPercentage')"
+                       [showError]="showError('avgLossPercentage')">
+            </het-input>
+            <het-input [inputType]="'number'" formControlName="minimumLoss" [label]="'REFERENCE.MINIMUM_LOSS'"
+                       [required]="true"
+                       [errorMessage]="errorMessage('minimumLoss')" [showError]="showError('minimumLoss')">
+            </het-input>
+            <het-input [inputType]="'number'" formControlName="minimumLossPercentage"
+                       [label]="'REFERENCE.PERCENTAGE_MIN'"
+                       [required]="true" [errorMessage]="errorMessage('minimumLossPercentage')"
+                       [showError]="showError('minimumLossPercentage')">
+            </het-input>
+            <het-input [inputType]="'number'" formControlName="maximumLoss" [label]="'REFERENCE.MAXIMUM_LOSS'"
+                       [required]="true"
+                       [errorMessage]="errorMessage('maximumLoss')" [showError]="showError('maximumLoss')">
+            </het-input>
+            <het-input [inputType]="'number'" formControlName="maximumLossPercentage"
+                       [label]="'REFERENCE.PERCENTAGE_MAX'"
+                       [required]="true" [errorMessage]="errorMessage('maximumLossPercentage')"
+                       [showError]="showError('maximumLossPercentage')">
+            </het-input>
+            </div>
+        </fieldset>
     </div>
 </form>

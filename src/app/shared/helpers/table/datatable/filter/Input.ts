@@ -27,9 +27,10 @@ export class FilterInput implements IFloatingFilterAngularComp  {
         if(params.options)
             this.options = params.options;
         this.control.valueChanges.pipe(debounceTime(500)).subscribe( res => {
-            console.log(res);
+            if(res === '')
+                res = null;
             this.params.parentFilterInstance((instance) => {
-                instance.onFloatingFilterChanged('', res);
+                instance.onFloatingFilterChanged('', JSON.stringify(res));
             });
         });
     }

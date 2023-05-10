@@ -4,16 +4,14 @@ import { AppModule } from 'app/app.module';
 import { BankMfosFormComponent } from './bank.mfos.form.component';
 import {SharedModule} from "@shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('BankMfosFormComponent', () => {
   let component: BankMfosFormComponent;
   let fixture: ComponentFixture<BankMfosFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ BankMfosFormComponent ]
     })
     .compileComponents();

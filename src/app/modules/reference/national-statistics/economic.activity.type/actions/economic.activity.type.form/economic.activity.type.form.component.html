@@ -2,7 +2,10 @@
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <het-input [label]="'GENERAL.CODE'" formControlName="code"  [errorMessage]="errorMessage('code')" [showError]="showError('code')" [required]="true"></het-input>
+        <het-input [allowCrl]="true" [label]="'GENERAL.NAME_RU'" formControlName="nameRu" [errorMessage]="errorMessage('nameRu')" [showError]="showError('nameRu')" [required]="true"></het-input>
+
         <het-input [label]="'GENERAL.NAME'" formControlName="nameUz" [errorMessage]="errorMessage('nameUz')" [showError]="showError('nameUz')" [required]="true"></het-input>
+        <het-input [allowCrl]="true" [label]="'GENERAL.NAME_CRL'" formControlName="nameUz" [errorMessage]="errorMessage('nameUz')" [showError]="showError('nameUz')" [required]="true"></het-input>
         <het-radio-static [label]="'GENERAL.STATUS'" formControlName="status" [errorMessage]="errorMessage('status')" [showError]="showError('status')" [required]="true"></het-radio-static>
     </div>
 </form>

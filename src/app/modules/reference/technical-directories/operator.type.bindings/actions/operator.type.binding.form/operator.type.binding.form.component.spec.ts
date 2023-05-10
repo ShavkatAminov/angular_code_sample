@@ -9,20 +9,18 @@ import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
 import {SharedModule} from "@shared/shared.module";
 import {AppModule} from "../../../../../../app.module";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('OperatorTypeBindingFormComponent', () => {
     let component: OperatorTypeBindingFormComponent;
     let fixture: ComponentFixture<OperatorTypeBindingFormComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                AppModule,
-                HttpClientTestingModule,
-                TranslocoTestingModule,
-                SharedModule
-            ],
+        imports: imports,
             declarations: [OperatorTypeBindingFormComponent]
         }).compileComponents();
+    login();
 
         fixture = TestBed.createComponent(OperatorTypeBindingFormComponent);
         component = fixture.componentInstance;

@@ -8,8 +8,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
@@ -17,11 +15,7 @@ export class RegionsComponent extends BasicReferencePage{
   columnDefs: ColDef[] = [
     {field: 'code', maxWidth: 204, headerName: 'GENERAL.CODE'},
     {field: 'nameUz', headerName: 'GENERAL.NAME'},
-    {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
-      field: 'status',  maxWidth: 204, headerName: 'GENERAL.STATUS', type: 'status'},
+    {field: 'status',  maxWidth: 204, headerName: 'GENERAL.STATUS', type: 'status'},
   ];
   title = 'MENU.REFERENCE.GENERAL_GUIDES.REGIONS';
   request = new ReferenceListRequest(ReferenceApiUrls.REGIONS);
@@ -31,10 +25,5 @@ export class RegionsComponent extends BasicReferencePage{
       if (res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('GENERAL.NAME', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

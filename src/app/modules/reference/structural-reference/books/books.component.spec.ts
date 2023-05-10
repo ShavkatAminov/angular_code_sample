@@ -5,22 +5,19 @@ import {SharedModule} from "../../../../shared/shared.module";
 import {AppModule} from "../../../../app.module";
 import {BooksComponent} from "./books.component";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('BooksComponent', () => {
   let component: BooksComponent;
   let fixture: ComponentFixture<BooksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ BooksComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(BooksComponent);
     component = fixture.componentInstance;

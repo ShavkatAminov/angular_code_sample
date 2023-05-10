@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, ViewChild, Input} from '@angular/core';
 import {
   GridApi,
   HeaderValueGetterParams,
@@ -19,9 +19,10 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
 
 
   @ViewChild(PaginationComponent) paginationComponent: PaginationComponent;
+  totalElements: number = 0;
 
   dataSource!: IDatasource;
-
+  @Input() checkPagination:boolean = true;
   constructor(private cof: HttpClientService, protected translate: TranslocoService) {
     super(translate);
     this.translate.langChanges$.subscribe(() => {
@@ -47,10 +48,6 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
     }
   }
 
-  isFullWidthCell(rowNode: any) {
-    return rowNode.level === 1;
-  };
-
   gridApi!: GridApi;
 
   onGridReady(params: any) {
@@ -62,6 +59,8 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
     this.gridReady.emit(true);
   }
 
+  addedFilterParams = {};
+
   public reloadGrid() {
     this.dataSource = {
       getRows: (params: IGetRowsParams) => {
@@ -72,10 +71,11 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
         let filter = {};
         if(params.filterModel) {
           Object.keys(params.filterModel).forEach(key => {
-            filter[key] = params.filterModel[key].filter;
+            filter[key] = JSON.parse(params.filterModel[key].filter);
           })
         }
-        this.request.setFilterProperties(filter);
+        this.request.setFilterProperties(filter, this.addedFilterParams);
+        this.addedFilterParams = filter;
         if(params.sortModel.length > 0) {
           this.request.setSortParams(params.sortModel[0]);
         }
@@ -84,7 +84,10 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
         }
         this.cof.request(this.request, "post").subscribe((response: any) => {
           params.successCallback( (this.dataKey ? response[this.dataKey] : response), response[this.dataKey].length);
-          this.paginationComponent.totalPages = response['totalPages'];
+          if(this.paginationComponent?.totalPages) {
+            this.paginationComponent.totalPages = response['totalPages'];
+            this.totalElements = response['totalElements'];
+          }
         });
       }
     }
@@ -98,6 +101,14 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
     this.onSelectionChanged.emit(selectedRows.length === 1 ? selectedRows[0] : null);
   }
 
+  onRowSelectedEvent(event) {
+    this.onRowSelected.emit(event);
+  }
+
+  onFirstDataRenderedEvent(event) {
+    this.onFirstDataRendered.emit(event);
+  }
+
   handleRowClicked(event:any){
     this.onRowClicked.emit(event && event.data ? event.data : null);
   }
@@ -105,9 +116,4 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
   handleRowDoubleClicked(event: any) {
     this.onRowDoubleClicked.emit(event && event.data ? event.data : null);
   }
-}
-
-export interface IAcGridSort {
-  colId: string;
-  sort: string;
 }

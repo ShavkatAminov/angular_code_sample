@@ -16,7 +16,7 @@ export class DistrictsFormComponent extends BasicModalForm {
     code: new FormControl(null, [Validators.required]),
     nameUz: new FormControl(null, [Validators.required]),
     regionId: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
   override request = new ReferenceFormRequest(ReferenceApiUrls.DISTRICTS);
   regionsRequest = new ReferenceDropDownRequest(ReferenceApiUrls.REGIONS);

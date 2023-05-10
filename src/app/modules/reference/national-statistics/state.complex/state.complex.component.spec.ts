@@ -13,6 +13,7 @@ import {
     DirectoryOfComplexesFormComponent
 } from "./actions/directory.of.complexes.form/directory.of.complexes.form.component";
 
+import {login} from "@test/login";
 describe('DirectoryOfComplexesComponent', () => {
     let component: StateComplexComponent;
     let fixture: ComponentFixture<StateComplexComponent>;
@@ -30,6 +31,7 @@ describe('DirectoryOfComplexesComponent', () => {
             providers: [FormModalComponent],
         })
             .compileComponents();
+    login();
 
         fixture = TestBed.createComponent(StateComplexComponent);
         component = fixture.componentInstance;

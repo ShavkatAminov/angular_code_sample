@@ -2,21 +2,12 @@
       [formGroup]="form">
     <div class="grid grid-cols-1 gap-4">
         <het-input
-                [inputType]="'number'"
-                formControlName="code"
-                [label]="'GENERAL.CODE'"
-                [required]="true"
-                [errorMessage]="errorMessage('code')"
-                [showError]="showError('code')">
-        </het-input>
-        <het-autocomplete
-                formControlName="transformerTypeId"
-                [errorMessage]="errorMessage('transformerTypeId')"
-                [showError]="showError('transformerTypeId')"
+                formControlName="nameUz"
+                [errorMessage]="errorMessage('nameUz')"
+                [showError]="showError('nameUz')"
                 [label]="'REFERENCE.TRANSFORMER_TYPE_NAME'"
-                [required]="true"
-                [request]="autoTransformerType">
-        </het-autocomplete>
+                [required]="true">
+        </het-input>
         <het-input
                 [inputType]="'number'"
                 formControlName="sectionMm2"
@@ -37,20 +28,6 @@
                 [errorMessage]="errorMessage('status')"
                 [showError]="showError('status')">
         </het-radio-static>
-        <het-datepicker
-                formControlName="createdDate"
-                [label]="'GENERAL.CREATED_AT'"
-                [required]="true"
-                [errorMessage]="errorMessage('createdDate')"
-                [showError]="showError('createdDate')">
-        </het-datepicker>
-        <het-datepicker
-                formControlName="updatedDate"
-                [label]="'GENERAL.UPDATED_AT'"
-                [required]="false"
-                [errorMessage]="errorMessage('updatedDate')"
-                [showError]="showError('updatedDate')">
-        </het-datepicker>
 
     </div>
 </form>

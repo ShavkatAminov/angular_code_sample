@@ -3,16 +3,14 @@ import { NationalEconomyBranchFormComponent } from './national.economy.branch.fo
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('ManagementLevelsFormComponent', () => {
   let component: NationalEconomyBranchFormComponent;
   let fixture: ComponentFixture<NationalEconomyBranchFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ NationalEconomyBranchFormComponent ]
     })
     .compileComponents();

@@ -1,11 +1,12 @@
 import {Component, Inject} from '@angular/core';
 import {ModalComponentInterface} from "../../../../../modal/modal.component.interface";
 import {Subject} from "rxjs";
-import {BasicReferencePage} from "../../../../../../../modules/reference/basic.reference.page";
+import {BasicReferencePage} from "@app/modules/reference/basic.reference.page";
 import {ColDef} from "ag-grid-community";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {FormControl, FormGroup} from "@angular/forms";
 import {debounceTime} from "rxjs";
+import {set} from "@shared/helpers/utils/Lodash";
 
 @Component({
     selector: 'app-het-modal-autocomplete-form',
@@ -20,9 +21,7 @@ export class HetModalAutocompleteFormComponent extends BasicReferencePage implem
         colDefs: [],
         request: null,
     };
-    constructor() {
-        super();
-    }
+
 
     addFormControl(field: string) {
         this.form.addControl(field, new FormControl(''));
@@ -44,7 +43,10 @@ export class HetModalAutocompleteFormComponent extends BasicReferencePage implem
 
         this.form.valueChanges.pipe(debounceTime(500)).subscribe(value => {
             for (const field of data.fields) {
-                this.request.body[field.name] = value[field.name];
+                set(this.request.body, field.name, value[field.name])
+            }
+            if ( data?.options?.beforeFilter){
+                this.request = data.options.beforeFilter(this.request)
             }
             this.reload();
         });

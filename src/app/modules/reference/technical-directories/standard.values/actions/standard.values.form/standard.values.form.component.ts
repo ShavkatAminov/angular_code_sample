@@ -12,16 +12,14 @@ import {ReferenceApiUrls} from "../../../../referenceApiUrls";
 export class StandardValuesFormComponent extends BasicModalForm {
     
     override form = new FormGroup({
-        code: new FormControl(null, [Validators.required]),
         voltageLevelNetwork: new FormControl(null, [Validators.required]),
         value: new FormControl(null, [Validators.required]),
-        status: new FormControl(true, [Validators.required]),
     });
 
     override request = new ReferenceFormRequest(ReferenceApiUrls.STANDARD_VALUES);
 
     override beforeSave() {
+        console.log(this.form.value, 1111)
         this.request.body = this.form.value;
-        this.request.body.value = parseInt(this.request.body.value);
     }
 }

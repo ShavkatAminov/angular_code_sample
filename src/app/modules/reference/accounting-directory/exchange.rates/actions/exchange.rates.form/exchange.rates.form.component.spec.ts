@@ -1,17 +1,15 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {SharedModule} from "app/shared/shared.module";
-import {AppModule} from "app/app.module";
-import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {By} from "@angular/platform-browser";
 import {HetButtonComponent} from "app/shared/helpers/form/components/het-button/het-button.component";
 import {HetInputComponent} from "app/shared/helpers/form/components/het-input/het-input.component";
 import {HetRadioStaticComponent} from "app/shared/helpers/form/components/het-radio-static/het-radio-static.component";
 import {
     HetAutocompleteComponent
-} from "../../../../../../shared/helpers/form/components/het-autocomplete/het-autocomplete.component";
+} from "@shared/helpers/form/components/het-autocomplete/het-autocomplete.component";
 import {ExchangeRatesFormComponent} from './exchange.rates.form.component';
 
+import {login} from "@test/login";
+import {imports} from "@test/imports";
 describe('ExchangeRateGuideFormComponent', () => {
     let component: ExchangeRatesFormComponent;
     let fixture: ComponentFixture<ExchangeRatesFormComponent>;
@@ -25,14 +23,10 @@ describe('ExchangeRateGuideFormComponent', () => {
                 HetRadioStaticComponent,
                 HetAutocompleteComponent
             ],
-            imports: [
-                ReactiveFormsModule,
-                HttpClientTestingModule,
-                SharedModule,
-                AppModule,
-            ],
+            imports: imports,
         })
             .compileComponents();
+    login();
 
         fixture = TestBed.createComponent(ExchangeRatesFormComponent);
         component = fixture.componentInstance;

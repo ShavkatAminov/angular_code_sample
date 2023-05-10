@@ -8,8 +8,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
@@ -27,15 +25,6 @@ export class LanguagesComponent extends BasicReferencePage {
     { field: 'id', headerName: 'GENERAL.NUMBER', flex:3 },
     { field: 'code', headerName: 'GENERAL.CODE', flex:3},
     { field: 'nameUz',  headerName: "REFERENCE.TYPE_NAME"},
-    {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
-      field: 'status', headerName: 'GENERAL.STATUS',type:'status', flex:3},
+    { field: 'status', headerName: 'GENERAL.STATUS',type:'status', flex:3},
   ];
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CODE', 'input'),
-    nameUz: new FilterField('REFERENCE.TYPE_NAME', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

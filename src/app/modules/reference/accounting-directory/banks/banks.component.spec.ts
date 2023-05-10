@@ -9,6 +9,7 @@ import { BanksComponent } from './banks.component';
 import {BanksFormComponent} from "./actions/banks.form/banks.form.component";
 import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
 
+import {login} from "@test/login";
 describe('BanksDirectoryComponent', () => {
   let component: BanksComponent;
   let fixture: ComponentFixture<BanksComponent>;
@@ -26,6 +27,7 @@ describe('BanksDirectoryComponent', () => {
       providers: [FormModalComponent],
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(BanksComponent);
     component = fixture.componentInstance;

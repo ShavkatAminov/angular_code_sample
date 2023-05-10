@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {InjectorInstance} from "../../shared.module";
 import {Observable} from "rxjs";
@@ -12,8 +12,9 @@ import {ModalComponent, SizeModal} from "../modal/modal.component";
 })
 export class FormModalComponent extends ModalComponent {
   constructor(protected dialogRef: MatDialogRef<FormModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { component: any, title: string, formData: any }) {
-    super(dialogRef, data)
+              @Inject(MAT_DIALOG_DATA) public data: { component: any, title: string, formData: any },
+              protected dc: ChangeDetectorRef) {
+    super(dialogRef, data, dc)
     this.component = data.component
     this.title = data.title
 
@@ -25,8 +26,8 @@ export class FormModalComponent extends ModalComponent {
     let dialogRef = dialog.open(FormModalComponent, {
       data: {component: component, title: title, formData: formData},
       width: ModalComponent.setSize(size),
-      maxWidth: ModalComponent.setSize(size)
-
+      maxWidth: ModalComponent.setSize(size),
+      disableClose: true
     });
     return dialogRef.afterClosed();
   }

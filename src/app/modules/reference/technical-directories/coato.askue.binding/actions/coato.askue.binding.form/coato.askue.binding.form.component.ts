@@ -20,7 +20,7 @@ export class CoatoAskueBindingFormComponent extends BasicModalForm{
     askueTypeId: new FormControl(null, [Validators.required]),
     urlAddress: new FormControl(null, [Validators.required]),
     processNumberId: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.COATO_ASKUE_BINDING);

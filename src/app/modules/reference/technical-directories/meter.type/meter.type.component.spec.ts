@@ -6,21 +6,19 @@ import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "../../../../shared/shared.module";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('MeterTypeComponent', () => {
   let component: MeterTypeComponent;
   let fixture: ComponentFixture<MeterTypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ MeterTypeComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(MeterTypeComponent);
     component = fixture.componentInstance;

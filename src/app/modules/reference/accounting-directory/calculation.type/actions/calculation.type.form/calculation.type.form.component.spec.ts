@@ -4,16 +4,14 @@ import { CalculationTypeFormComponent } from './calculation.type.form.component'
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('CalculationTypeFormComponent', () => {
   let component: CalculationTypeFormComponent;
   let fixture: ComponentFixture<CalculationTypeFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ CalculationTypeFormComponent ]
     })
     .compileComponents();

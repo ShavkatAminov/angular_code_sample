@@ -1,24 +1,23 @@
 <form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
-        <het-input  [showError]="showError('code')" [errorMessage]="errorMessage('code')" formControlName="code"
-                    [label]="'GENERAL.CODE'" [required]="true">
-        </het-input>
         <het-input formControlName="nameUz" [errorMessage]="errorMessage('nameUz')" [showError]="showError('nameUz')" [label]="'GENERAL.NAME'"
                    [required]="true">
         </het-input>
-        <het-input [inputType]="'number'" formControlName="amountOfSignsInSerialNumber"
+        <het-input formControlName="amountOfSignsInSerialNumber"
                    [showError]="showError('amountOfSignsInSerialNumber')"
                    [errorMessage]="errorMessage('amountOfSignsInSerialNumber')"
-                   [label]="'REFERENCE.NUMBER_OF_CHARACTERS_IN_SERIAL_NUMBER'" [required]="true">
+                   [label]="'REFERENCE.NUMBER_OF_CHARACTERS_IN_SERIAL_NUMBER'" [required]="true"
+                    [mask]="'0000000000'">
         </het-input>
+        <het-radio-static [label]="'REFERENCE.INITIAL_SYMBOLS'" type="yesNo" formControlName="presenceOfSymbols" [showError]="showError('presenceOfSymbols')"
+                          [required]="true" [errorMessage]="errorMessage('presenceOfSymbols')">
+        </het-radio-static>
         <het-radio-static type="status" formControlName="status" [showError]="showError('status')"
                            [required]="true" [label]="'GENERAL.STATUS'"
                           [errorMessage]="errorMessage('status')"
         >
         </het-radio-static>
-        <het-radio-static [label]="'REFERENCE.PRESENCE_OF_CHARACTERS'" type="yesNo" formControlName="presenceOfSymbols" [showError]="showError('presenceOfSymbols')"
-                          [required]="true" [errorMessage]="errorMessage('presenceOfSymbols')">
-        </het-radio-static>
+
     </div>
 </form>

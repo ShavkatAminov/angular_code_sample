@@ -15,6 +15,7 @@ export abstract class BasicForm implements OnDestroy, OnSave {
   form!: FormGroup;
   private subscription$: Subscription = new Subscription();
   protected errorMessages = {};
+  private afterSaveBtnClick = false;
 
   public constructor(public http: HttpClientService, public translate: TranslocoService,public alert:AlertServiceComponent) { }
 
@@ -34,22 +35,25 @@ export abstract class BasicForm implements OnDestroy, OnSave {
   errorCallback(error: Object): void {
     if(error instanceof HttpErrorResponse) {
       if(error.status === ErrorCodes.BAD_REQUEST) {
-        Object.keys(error.error).forEach(key => {
-          this.form.get(key)?.setErrors({
-            error: true,
+        let errors = error.error.errors;
+        if(errors && errors.length > 0) {
+          errors.forEach(errorItem => {
+            this.form.get(errorItem.field)?.setErrors({
+              error: true,
+            });
+            if(!this.errorMessages.hasOwnProperty(errorItem.field)) {
+              this.errorMessages[errorItem.field] = errorItem.message;
+            }
+            else {
+              this.errorMessages[errorItem.field] += errorItem.message + ',';
+            }
           })
-          if(!this.errorMessages.hasOwnProperty(key)) {
-            this.errorMessages[key] = error.error[key];
-          }
-          else {
-            this.errorMessages[key] += error.error[key] + ',';
-          }
-        })
+        }
       }
-      this.alert.error(error.status+ ': ' +  error.statusText + '.\n '+error.error.detail,{
-        autoClose:true,
+      this.alert.error(error.status + ': ' +  error.statusText + '.\n '+error.error.message, {
+        autoClose:false,
         keepAfterRouteChange:false
-      })
+      });
     }
   }
 
@@ -80,6 +84,7 @@ export abstract class BasicForm implements OnDestroy, OnSave {
   }
 
   private sendRequest(): void {
+    this.errorMessages = {};
     this.subscription$.add(this.http
         .request(this.request, this.getMethod())
         .subscribe({
@@ -90,7 +95,7 @@ export abstract class BasicForm implements OnDestroy, OnSave {
   }
 
   public saveProcess() {
-
+    this.afterSaveBtnClick = true;
     this.beforeSave();
     this.validateForm();
     if (this.form?.valid || this.form == null) {
@@ -105,7 +110,7 @@ export abstract class BasicForm implements OnDestroy, OnSave {
 
   showError(formControlName: string): boolean {
     let formControl = this.form.get(formControlName);
-    return formControl!.status == 'INVALID' && formControl!.touched;
+    return formControl!.status == 'INVALID' && formControl!.touched && this.afterSaveBtnClick;
   }
 
   errorMessage(formControlName: string) {

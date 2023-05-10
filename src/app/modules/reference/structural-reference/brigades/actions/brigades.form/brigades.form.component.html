@@ -1,11 +1,22 @@
-<form (ngSubmit)="saveProcess()" class=" "
-      [formGroup]="form">
+<form (ngSubmit)="saveProcess()" [formGroup]="form">
     <div class="grid grid-cols-1 gap-4">
-        <het-input formControlName="code" [label]="'GENERAL.CODE'" [required]="true" [errorMessage]="errorMessage('code')" [showError]="showError('code')">
+        <het-input formControlName="code" [label]="'GENERAL.CODE_BRIGADE'" [required]="true"
+                   [maxLength]="20" [mask]="'000000'"
+                   [errorMessage]="errorMessage('code')" [showError]="showError('code')">
         </het-input>
-        <het-input formControlName="nameUz" [label]="'GENERAL.NAME'" [required]="true" [errorMessage]="errorMessage('nameUz')" [showError]="showError('nameUz')">
+        <het-input formControlName="nameUz" [label]="'GENERAL.NAME'" [required]="true"
+                   [maxLength]="200"
+                   [errorMessage]="errorMessage('nameUz')" [showError]="showError('nameUz')">
         </het-input>
-        <het-radio-static type="status" formControlName="status" [label]="'GENERAL.STATUS'" [required]="true" [errorMessage]="errorMessage('status')" [showError]="showError('status')">
+
+        <het-autocomplete formControlName="byTypeId" [label]="'ACCOUNTING_SETTLEMENT_LC.TYPE'"
+                          [request]="consumerRequest"
+                          [required]="true"
+                          [errorMessage]="errorMessage('byTypeId')"
+                          [showError]="showError('byTypeId')"></het-autocomplete>
+
+        <het-radio-static type="status" formControlName="status" [label]="'GENERAL.STATUS'" [required]="true"
+                          [errorMessage]="errorMessage('status')" [showError]="showError('status')">
         </het-radio-static>
     </div>
 </form>

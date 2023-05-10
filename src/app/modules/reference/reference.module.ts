@@ -173,6 +173,12 @@ import { LegalReportStatusesComponent } from './technical-directories/legal.repo
 import { LegalReportStatusesFormComponent } from './technical-directories/legal.report.statuses/actions/legal.report.statuses.form/legal.report.statuses.form.component';
 import { BusinessActivitiesComponent } from './general-reference/business.activities/business.activities.component';
 import { BusinessActivitiesFormComponent } from './general-reference/business.activities/actions/business.activities.form/business.activities.form.component';
+import { FinePercentagesComponent } from './accounting-handbooks-reference/fine.percentages/fine.percentages.component';
+import { FinePercentagesFormComponent } from './accounting-handbooks-reference/fine.percentages/actions/fine.percentages.form/fine.percentages.form.component';
+import { PaymentSystemComponent } from './general-reference/payment.system/payment.system.component';
+import { PaymentSystemFormComponent } from './general-reference/payment.system/actions/payment.system.form/payment.system.form.component';
+import {NewPersonalAccountRangeComponent} from "@app/modules/reference/general-reference/new.personal.account.range/new.personal.account.range.component";
+import {NewPersonalAccountRangeFormComponent} from "@app/modules/reference/general-reference/new.personal.account.range/actions/new.personal.account.range.form/new.personal.account.range.form.component";
 
 @NgModule({
   declarations: [
@@ -336,6 +342,12 @@ import { BusinessActivitiesFormComponent } from './general-reference/business.ac
     LegalReportStatusesFormComponent,
     BusinessActivitiesComponent,
     BusinessActivitiesFormComponent,
+    FinePercentagesComponent,
+    FinePercentagesFormComponent,
+    PaymentSystemComponent,
+    PaymentSystemFormComponent,
+    NewPersonalAccountRangeComponent,
+    NewPersonalAccountRangeFormComponent
   ],
     imports: [
         CommonModule,

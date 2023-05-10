@@ -12,23 +12,20 @@ import {By} from "@angular/platform-browser";
 import {AgGridModule} from "ag-grid-angular";
 import {TranslocoModule} from "@ngneat/transloco";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('ProviderTypeComponent', () => {
   let component: ProviderTypeComponent;
   let fixture: ComponentFixture<ProviderTypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        AgGridModule,
-        AppModule,
-        SharedModule,
-        TranslocoModule,
-      ],
+        imports: imports,
       providers: [FormModalComponent],
       declarations: [ ProviderTypeComponent, ProviderTypeFormComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(ProviderTypeComponent);
     component = fixture.componentInstance;

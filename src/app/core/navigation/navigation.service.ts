@@ -1,32 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, ReplaySubject, tap } from 'rxjs';
-import { Navigation } from 'app/core/navigation/navigation.types';
+import { Observable, tap } from 'rxjs';
+import {AvailableItems} from 'app/core/navigation/navigation.types';
+import {HttpClientService} from "@shared/helpers/service/http/http.client.service";
+import {UserManagementFormRequest} from "@app/modules/user-management/basic/UserManagementFormRequest";
+import {UserManagementApiUrls} from "@app/modules/user-management/userManagementApiUrls";
+import {LocalService} from "@shared/helpers/service/store/local.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class NavigationService
 {
-    private _navigation: ReplaySubject<Navigation> = new ReplaySubject<Navigation>(1);
+    NAVIGATION = "navigation"
+    public availableItems: AvailableItems = {
+        modules: [],
+        resources: []
+    };
 
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient)
+    constructor(
+        private http: HttpClientService,
+        private local: LocalService)
     {
-    }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Getter for navigation
-     */
-    get navigation$(): Observable<Navigation>
-    {
-        return this._navigation.asObservable();
+        let data = null;
+        try {
+            data = this.local.getData(this.NAVIGATION);
+            data = JSON.parse(data);
+        }
+        catch (e) {
+            console.log(e);
+        }
+        if(data) {
+            this.availableItems = data;
+        }
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -36,11 +44,13 @@ export class NavigationService
     /**
      * Get all navigation data
      */
-    get(): Observable<Navigation>
+    get(): Observable<any>
     {
-        return this._httpClient.get<Navigation>('api/common/navigation').pipe(
-            tap((navigation) => {
-                this._navigation.next(navigation);
+        let request = new UserManagementFormRequest(UserManagementApiUrls.RESOURCES_AVAILABLE_RESOURCES);
+        return this.http.request(request, 'get').pipe(
+            tap((res: AvailableItems) => {
+                this.availableItems = res;
+                this.local.saveData(this.NAVIGATION, JSON.stringify(res));
             })
         );
     }

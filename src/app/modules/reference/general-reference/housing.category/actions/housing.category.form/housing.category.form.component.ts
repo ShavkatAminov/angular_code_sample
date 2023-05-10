@@ -12,9 +12,8 @@ import {ReferenceApiUrls} from "../../../../referenceApiUrls";
 export class HousingCategoryFormComponent extends BasicModalForm {
   
   override form = new FormGroup({
-    code: new FormControl(null, [Validators.required]),
     nameUz: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
    });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.HOUSING_CATEGORY);

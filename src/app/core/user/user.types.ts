@@ -6,5 +6,11 @@ export interface User
     languageId: string;
     type: string;
     positionId: number;
+    refreshExpiresIn: number;
+    expiresIn: number;
     status: string;
+    accessToken: string;
+    coatoCode: string;
+    refreshToken: string;
+    loggedIn: number;
 }

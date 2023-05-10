@@ -21,7 +21,7 @@ export class ReactiveActiveFormComponent extends BasicModalForm{
     reactive: new FormControl(null, [Validators.required]),
     fullReactive: new FormControl(null, [Validators.required]),
     coefficient: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
 });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.REACTIVE_ACTIVE);

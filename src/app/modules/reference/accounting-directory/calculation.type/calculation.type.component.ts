@@ -7,11 +7,13 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
+;
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-select [options]="printOptions" value="HTML" ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class CalculationTypeComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
@@ -25,9 +27,6 @@ export class CalculationTypeComponent extends BasicReferencePage {
             headerName: 'REFERENCE.NAME_CALCULATION_TYPE',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             flex: 2,
@@ -35,18 +34,14 @@ export class CalculationTypeComponent extends BasicReferencePage {
         },
     ];
 
+
     title = 'MENU.REFERENCE.ACCOUNTING_HANDBOOKS.DIRECTORY_OF_CALCULATION_TYPES';
     request = new ReferenceListRequest(ReferenceApiUrls.CALCULATION_TYPE);
 
     addUpdate(id = null) {
-        FormModalComponent.showModal(CalculationTypeFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+        FormModalComponent.showModal(CalculationTypeFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
             if (res)
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('REFERENCE.SETTLEMENT_CODE', 'input'),
-    nameUz: new FilterField('REFERENCE.NAME_CALCULATION_TYPE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

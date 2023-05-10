@@ -20,7 +20,7 @@ export class PaymentPurposesFormComponent extends BasicModalForm {
   override form = new FormGroup({
     code: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
     nameUz: new FormControl(null, [Validators.required,Validators.maxLength(200)]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
 
   override request = new AccountingSettlemenHCFormRequest(ReferenceApiUrls.PAYMENT_PURPOSES);

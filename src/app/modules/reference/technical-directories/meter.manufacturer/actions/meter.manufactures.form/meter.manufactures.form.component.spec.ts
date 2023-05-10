@@ -4,16 +4,14 @@ import { MeterManufacturesFormComponent } from './meter.manufactures.form.compon
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('MeterManufacturesFormComponent', () => {
   let component: MeterManufacturesFormComponent;
   let fixture: ComponentFixture<MeterManufacturesFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ MeterManufacturesFormComponent ]
     })
     .compileComponents();

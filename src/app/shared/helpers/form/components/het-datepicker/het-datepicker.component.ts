@@ -1,10 +1,12 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {BasicFormInput} from "../../basic/basic.form.input";
-import {NG_VALUE_ACCESSOR} from "@angular/forms";
-import {DateAdapter, NativeDateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
-import { formatDate } from '@angular/common';
+import {FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {DateAdapter, NativeDateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import {formatDate} from '@angular/common';
 import {DateUtil} from "../../../utils/DateUtil";
 import {TranslocoService} from "@ngneat/transloco";
+import {debounceTime} from "rxjs";
+
 
 export const PICK_FORMATS = {
     parse: {dateInput: {month: 'numeric', year: 'numeric', day: 'numeric'}},
@@ -16,10 +18,12 @@ export const PICK_FORMATS = {
     }
 };
 
-class PickDateAdapter extends NativeDateAdapter {
+export class PickDateAdapter extends NativeDateAdapter {
+
+
     format(date: Date, displayFormat: Object): string {
         if (displayFormat === 'input') {
-            return formatDate(date,'dd.MM.yyyy', this.locale);
+            return formatDate(date, 'dd.MM.yyyy', this.locale);
         } else {
             return date.toDateString();
         }
@@ -47,35 +51,77 @@ class PickDateAdapter extends NativeDateAdapter {
 })
 
 export class HetDatepickerComponent extends BasicFormInput implements OnInit {
-    constructor(private translate: TranslocoService) {
+
+    control = new FormControl()
+
+    constructor(public translate: TranslocoService) {
         super();
     }
-    ngOnInit(): void {
-    }
-    mask ="d0.M0.0000"
 
-    @Input() get strValue(): any {
-        return  DateUtil.formatDate(this.value)
+    ngOnInit(): void {
+        this.control.valueChanges.pipe(debounceTime(1000)).subscribe(value => {
+            if (value) {
+                const array = value?.split('.')
+                if (array?.length > 2 && array[2]?.length === 2) {
+                    const newValue = new Date().getFullYear().toString().slice(0, 2) + array[2]
+                    array[2] = newValue
+                    value = array.join('.')
+                    this.control.patchValue(value)
+                }
+                this.strValue(value);
+            }
+        })
     }
+
+    mask = "d0.M0.0000"
+
     extraErrorMessage = "";
-    set strValue(value: any) {
-        if(value.length === 10) {
+
+
+    writeValue(obj: any) {
+        super.writeValue(obj);
+        this.control.patchValue(DateUtil.formatDate(obj), {emitEvent: false, onlySelf: false});
+    }
+
+    strValue(value: any) {
+        if (value.length === 10) {
             value = DateUtil.convert(value);
-            if(value.toString() !== "Invalid Date" && (this.minDate < value && this.maxDate > value)) {
+            if (value.toString() !== "Invalid Date" && (this.minDate < value && this.maxDate > value)) {
                 this.onDatePickerChange(value);
                 this.showError = false;
-            }
-            else {
+            } else {
                 this.onDatePickerChange(null);
                 this.showError = true;
-                if(value.toString() !== 'Invalid Date') {
+                if (value.toString() !== 'Invalid Date') {
                     this.extraErrorMessage = this.translate.translate('ERROR_LIST.BETWEEN', {
                         x: DateUtil.formatDate(this.minDate),
                         y: DateUtil.formatDate(this.maxDate),
                     })
                 }
             }
+        } else {
+            if (value.length == 0) {
+                this.onDatePickerChange(null);
+            }
         }
+    }
+
+
+    toNull($event) {
+        this.value = null;
+        this.onChange(null);
+        this.onDatePickerChange(null)
+        $event.stopPropagation()
+    }
+
+
+    setTimeZoneOffset(value: Date | null) {
+        if (value) {
+            let time = value.getTime();
+            time -= value.getTimezoneOffset() * 60000
+            value = new Date(time);
+        }
+        return value;
     }
 
     @Input() color: string;
@@ -88,13 +134,9 @@ export class HetDatepickerComponent extends BasicFormInput implements OnInit {
     @Output() datePickerChanged: EventEmitter<Date> = new EventEmitter<Date>();
 
     onDatePickerChange(value: any) {
-        if(value) {
-            let hoursDiff = value.getHours() - value.getTimezoneOffset() / 60;
-            let minutesDiff = (value.getHours() - value.getTimezoneOffset()) % 60;
-            value.setHours(hoursDiff);
-            value.setMinutes(minutesDiff);
-        }
+        value = this.setTimeZoneOffset(value);
         this.value = value;
+        this.control.patchValue(DateUtil.formatDate(value), {emitEvent: false, onlySelf: false});
         this.showError = false;
         this.extraErrorMessage = ""
         this.onChange(value);
@@ -107,6 +149,15 @@ export class HetDatepickerComponent extends BasicFormInput implements OnInit {
             [this.color]: true,
             'datepicker-readonly': this.readonly
         };
+    }
+
+    setDisabledState(disabled: boolean) {
+        super.setDisabledState(disabled);
+        if (disabled) {
+            this.control.disable();
+        } else {
+            this.control.enable();
+        }
     }
 }
 

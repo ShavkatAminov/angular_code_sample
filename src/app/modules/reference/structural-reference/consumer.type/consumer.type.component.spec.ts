@@ -5,21 +5,19 @@ import {TranslocoModule} from "@ngneat/transloco";
 import {HttpClientModule} from "@angular/common/http";
 import { ConsumerTypeComponent } from './consumer.type.component';
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('ConsumerTypeComponent', () => {
   let component: ConsumerTypeComponent;
   let fixture: ComponentFixture<ConsumerTypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ ConsumerTypeComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(ConsumerTypeComponent);
     component = fixture.componentInstance;

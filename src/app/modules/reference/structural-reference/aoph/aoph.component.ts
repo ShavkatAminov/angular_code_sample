@@ -8,8 +8,6 @@ import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.componen
 import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
@@ -25,9 +23,6 @@ export class AophComponent extends BasicReferencePage {
             headerName: 'REFERENCE.NAME_AOPH',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             flex:3,
@@ -44,9 +39,4 @@ export class AophComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('REFERENCE.NAME_AOPH', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

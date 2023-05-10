@@ -3,7 +3,9 @@ import {IRequest} from "../service/http/IRequest";
 
 export class DropDownRequest implements IRequest {
 
-  constructor(protected url: string) {}
+  constructor(protected url: string, body: object = {}) {
+    this.body = {...body};
+  }
 
   getUri(): string {
     return this.url;

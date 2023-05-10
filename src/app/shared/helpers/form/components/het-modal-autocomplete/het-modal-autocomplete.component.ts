@@ -1,4 +1,4 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {BasicFormInput} from "../../basic/basic.form.input";
 import {HttpClientService} from "../../../service/http/http.client.service";
@@ -24,7 +24,7 @@ import {getNestedObjectValue} from "../../../utils/Lodash";
         }
     ],
 })
-export class HetModalAutocompleteComponent extends BasicFormInput implements OnInit {
+export class HetModalAutocompleteComponent extends BasicFormInput implements OnChanges {
     @Input() opts: ModalAutocompleteOpts;
     @Output() change = new EventEmitter<number>();
     @Output() rowDataChange = new EventEmitter<object>();
@@ -35,6 +35,7 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnI
     labelWidth: number;
     returnField: any;
     request: AbstractSearch;
+    options: any;
 
     valueChange(value: number) {
         this.onChange(value)
@@ -47,14 +48,18 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnI
         super();
     }
 
-    ngOnInit(): void {
+    ngOnChanges(changes: SimpleChanges): void {
         this.columns = this.opts.columns;
         this.styles = this.opts.styles;
         this.request = this.opts.request;
         this.labelWidth = this.opts.labelWidth || 50;
         this.returnField = this.opts.returnField || 'id'
+        this.options = this.opts.options
 
         if (this.columns) {
+            this.fields = [];
+            this.colDefs = [];
+
             this.columns.forEach(currentObj => {
                 if (currentObj.isFilter || currentObj.isPrimary) {
                     this.fields.push({
@@ -66,14 +71,19 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnI
                         isFilter: currentObj.isFilter || false,
                         isClickable: currentObj.isClickable || false,
                         inputGetter: currentObj.inputGetter,
-                        inputGetterFull: currentObj.inputGetterFull
+                        inputGetterFull: currentObj.inputGetterFull,
+                        mask: currentObj.mask || ''
                     });
                 }
 
                 if(currentObj.isTable) {
                     const tableObj = Object.assign({}, currentObj);
-                    Object.entries(tableObj).forEach(([key, value]) => {
-                        if (key === 'options' || key === 'isPrimary' || key === 'isFilter' || key === 'isTable' || key === 'isClickable' || key === 'inputGetter' || key === 'inputGetterFull') delete tableObj[key];
+                    const keysToDelete = ['options', 'isPrimary', 'isFilter', 'isTable', 'isClickable', 'inputGetter', 'inputGetterFull', 'mask'];
+
+                    keysToDelete.forEach((key) => {
+                        if (key in tableObj) {
+                            delete tableObj[key];
+                        }
                     });
 
                     this.colDefs.push(tableObj);
@@ -87,7 +97,8 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnI
         ModalComponent.showModal(HetModalAutocompleteFormComponent, null, {
             fields: [...this.fields],
             colDefs: this.colDefs,
-            request: this.request
+            request: this.request,
+            options: this.options,
         }, SizeModal.md).subscribe(res => {
             if (res) {
                 this.setInputValues(res);
@@ -97,9 +108,36 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnI
         })
     }
 
+    onInputChange(event) {
+        this.request.body['code'] = event.target.value.trim();
+
+        this.http.request(this.request, 'post').subscribe((data) => {
+            if(data && data['content'].length > 0) {
+                const obj = data['content'][0];
+                this.clearInputValues();
+                this.setInputValues(obj);
+                this.valueChange(obj[this.returnField]);
+            }
+
+            delete this.request.body['code'];
+        })
+    }
+
+    onInput(event, mask) {
+        if(event.target.value.length === mask.length) {
+            this.onInputChange(event);
+
+            const nextEl = this.getNextFocusableElement();
+            if (nextEl) {
+                nextEl.focus();
+            }
+        }
+    }
+
+
     clearInputValues = () => {
         for (let i = 0; i < this.fields.length; i++) {
-            this.values[i] = ' ';
+            this.values[i] = '';
         }
     }
 
@@ -121,6 +159,12 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnI
         this.rowDataChange.emit(res);
     }
 
+    toNull(){
+        this.value = null;
+        this.clearInputValues();
+        this.valueChange(null);
+    }
+
     override writeValue(obj: any): void {
         if(!obj) {
             this.clearInputValues()
@@ -129,9 +173,10 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnI
             this.request.body[this.returnField] = obj;
 
             this.http.request(this.request, 'post').subscribe((data) => {
-                if(data) {
+                if(data && data['content'].length > 0) {
                     this.setInputValues(data['content'][0]);
                 }
+                delete this.request.body[this.returnField];
             })
         }
     }

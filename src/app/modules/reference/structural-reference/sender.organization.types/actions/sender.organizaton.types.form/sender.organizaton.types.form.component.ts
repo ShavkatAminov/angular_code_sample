@@ -14,7 +14,7 @@ export class SenderOrganizatonTypesFormComponent extends BasicModalForm {
   override form = new FormGroup({
     nameUz: new FormControl(null, [Validators.required]),
     code: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.SENDER_ORGANIZATION_TYPES);

@@ -17,11 +17,19 @@ export class TransformerTypesFormComponent extends BasicModalForm {
     nameUz: new FormControl(null, [Validators.required]),
     nameRu: new FormControl(null, []),
     nameCrl: new FormControl(null, []),
-    code: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
     ptesRepSign: new FormControl(null, [Validators.required]),
     windingSign: new FormControl(null, [Validators.required]),
     ratedPower: new FormControl(null, [Validators.required]),
+    highVoltage: new FormControl(null, [Validators.required]),
+    middleVoltage: new FormControl(null, [Validators.required]),
+    lowVoltage: new FormControl(null, [Validators.required]),
+    lossIdlePower: new FormControl(null, [Validators.required]),
+    lossShortCircuit: new FormControl(null, [Validators.required]),
+    lossHighToLowTransition: new FormControl(null, [Validators.required]),
+    lossMediumToLowTransition: new FormControl(null, [Validators.required]),
+    lossNoLoadCurrent: new FormControl(null, [Validators.required]),
+    numberPer: new FormControl(null, [Validators.required]),
   });
 
   options: OptionsObj[] = [{

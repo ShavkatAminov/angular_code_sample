@@ -7,13 +7,19 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
+;
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions"  ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class EefdComponent extends BasicReferencePage {
+    ngOnInit(): void {
+        this.defaultColumnDef['minWidth'] = 150
+    }
     columnDefs: ColDef[] = [
         {
             field: 'id',
@@ -30,27 +36,21 @@ export class EefdComponent extends BasicReferencePage {
             headerName: 'REFERENCE.GROUP_NAME',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             flex: 2,
             type: 'status'
         },
         {
-
-            floatingFilterComponentParams: {
-                type: 'date',
-            },
             field: 'createdAt',
             headerName: 'GENERAL.CREATED_AT',
             flex: 2,
             type: 'date'
         },
         {
-            field: 'w',
-            headerName: 'REFERENCE.WHO_CREATED',
+            type: 'user',
+            field: 'createdByName',
+            headerName: 'GENERAL.CREATED_BY',
             flex: 2,
         },
     ];
@@ -64,9 +64,4 @@ export class EefdComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('REFERENCE.GROUP_CODE', 'input'),
-    nameUz: new FilterField('REFERENCE.GROUP_NAME', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

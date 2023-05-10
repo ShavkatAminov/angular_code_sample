@@ -4,16 +4,14 @@ import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "@shared/shared.module";
 
 
+import {imports} from "@test/imports";
 describe('InformationSystemsErrorCodesFormComponent', () => {
   let component: InformationSystemsErrorCodesFormComponent;
   let fixture: ComponentFixture<InformationSystemsErrorCodesFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ InformationSystemsErrorCodesFormComponent ]
     })
     .compileComponents();

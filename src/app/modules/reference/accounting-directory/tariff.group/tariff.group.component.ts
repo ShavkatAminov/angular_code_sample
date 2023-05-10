@@ -1,22 +1,25 @@
 import {Component} from '@angular/core';
 import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {TariffGroupFormComponent} from "./actions/tariff.group.form/tariff.group.form.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
+;
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions" value="HTML" ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class TariffGroupComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
         {
-            field: 'code',
+            field: 'id',
             resizable: true,
             headerName: 'GENERAL.CODE',
             flex: 2,
@@ -43,15 +46,13 @@ export class TariffGroupComponent extends BasicReferencePage {
             flex: 4
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             type: 'status',
             flex: 3
         },
     ];
+
 
     title = 'MENU.REFERENCE.ACCOUNTING_HANDBOOKS.TARIFF_GROUP_DIRECTOR';
     request = new ReferenceListRequest(ReferenceApiUrls.TARIFF_GROUP);
@@ -62,12 +63,4 @@ export class TariffGroupComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('REFERENCE.NAME_TARIFF_GROUP', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-    pkmGroupCode: new FilterField('REFERENCE.PKM_GROUP_CODE', 'input'),
-    baseTariff: new FilterField('REFERENCE.BASE_TARIFF', 'input'),
-    coefficient: new FilterField('REFERENCE.WITH_HIGH_COEFFICIENT', 'input'),
-  }
 }

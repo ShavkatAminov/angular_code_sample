@@ -7,8 +7,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
@@ -26,6 +24,15 @@ export class CoatoBranchesComponent extends BasicReferencePage {
           headerName: "REFERENCE.NAME_CATO"
       },
       {
+          colId: 'regionId',
+          floatingFilterComponentParams: {
+              type: 'autocomplete',
+              request: new ReferenceDropDownRequest(ReferenceApiUrls.REGIONS),
+          },
+          field: 'region.nameUz',
+          headerName: "GENERAL.REGION"
+      },
+      {
           colId: 'districtId',
           floatingFilterComponentParams: {
               type: 'autocomplete',
@@ -35,9 +42,15 @@ export class CoatoBranchesComponent extends BasicReferencePage {
           headerName: "GENERAL.DISTRICT"
       },
       {
+          colId: 'levelId',
           floatingFilterComponentParams: {
-              type: 'status',
+              type: 'autocomplete',
+              request: new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS),
           },
+          field: 'managementLevel.nameUz',
+          headerName: "GENERAL.LEVEL"
+      },
+      {
           field: 'status',
           headerName: 'GENERAL.STATUS',
           type: 'status',
@@ -53,11 +66,5 @@ export class CoatoBranchesComponent extends BasicReferencePage {
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CODE', 'input'),
-    nameUz: new FilterField('REFERENCE.NAME_CATO', 'input'),
-    districtId: new FilterField('GENERAL.DISTRICT', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.DISTRICTS)),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

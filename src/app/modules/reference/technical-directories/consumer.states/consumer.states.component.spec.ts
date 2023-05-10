@@ -7,21 +7,19 @@ import {HttpClientModule} from "@angular/common/http";
 import {AppModule} from "../../../../app.module";
 
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('ConsumerStatesComponent', () => {
   let component: ConsumerStatesComponent;
   let fixture: ComponentFixture<ConsumerStatesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ ConsumerStatesComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(ConsumerStatesComponent);
     component = fixture.componentInstance;

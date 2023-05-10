@@ -4,16 +4,14 @@ import { StandardValuesFormComponent } from './standard.values.form.component';
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "@shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('StandardValuesFormComponent', () => {
   let component: StandardValuesFormComponent;
   let fixture: ComponentFixture<StandardValuesFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ StandardValuesFormComponent ]
     })
     .compileComponents();

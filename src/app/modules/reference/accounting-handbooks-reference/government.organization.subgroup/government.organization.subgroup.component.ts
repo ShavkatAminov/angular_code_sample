@@ -3,35 +3,48 @@ import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {
   SubgroupGovernmentOrganizationFormComponent
 } from "./actions/subgroup.government.organization.form/subgroup.government.organization.form.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
+;
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions"  ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class GovernmentOrganizationSubgroupComponent extends BasicReferencePage {
+  ngOnInit(): void {
+    this.defaultColumnDef['minWidth'] = 150
+  }
   columnDefs: ColDef[] = [
     {
       flex:3,
-      headerName: "GENERAL.CODE",
+      headerName: "REFERENCE.CODE_SUB_GROUPS",
       field: 'code',
     },
     {
-      flex:15,
-      headerName: "GENERAL.NAME",
-      field: 'nameUz',
+      minWidth: 200,
+      field: 'name',
+      headerName: 'GENERAL.NAME',
+      valueFormatter: function ({data}) {
+        if (data){
+          return `${data.nameUz}`
+        }
+      },
+      flex: 20
     },
     {
       flex:4,
       headerName: "REFERENCE.GOVERNMENT_CODE",
       field: 'stateGovernmentOrganization.code',
+      colId: 'stateGovernmentOrganizationId',
       floatingFilterComponentParams: {
         type: 'autocomplete',
         request: new ReferenceDropDownRequest(ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS)
@@ -58,9 +71,6 @@ export class GovernmentOrganizationSubgroupComponent extends BasicReferencePage 
       field: 'availability',
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       flex:5,
       headerName: "GENERAL.STATUS",
       field: 'status',
@@ -76,15 +86,5 @@ export class GovernmentOrganizationSubgroupComponent extends BasicReferencePage 
       if (res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('nameUz', 'input'),
-    code: new FilterField('code', 'input'),
-    status: new FilterField('status', 'status'),
-    shortName: new FilterField('shortName', 'input'),
-    availability: new FilterField('availability', 'input'),
-    ps9Code: new FilterField('', 'input'),
-    stateGovernmentOrganizationId: new FilterField('', 'input'),
-    subgroupType: new FilterField('subgroupType', 'input'),
   }
 }

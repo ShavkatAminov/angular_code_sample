@@ -4,16 +4,14 @@ import { InterfaceInstalledMeterFormComponent } from './interface.installed.mete
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('InterfaceInstalledMeterFormComponent', () => {
   let component: InterfaceInstalledMeterFormComponent;
   let fixture: ComponentFixture<InterfaceInstalledMeterFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ InterfaceInstalledMeterFormComponent ]
     })
     .compileComponents();

@@ -8,8 +8,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
@@ -25,17 +23,11 @@ export class BanksComponent extends BasicReferencePage{
       headerName: 'GENERAL.NAME',
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       field: 'status',
       headerName: 'GENERAL.STATUS',
       type: 'status'
     },
     {
-      floatingFilterComponentParams: {
-        type: 'yesNo',
-      },
       field: 'paymentRequirement',
       headerName: 'REFERENCE.BANK_PAYMENT_REQUESTS',
       type: 'yesNo'
@@ -50,11 +42,5 @@ export class BanksComponent extends BasicReferencePage{
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('GENERAL.NAME', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-    paymentRequirement: new FilterField('REFERENCE.BANK_PAYMENT_REQUESTS', 'status'),
   }
 }

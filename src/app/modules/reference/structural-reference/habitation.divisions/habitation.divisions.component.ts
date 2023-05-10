@@ -10,15 +10,13 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
 export class HabitationDivisionsComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
         {
-            field: 'code',
+            field: 'id',
             headerName: 'GENERAL.CODE',
             flex: 2
         },
@@ -27,9 +25,6 @@ export class HabitationDivisionsComponent extends BasicReferencePage {
             headerName: "GENERAL.NAME"
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             type: 'status',
@@ -46,9 +41,4 @@ export class HabitationDivisionsComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('status', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

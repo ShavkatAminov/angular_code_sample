@@ -7,43 +7,41 @@ import {BasicReferencePage} from "../../basic.reference.page";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup} from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
+;
 
 @Component({
-    template: basicTemplate(),
+    template: basicTemplate(`
+    <het-button [label]="'FORM.STORY'"></het-button>
+    <het-button [label]="'REFERENCE.CHANGE_TARIFF'"></het-button>
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions" value="HTML" ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class TariffsComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
         {field: 'code', flex: 2, headerName: 'GENERAL.CODE', minWidth: 100},
-        {field: 'createdAt', type: 'date', flex: 2, headerName: 'GENERAL.DATE', minWidth: 150,
-            floatingFilterComponentParams: {
-                type: 'date',
-            },
-        },
+        {field: 'createdAt', type: 'date', minWidth:200, headerName: 'GENERAL.DATE'},
         {field: 'nameUz', flex: 4, headerName: 'REFERENCE.NAME_OF_TARIFFS', minWidth: 200},
-        {field: 'tariffGroup.code', flex: 2, headerName: 'REFERENCE.TARIFF_GROUP', minWidth: 150,
-            floatingFilter: false,
-        },
         {
+
             colId: 'tariffGroupId',
             floatingFilterComponentParams: {
                 type: 'autocomplete',
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.TARIFF_GROUP),
             },
-            field: 'tariffGroup.nameUz', flex: 4, headerName: 'REFERENCE.TARIFF_GROUP', minWidth: 300},
+            field: 'tariffGroup',
+            cellRenderer: (params) => {
+                if(params.value) {
+                    return params.value.code  + ' ' + params.value.nameUz
+                }
+                return "";
+            }
+            , flex: 4, headerName: 'REFERENCE.TARIFF_GROUP', minWidth: 500},
         {field: 'price', flex: 2, headerName: 'GENERAL.PRICE', minWidth: 150},
-        {field: 'nds', type: 'yesNo', flex: 2, headerName: 'GENERAL.VAT', minWidth: 150,
-            floatingFilterComponentParams: {
-                type: 'yesNo',
-            },
-        },
-        {field: 'isDefault', type: 'yesNo', flex: 2, headerName: 'GENERAL.DEFAULT', minWidth: 150,
-            floatingFilterComponentParams: {
-                type: 'yesNo',
-            },
-        },
+        {field: 'nds', type: 'yesNo', flex: 2, headerName: 'GENERAL.VAT', minWidth: 150},
+        {field: 'isDefault', type: 'yesNo', flex: 2, headerName: 'GENERAL.DEFAULT', minWidth: 150},
         {field: 'baseTariffCodeId', flex: 2, headerName: 'REFERENCE.BASE_RATE_CODE', minWidth: 150},
         {
             colId: 'timezoneId',
@@ -59,14 +57,11 @@ export class TariffsComponent extends BasicReferencePage {
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.INDICATION_TYPES),
             },
             field: 'indicationType.nameUz', flex: 2, headerName: 'REFERENCE.INDICATION_TYPE', minWidth: 150},
-        {field: 'deactivationDate', type: 'date', flex: 2, headerName: 'REFERENCE.DEACTIVATION_PERIOD', minWidth: 150},
-        {field: 'status', type: 'status', flex: 2, headerName: 'GENERAL.STATUS', minWidth: 150,
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
-        },
-        {field: 'createdBy', flex: 4, headerName: 'GENERAL.LOGIN', minWidth: 200},
+        {field: 'deactivationDate', type: 'date', flex: 2, headerName: 'REFERENCE.DEACTIVATION_PERIOD'},
+        {field: 'status', type: 'status', flex: 2, headerName: 'GENERAL.STATUS', minWidth: 150},
+        {field: 'createdByName', flex: 4, type: 'user', headerName: 'GENERAL.LOGIN'},
     ];
+
 
     title = 'REFERENCE.TARIFFS_TITLE';
     request = new ReferenceListRequest(ReferenceApiUrls.TARIFFS);
@@ -76,19 +71,5 @@ export class TariffsComponent extends BasicReferencePage {
             if (res)
                 this.reload();
         });
-    }
-
-    override filter: FilterFieldGroup = {
-        tariffGroupId: new FilterField('REFERENCE.TARIFF_GROUP', 'input'),
-        code: new FilterField('REFERENCE.TARIFF_CODE', 'input'),
-        name: new FilterField('GENERAL.NAME', 'input'),
-        price: new FilterField('GENERAL.PRICE', 'input'),
-        nds: new FilterField('GENERAL.VAT', 'status'),
-        isDefault: new FilterField('GENERAL.DEFAULT', 'status'),
-        indicationTypeId: new FilterField('REFERENCE.INDICATION_TYPE', 'input'),
-        baseTariffCodeId: new FilterField('REFERENCE.BASE_RATE_CODE', 'input'),
-        timezoneId: new FilterField('REFERENCE.ZONE_TIME', 'input'),
-        status: new FilterField('GENERAL.STATUS', 'status'),
-        deactivationDate: new FilterField('REFERENCE.DEACTIVATION_PERIOD', 'input'),
     }
 }

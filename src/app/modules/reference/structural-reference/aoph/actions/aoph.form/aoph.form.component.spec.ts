@@ -4,16 +4,14 @@ import { AophFormComponent } from './aoph.form.component';
 import {SharedModule} from "@shared/shared.module";
 import {AppModule} from "../../../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('AophFormComponent', () => {
   let component: AophFormComponent;
   let fixture: ComponentFixture<AophFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ AophFormComponent ]
     })
     .compileComponents();

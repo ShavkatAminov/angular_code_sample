@@ -6,6 +6,8 @@ import { TranslocoService } from '@ngneat/transloco';
 import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
 import {ReferenceApiUrls} from "../../../../referenceApiUrls";
 import {AlertServiceComponent} from "../../../../../../shared/helpers/alerts/services/alert.service.component";
+import {ReferenceListRequest} from "@app/modules/reference/basic/ReferenceListRequest";
+import {ReferenceDropDownRequest} from "@app/modules/reference/basic/ReferenceDropDownRequest";
 
 @Component({
   selector: 'app-directory.of.complexes.form',
@@ -16,13 +18,15 @@ import {AlertServiceComponent} from "../../../../../../shared/helpers/alerts/ser
 export class DirectoryOfComplexesFormComponent extends BasicModalForm{
   
   override form = new FormGroup({
-    nameUz: new FormControl(null, [Validators.required]),
+
     code: new FormControl(null, [Validators.required]),
     budgetCode: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    nameUz:new FormControl(null,[Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.STATE_COMPLEX);
+
 
   override beforeSave() {
     this.request.body = this.form.value;

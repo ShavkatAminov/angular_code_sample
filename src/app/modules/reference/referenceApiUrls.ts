@@ -23,6 +23,7 @@ export enum ReferenceApiUrls {
     ORGANIZATIONS = 'organizations',
     OPERATION_TYPES = 'operation-types',
     METER_TYPE = 'meter-type',
+    METER_STATUS = 'meter-status',
     METER_INSTALLATION_LOCATIONS = 'meter-installation-locations',
     METER_MANUFACTURER = 'meter-manufacturer',
     MATERIALS = 'materials',
@@ -79,5 +80,6 @@ export enum ReferenceApiUrls {
     PAYMENT_PURPOSES = 'household-payment-purpose',
     BUSINESS_ACTIVITY = 'business-activity',
     BANK_DOCUMENT_TYPE = "bank-document-types",
-    PAYMENT_SYSTEM = "payment-system"
+    PAYMENT_SYSTEM = "payment-system",
+    ACTIVITY_TYPE = "activity-type"
 }

@@ -2,61 +2,55 @@
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <het-input
+                   [label]="'GENERAL.CODE'"
+                   formControlName="code"
                    [errorMessage]="errorMessage('code')"
                    [showError]="showError('code')"
-                   formControlName="code"
-                   [label]="'GENERAL.CODE'"
+                   maxLength="20"
                    [required]="true">
         </het-input>
-        <het-input formControlName="nameUz"
-                   [errorMessage]="errorMessage('nameUz')"
-                   [showError]="showError('nameUz')"
-                   [label]="'GENERAL.NAME'"
-                   [required]="true">
+        <het-input
+                [label]="'GENERAL.NAME'"
+                maxLength="200"
+                formControlName="name"
+                [errorMessage]="errorMessage('name')"
+                [showError]="showError('name')"
+                [required]="true">
         </het-input>
-        <het-input formControlName="shortName"
-                   [errorMessage]="errorMessage('shortName')"
-                   [showError]="showError('shortName')"
-                   [label]="'REFERENCE.SHORT_NAME'"
+        <het-autocomplete
+                   [request]="stateGovernment"
+                   [errorMessage]="errorMessage('stateGovernmentOrganizationId')"
+                   [showError]="showError('stateGovernmentOrganizationId')"
+                   [label]="'REFERENCE.MANAGING_ORGANIZATION_CODE'"
+                   formControlName="stateGovernmentOrganizationId"
+                   [required]="true">
+        </het-autocomplete>
+        <het-input
+                   maxLength="10"
+                   formControlName="ps9Code"
+                   [errorMessage]="errorMessage('ps9Code')"
+                   [showError]="showError('ps9Code')"
+                   [label]="'REFERENCE.BINDING_CODE_TO_9PS'"
                    [required]="true">
         </het-input>
 
         <het-input
-                [inputType]="'number'"
-                formControlName="ps9Code"
-                [errorMessage]="errorMessage('ps9Code')"
-                [showError]="showError('ps9Code')"
-                [label]="'REFERENCE.PS9CODE'"
-                [required]="true">
-        </het-input>
-        <het-input formControlName="subgroupType"
+                   maxLength="10"
                    [errorMessage]="errorMessage('subgroupType')"
                    [showError]="showError('subgroupType')"
+                   formControlName="subgroupType"
                    [label]="'REFERENCE.SUBGROUP_TYPE'"
         >
         </het-input>
-
-        <het-autocomplete
-                formControlName="stateGovernmentOrganizationId"
-                [label]="'REFERENCE.GOVERNMENT'"
-                [request]=stateGovernment
-                [required]="true"
-                [errorMessage]="errorMessage('stateGovernmentOrganizationId')"
-                [showError]="showError('stateGovernmentOrganizationId')">
-        </het-autocomplete>
-
-        <het-input formControlName="availability"
-                   [errorMessage]="errorMessage('availability')"
-                   [showError]="showError('availability')"
-                   [label]="'REFERENCE.AVAILABILITY'"
-                   [required]="true">
+        <het-input
+                [inputType]="'number'"
+                formControlName="availability"
+                [errorMessage]="errorMessage('availability')"
+                [showError]="showError('availability')"
+                [maxLength]="1"
+                [label]="'REFERENCE.AVAILABILITY'"
+                [required]="true">
         </het-input>
-        <het-radio-static type="status"
-                          formControlName="status"
-                          [errorMessage]="errorMessage('status')"
-                          [showError]="showError('status')"
-                          [label]="'REFERENCE.PRESENCE_OF_CHARACTERS'"
-                          [required]="true">
-        </het-radio-static>
+
     </div>
 </form>

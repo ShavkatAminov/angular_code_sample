@@ -8,8 +8,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup} from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
     template: basicTemplate(),
 })
@@ -17,7 +15,7 @@ export class TransformerTypesComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
         {
             headerName: 'REFERENCE.TRANSFORMER_TYPE_CODE',
-            field: 'code',
+            field: 'id',
             flex: 8
         },
         {
@@ -38,9 +36,6 @@ export class TransformerTypesComponent extends BasicReferencePage {
             field: 'ratedPower',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             headerName: 'GENERAL.STATUS',
             field: 'status',
             type: 'status',
@@ -56,14 +51,5 @@ export class TransformerTypesComponent extends BasicReferencePage {
             if (res)
                 this.reload();
         });
-    }
-
-    override filter: FilterFieldGroup = {
-        name: new FilterField('REFERENCE.TRANSFORMER_TYPE_NAME', 'input'),
-        code: new FilterField('REFERENCE.TRANSFORMER_TYPE_CODE', 'input'),
-        ptesRepSign: new FilterField('REFERENCE.PTES_REP_SIGN', 'input'),
-        windingSign: new FilterField('REFERENCE.WINDING_SIGN', 'input'),
-        ratedPower: new FilterField('REFERENCE.RATED_POWER', 'input'),
-        status: new FilterField('GENERAL.STATUS', 'status'),
     }
 }

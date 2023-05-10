@@ -2,60 +2,91 @@
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <het-input
-                   [errorMessage]="errorMessage('code')"
-                   [showError]="showError('code')"
-                   formControlName="code"
-                   [label]="'REFERENCE.CODE_GOVERNMENT_ORGANIZATION'"
+                maxLength="10"
+                mask="0*"
+                [errorMessage]="errorMessage('code')"
+                [showError]="showError('code')"
+                formControlName="code"
+                [label]="'GENERAL.CODE'"
+                [required]="true">
+        </het-input>
+        <het-input formControlName="managingOrganizationCode"
+                   [maxLength]="10"
+                   [errorMessage]="errorMessage('managingOrganizationCode')"
+                   [showError]="showError('managingOrganizationCode')"
+                   [label]="'REFERENCE.MANAGING_ORGANIZATION_CODE'"
                    [required]="true">
         </het-input>
+
         <het-input formControlName="nameUz"
+                   [maxLength]="200"
                    [errorMessage]="errorMessage('nameUz')"
                    [showError]="showError('nameUz')"
                    [label]="'REFERENCE.NAME_GOVERNMENT_ORGANIZATION'"
                    [required]="true">
         </het-input>
         <het-input formControlName="shortName"
+                   [maxLength]="50"
                    [errorMessage]="errorMessage('shortName')"
                    [showError]="showError('shortName')"
                    [label]="'REFERENCE.SHORT_NAME'"
                    [required]="true">
         </het-input>
 
-        <het-input
-                [inputType]="'number'"
-                formControlName="ps9Number"
-                   [errorMessage]="errorMessage('ps9Number')"
-                   [showError]="showError('ps9Number')"
-                   [label]="'REFERENCE.PS9NUMBER'"
-                   [required]="true">
-        </het-input>
+
         <het-input formControlName="budgetCode"
+                   [maxLength]="10"
                    [errorMessage]="errorMessage('budgetCode')"
                    [showError]="showError('budgetCode')"
                    [label]="'REFERENCE.BUDGET_CODE'"
         >
         </het-input>
+        <het-input
+                mask="0*"
+                [maxLength]="10"
+                formControlName="ps9Number"
+                [errorMessage]="errorMessage('ps9Number')"
+                [showError]="showError('ps9Number')"
+                [label]="'REFERENCE.PS9NUMBER'"
+                [required]="true">
+        </het-input>
 
         <het-autocomplete
                 formControlName="stateComplexId"
-                [label]="'REFERENCE.COMPLEX'"
-                [request]=stateComplex
+                label="REFERENCE.CODE_COMPLEX"
+                [request]="stateComplex"
                 [required]="true"
                 [errorMessage]="errorMessage('stateComplexId')"
                 [showError]="showError('stateComplexId')">
         </het-autocomplete>
 
-        <het-input formControlName="managingOrganizationCode"
-                   [errorMessage]="errorMessage('managingOrganizationCode')"
-                   [showError]="showError('managingOrganizationCode')"
-                   [label]="'REFERENCE.MANAGING_ORGANIZATION_CODE'"
-                   [required]="true">
-        </het-input>
+
         <het-radio-static type="status"
                           formControlName="status"
                           [errorMessage]="errorMessage('status')"
                           [showError]="showError('status')"
-                          [label]="'REFERENCE.PRESENCE_OF_CHARACTERS'"
+                          [label]="'GENERAL.STATUS'"
+                          [required]="true">
+        </het-radio-static>
+
+        <het-radio-static type="yesNo"
+                          formControlName="signManualMovement"
+                          [label]="'REFERENCE.MANUAL_MOVING_SIGN'"
+                          [required]="true">
+        </het-radio-static>
+        <het-radio-static type="yesNo"
+                          formControlName="signSwitchOff"
+                          [label]="'ACCOUNTING_SETTLEMENT_HC.CONSUMER_STATEMENTS.DISCANNECTION_SIGN'"
+                          [required]="true">
+        </het-radio-static>
+        <het-radio-static type="yesNo"
+                          formControlName="signTreasury"
+                          [label]="'REFERENCE.TREASURE_SIGN'"
+                          [required]="true">
+        </het-radio-static>
+        <het-radio-static type="yesNo"
+                          formControlName="gnk"
+                          [label]="'REFERENCE.GOVERMENTAL_TAX_SHORT'"
                           [required]="true">
         </het-radio-static>
     </div>

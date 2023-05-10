@@ -7,19 +7,10 @@
                 <div class="flex flex-col gt-xs:flex-row">
                     <het-input
                             class="mb-2"
-
-                            [showError]="showError('code')"
-                            [errorMessage]="errorMessage('code')"
-                            formControlName="code"
-                            [label]="'REFERENCE.DOCUMENT_TYPE_CODE'"
-                            [required]="true">
-                    </het-input>
-                    <het-input
-                            class="mb-2"
                             formControlName="nameUz"
                             [showError]="showError('nameUz')"
                             [errorMessage]="errorMessage('nameUz')"
-                            [label]="'REFERENCE.DOCUMENT_TYPE_NAME'"
+                            [label]="'GENERAL.NAME'"
                             [required]="true">
                     </het-input>
                     <het-radio-static
@@ -27,7 +18,9 @@
                             formControlName="specialAccount"
                             [showError]="showError('specialAccount')"
                             [errorMessage]="errorMessage('specialAccount')"
-                            [label]="'REFERENCE.SPECIAL_ACCOUNT'">
+                            [label]="'REFERENCE.SPECIAL_ACCOUNT'"
+                            required="true"
+                    >
                     </het-radio-static>
                     <het-radio-static
                             type="yesNo"

@@ -6,16 +6,18 @@
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <ng-container *ngFor="let item of listFields | keyvalue: originalOrder">
             <ng-container [ngSwitch]="item.value.type">
-                <het-input *ngSwitchCase="'input'" formControlName="{{item.key}}" [label]="item.value.label"></het-input>
+                <het-input *ngSwitchCase="'input'" [mask]="item.value.inputMask" formControlName="{{item.key}}" [label]="item.value.label"></het-input>
                 <het-datepicker *ngSwitchCase="'date'" formControlName="{{item.key}}" [label]="item.value.label"></het-datepicker>
                 <het-datepicker *ngSwitchCase="'datetime'" [timePicker]="true" formControlName="{{item.key}}" [label]="item.value.label"></het-datepicker>
+                <het-datepicker-range *ngSwitchCase="'daterange'"  formControlName="{{item.key}}" [label]="item.value.label"></het-datepicker-range>
                 <het-radio-button *ngSwitchCase="'radio'" [options]="item.value.options" formControlName="{{item.key}}" [label]="item.value.label"></het-radio-button>
                 <het-checkbox *ngSwitchCase="'checkbox'" formControlName="{{item.key}}" [label]="item.value.label"></het-checkbox>
                 <het-textarea *ngSwitchCase="'textarea'" formControlName="{{item.key}}" [label]="item.value.label"></het-textarea>
                 <het-autocomplete *ngSwitchCase="'autocomplete'" [request]="item.value.options" formControlName="{{item.key}}" [label]="item.value.label"></het-autocomplete>
+                <het-autocomplete-search *ngSwitchCase="'autocomplete-search'" [request]="item.value.options" formControlName="{{item.key}}" [label]="item.value.label"></het-autocomplete-search>
                 <het-radio-static *ngSwitchCase="'yesNo'" [type]="'yesNo'" formControlName="{{item.key}}" [label]="item.value.label"></het-radio-static>
                 <het-radio-static *ngSwitchCase="'status'" [type]="'status'" formControlName="{{item.key}}" [label]="item.value.label"></het-radio-static>
-                <het-select *ngSwitchCase="'select'"  formControlName="{{item.key}}" [label]="item.value.label"></het-select>
+                <het-select *ngSwitchCase="'select'" [options]="item?.value?.options"  formControlName="{{item.key}}" [label]="item.value.label"></het-select>
             </ng-container>
         </ng-container>
         <div class="text-right">

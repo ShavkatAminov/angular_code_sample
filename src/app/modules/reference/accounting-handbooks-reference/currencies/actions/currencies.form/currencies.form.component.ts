@@ -18,7 +18,7 @@ export class CurrenciesFormComponent extends BasicModalForm {
   override form = new FormGroup({
     nameUz: new FormControl(null, [Validators.required]),
     code: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
     symbol: new FormControl(null, [Validators.required, Validators.maxLength(1)]),
     scopeName: new FormControl(null, [Validators.required]),
     scope: new FormControl(null, [Validators.required, Validators.maxLength(2)]),

@@ -5,7 +5,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {PaymentPurposesFormComponent} from "./actions/payment.purposes.form/payment.purposes.form.component";
 import {SizeModal} from "@shared/helpers/modal/modal.component";
-import {FilterField, FilterFieldGroup} from "@shared/helpers/filter/filter.component/filterField";
 import {
     AccountingSettlemenHCListRequest
 } from "../../../accounting-settlement-hc/basic/AccountingSettlemenHCListRequest";
@@ -26,9 +25,6 @@ export class PaymentPurposesComponent extends BasicTablePage {
             headerName: 'GENERAL.NAME',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             flex:4,
             field: 'status',
             headerName: 'GENERAL.STATUS',
@@ -44,11 +40,5 @@ export class PaymentPurposesComponent extends BasicTablePage {
             if (res)
                 this.reload();
         });
-    }
-
-    override filter: FilterFieldGroup = {
-        code: new FilterField('GENERAL.CODE', 'input'),
-        nameUz: new FilterField('GENERAL.NAME', 'input'),
-        status: new FilterField('GENERAL.STATUS', 'status'),
     }
 }

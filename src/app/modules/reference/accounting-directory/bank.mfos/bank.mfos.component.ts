@@ -7,12 +7,15 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup} from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
+;
 
 @Component({
-    template: basicTemplate(),
+    template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions" value="HTML" ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class BankMfosComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
@@ -21,9 +24,10 @@ export class BankMfosComponent extends BasicReferencePage {
                 type: 'autocomplete',
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.REGIONS),
             },
+            colId: 'regionCode',
             headerName: 'REFERENCE.AREA_CODE',
-            field: 'regionCode',
-            flex: 3
+            field: 'region.nameUz',
+            flex: 5
         },
         {
             floatingFilterComponentParams: {
@@ -32,14 +36,14 @@ export class BankMfosComponent extends BasicReferencePage {
             },
             colId: 'bankId',
             headerName: 'REFERENCE.BANK_CODE',
-            field: 'bank.nameUz',
-            flex: 3
+            field: 'nameUz',
+            flex: 8
         },
         {
 
             headerName: 'REFERENCE.MFO',
             field: 'bankMfo',
-            flex: 2
+            flex: 5
         },
         {
             headerName: 'REFERENCE.NAME_BANK_THEIR_BRANCHES',
@@ -47,15 +51,13 @@ export class BankMfosComponent extends BasicReferencePage {
             flex: 15
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             headerName: 'GENERAL.STATUS',
             field: 'status',
             type: 'status',
-            flex: 3
+            flex: 5
         },
     ];
+
 
     title = 'MENU.REFERENCE.ACCOUNTING_HANDBOOKS.DIRECTORY_OF_MFIS';
     request = new ReferenceListRequest(ReferenceApiUrls.BANK_MFOS);
@@ -65,13 +67,5 @@ export class BankMfosComponent extends BasicReferencePage {
             if (res)
                 this.reload();
         });
-    }
-
-    override filter: FilterFieldGroup = {
-        bankId: new FilterField('REFERENCE.BANK_CODE', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.BANKS)),
-        regionCode: new FilterField('REFERENCE.AREA_CODE', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.REGIONS)),
-        bankMfo: new FilterField('REFERENCE.MFO', 'input'),
-        name: new FilterField('GENERAL.NAME', 'input'),
-        status: new FilterField('GENERAL.STATUS', 'status'),
     }
 }

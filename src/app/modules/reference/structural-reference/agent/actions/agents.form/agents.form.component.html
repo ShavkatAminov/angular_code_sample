@@ -1,23 +1,58 @@
 <form (ngSubmit)="saveProcess()"
       [formGroup]="form">
-    <div class="grid grid-cols-2 gap-4">
-        <het-input formControlName="code" [label]="'REFERENCE.AGENT_CODE'" [required]="true" [errorMessage]="errorMessage('code')" [showError]="showError('code')">
-        </het-input>
-        <het-autocomplete formControlName="positionId" [request]="managementPositionsRequest" [label]="'REFERENCE.POSITION'" [required]="true" [errorMessage]="errorMessage('positionId')" [showError]="showError('positionId')">
-        </het-autocomplete>
-        <het-autocomplete formControlName="brigadeId" [request]="birgadesRequest" [label]="'REFERENCE.BRIGADE'" [required]="true" [errorMessage]="errorMessage('brigadeId')" [showError]="showError('brigadeId')">
-        </het-autocomplete>
-        <het-input formControlName="firstName" [label]="'GENERAL.FIRST_NAME'" [required]="true" [errorMessage]="errorMessage('firstName')" [showError]="showError('firstName')">
-        </het-input>
-        <het-input  formControlName="lastName" [label]="'GENERAL.LAST_NAME'" [required]="true" [errorMessage]="errorMessage('lastName')" [showError]="showError('lastName')">
-        </het-input>
-        <het-input  formControlName="middleName" [label]="'GENERAL.MIDDLE_NAME'" [required]="false" [errorMessage]="errorMessage('middleName')" [showError]="showError('middleName')">
-        </het-input>
-        <het-input  formControlName="mobilePhone" [label]="'GENERAL.MOBILE_PHONE'" [required]="false" [errorMessage]="errorMessage('mobilePhone')" [showError]="showError('mobilePhone')">
-        </het-input>
-        <het-autocomplete  formControlName="byTypeId" [request]="consumerTypesRequest" [label]="'REFERENCE.CONSUMER_TYPE'" [required]="true" [errorMessage]="errorMessage('byTypeId')" [showError]="showError('byTypeId')">
-        </het-autocomplete>
-        <het-radio-static type="status" formControlName="status" [label]="'GENERAL.STATUS'" [required]="true" [errorMessage]="errorMessage('status')" [showError]="showError('status')">
-        </het-radio-static>
+    <div class="grid grid-cols-2 grid-rows-5 gap-4">
+        <div class="row-start-1">
+            <het-input [mask]="'N9999'"
+                       [patterns]="pattern" formControlName="code" [label]="'REFERENCE.AGENT_CODE'" [required]="true"
+                       [errorMessage]="errorMessage('code')" [showError]="showError('code')">
+            </het-input>
+        </div>
+        <div class="row-start-2">
+            <het-input formControlName="firstName" [label]="'GENERAL.FIRST_NAME'" [required]="true"
+                       [errorMessage]="errorMessage('firstName')" [showError]="showError('firstName')">
+            </het-input>
+        </div>
+        <div class="row-start-3">
+            <het-input formControlName="lastName" [label]="'GENERAL.LAST_NAME'" [required]="true"
+                       [errorMessage]="errorMessage('lastName')" [showError]="showError('lastName')">
+            </het-input>
+        </div>
+        <div class="row-start-4">
+            <het-input formControlName="middleName" [label]="'GENERAL.MIDDLE_NAME'" [required]="true"
+                       [errorMessage]="errorMessage('middleName')" [showError]="showError('middleName')">
+            </het-input>
+        </div>
+        <div class="row-start-5">
+            <het-radio-static type="status" formControlName="status" [label]="'GENERAL.STATUS'" [required]="true"
+                              [errorMessage]="errorMessage('status')" [showError]="showError('status')">
+            </het-radio-static>
+        </div>
+        <div class="row-start-1">
+            <het-autocomplete formControlName="positionId" [request]="managementPositionsRequest"
+                              [label]="'REFERENCE.POSITION'" [required]="true"
+                              [errorMessage]="errorMessage('positionId')"
+                              [showError]="showError('positionId')">
+            </het-autocomplete>
+        </div>
+        <div class="row-start-2">
+            <het-autocomplete formControlName="brigadeId" [request]="birgadesRequest" [label]="'REFERENCE.BRIGADE'"
+                              [required]="true" [errorMessage]="errorMessage('brigadeId')"
+                              [showError]="showError('brigadeId')">
+            </het-autocomplete>
+        </div>
+        <div class="row-start-3">
+            <het-tel-input formControlName="mobilePhone" [placeholder]="'+99(8)'"
+                           [label]="'GENERAL.MOBILE_PHONE'" [required]="true"
+                           [errorMessage]="errorMessage('mobilePhone')"
+                           [showError]="showError('mobilePhone')">
+            </het-tel-input>
+        </div>
+        <div class="row-start-4">
+            <het-autocomplete formControlName="byTypeId" [request]="consumerTypesRequest"
+                              [label]="'REFERENCE.CONSUMER_TYPE'" [required]="true"
+                              [errorMessage]="errorMessage('byTypeId')" [showError]="showError('byTypeId')">
+            </het-autocomplete>
+        </div>
+
     </div>
 </form>

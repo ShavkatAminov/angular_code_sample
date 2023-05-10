@@ -3,16 +3,14 @@ import { PaymentDocumentTypeFormComponent } from './payment.document.type.form.c
 import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
 describe('PaymentDocumentTypeFormComponent', () => {
   let component: PaymentDocumentTypeFormComponent;
   let fixture: ComponentFixture<PaymentDocumentTypeFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ PaymentDocumentTypeFormComponent ]
     })
     .compileComponents();

@@ -7,6 +7,7 @@ import {ReferenceListRequest} from "../../../../../modules/reference/basic/Refer
 import {ReferenceApiUrls} from "../../../../../modules/reference/referenceApiUrls";
 import {HttpClientService} from "../../../service/http/http.client.service";
 
+import {login} from "@test/login";
 describe('HetModalAutocompleteComponent', () => {
   let component: HetModalAutocompleteComponent;
   let fixture: ComponentFixture<HetModalAutocompleteComponent>;
@@ -21,6 +22,7 @@ describe('HetModalAutocompleteComponent', () => {
       ],
       providers: [HttpClientService]
     }).compileComponents();
+    login();
   });
 
   beforeEach(() => {

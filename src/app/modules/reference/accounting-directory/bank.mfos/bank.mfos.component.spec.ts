@@ -6,21 +6,19 @@ import {TranslocoModule} from "@ngneat/transloco";
 import {HttpClientModule} from "@angular/common/http";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('BankMfosComponent', () => {
   let component: BankMfosComponent;
   let fixture: ComponentFixture<BankMfosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ BankMfosComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(BankMfosComponent);
     component = fixture.componentInstance;

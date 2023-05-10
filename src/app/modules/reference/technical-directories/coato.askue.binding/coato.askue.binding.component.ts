@@ -7,19 +7,16 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
   template: basicTemplate(),
 })
 export class CoatoAskueBindingComponent extends BasicReferencePage {
+  ngOnInit(): void {
+    this.defaultColumnDef['minWidth'] = 150
+  }
   columnDefs: ColDef[] = [
-    {
-      field: 'coatoBranch.code',
-      headerName: 'GENERAL.CODE_ESP',
-    },
     {
       colId: 'coatoBranchId',
       floatingFilterComponentParams: {
@@ -27,8 +24,9 @@ export class CoatoAskueBindingComponent extends BasicReferencePage {
         request: new ReferenceDropDownRequest(ReferenceApiUrls.COATO_BRANCHES),
       },
       flex: 20,
-      field: 'coatoBranch.nameUz',
-      headerName: 'GENERAL.NAME_COATO',
+      type: 'code_nameUz',
+      field: 'coatoBranch',
+      headerName: 'REFERENCE.COATO',
     },
     {
       colId: 'askueTypeId',
@@ -45,18 +43,17 @@ export class CoatoAskueBindingComponent extends BasicReferencePage {
       headerName: 'GENERAL.URL',
     },
     {
+      minWidth: 250,
       colId: 'processNumberId',
       floatingFilterComponentParams: {
         type: 'autocomplete',
         request: new ReferenceDropDownRequest(ReferenceApiUrls.COATO_ASKUE_PROCESS),
       },
-      field: 'processNumber.code',
+      type: 'code_nameUz',
+      field: 'processNumber',
       headerName: 'GENERAL.PROCESS_NUMBER',
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       field: 'status',
       type: 'status',
       headerName: 'GENERAL.STATUS',
@@ -68,8 +65,10 @@ export class CoatoAskueBindingComponent extends BasicReferencePage {
       headerName: 'GENERAL.UPDATED_AT',
     },
     {
+      type: 'user',
       flex: 15,
-      field: 'login',
+      colId: 'createdBy',
+      field: 'createdByName',
       headerName: 'GENERAL.LOGIN',
     },
   ];
@@ -82,12 +81,5 @@ export class CoatoAskueBindingComponent extends BasicReferencePage {
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    coatoBranchId: new FilterField('GENERAL.COATO', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.COATO_BRANCHES)),
-    askueTypeId: new FilterField('GENERAL.ASKUE_TYPE', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.ASKUE_TYPES)),
-    urlAddress: new FilterField('GENERAL.URL', 'input'),
-    processNumberId: new FilterField('GENERAL.PROCESS_NUMBER', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.COATO_ASKUE_PROCESS)),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

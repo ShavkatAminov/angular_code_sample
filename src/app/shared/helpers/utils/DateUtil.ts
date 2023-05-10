@@ -41,4 +41,5 @@ export class DateUtil {
     return new Date(month + '.' + day + '.' + year)
   }
 
+
 }

@@ -34,8 +34,6 @@ export class AlertServiceComponent {
 
     // main alert method
     alert(alert: Alert) {
-        alert.autoClose =true
-        alert.keepAfterRouteChange = false
         alert.id = alert.id || this.defaultId;
         this.subject.next(alert)
 

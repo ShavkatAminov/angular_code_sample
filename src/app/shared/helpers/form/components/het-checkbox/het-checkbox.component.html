@@ -1,14 +1,16 @@
-<div class="checkbox-section">
+<div class="checkbox-section flex items-center">
+    <div class="flex" [ngStyle]="{'width': widthLabel + '%'}">
+        <div  class="font-bold" [ngClass]="{'textWarnColor': showError}">{{label | transloco}}</div>
+        <div  class="font-bold" style="color: red" *ngIf="required">* </div>
+    </div>
     <mat-checkbox
             [(ngModel)]="value" (change)="onSelectionChange(value)"
+            [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }"
             [ngClass]="{'colorRed': showError}"
             [disabled]="disabled"
             [required]="required"
             [disableRipple]="true"
-            class="font-bold"
-    >
-        <span  class="font-bold" style="color: red" *ngIf="required">* </span>
-        <span  class="font-bold" [ngClass]="{'textWarnColor': showError}">{{label | transloco}}</span>
+            class="font-bold">
     </mat-checkbox>
     <div *ngIf="showError" error-popover>
         {{errorMessage}}

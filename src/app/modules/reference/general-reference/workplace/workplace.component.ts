@@ -3,12 +3,10 @@ import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {WorkPlaceFormComponent} from "./actions/work.place.form/work.place.form.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
@@ -24,17 +22,9 @@ export class WorkplaceComponent extends BasicReferencePage{
     },
     {
       minWidth: 150,
-      flex:5,
+      flex: 5,
       field: 'nameUz',
       headerName: 'GENERAL.NAME',
-    },
-    {
-      filter: false,
-      floatingFilter: false,
-      minWidth: 150,
-      flex:4,
-      field: 'organization.code',
-      headerName: 'REFERENCE.CODE_ORGANIZATION',
     },
     {
       floatingFilterComponentParams: {
@@ -42,10 +32,11 @@ export class WorkplaceComponent extends BasicReferencePage{
         request: new ReferenceDropDownRequest(ReferenceApiUrls.ORGANIZATIONS),
       },
       colId: 'organizationId',
-      minWidth: 150,
-      flex:5,
-      field: 'organization.nameUz',
-      headerName: 'REFERENCE.NAME_ORGANIZATION',
+      minWidth: 300,
+      flex: 5,
+      field: 'organization',
+      type: 'code_nameUz',
+      headerName: 'REFERENCE.ORGANIZATION',
     },
     {
       minWidth: 150,
@@ -54,25 +45,16 @@ export class WorkplaceComponent extends BasicReferencePage{
       headerName: 'REFERENCE.EMPLOYEES_NUMBER',
     },
     {
-      filter: false,
-      floatingFilter: false,
-      minWidth: 150,
-      flex:3,
-      field: 'stateGovernmentOrganization.code',
-      headerName: 'REFERENCE.CODE_GOVERNMENT_ORGANIZATION',
-    },
-    {
       floatingFilterComponentParams: {
         type: 'autocomplete',
         request: new ReferenceDropDownRequest(ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS),
       },
+      type: 'code_nameUz',
       colId: 'stateGovernmentOrganizationId',
-      minWidth: 150,
-      flex:5,
-      field: 'stateGovernmentOrganization.nameUz',
-      headerName: 'REFERENCE.NAME_GOVERNMENT_ORGANIZATION',
+      minWidth: 300,
+      field: 'stateGovernmentOrganization',
+      headerName: 'REFERENCE.GOVERNMENT_ORGANIZATION',
     },
-
     {
       minWidth: 150,
       flex:3,
@@ -85,7 +67,7 @@ export class WorkplaceComponent extends BasicReferencePage{
         request: new ReferenceDropDownRequest(ReferenceApiUrls.ORGANIZATIONS),
       },
       colId: 'higherOrganizationId',
-      minWidth: 150,
+      minWidth: 300,
       flex:4,
       field: 'higherOrganization.nameUz',
       headerName: 'REFERENCE.HIGHER_ORGANIZATION',
@@ -98,22 +80,18 @@ export class WorkplaceComponent extends BasicReferencePage{
       headerName: 'REFERENCE.PROCESSED',
     },
     {
-      minWidth: 150,
       flex:3,
       field: 'updatedAt',
       type: 'date',
       headerName: 'GENERAL.UPDATED_AT',
     },
     {
-      minWidth: 150,
+      type: 'user',
       flex:3,
-      field: 'createdBy',
+      field: 'createdByName',
       headerName: 'GENERAL.CREATED_BY',
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       minWidth: 150,
       flex:3,
       type: 'status',
@@ -130,15 +108,5 @@ export class WorkplaceComponent extends BasicReferencePage{
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('GENERAL.NAME', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-    tin: new FilterField('REFERENCE.TIN', 'input'),
-    stateGovernmentOrganizationId: new FilterField('REFERENCE.GOVERNMENT_ORGANIZATION', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS)),
-    processed: new FilterField('REFERENCE.PROCESSED', 'status'),
-    organizationId: new FilterField('REFERENCE.ORGANIZATION', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.ORGANIZATIONS)),
-    higherOrganizationId: new FilterField('REFERENCE.HIGHER_ORGANIZATION', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.ORGANIZATIONS)),
   }
 }

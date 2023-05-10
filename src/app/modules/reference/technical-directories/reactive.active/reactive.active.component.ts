@@ -1,14 +1,12 @@
 import {Component} from '@angular/core';
 import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {ReactiveActiveFormComponent} from "./actions/reactive.active.form/reactive.active.form.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 
 @Component({
   template: basicTemplate(),
@@ -35,7 +33,7 @@ export class ReactiveActiveComponent extends BasicReferencePage {
         },
         {
             field: 'reactive',
-            headerName: 'REFERENCE.REACTIVE',
+            headerName: 'REFERENCE.REACTIVE_CURRENT',
             flex: 14,
             minWidth: 150,
         },
@@ -56,31 +54,26 @@ export class ReactiveActiveComponent extends BasicReferencePage {
             headerName: 'GENERAL.CREATED_AT',
             type: 'date',
             flex: 12,
-            minWidth: 150,
         },
         {
-            field: 'createdBy',
+            type: 'user',
+            field: 'createdByName',
             headerName: 'GENERAL.CREATED_BY',
             flex: 10,
-            minWidth: 150,
         },
         {
             field: 'updatedAt',
             headerName: 'GENERAL.UPDATED_AT',
             type: 'date',
             flex: 12,
-            minWidth: 150,
         },
         {
-            field: 'updatedBy',
+            type: 'user',
+            field: 'updatedByName',
             headerName: 'GENERAL.UPDATED_BY',
             flex: 10,
-            minWidth: 150,
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             type: 'status',
@@ -98,13 +91,4 @@ export class ReactiveActiveComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    cosF: new FilterField('REFERENCE.COS_F', 'input'),
-    f: new FilterField('REFERENCE.F', 'input'),
-    tgF: new FilterField('REFERENCE.TG_F', 'input'),
-    reactive: new FilterField('REFERENCE.REACTIVE', 'input'),
-    fullReactive: new FilterField('REFERENCE.FULL_REACTIVE', 'input'),
-    coefficient: new FilterField('REFERENCE.COEFFICIENT', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

@@ -6,10 +6,7 @@ import { UtilitiesFormComponent } from './actions/utilities.form/utilities.form.
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
-
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 
 @Component({
   template: basicTemplate(),
@@ -26,9 +23,6 @@ export class UtilitiesComponent extends BasicReferencePage{
       flex: 20,
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       type: 'status',
       field: 'status',
       headerName: 'GENERAL.STATUS',
@@ -43,10 +37,5 @@ export class UtilitiesComponent extends BasicReferencePage{
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.SERVICE_CODE', 'input'),
-    nameUz: new FilterField('GENERAL.SERVICE_NAME', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

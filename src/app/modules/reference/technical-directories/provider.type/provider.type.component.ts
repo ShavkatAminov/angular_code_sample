@@ -1,30 +1,24 @@
 import {Component} from '@angular/core';
 import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {ProviderTypeFormComponent} from "./actions/provider.type.form/provider.type.form.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
-
 export class ProviderTypeComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
         {
             field: 'id',
             headerName: 'GENERAL.NUMBER',
-            flex: 5,
+            flex: 7,
         },
-        {
-            field: 'code',
-            headerName: 'GENERAL.CODE',
-        },
+
         {
             flex: 20,
             field: 'nameUz',
@@ -36,22 +30,17 @@ export class ProviderTypeComponent extends BasicReferencePage {
             headerName: 'GENERAL.URL',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             type: 'status'
         },
         {
-            floatingFilterComponentParams: {
-                type: 'date',
-            },
             field: 'updatedAt',
             headerName: 'GENERAL.UPDATED_AT',
             type: 'date',
         },
         {
+            type: 'user',
             field: 'login',
             headerName: 'GENERAL.LOGIN',
         },
@@ -66,10 +55,4 @@ export class ProviderTypeComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CODE', 'input'),
-    nameUz: new FilterField('GENERAL.NAME_TYPE', 'input'),
-    url: new FilterField('GENERAL.URL', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

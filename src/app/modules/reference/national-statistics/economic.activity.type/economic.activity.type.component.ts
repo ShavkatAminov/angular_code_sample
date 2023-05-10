@@ -1,19 +1,22 @@
 import {Component} from '@angular/core';
 import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {
     EconomicActivityTypeFormComponent
 } from "./actions/economic.activity.type.form/economic.activity.type.form.component";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
+;
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions"  ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class EconomicActivityTypeComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
@@ -23,13 +26,18 @@ export class EconomicActivityTypeComponent extends BasicReferencePage {
             flex: 3
         },
         {
+            headerName: "GENERAL.NAME_RU",
+            field: 'nameRu',
+        },
+        {
             headerName: "GENERAL.NAME",
             field: 'nameUz',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
+            headerName: "GENERAL.NAME_CRL",
+            field: 'nameCrl',
+        },
+        {
             headerName: "GENERAL.STATUS",
             field: 'status',
             flex: 3,
@@ -46,9 +54,4 @@ export class EconomicActivityTypeComponent extends BasicReferencePage {
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-      code: new FilterField('GENERAL.CODE', 'input'),
-      nameUz: new FilterField('GENERAL.NAME', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

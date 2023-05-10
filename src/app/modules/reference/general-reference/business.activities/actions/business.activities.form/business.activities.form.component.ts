@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {BasicModalForm} from "../../../../../../shared/helpers/form/modal/basic.modal.form";
+import {BasicModalForm} from "@shared/helpers/form/modal/basic.modal.form";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
 import {ReferenceApiUrls} from "../../../../referenceApiUrls";
@@ -14,7 +14,7 @@ export class BusinessActivitiesFormComponent extends BasicModalForm{
     code: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
     nameUz: new FormControl(null, [Validators.required,Validators.maxLength(200)]),
     shortName: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
   override request = new ReferenceFormRequest(ReferenceApiUrls.BUSINESS_ACTIVITY);
 }

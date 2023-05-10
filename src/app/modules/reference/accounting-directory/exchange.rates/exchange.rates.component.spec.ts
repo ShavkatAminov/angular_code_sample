@@ -9,6 +9,7 @@ import {ExchangeRatesFormComponent} from "./actions/exchange.rates.form/exchange
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {ExchangeRatesComponent} from "./exchange.rates.component";
 
+import {login} from "@test/login";
 describe('ExchangeRateGuideComponent', () => {
     let component: ExchangeRatesComponent;
     let fixture: ComponentFixture<ExchangeRatesComponent>;
@@ -26,6 +27,7 @@ describe('ExchangeRateGuideComponent', () => {
             providers: [FormModalComponent],
         })
             .compileComponents();
+    login();
 
         fixture = TestBed.createComponent(ExchangeRatesComponent);
         component = fixture.componentInstance;

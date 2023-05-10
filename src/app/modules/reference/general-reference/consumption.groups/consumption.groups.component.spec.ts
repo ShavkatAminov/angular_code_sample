@@ -8,6 +8,7 @@ import { By } from "@angular/platform-browser";
 import { AgGridModule } from "ag-grid-angular";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 
+import {login} from "@test/login";
 describe('ConsumptionGroupsComponent', () => {
   let component: ConsumptionGroupsComponent;
   let fixture: ComponentFixture<ConsumptionGroupsComponent>;
@@ -25,6 +26,7 @@ describe('ConsumptionGroupsComponent', () => {
       providers: [FormModalComponent],
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(ConsumptionGroupsComponent);
     component = fixture.componentInstance;

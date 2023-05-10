@@ -4,7 +4,6 @@
         <het-input
                 [showError]="showError('code')"
                 formControlName="code"
-                [widthLabel]="40"
                 [errorMessage]="errorMessage('code')"
                 [label]="'REFERENCE.OPERATION_CODE'" [required]="true"
         >
@@ -15,46 +14,29 @@
                 [label]="'GENERAL.NAME'"
                 [errorMessage]="errorMessage('nameUz')"
                 [required]="true"
-                [widthLabel]="40"
+
         >
         </het-input>
-        <het-input formControlName="debitAccountCode"
+        <het-autocomplete
+                   [request]="accountDirectoryDropdown"
+                   formControlName="debitAccountCode"
                    [showError]="showError('debitAccountCode')"
-                   [label]="'REFERENCE.DEBIT_ACCOUNT_CODE'"
+                   label="REFERENCE.DEBIT_ACCOUNT_CODE"
                    [errorMessage]="errorMessage('debitAccountCode')"
                    [required]="true"
-                   [widthLabel]="40"
+
         >
-        </het-input>
-        <het-input
-                [label]="'REFERENCE.DEBIT_ACCOUNT_NAME'"
-                formControlName="debitAccountName"
-                [showError]="showError('debitAccountName')"
-                [errorMessage]="errorMessage('debitAccountName')"
-                [required]="true"
-                [widthLabel]="40"
-        >
-        </het-input>
-        <het-input
+        </het-autocomplete>
+        <het-autocomplete
+                [request]="accountDirectoryDropdown"
                 formControlName="creditAccountCode"
                 [showError]="showError('creditAccountCode')"
                 [label]="'REFERENCE.CREDIT_ACCOUNT_CODE'"
                 [errorMessage]="errorMessage('creditAccountCode')"
                 [required]="true"
-                [widthLabel]="40"
         >
-        </het-input>
-        <het-input
-                [label]="'REFERENCE.CREDIT_ACCOUNT_NAME'"
-                formControlName="creditAccountName"
-                [showError]="showError('creditAccountName')"
-                [errorMessage]="errorMessage('creditAccountName')"
-                [required]="true"
-                [widthLabel]="40"
-        >
-        </het-input>
+        </het-autocomplete>
         <het-radio-static type="status"
-                          [widthLabel]="40"
                           formControlName="status"
                           [showError]="showError('status')"
                           [label]="'GENERAL.STATUS'"

@@ -4,6 +4,8 @@ import {mainMenuItems} from "../../layouts/main/menu.items";
 import {FuseNavigationService} from "../../../../@fuse/components/navigation";
 import { FuseNavigationItem } from '@fuse/components/navigation';
 import { filter } from 'rxjs/operators'
+import {NavigationService} from "@app/core/navigation/navigation.service";
+import {environment} from "../../../../environments/environment";
 
 
 @Component({
@@ -16,25 +18,47 @@ export class BreadcrumbsComponent implements OnInit{
   breadCrumbsNavigation: FuseNavigationItem[] = mainMenuItems;
   constructor(
       private router: Router,
-      private _navigationService: FuseNavigationService) {
-   this.createBreadCrumb(this.router.url)
+      private _fuseNavigationService: FuseNavigationService,
+      private navigationService: NavigationService
+  ) {
+    if(environment.production) {
+      //this.hideNotAvailableItems(this.breadCrumbsNavigation);
+    }
+    this.createBreadCrumb(this.router.url)
+  }
 
+  hideNotAvailableItems(items: FuseNavigationItem[]): boolean {
+    let hidden = true;
+    items.forEach(item => {
+      if(item.children && this.hideNotAvailableItems(item.children)) {
+        item.hidden = true;
+      }
+      if(item.link && item.link !== '/sign-out') {
+        if(!this.navigationService.availableItems.resources.includes(item.link)) {
+          item.hidden = true;
+        }
+        else {
+          hidden = false;
+        }
+      }
+      else {
+        hidden = false;
+      }
+    });
+    return hidden;
   }
 
   createBreadCrumb(activeRouteLink: string) {
-    const currentPath:number[] = this._navigationService.getPathOfActiveElement(activeRouteLink, mainMenuItems )
+    const currentPath:number[] = this._fuseNavigationService.getPathOfActiveElement(activeRouteLink, mainMenuItems )
     // For get nested node
     let current = null
 
-    // Need for avoid duplication of navigation
-    const indexesForDelete:number[] = []
 
     const copyOfMenuItems = JSON.parse(JSON.stringify(mainMenuItems))
 
     // Get node which is required
     this.breadCrumbsNavigation = currentPath.map((item, idx): FuseNavigationItem => {
       const  currentPos = current
-      indexesForDelete.push(item)
       if (idx === 0) {
         current = copyOfMenuItems[item]
         current.isBreadCrumbs = true
@@ -54,15 +78,6 @@ export class BreadcrumbsComponent implements OnInit{
       children: copyOfMenuItems,
     }, ...this.breadCrumbsNavigation]
 
-    //this.deleteChildDuplicate(indexesForDelete)
-  }
-
-  deleteChildDuplicate(indexesForDelete: number[]) {
-    this.breadCrumbsNavigation.forEach((item, idx) => {
-      if (indexesForDelete[idx] !== null && indexesForDelete[idx] !== undefined){
-        item.children.splice(indexesForDelete[idx], 1)
-      }
-    })
   }
 
   ngOnInit(): void {

@@ -39,15 +39,16 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
 } from "@angular-material-components/datetime-picker";
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {BasicTablePage} from "./helpers/table/basic/basic.table.page";
 import { HetModalAutocompleteComponent } from './helpers/form/components/het-modal-autocomplete/het-modal-autocomplete.component';
 import { HetModalAutocompleteFormComponent } from './helpers/form/components/het-modal-autocomplete/actions/het-modal-autocomplete-form/het-modal-autocomplete-form.component';
 import { FilterComponent } from './helpers/filter/filter.component/filter.component.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ConfirmComponent} from "./helpers/dialog-confirm/confirm.component";
-import {InputPatternDirective} from "./helpers/form/directive/InputPatternDirective";
+import {InputToUppercase} from "./helpers/form/directive/InputToUppercaseDirective";
 import {HetAddressComponent} from "./helpers/form/components/het-address/het-address.component";
 import {NgxMaskDirective, NgxMaskPipe, provideNgxMask} from "ngx-mask";
 import {DragDropModule} from "@angular/cdk/drag-drop";
@@ -56,6 +57,17 @@ import { ErrorPopoverComponent } from './helpers/form/components/error-popover/e
 import { HetCheckboxListComponent } from './helpers/form/components/het-checkbox-list/het-checkbox-list.component';
 import {FilterInput} from "@shared/helpers/table/datatable/filter/Input";
 import {HetSelectStaticComponent} from "@shared/helpers/form/components/het-select-static/het-select-static.component";
+import {HetNumberInputComponent} from "@shared/helpers/form/components/het-number-input/het-number-input.component";
+import {MatTabsModule} from '@angular/material/tabs';
+import {HetDatepickerRange} from "@shared/helpers/form/components/het-datepicker-range/het-datepicker-range";
+import {
+    HetAutocompleteSearchComponent
+} from "@shared/helpers/form/components/het-autocomplete-search/het-autocomplete-search.component";
+import {HetInformationTable} from "@shared/helpers/table/het-information-table/het.information.table";
+import {HetTelInputComponent} from "@shared/helpers/form/components/het-tel-input/het-tel-input.component";
+import { DateGeneratorPipe } from './helpers/pipe/date-generator.pipe';
+import { HetInputMonthsComponent } from '@app/modules/accounting-settlement-lc/maintaining.contract/het-input-months/het-input-months.component';
+import { HetTimepickerComponent } from './helpers/form/components/het-timepicker/het-timepicker.component';
 
 export let InjectorInstance: Injector;
 @NgModule({
@@ -64,6 +76,7 @@ export let InjectorInstance: Injector;
         HetSelectComponent,
         HetButtonComponent,
         HetDatepickerComponent,
+        HetDatepickerRange,
         HetCheckboxComponent,
         HetRadioButtonComponent,
         HetTextareaComponent,
@@ -76,17 +89,24 @@ export let InjectorInstance: Injector;
         PaginationComponent,
         HetTitleComponent,
         HetAutocompleteComponent,
+        HetAutocompleteSearchComponent,
         BasicTablePage,
         HetModalAutocompleteComponent,
         HetModalAutocompleteFormComponent,
         FilterComponent,
         ConfirmComponent,
-        InputPatternDirective,
+        InputToUppercase,
         HetAddressComponent,
         ErrorPopoverComponent,
         HetCheckboxListComponent,
         FilterInput,
         HetSelectStaticComponent,
+        HetNumberInputComponent,
+        HetInformationTable,
+        HetTelInputComponent,
+        DateGeneratorPipe,
+        HetInputMonthsComponent,
+        HetTimepickerComponent,
     ],
     exports: [
         AlertsComponent,
@@ -106,21 +126,31 @@ export let InjectorInstance: Injector;
         HetInputComponent,
         MatDatepickerModule,
         HetDatepickerComponent,
+        HetDatepickerRange,
         HetRadioStaticComponent,
         HetTitleComponent,
         HetModalAutocompleteComponent,
         HetModalAutocompleteFormComponent,
         FilterComponent,
         HetAutocompleteComponent,
-        InputPatternDirective,
+        HetAutocompleteSearchComponent,
+        InputToUppercase,
         HetAddressComponent,
         HetCheckboxListComponent,
         FilterInput,
-        HetSelectStaticComponent
+        HetSelectStaticComponent,
+        HetNumberInputComponent,
+        MatTabsModule,
+        HetInformationTable,
+        HetTelInputComponent,
+        DateGeneratorPipe,
+        HetInputMonthsComponent,
+        HetTimepickerComponent,
     ],
     imports: [
         NgxMaskDirective,
         NgxMaskPipe,
+
         MatButtonModule,
         MatButtonToggleModule,
         MatChipsModule,
@@ -147,11 +177,15 @@ export let InjectorInstance: Injector;
         NgxMatDatetimePickerModule,
         NgxMatNativeDateModule,
         NgxMatTimepickerModule,
+        NgxMaterialTimepickerModule,
         MatSnackBarModule,
         DragDropModule,
         MatSnackBarModule,
+        MatTabsModule,
     ],
-    providers: [provideNgxMask()],
+    providers: [provideNgxMask({
+        validation:false
+    })],
 
 })
 export class SharedModule

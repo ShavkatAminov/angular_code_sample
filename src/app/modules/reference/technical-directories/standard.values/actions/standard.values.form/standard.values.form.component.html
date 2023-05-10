@@ -1,13 +1,9 @@
 <form (ngSubmit)="saveProcess()"
       [formGroup]="form">
     <div class="grid grid-cols-1 gap-4">
-        <het-input formControlName="code" [label]="'GENERAL.CODE'" [required]="true" [errorMessage]="errorMessage('code')" [showError]="showError('code')">
-        </het-input>
         <het-input formControlName="voltageLevelNetwork" [label]="'REFERENCE.NETWORK'" [required]="true" [errorMessage]="errorMessage('voltageLevelNetwork')" [showError]="showError('voltageLevelNetwork')">
         </het-input>
-        <het-input [inputType]="'number'" formControlName="value" [label]="'REFERENCE.NORMATIVE_VALUE'" [required]="true" [errorMessage]="errorMessage('value')" [showError]="showError('value')">
-        </het-input>
-        <het-radio-static type="status" formControlName="status" [label]="'GENERAL.STATUS'" [required]="true" [errorMessage]="errorMessage('status')" [showError]="showError('status')">
-        </het-radio-static>
+        <het-number-input [mask]="'0.00'" formControlName="value" [label]="'REFERENCE.NORMATIVE_VALUE'" [required]="true" [errorMessage]="errorMessage('value')" [showError]="showError('value')">
+        </het-number-input>
     </div>
 </form>

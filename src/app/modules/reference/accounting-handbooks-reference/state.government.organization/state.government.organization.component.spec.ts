@@ -6,18 +6,14 @@ import {HttpClientModule} from "@angular/common/http";
 import {TranslocoModule} from "@ngneat/transloco";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
 describe('StateGovernmentOrganizationsComponent', () => {
   let component: StateGovernmentOrganizationComponent;
   let fixture: ComponentFixture<StateGovernmentOrganizationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ StateGovernmentOrganizationComponent ]
     })
     .compileComponents();

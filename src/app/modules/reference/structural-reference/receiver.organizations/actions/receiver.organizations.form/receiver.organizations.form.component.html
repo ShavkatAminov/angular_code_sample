@@ -23,14 +23,6 @@
                 [errorMessage]="errorMessage('sendersTypeId')"
                 [required]="true">
         </het-autocomplete>
-        <het-autocomplete
-                formControlName="paymentSystemId"
-                [label]="'REFERENCE.PAYMENT_SYSTEM_TYPE'"
-                [request]="currenciesAllPaymentRequest"
-                [showError]="showError('paymentSystemId')"
-                [errorMessage]="errorMessage('paymentSystemId')"
-                [required]="true">
-        </het-autocomplete>
         <het-input
                 formControlName="mfo"
                 [showError]="showError('mfo')"
@@ -44,7 +36,7 @@
                 formControlName="account"
                 [errorMessage]="errorMessage('account')"
                 [label]="'REFERENCE.ACCOUNT'"
-                [required]="true">
+                [required]="false">
         </het-input>
         <het-input
                 [inputType]="'number'"

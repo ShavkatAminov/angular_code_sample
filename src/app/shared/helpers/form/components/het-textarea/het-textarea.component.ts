@@ -25,4 +25,12 @@ export class HetTextareaComponent  extends BasicFormInput {
     this.onChange(this.value);
     this.textareaChange.emit(this.value)
   }
+
+  toNull($event){
+    this.value = null;
+    this.onChange(null);
+    this.onTextareaChange(null)
+    $event.stopPropagation()
+  }
+
 }

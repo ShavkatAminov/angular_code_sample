@@ -7,19 +7,23 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
+;
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-select [options]="printOptions"  ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class CurrenciesComponent extends BasicReferencePage {
+    ngOnInit(): void {
+        this.defaultColumnDef['minWidth'] = 150
+    }
     columnDefs: ColDef[] = [
         {
             field: 'code',
             headerName: 'GENERAL.CURRENCY_CODE',
             flex: 5
-
         },
         {
             field: 'symbol',
@@ -46,7 +50,7 @@ export class CurrenciesComponent extends BasicReferencePage {
             flex: 5,
         },
         {
-            field: 'createdBy',
+            field: 'createdByName',
             headerName: 'GENERAL.CREATED_BY',
             flex: 6
         },
@@ -57,7 +61,8 @@ export class CurrenciesComponent extends BasicReferencePage {
             flex: 5,
         },
         {
-            field: 'updatedBy',
+            type: 'user',
+            field: 'updatedByName',
             headerName: 'GENERAL.UPDATED_BY',
             flex: 6
         },
@@ -66,9 +71,6 @@ export class CurrenciesComponent extends BasicReferencePage {
             headerName: 'GENERAL.STATUS',
             flex: 5,
             type: 'status',
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
         },
     ];
 
@@ -76,17 +78,9 @@ export class CurrenciesComponent extends BasicReferencePage {
     request = new ReferenceListRequest(ReferenceApiUrls.CURRENCIES);
 
     addUpdate(id = null) {
-        FormModalComponent.showModal(CurrenciesFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+        FormModalComponent.showModal(CurrenciesFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
             if (res)
                 this.reload();
         });
     }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CURRENCY_CODE', 'input'),
-    symbol: new FilterField('REFERENCE.SYMBOL', 'input'),
-    nameUz: new FilterField('REFERENCE.CURRENCY_NAME', 'input'),
-    scope: new FilterField('REFERENCE.SCALE', 'input'),
-    scopeName: new FilterField('REFERENCE.SCALE_NAME', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

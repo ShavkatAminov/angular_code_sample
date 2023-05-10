@@ -6,21 +6,19 @@ import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "../../../../shared/shared.module";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('CalculationTypeComponent', () => {
   let component: CalculationTypeComponent;
   let fixture: ComponentFixture<CalculationTypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ CalculationTypeComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(CalculationTypeComponent);
     component = fixture.componentInstance;

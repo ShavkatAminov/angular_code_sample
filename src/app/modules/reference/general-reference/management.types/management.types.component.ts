@@ -8,53 +8,25 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
-
 @Component({
   template: basicTemplate(),
 })
 export class ManagementTypesComponent extends BasicReferencePage{
   columnDefs: ColDef[] = [
     {
-      field: 'id',
-      headerName: 'GENERAL.ID',
+      field: 'code',
+      headerName: 'GENERAL.CODE',
+      flex: 3
     },
     {
       field: 'nameUz',
       headerName: 'GENERAL.NAME',
     },
     {
-      field: 'code',
-      headerName: 'GENERAL.CODE',
-    },
-    {
-      floatingFilterComponentParams: {
-        type: 'date',
-      },
-      field: 'createdAt',
-      headerName: 'GENERAL.CREATED_AT',
-      type: 'date'
-    },
-    {
-      field: 'createdBy',
-      headerName: 'GENERAL.CREATED_BY',
-    },
-    {
-      field: 'updatedAt',
-      headerName: 'GENERAL.UPDATED_AT',
-      type: 'date'
-    },
-    {
-      field: 'updatedBy',
-      headerName: 'GENERAL.UPDATED_BY',
-    },
-    {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       field: 'status',
       headerName: 'GENERAL.STATUS',
       type: 'status',
+      flex: 3
     },
   ];
 
@@ -66,10 +38,5 @@ export class ManagementTypesComponent extends BasicReferencePage{
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('GENERAL.NAME', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

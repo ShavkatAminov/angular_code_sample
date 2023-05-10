@@ -4,15 +4,17 @@
         <span style="color:red" *ngIf="required">*</span>
     </mat-label>
     <mat-form-field [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }"
-                    [ngClass]="{'errorInput' : showError}">
+                    [ngClass]="{'errorInput' : showError, 'readonly-bg-color' : readonly} ">
         <input type="text"
+               #autoTrigger="matAutocompleteTrigger"
                matInput
-               [readonly]="readonly"
+               [readonly]="readonly || this.selectedItem"
                [disabled]=disabled
                [matAutocomplete]="auto"
                [formControl]="control"
                (touchend)="onTouch()"
                (focus)="loadAndCreate()"
+               (focusout)="closeAfterFocusOut()"
                [(ngModel)]="value"
                [matAutocompleteDisabled] = disabled
         >
@@ -21,7 +23,12 @@
             <mat-option *ngFor="let suggestion of filteredSuggestions | async" [value]="suggestion">
                 {{ CodeAndName(suggestion) }}
             </mat-option>
+            <mat-option *ngIf="(filteredSuggestions | async) && (filteredSuggestions | async).length === 0" disabled="true">
+                {{'GENERAL.NO_DATA' | transloco}}
+            </mat-option>
         </mat-autocomplete>
+
+
         <span *ngIf="value && !readonly" (click)="toNull()" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix
               mat-icon-button>
             <mat-icon class="font-black text-black">close</mat-icon>

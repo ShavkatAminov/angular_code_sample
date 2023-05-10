@@ -8,9 +8,6 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
-
-
-import {FilterField, FilterFieldGroup} from 'app/shared/helpers/filter/filter.component/filterField';
 import {basicTemplate} from "../../basic/basicTemplate";
 
 @Component({
@@ -28,27 +25,18 @@ export class InformationSystemsErrorCodesComponent extends BasicReferencePage {
             headerName: 'GENERAL.NAME',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             flex: 2,
             type: 'status',
             field: 'status',
             headerName: 'GENERAL.STATUS',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'date',
-            },
             flex: 3,
             type: 'date',
             field: 'createdAt',
             headerName: 'GENERAL.DATE_ACTIVE',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'date',
-            },
             flex: 3,
             type: 'date',
             field: 'deletedAt',
@@ -64,11 +52,5 @@ export class InformationSystemsErrorCodesComponent extends BasicReferencePage {
             if (res)
                 this.reload();
         });
-    }
-
-    override filter: FilterFieldGroup = {
-        code: new FilterField('GENERAL.CODE', 'input'),
-        nameUz: new FilterField('GENERAL.NAME', 'input'),
-        status: new FilterField('GENERAL.STATUS', 'status'),
     }
 }

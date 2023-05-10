@@ -1,18 +1,20 @@
-import {Component} from '@angular/core';
+  import {Component} from '@angular/core';
 import {ColDef} from "ag-grid-community";
 import {BasicReferencePage} from "../../basic.reference.page";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import { MeterManufacturesFormComponent } from './actions/meter.manufactures.form/meter.manufactures.form.component';
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
-import {FilterField, FilterFieldGroup} from 'app/shared/helpers/filter/filter.component/filterField';
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 
 @Component({
   template: basicTemplate(),
 })
 export class MeterManufacturerComponent extends BasicReferencePage {
+  ngOnInit(): void {
+    this.defaultColumnDef['minWidth'] = 150
+  }
   columnDefs: ColDef[] = [
     {
       flex: 2,
@@ -26,21 +28,15 @@ export class MeterManufacturerComponent extends BasicReferencePage {
     {
       field: 'amountOfSignsInSerialNumber',
       headerName: 'REFERENCE.NUMBER_OF_CHARACTERS_IN_SERIAL_NUMBER',
-      flex: 4
+      flex: 7
     },
     {
-      floatingFilterComponentParams: {
-        type: 'yesNo',
-      },
       field: 'presenceOfSymbols',
       type: 'yesNo',
       headerName: 'REFERENCE.PRESENCE_OF_CHARACTERS',
       flex: 5
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
       field: 'status',
       type: 'status',
       headerName: 'GENERAL.STATUS',
@@ -53,7 +49,8 @@ export class MeterManufacturerComponent extends BasicReferencePage {
       flex: 3
     },
     {
-      field: 'createdBy',
+      type: 'user',
+      field: 'createdByName',
       headerName: 'GENERAL.LOGIN',
     },
   ];
@@ -66,13 +63,5 @@ export class MeterManufacturerComponent extends BasicReferencePage {
       if(res)
         this.reload();
     });
-  }
-
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('GENERAL.CODE', 'input'),
-    code: new FilterField('GENERAL.NAME', 'input'),
-    amountOfSignsInSerialNumber: new FilterField('REFERENCE.NUMBER_OF_CHARACTERS_IN_SERIAL_NUMBER', 'input'),
-    presenceOfSymbols: new FilterField('REFERENCE.PRESENCE_OF_CHARACTERS', 'yesNo'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

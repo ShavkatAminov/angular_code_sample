@@ -5,20 +5,19 @@ import {SharedModule} from "../../../../shared/shared.module";
 import {AppModule} from "../../../../app.module";
 import {TranslocoModule} from "@ngneat/transloco";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('MaterialsComponent', () => {
   let component: MaterialsComponent;
   let fixture: ComponentFixture<MaterialsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          SharedModule,
-          AppModule,
-          TranslocoModule,
-      ],
+        imports: imports,
       declarations: [ MaterialsComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(MaterialsComponent);
     component = fixture.componentInstance;

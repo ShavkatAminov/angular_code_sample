@@ -14,9 +14,8 @@ export class StreetsDirectoryFormComponent extends BasicModalForm {
 
   
   override form = new FormGroup({
-    code: new FormControl(null, [Validators.required]),
     nameUz: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
     habitationDivisionId: new FormControl(null, [Validators.required]),
    });
 

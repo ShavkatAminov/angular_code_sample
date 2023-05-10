@@ -1,16 +1,20 @@
 import {Component} from '@angular/core';
 import {ColDef} from "ag-grid-community";
 import {NationalEconomyBranchFormComponent} from "./actions/national.economy.levels.form/national.economy.branch.form.component";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {BasicReferencePage} from "../../basic.reference.page";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
+
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions"  ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class NationalEconomyBranchComponent extends BasicReferencePage {
   columnDefs: ColDef[] = [
@@ -23,14 +27,9 @@ export class NationalEconomyBranchComponent extends BasicReferencePage {
   request = new ReferenceListRequest(ReferenceApiUrls.NATIONAL_ECONOMY_BRANCH);
 
   addUpdate(id = null) {
-    FormModalComponent.showModal(NationalEconomyBranchFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+    FormModalComponent.showModal(NationalEconomyBranchFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
       if(res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    nameUz: new FilterField('REFERENCE.NAME_OF_BRANCH_OF', 'input'),
-    code: new FilterField('GENERAL.CODE', 'input'),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

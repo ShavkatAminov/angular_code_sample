@@ -1,13 +1,11 @@
 import {Component} from '@angular/core';
 import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {
   TreasuryOrganizationalFormFormComponent
 } from "./actions/treasury.organizational.form/treasury.organizational.form.form.component";
@@ -17,59 +15,54 @@ import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
   template: basicTemplate(),
 })
 export class TreasuryOrganizationalFormComponent extends BasicReferencePage {
+  ngOnInit(): void {
+    this.defaultColumnDef['minWidth'] = 150
+  }
   columnDefs: ColDef[] = [
     {
       field: 'code',
       headerName: 'GENERAL.CODE',
-      flex: 5
     },
     {
       field: 'nameUz',
       headerName: 'GENERAL.NAME',
-      flex: 9
     },
     {
+      minWidth: 500,
+      colId: 'stateGovernmentOrganizationId',
       floatingFilterComponentParams: {
         type: 'autocomplete',
         request: new ReferenceDropDownRequest(ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS),
       },
-      field: 'stateGovernmentOrganization.nameUz',
-      headerName: 'REFERENCE.NAME_GOVERNMENT_ORGANIZATION',
-      flex: 15
-    },
-    {
-      floatingFilterComponentParams: {
-        type: 'date',
-      },
-      field: 'createdAt',
-      headerName: 'GENERAL.CREATED_AT',
-      type: 'date',
-      flex: 7
-    },
-    {
-      field: 'createdBy',
-      headerName: 'GENERAL.CREATED_BY',
-      flex: 6
+      type: 'code_nameUz',
+      field: 'stateGovernmentOrganization',
+      headerName: 'REFERENCE.GOVERNMENT_ORGANIZATION',
     },
     {
       field: 'updatedAt',
       headerName: 'GENERAL.UPDATED_AT',
       type: 'date',
-      flex: 7
     },
     {
-      field: 'updatedBy',
+      type: 'user',
+      field: 'updatedByName',
       headerName: 'GENERAL.UPDATED_BY',
-      flex: 7
     },
     {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
+      field: 'createdAt',
+      headerName: 'GENERAL.CREATED_AT',
+      type: 'date',
+    },
+    {
+      type: 'user',
+      field: 'createdByName',
+      headerName: 'GENERAL.CREATED_BY',
+    },
+    {
       field: 'status',
       headerName: 'GENERAL.STATUS',
       type: 'status',
-      flex: 7
+      minWidth: 200
     },
   ];
 
@@ -81,11 +74,5 @@ export class TreasuryOrganizationalFormComponent extends BasicReferencePage {
       if (res)
         this.reload();
     });
-  }
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CODE', 'input'),
-    nameUz: new FilterField('GENERAL.NAME', 'input'),
-    stateGovernmentOrganizationId: new FilterField('REFERENCE.NAME_GOVERNMENT_ORGANIZATION', 'autocomplete',new ReferenceDropDownRequest(ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS)),
-    status: new FilterField('GENERAL.STATUS', 'status'),
   }
 }

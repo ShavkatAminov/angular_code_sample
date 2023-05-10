@@ -7,3 +7,8 @@ export interface Navigation
     futuristic: FuseNavigationItem[];
     horizontal: FuseNavigationItem[];
 }
+
+export interface AvailableItems {
+    modules: string[],
+    resources: string[],
+}

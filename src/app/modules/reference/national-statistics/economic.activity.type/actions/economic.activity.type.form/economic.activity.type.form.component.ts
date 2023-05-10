@@ -16,8 +16,10 @@ export class EconomicActivityTypeFormComponent extends BasicModalForm {
   
   override form = new FormGroup({
     nameUz: new FormControl(null, [Validators.required]),
+    nameRu: new FormControl(null, [Validators.required]),
+    nameCrl: new FormControl(null, [Validators.required]),
     code: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
    });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.ECONOMIC_ACTIVITY_TYPE);

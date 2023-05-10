@@ -3,13 +3,15 @@
     <div class="flex flex-col gt-xs:flex-row gap-y-3 p-2">
         <het-autocomplete
                 [request]="autoBasicTariff"
+                label="REFERENCE.BASE_TARIFF"
                 formControlName="baseTariffId"
                 [showError]="showError('baseTariffId')"
                 [errorMessage]="errorMessage('baseTariffId')"
-                [label]="'REFERENCE.BASE_TARIFF'"
+
                 [required]="true">
         </het-autocomplete>
         <het-datepicker
+
                 formControlName="activationPeriod"
                 [showError]="showError('activationPeriod')"
                 [errorMessage]="errorMessage('activationPeriod')"
@@ -25,6 +27,7 @@
                 [required]="true">
         </het-input>
         <het-input
+
                 formControlName="nameUz"
                 [showError]="showError('nameUz')"
                 [errorMessage]="errorMessage('nameUz')"
@@ -32,6 +35,7 @@
                 [required]="true">
         </het-input>
         <het-input
+
                 [inputType]="'number'"
                 formControlName="fromKWhInterval"
                 [showError]="showError('fromKWhInterval')"
@@ -40,6 +44,7 @@
                 [required]="true">
         </het-input>
         <het-input
+
                 [inputType]="'number'"
                 formControlName="toKWhInterval"
                 [showError]="showError('toKWhInterval')"
@@ -48,6 +53,7 @@
                 [required]="true">
         </het-input>
         <het-autocomplete
+
                 [request]="autoTariff"
                 formControlName="tariffId"
                 [showError]="showError('tariffId')"
@@ -56,6 +62,7 @@
                 [required]="true">
         </het-autocomplete>
         <het-input
+
                 [inputType]="'number'"
                 formControlName="price"
                 [showError]="showError('price')"

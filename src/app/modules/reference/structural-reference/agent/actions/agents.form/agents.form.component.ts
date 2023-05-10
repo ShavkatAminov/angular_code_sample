@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {HttpClientService} from "../../../../../../shared/helpers/service/http/http.client.service";
-import { TranslocoService } from '@ngneat/transloco';
-import {BasicModalForm} from "../../../../../../shared/helpers/form/modal/basic.modal.form";
+import {BasicModalForm} from "@shared/helpers/form/modal/basic.modal.form";
 import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
 import {ReferenceApiUrls} from "../../../../referenceApiUrls";
 import {ReferenceDropDownRequest} from "../../../../basic/ReferenceDropDownRequest";
-import {AlertServiceComponent} from "../../../../../../shared/helpers/alerts/services/alert.service.component";
 
 @Component({
   templateUrl: './agents.form.component.html',
@@ -22,7 +19,7 @@ export class AgentsFormComponent extends BasicModalForm {
     brigadeId: new FormControl(null, [Validators.required]),
     firstName: new FormControl(null, [Validators.required]),
     lastName: new FormControl(null, [Validators.required]),
-    middleName: new FormControl(null, []),
+    middleName: new FormControl(null, [Validators.required]),
     mobilePhone: new FormControl(null, []),
     byTypeId: new FormControl(null, [Validators.required]),
     status: new FormControl(true, [Validators.required]),
@@ -33,5 +30,15 @@ export class AgentsFormComponent extends BasicModalForm {
   birgadesRequest = new ReferenceDropDownRequest(ReferenceApiUrls.BRIGADES);
   consumerTypesRequest = new ReferenceDropDownRequest(ReferenceApiUrls.CONSUMER_TYPE);
 
+  pattern = {
+    N: {
+      pattern: new RegExp('^[1-9]'),
+
+    },
+    '9': {
+      pattern: new RegExp('^[0-9]'),
+
+    },
+  };
 
 }

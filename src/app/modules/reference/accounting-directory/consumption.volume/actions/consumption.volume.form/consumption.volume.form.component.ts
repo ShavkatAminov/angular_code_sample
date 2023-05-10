@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {HttpClientService} from "../../../../../../shared/helpers/service/http/http.client.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {BasicModalForm} from "../../../../../../shared/helpers/form/modal/basic.modal.form";
-import {TranslocoService} from "@ngneat/transloco";
+import {BasicModalForm} from "@shared/helpers/form/modal/basic.modal.form";
 import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
 import {ReferenceApiUrls} from "../../../../referenceApiUrls";
-import {ReferenceDropDownRequest, RegistersDropDownRequest} from "../../../../basic/ReferenceDropDownRequest";
-import {AlertServiceComponent} from "../../../../../../shared/helpers/alerts/services/alert.service.component";
+import {RegistersDropDownRequest} from "../../../../../registers/basic/registersDropDownRequest";
+import {ReferenceDropDownRequest} from "../../../../basic/ReferenceDropDownRequest";
+import {ReferenceListRequest} from "@app/modules/reference/basic/ReferenceListRequest";
+import {RegisterListRequest} from "@app/modules/registers/basic/RegisterListRequest";
 
 @Component({
   selector: 'app-consumption.volume.form',
@@ -23,7 +23,7 @@ export class ConsumptionVolumeFormComponent extends BasicModalForm {
     fromKWhInterval: new FormControl(null, [Validators.required]),
     tariffId: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
     baseTariffId: new FormControl(null, [Validators.required]),
     activationPeriod: new FormControl(null, [Validators.required]),
   });
@@ -32,4 +32,9 @@ export class ConsumptionVolumeFormComponent extends BasicModalForm {
 
   autoBasicTariff = new RegistersDropDownRequest(ReferenceApiUrls.BASE_TARIFF_CODES)
   autoTariff = new ReferenceDropDownRequest(ReferenceApiUrls.TARIFFS)
+
+
+
+
+
 }

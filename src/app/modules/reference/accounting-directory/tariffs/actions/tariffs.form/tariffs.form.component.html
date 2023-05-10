@@ -11,7 +11,6 @@
                 [required]="true">
         </het-autocomplete>
         <het-input
-
                 formControlName="code"
                 [errorMessage]="errorMessage('code')"
                 [showError]="showError('code')"
@@ -19,6 +18,7 @@
                 [required]="true">
         </het-input>
         <het-input
+
                 formControlName="nameUz"
                 [errorMessage]="errorMessage('nameUz')"
                 [showError]="showError('nameUz')"
@@ -26,6 +26,7 @@
                 [required]="true">
         </het-input>
         <het-input
+
                 [inputType]="'number'"
                 formControlName="price"
                 [errorMessage]="errorMessage('price')"
@@ -33,14 +34,15 @@
                 [label]="'GENERAL.PRICE'"
                 [required]="true">
         </het-input>
-        <het-radio-static
+        <het-radio-button
+
                 formControlName="nds"
-                [type]="'yesNo'"
+                [options]="ndsRadioOptions"
                 [errorMessage]="errorMessage('nds')"
                 [showError]="showError('nds')"
                 [label]="'GENERAL.VAT'"
                 [required]="true">
-        </het-radio-static>
+        </het-radio-button>
         <het-radio-static
                 formControlName="isDefault"
                 [type]="'yesNo'"
@@ -50,6 +52,7 @@
                 [required]="true">
         </het-radio-static>
         <het-autocomplete
+
                 [request]="autoInticatorType"
                 formControlName="indicationTypeId"
                 [errorMessage]="errorMessage('indicationTypeId')"
@@ -57,13 +60,15 @@
                 [label]="'REFERENCE.INDICATION_TYPE'">
         </het-autocomplete>
         <het-autocomplete
+                label="REFERENCE.BASE_RATE_CODE"
                 [request]="autoBaseRateCodeId"
                 formControlName="baseTariffCodeId"
                 [errorMessage]="errorMessage('baseTariffCodeId')"
                 [showError]="showError('baseTariffCodeId')"
-                [label]="'REFERENCE.BASE_RATE_CODE'">
+              >
         </het-autocomplete>
         <het-autocomplete
+
                 [request]="autoTimeZones"
                 formControlName="timezoneId"
                 [errorMessage]="errorMessage('timezoneId')"
@@ -78,6 +83,7 @@
                 [required]="true">
         </het-radio-static>
         <het-datepicker
+
                 formControlName="deactivationDate"
                 [errorMessage]="errorMessage('deactivationDate')"
                 [showError]="showError('deactivationDate')"

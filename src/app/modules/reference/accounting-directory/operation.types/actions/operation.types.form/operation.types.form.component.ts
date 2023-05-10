@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BasicModalForm} from "@shared/helpers/form/modal/basic.modal.form";
 import {ReferenceApiUrls} from "../../../../referenceApiUrls";
 import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
+import {ReferenceListRequest} from "@app/modules/reference/basic/ReferenceListRequest";
+import {ReferenceDropDownRequest} from "@app/modules/reference/basic/ReferenceDropDownRequest";
 
 @Component({
   selector: 'app-operation.types.form',
@@ -16,15 +18,11 @@ export class OperationTypesFormComponent extends BasicModalForm {
     code: new FormControl(null, [Validators.required]),
     nameUz: new FormControl(null, [Validators.required]),
     debitAccountCode: new FormControl(null, [Validators.required]),
-    debitAccountName: new FormControl(null, [Validators.required]),
     creditAccountCode: new FormControl(null, [Validators.required]),
-    creditAccountName: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
 
-  modalAutocomplete = {
-    columns: [],
-  }
+
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.OPERATION_TYPES);
 
@@ -36,4 +34,6 @@ export class OperationTypesFormComponent extends BasicModalForm {
       })
     }
   }
+
+  accountDirectoryDropdown = new ReferenceDropDownRequest(ReferenceApiUrls.ACCOUNT_DIRECTORY)
 }

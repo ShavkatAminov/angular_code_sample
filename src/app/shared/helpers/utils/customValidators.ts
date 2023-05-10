@@ -1,4 +1,5 @@
 import {FormControl, ValidatorFn} from "@angular/forms";
+import {brewer} from "chroma-js";
 
 interface IIpAdressValidator {
     pattern:RegExp,
@@ -19,5 +20,38 @@ export class CustomValidators {
             }
         };
     }
-}
 
+    static pinflValidator():ValidatorFn {
+
+
+
+
+        return (control: FormControl) => {
+            if(control?.value?.length === 14) {
+                const lastNumber = Number(control.value[control.value.length - 1])
+                const testNumber = "7317317317317"
+                let accNumb = []
+
+                control.value.split('').forEach((n,index) => {
+                    if(index === control.value.length - 1 ) return
+                    const multipliedNumber = n *= Number(testNumber[index])
+                    accNumb.push(multipliedNumber)
+                }  )
+
+
+                const multipliedNumber = accNumb.reduce((acc,curr) => acc + curr,0)
+
+                if(multipliedNumber % 10 === lastNumber) {
+                    return null
+                }
+                else {
+                    return {
+                        invalidPinfl :"PINFL_NOT_VALID"
+                    };
+                }
+            }
+
+
+        };
+    }
+}

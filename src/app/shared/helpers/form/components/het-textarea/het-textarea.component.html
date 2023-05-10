@@ -1,8 +1,8 @@
-<div class="flex flex-row relative">
+<div class="flex flex-row relative textarea-row">
     <div  class="font-bold" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
         {{ label | transloco}} <span *ngIf="required" style="color: red">*</span>
     </div>
-    <mat-form-field  [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }">
+    <mat-form-field  [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'readonly-bg-color' : readonly}">
         <textarea
                 [rows]="rows"
                 [id]="color"
@@ -13,6 +13,10 @@
                 [disabled]="disabled"
                 (input)="onTextareaChange(value)"
         ></textarea>
+        <span *ngIf="value?.length && !disabled && !readonly" (click)="toNull($event)" class="flex items-center py-2 bg-white" matSuffix
+              mat-icon-button>
+            <mat-icon class="font-black text-black">close</mat-icon>
+        </span>
     </mat-form-field>
     <div *ngIf="showError" error-popover>
         {{errorMessage}}

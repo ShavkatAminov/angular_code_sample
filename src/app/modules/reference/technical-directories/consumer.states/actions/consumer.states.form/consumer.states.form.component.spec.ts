@@ -5,16 +5,14 @@ import {AppModule} from "../../../../../../app.module";
 import {SharedModule} from "../../../../../../shared/shared.module";
 
 
+import {imports} from "@test/imports";
 describe('ConsumerStatesFormComponent', () => {
   let component: ConsumerStatesFormComponent;
   let fixture: ComponentFixture<ConsumerStatesFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-          AppModule,
-          SharedModule,
-      ],
+        imports: imports,
       declarations: [ ConsumerStatesFormComponent ]
     })
     .compileComponents();

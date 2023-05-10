@@ -7,8 +7,6 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup } from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
@@ -34,16 +32,6 @@ export class DistrictsComponent extends BasicReferencePage{
         request: new ReferenceDropDownRequest(ReferenceApiUrls.REGIONS),
       },
       field: 'regions.nameUz', headerName: 'GENERAL.REGION'},
-    {
-      floatingFilterComponentParams: {
-        type: 'status',
-      },
-      field: 'status',  maxWidth: 204, headerName: 'GENERAL.STATUS', type: 'status'},
+    {field: 'status',  maxWidth: 204, headerName: 'GENERAL.STATUS', type: 'status'},
   ];
-  override filter: FilterFieldGroup = {
-    code: new FilterField('GENERAL.CODE', 'input'),
-    nameUz: new FilterField('GENERAL.NAME', 'input'),
-    regionId: new FilterField('GENERAL.REGION', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.REGIONS)),
-    status: new FilterField('GENERAL.STATUS', 'status'),
-  }
 }

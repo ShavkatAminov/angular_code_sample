@@ -1,20 +1,21 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BasicReferencePage} from "../../basic.reference.page";
 import {ColDef} from "ag-grid-community";
-import {SizeModal} from "../../../../shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {PsFiderTpFormComponent} from "./actions/ps.fider.tp.form/ps.fider.tp.form.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
-import {FormModalComponent} from "../../../../shared/helpers/form.modal/form.modal.component";
+import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-
-import {FilterField, FilterFieldGroup} from 'app/shared/helpers/filter/filter.component/filterField';
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
     template: basicTemplate(),
 })
-export class PsFiderTpCompoent extends BasicReferencePage {
+export class PsFiderTpCompoent extends BasicReferencePage implements OnInit{
+    ngOnInit(): void {
+        this.defaultColumnDef["minWidth"] = 150;
+    }
     columnDefs: ColDef[] = [
         {
             field: 'code',
@@ -40,25 +41,7 @@ export class PsFiderTpCompoent extends BasicReferencePage {
             },
             colId: 'affiliationId',
             field: 'affiliation.nameUz',
-            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.AFFILIATION',
-        },
-        {
-            floatingFilterComponentParams: {
-                type: 'autocomplete',
-                request: new ReferenceDropDownRequest(ReferenceApiUrls.SUBSTATION),
-            },
-            colId: 'upSteamSubstationId',
-            field: 'substation.nameUz',
-            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.SUBSTATION',
-        },
-        {
-            floatingFilterComponentParams: {
-                type: 'autocomplete',
-                request: new ReferenceDropDownRequest(ReferenceApiUrls.COATO_BRANCHES),
-            },
-            colId: 'coatoBranchId',
-            field: 'coatoBranches.nameUz',
-            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.COATO_BRANCH',
+            headerName: 'ACCOUNTING_SETTLEMENT_HC.AFFILIATION',
         },
         {
             floatingFilterComponentParams: {
@@ -66,8 +49,15 @@ export class PsFiderTpCompoent extends BasicReferencePage {
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.PS_FIDER_TP),
             },
             colId: 'upSteamFiderId',
-            field: 'psFiderTP.nameUz',
             headerName: 'MENU.REFERENCE.GENERAL_GUIDES.UP_STEAM_FIDER',
+            valueGetter:params=>{
+                console.log(params)
+                if (params.data && params.data.psFiderTpTypeId==3){
+                    return params?.data?.upSteamFider.nameUz
+                }else {
+                    return ''
+                }
+            },
         },
         {
             field: 'capacity',
@@ -79,13 +69,11 @@ export class PsFiderTpCompoent extends BasicReferencePage {
             type: 'date'
         },
         {
-            field: 'createdBy',
+            type: 'user',
+            field: 'createdByName',
             headerName: 'GENERAL.CREATED_BY'
         },
         {
-            floatingFilterComponentParams: {
-                type: 'status',
-            },
             field: 'status',
             headerName: 'GENERAL.STATUS',
             type: 'status'
@@ -100,17 +88,5 @@ export class PsFiderTpCompoent extends BasicReferencePage {
             if (res)
                 this.reload();
         });
-    }
-
-    override filter: FilterFieldGroup = {
-        code: new FilterField('GENERAL.CODE', 'input'),
-        nameUz: new FilterField('GENERAL.NAME', 'input'),
-        psFiderTpTypeId: new FilterField('MENU.REFERENCE.GENERAL_GUIDES.PS_FIDER_TP_TYPE', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.PS_FIDER_TP_TYPE)),
-        affiliationId: new FilterField('MENU.REFERENCE.GENERAL_GUIDES.AFFILIATION', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.AFFILIATION)),
-        upSteamSubstationId: new FilterField('MENU.REFERENCE.GENERAL_GUIDES.SUBSTATION', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.SUBSTATION)),
-        coatoBranchId: new FilterField('MENU.REFERENCE.GENERAL_GUIDES.COATO_BRANCH', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.COATO_BRANCHES)),
-        upSteamFiderId: new FilterField('MENU.REFERENCE.GENERAL_GUIDES.UP_STEAM_FIDER', 'autocomplete', new ReferenceDropDownRequest(ReferenceApiUrls.PS_FIDER_TP)),
-        capacity: new FilterField('MENU.REFERENCE.GENERAL_GUIDES.СAPACITY', 'input'),
-        status: new FilterField('GENERAL.STATUS', 'status'),
     }
 }

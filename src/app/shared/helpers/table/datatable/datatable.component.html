@@ -1,27 +1,32 @@
-<div class="mt-1" style="padding: 10px; background: #fff; border-radius: 10px">
-    <div class="flex flex-wrap w-full gap-2 mb-3">
-
+<div class="mt-1 flex flex-col"  style="padding: 10px; background: #fff; border-radius: 10px; height: 100%;">
+    <div class="flex-none flex flex-wrap w-full gap-2 mb-3" *ngIf="checkPagination">
             <ng-content></ng-content>
-            <div class="flex justify-end ml-auto items-center" [showFilter]="showFilter" (filterBtnClicked)="filterButtonClick.emit()" (changeEvent)="paginationChanged($event)" het-pagination #paginationComponent></div>
+            <div class="ml-auto flex items-center gap-x-1 mr-2">
+                <div class="font-bold">
+                    {{'ACCOUNTING_SETTLEMENT_LC.TOTAL' | transloco}} :
+                </div>
 
-
+                <div>{{totalElements}}</div>
+            </div>
+            <div class="flex justify-end items-center" [showFilter]="showFilter" (filterBtnClicked)="filterButtonClick.emit()" (changeEvent)="paginationChanged($event)" het-pagination #paginationComponent></div>
     </div>
-    <ag-grid-angular #agGrid style="width: 100%; height: 100%;" class="ag-theme-alpine"
+    <ag-grid-angular #agGrid style="width: 100%" class="ag-theme-alpine flex-grow"
                      (rowDoubleClicked)="handleRowDoubleClicked($event)"
-                     [domLayout]="'autoHeight'"
                      [gridOptions]="gridOptions"
-                     [isFullWidthCell]="isFullWidthCell"
                      [headerHeight]="32"
                      (gridReady)="onGridReady($event)"
                      [rowHeight]="32"
                      [defaultColDef]="basicDefaultColumnDef"
-                     rowSelection="single"
+                     [rowSelection]="rowSelection"
                      [suppressMovableColumns]="true"
                      (selectionChanged)="onSelectionChangedEvent()"
+                     (rowSelected)="onRowSelectedEvent($event)"
                      (rowClicked)='handleRowClicked($event)'
+                     (modelUpdated)="onFirstDataRenderedEvent($event)"
                      [columnDefs]="columnDefs"
                      [columnTypes]="columnTypes"
                      [stopEditingWhenCellsLoseFocus]="true"
+                     [suppressRowClickSelection]="suppressRowClickSelection"
                      [rowData]="rowData">
     </ag-grid-angular>
 </div>

@@ -16,7 +16,7 @@ export class OperatorTypeBindingFormComponent extends BasicModalForm{
     code: new FormControl(null, [Validators.required]),
     nameUz: new FormControl(null, [Validators.required]),
     providerId: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
     receiveSmsFromRes: new FormControl(null, [Validators.required]),
   });
 

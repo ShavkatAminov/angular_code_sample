@@ -5,22 +5,19 @@ import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "../../../../shared/shared.module";
 import {AppModule} from "../../../../app.module";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('PaymentDocumentTypeComponent', () => {
   let component: PaymentDocumentTypeComponent;
   let fixture: ComponentFixture<PaymentDocumentTypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        TranslocoModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+        imports: imports,
       declarations: [ PaymentDocumentTypeComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(PaymentDocumentTypeComponent);
     component = fixture.componentInstance;

@@ -4,6 +4,7 @@ import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
 import {ReferenceApiUrls} from "../../../../referenceApiUrls";
 import {ReferenceDropDownRequest} from "../../../../basic/ReferenceDropDownRequest";
 import {BasicModalForm} from "@shared/helpers/form/modal/basic.modal.form";
+import {ReferenceListRequest} from "@app/modules/reference/basic/ReferenceListRequest";
 
 @Component({
   templateUrl: './bank.mfos.form.component.html',
@@ -11,14 +12,12 @@ import {BasicModalForm} from "@shared/helpers/form/modal/basic.modal.form";
 })
 export class BankMfosFormComponent extends BasicModalForm {
 
-  
-
   override form = new FormGroup({
     regionCode: new FormControl(null, [Validators.required]),
     bankId: new FormControl(null, [Validators.required]),
-    bankMfo: new FormControl(null, [Validators.required]),
+    bankMfo: new FormControl(null, [Validators.required, Validators.minLength(5)]),
     nameUz: new FormControl(null, [Validators.required]),
-    status: new FormControl(null, [Validators.required]),
+    status: new FormControl(true, [Validators.required]),
   });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.BANK_MFOS);

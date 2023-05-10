@@ -1,11 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { OwnershipClassifierComponent } from './ownership.classifier.component';
-import {TranslocoModule} from "@ngneat/transloco";
-import {HttpClientModule} from "@angular/common/http";
-import {SharedModule} from "../../../../shared/shared.module";
-import {AppModule} from "../../../../app.module";
-
+import {imports} from "@test/imports";
 
 describe('OwnershipClassifierComponent', () => {
   let component: OwnershipClassifierComponent;
@@ -13,12 +8,7 @@ describe('OwnershipClassifierComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        HttpClientModule,
-        TranslocoModule,
-        AppModule,
-      ],
+      imports: imports,
       declarations: [ OwnershipClassifierComponent ]
     })
     .compileComponents();

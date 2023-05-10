@@ -4,8 +4,9 @@
             <mat-label class="font-bold" *ngIf="field.label" [ngStyle]="{'width':labelWidth+'%'}">
                 {{ field.label | transloco}} <span style="color: red" *ngIf="required">*</span>
             </mat-label>
-            <mat-form-field [ngStyle]="field.label ? {'width':(100-labelWidth)+'%'} : { 'width':'100%' }"
-                            [ngClass]="{'errorInput' : showError}">
+            <mat-form-field
+                    [ngStyle]="field.label ? {'width':(100-labelWidth)+'%'} : { 'width':'100%' }"
+                    [ngClass]="{'errorInput' : showError, 'mat-select-readonly' : readonly, 'readonly-bg-color' : !field.isClickable}">
                 <input type="text"
                        [disabled]="disabled"
                        autocomplete="off"
@@ -16,11 +17,19 @@
                        [value]="values[i]"
                        [name]="field.name"
                        required="false"
-                       (click)="field.isClickable && onFocus()"
+                       (dblclick)="field.isClickable && onFocus()"
                        [required]="required"
-                       readonly
+                       (change)="onInputChange($event)"
+                       (input)="onInput($event, field.mask)"
+                       [readonly]="!field.isClickable"
+                       [mask]="field.mask"
                 >
-                <mat-icon *ngIf="field.isClickable" class="mat-icon-rtl-mirror -mr-2">arrow_drop_down</mat-icon>
+
+                <span (click)="toNull()" *ngIf="values[i] && !readonly" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix mat-icon-button>
+                    <mat-icon *ngIf="values[i]" class="font-black text-black mat-clear-icon">close</mat-icon>
+                </span>
+
+                <mat-icon *ngIf="field.isClickable && !values[i]" class="mat-icon-rtl-mirror -mr-2">arrow_drop_down</mat-icon>
             </mat-form-field>
         </div>
     </ng-container>

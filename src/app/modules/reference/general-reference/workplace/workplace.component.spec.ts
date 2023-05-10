@@ -7,19 +7,14 @@ import {AppModule} from "../../../../app.module";
 import {SharedModule} from "../../../../shared/shared.module";
 import {TranslocoModule} from "@ngneat/transloco";
 
+import {imports} from "@test/imports";
 describe('WorkPlaceComponent', () => {
   let component: WorkplaceComponent;
   let fixture: ComponentFixture<WorkplaceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        AgGridModule,
-        AppModule,
-        SharedModule,
-        TranslocoModule,
-      ],
+        imports: imports,
       declarations: [ WorkplaceComponent ]
     })
     .compileComponents();

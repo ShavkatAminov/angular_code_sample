@@ -1,35 +1,38 @@
 import {FuseNavigationItem} from "../../../../@fuse/components/navigation";
-import {ReferenceApiUrls} from "../../../modules/reference/referenceApiUrls";
-import {AccountingSettlementHCApiUrls} from "../../../modules/accounting-settlement-hc/accountingSettlementHCApiUrls";
-import {UserManagementApiUrls} from "../../../modules/user-management/userManagementApiUrls";
-import {AccountingSettlementLCApiUrls} from "../../../modules/accounting-settlement-lc/accountingSettlementLCApiUrls";
+import {ReferenceApiUrls} from "@app/modules/reference/referenceApiUrls";
+import {AccountingSettlementHCApiUrls} from "@app/modules/accounting-settlement-hc/accountingSettlementHCApiUrls";
+import {UserManagementApiUrls} from "@app/modules/user-management/userManagementApiUrls";
+import {AccountingSettlementLCApiUrls} from "@app/modules/accounting-settlement-lc/accountingSettlementLCApiUrls";
+import {MessageSenderApiUrls} from "@app/modules/message-sender/messageSenderApiUrls";
 
 
 export const mainMenuItems: FuseNavigationItem[] = [
-    /*{
-        id      : 'dashboards',
-        title   : 'Komponentalar',
-        type    : 'basic',
-        icon    : 'heroicons_outline:home',
-        link : '/home/widgets'
-    },*/
     {
-        id      : 'dashboards',
+        id      : 'admin',
         title   : 'MENU.ADMINISTRATION.NAME',
         type    : 'collapsable',
         children: [
-            // {
-            //     type: 'collapsable',
-            //     title: "MENU.ADMINISTRATION.ROLE_MANAGEMENT.NAME",
-            //     children: [
-            //     ]
-            // },
+            {
+                type: 'basic',
+                title: "MENU.ADMINISTRATION.ROLE_MANAGEMENT.NAME",
+                link: '/user-management/'+ UserManagementApiUrls.ROLES,
+            },
             // {
             //     type: 'collapsable',
             //     title: "MENU.ADMINISTRATION.USER_MANAGEMENT.NAME",
             //     children: [
             //     ]
             // },
+            {
+                type: 'basic',
+                title: "MENU.ADMINISTRATION.USER_MANAGEMENT.NAME",
+                link: '/user-management/'+ UserManagementApiUrls.USER,
+            },
+            {
+                type: 'basic',
+                title: "MENU.ADMINISTRATION.SYSTEM_SETUP.NAME",
+                link: '/user-management/'+ UserManagementApiUrls.SYSTEM_SETTING,
+            },
             {
                 type: 'collapsable',
                 title: "MENU.ADMINISTRATION.ENSURING_INFORMATION_SAFETY.NAME",
@@ -51,18 +54,17 @@ export const mainMenuItems: FuseNavigationItem[] = [
                             {
                                 type: 'basic',
                                 title: "MENU.ADMINISTRATION.ASSIGNING_USER.NAME",
-                                link: '/user-management/'+ UserManagementApiUrls.USERS + "/userpin",
+                                link: '/user-management/'+ UserManagementApiUrls.PIN_USER
                             },
                             {
                                 type: 'basic',
                                 title: "MENU.ADMINISTRATION.ASSIGNING_TERMINAL.NAME",
-                                link: '/user-management/'+ UserManagementApiUrls.COMPUTERS + "/terminalpin",
+                                link: '/user-management/'+ UserManagementApiUrls.PIN_TERMINAL,
                             },
 
                         ]
                     },
                 ]
-
             },
             // {
             //     type: 'collapsable',
@@ -109,12 +111,22 @@ export const mainMenuItems: FuseNavigationItem[] = [
             //     children: [
             //     ]
             // },
-            // {
-            //     type: 'collapsable',
-            //     title: "MENU.ADMINISTRATION.ASSIGNING_DVS_KEYS_USERS.NAME",
-            //     children: [
-            //     ]
-            // },
+
+            {
+                type: 'basic',
+                title: "MENU.ADMINISTRATION.SYSTEM_SETUP_ACCORDING_SOATO.NAME",
+                link: '/user-management/'+ UserManagementApiUrls.COATO_BRANCH_CONFIGURATIONS,
+            },
+            {
+                type: 'basic',
+                title: "MENU.ADMINISTRATION.EDS_FOR_HET.NAME",
+                link: '/user-management/'  + UserManagementApiUrls.EDS_FOR_HET,
+            },
+            {
+                type: 'basic',
+                title: "MENU.ADMINISTRATION.ASSIGNING_DVS_KEYS_USERS.NAME",
+                link: '/user-management/'  + UserManagementApiUrls.DVS_KEYS,
+            },
             // {
             //     type: 'collapsable',
             //     title: "MENU.ADMINISTRATION.ALLOW_ACCRUAL.NAME",
@@ -129,14 +141,8 @@ export const mainMenuItems: FuseNavigationItem[] = [
             {
                 type: 'basic',
                 title: "MENU.ADMINISTRATION.EDIT_SMS_MESSAGES.NAME",
-                link: '/user-management/'  + UserManagementApiUrls.SMS_MESSAGES,
+                link: '/user-management/'  + MessageSenderApiUrls.SMS_MESSAGE_TEMPLATE,
             },
-            // {
-            //     type: 'collapsable',
-            //     title: "MENU.ADMINISTRATION.SYSTEM_SETUP_ACCORDING_SOATO.NAME",
-            //     children: [
-            //     ]
-            // },
             {
                 title: "MENU.ADMINISTRATION.SETTING_PAYMENT_SYSTEMS.NAME",
                 type: 'basic',
@@ -177,11 +183,61 @@ export const mainMenuItems: FuseNavigationItem[] = [
     //     children: []
     // },
     {
-        id      : 'dashboards',
+        id      : 'reference',
         title   : 'MENU.REFERENCE.NAME',
         type    : 'collapsable',
-        link    : '/reference',
         children: [
+            {
+                type: 'collapsable',
+                title: "MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.NAME",
+                children: [
+                    {
+                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.CLASSIFIER_OF_BRANCHES_OF_THE_NATIONAL_ECONOMY',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.NATIONAL_ECONOMY_BRANCH,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.CLASSIFIER_TYPES_ECONOMIC',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.ECONOMIC_ACTIVITY_TYPE,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.OWNERSHIP_CLASSIFIER',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.OWNERSHIP_CLASSIFIER,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.LEGAL_FORM_CLASSIFIERS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.LEGAL_FORM_CLASSIFIERS,
+                    },
+
+                    {
+                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.STATE_GOVERNMENT_ORGANIZATIONS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS,
+                    },
+
+
+                    {
+                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.SUBGROUP_OF_GOVERNMENT_ORGANIZATIONS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.SUBGROUP_GOVERNMENT_ORGANIZATIONS,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.TREASURY_ORGANIZATIONAL',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.TREASURY_ORGANIZATIONAL,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.DIRECTORY_OF_COMPLEXES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.STATE_COMPLEX,
+                    },
+
+
+                ]
+            },
             {
                 type: 'collapsable',
                 title: "MENU.REFERENCE.GENERAL_GUIDES.NAME",
@@ -192,25 +248,27 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         link: '/reference/' + ReferenceApiUrls.MANAGMENT_POSITIONS,
                     },
                     {
-                        title: 'MENU.REFERENCE.GENERAL_GUIDES.MANAGEMENT_LEVELS',
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.CONSUMPTION_GROUP_GUIDE_BY_CODES',
                         type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.MANAGEMENT_LEVELS,
+                        link: '/reference/' + ReferenceApiUrls.CONSUMPTION_GROUPS,
                     },
+
                     {
                         title: 'MENU.REFERENCE.GENERAL_GUIDES.MANAGEMENT_DIRECTORY',
                         type: 'basic',
                         link: '/reference/' + ReferenceApiUrls.MANAGERS,
                     },
                     {
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.MANAGEMENT_LEVELS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.MANAGEMENT_LEVELS,
+                    },
+                    {
                         title: 'MENU.REFERENCE.GENERAL_GUIDES.MANAGEMENT_TYPES',
                         type: 'basic',
                         link: '/reference/' + ReferenceApiUrls.MANAGEMENT_TYPES,
                     },
-                    {
-                        title: 'MENU.REFERENCE.GENERAL_GUIDES.CONSUMPTION_GROUP_GUIDE_BY_CODES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.CONSUMPTION_GROUPS,
-                    },
+
                     // {
                     //     title: 'MENU.REFERENCE.GENERAL_GUIDES.ENTERPRISE_GROUPS_BY_PAYMENT_TYPES',
                     //     type: 'basic',
@@ -232,24 +290,9 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         link: '/reference/' + ReferenceApiUrls.ORGANIZATIONS,
                     },
                     {
-                        title: 'MENU.REFERENCE.GENERAL_GUIDES.UTILITIES',
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.NEW_PERSONAL_ACCOUNT_RANGE',
                         type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.UTILITIES,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_PS_FEEDER_TP',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.PS_FIDER_TP,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_OF_HOUSING_CATEGORIES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.HOUSING_CATEGORY,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_OF_HOUSING_TYPES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.HOUSING_TYPE,
+                        link: '/reference/' + ReferenceApiUrls.NEW_PERSONAL_ACCOUNT_RANGE,
                     },
                     {
                         title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_COATO',
@@ -266,16 +309,207 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         type: 'basic',
                         link: '/reference/' + ReferenceApiUrls.DISTRICTS,
                     },
+
+                    {
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_LANGUAGE',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.LANGUAGES,
+                    },
+
+
+                    {
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_OF_HOUSING_CATEGORIES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.HOUSING_CATEGORY,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_OF_HOUSING_TYPES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.HOUSING_TYPE,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_PAYMENT_SYSTEMS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.PAYMENT_SYSTEM,
+                    },
+
                     {
                         title: 'MENU.REFERENCE.GENERAL_GUIDES.WORK_PLACES',
                         type: 'basic',
                         link: '/reference/' + ReferenceApiUrls.WORK_PLACE,
                     },
                     {
-                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_LANGUAGE',
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.UTILITIES',
                         type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.LANGUAGES,
+                        link: '/reference/' + ReferenceApiUrls.UTILITIES,
                     },
+
+                    {
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_PS_FEEDER_TP',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.PS_FIDER_TP,
+                    },
+                ]
+            },
+            {
+                type: 'collapsable',
+                title: "MENU.REFERENCE.STRUCTURAL_GUIDES.NAME",
+                children: [
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.BRIGADES_DIRECTORY',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.BRIGADES,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.DIRECTORY_OF_BOOKS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.BOOKS,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.AGENTS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.AGENT,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.POST_OFFICE_DIRECTORY',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.POST_OFFICES,
+                    },
+
+
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.STREETS_DIRECTORY',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.STREETS_DIRECTORY,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.DIRECTORY_OF_HABITATION_DIVISIONS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.HABITATION_DIVISIONS,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.DIRECTORY_OF_ORGANIZATIONS_ACCEPTING_PAYMENTS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.RECEIVER_ORGANIZATIONS,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.TCHSJ',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.AOPH,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.ARBITRATION',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.ARBITRATIONS,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.ORC_AGENTS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.ORC_AGENT
+                    },
+
+
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.DIRECTORY_OF_COUNTERS_INSTALLED_ON_THE_PARTITION_BOUNDARY',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.INTERFACE_INSTALLED_METER,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.SENDER_ORGANIZATION_TYPES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.SENDER_ORGANIZATION_TYPES,
+                    },
+                    {
+                        title: 'REFERENCE.CONSUMER_TYPE',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.CONSUMER_TYPE,
+                    },
+                ]
+            },
+            {
+                type: 'collapsable',
+                title: "MENU.REFERENCE.TECHNICAL_GUIDES.NAME",
+                children: [
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_TRANSFORMER_TYPES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.TRANSFORMER_TYPES,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_COUNTER_TYPES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.METER_TYPE,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.MATERIALS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.MATERIALS,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.SUBSTATION_DIRECTORY',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.SUBSTATION,
+                    },
+
+
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.REFERENCE_BOOK_OF_REACTIVE_E/E_RATIOS_AT_CONSTANT_AK',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.REACTIVE_ACTIVE,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.HANDBOOK_FOR_ASSESSING_THE_LEVEL_OF_ELECTRICITY_LOSSES_IN_NETWORKS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.LEVELS_OF_ELECTRICITY_LOSES,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_STANDARD_VALUES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.STANDARD_VALUES,
+                    },
+
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_ASKUE_TYPES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.ASKUE_TYPES,
+                    },
+
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.ASKUE_BINDING_ACCORDING_TO_COATO',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.COATO_ASKUE_BINDING,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.PROVIDER_TYPES_REFERENCE',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.PROVIDER_TYPE,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.OPERATOR_TYPE_BINDING',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.OPERATOR_TYPE_BINDINGS,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.METER_MANUFACTURERS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.METER_MANUFACTURER,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.ERROR_CODES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.ERROR_CODE,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.CONSUMER_STATES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.CONSUMER_STATES,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.LEGAL_REPORT_STATUSES',
+                        type: 'basic',
+                        link: '/reference/' + AccountingSettlementLCApiUrls.LEGAL_REPORT_STATUSES,
+                    },
+
                 ]
             },
             {
@@ -367,54 +601,14 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         type: 'basic',
                         link: '/reference/' + ReferenceApiUrls.CONSUMPTION_VOLUME,
                     },
-                ]
-            },
-            {
-                type: 'collapsable',
-                title: "MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.NAME",
-                children: [
                     {
-                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.CLASSIFIER_OF_BRANCHES_OF_THE_NATIONAL_ECONOMY',
+                        title: 'MENU.REFERENCE.ACCOUNTING_HANDBOOKS.FINE_PERCENTAGES',
                         type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.NATIONAL_ECONOMY_BRANCH,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.LEGAL_FORM_CLASSIFIERS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.LEGAL_FORM_CLASSIFIERS,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.OWNERSHIP_CLASSIFIER',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.OWNERSHIP_CLASSIFIER,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.STATE_GOVERNMENT_ORGANIZATIONS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.SUBGROUP_OF_GOVERNMENT_ORGANIZATIONS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.SUBGROUP_GOVERNMENT_ORGANIZATIONS,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.DIRECTORY_OF_COMPLEXES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.STATE_COMPLEX,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.CLASSIFIER_TYPES_ECONOMIC',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.ECONOMIC_ACTIVITY_TYPE,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.TREASURY_ORGANIZATIONAL',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.TREASURY_ORGANIZATIONAL,
+                        link: '/reference/' + AccountingSettlementLCApiUrls.FINE_PERCENTAGES,
                     },
                 ]
             },
+
             {
                 type: 'collapsable',
                 title: "MENU.REFERENCE.CB_HANDBOOKS.NAME",
@@ -426,159 +620,7 @@ export const mainMenuItems: FuseNavigationItem[] = [
                     },
                 ]
             },
-            {
-                type: 'collapsable',
-                title: "MENU.REFERENCE.STRUCTURAL_GUIDES.NAME",
-                children: [
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.DIRECTORY_OF_ORGANIZATIONS_ACCEPTING_PAYMENTS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.RECEIVER_ORGANIZATIONS,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.SENDER_ORGANIZATION_TYPES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.SENDER_ORGANIZATION_TYPES,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.TCHSJ',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.AOPH,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.ARBITRATION',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.ARBITRATIONS,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.AGENTS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.AGENT,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.DIRECTORY_OF_BOOKS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.BOOKS,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.POST_OFFICE_DIRECTORY',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.POST_OFFICES,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.STREETS_DIRECTORY',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.STREETS_DIRECTORY,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.DIRECTORY_OF_HABITATION_DIVISIONS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.HABITATION_DIVISIONS,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.BRIGADES_DIRECTORY',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.BRIGADES,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.ORC_AGENTS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.ORC_AGENT
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.DIRECTORY_OF_COUNTERS_INSTALLED_ON_THE_PARTITION_BOUNDARY',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.INTERFACE_INSTALLED_METER,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.STRUCTURAL_GUIDES.CONSUMER_TYPE',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.CONSUMER_TYPE,
-                    },
-                ]
-            },
-            {
-                type: 'collapsable',
-                title: "MENU.REFERENCE.TECHNICAL_GUIDES.NAME",
-                children: [
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_COUNTER_TYPES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.METER_TYPE,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.CONSUMER_STATES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.CONSUMER_STATES,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.MATERIALS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.MATERIALS,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.REFERENCE_BOOK_OF_REACTIVE_E/E_RATIOS_AT_CONSTANT_AK',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.REACTIVE_ACTIVE,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.HANDBOOK_FOR_ASSESSING_THE_LEVEL_OF_ELECTRICITY_LOSSES_IN_NETWORKS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.LEVELS_OF_ELECTRICITY_LOSES,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_STANDARD_VALUES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.STANDARD_VALUES,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.SUBSTATION_DIRECTORY',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.SUBSTATION,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_ASKUE_TYPES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.ASKUE_TYPES,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_TRANSFORMER_TYPES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.TRANSFORMER_TYPES,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.ASKUE_BINDING_ACCORDING_TO_COATO',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.COATO_ASKUE_BINDING,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.PROVIDER_TYPES_REFERENCE',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.PROVIDER_TYPE,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.OPERATOR_TYPE_BINDING',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.OPERATOR_TYPE_BINDINGS,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.METER_MANUFACTURERS',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.METER_MANUFACTURER,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.ERROR_CODES',
-                        type: 'basic',
-                        link: '/reference/' + ReferenceApiUrls.ERROR_CODE,
-                    },
-                    {
-                        title: 'MENU.REFERENCE.TECHNICAL_GUIDES.LEGAL_REPORT_STATUSES',
-                        type: 'basic',
-                        link: '/reference/' + AccountingSettlementLCApiUrls.LEGAL_REPORT_STATUSES,
-                    },
 
-                ]
-            }
         ],
     },
     // {
@@ -600,10 +642,9 @@ export const mainMenuItems: FuseNavigationItem[] = [
     //     ]
     // },
     {
-        id      : 'dashboards',
+        id      : 'accounting-settlement-hc',
         title   : 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.NAME',
         type    : 'collapsable',
-        link    : '/household-consumer',
         children: [
             {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.MAINTENANCE_OF_THE_LIFE_CONTRACT',
@@ -643,11 +684,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
                 ]
                 ,
             },
-            // {
-            //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.SETTLEMENTS_AND_REVOLVING_CARD_LIFE',
-            //     type: 'basic',
-            //     link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
-            // },
+            {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.SETTLEMENTS_AND_REVOLVING_CARD_LIFE',
+                type: 'basic',
+                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.SETTLEMENTS_AND_NEGOTIABLE_CARD,
+            },
             {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.NAME',
                 type: 'collapsable',
@@ -681,18 +722,43 @@ export const mainMenuItems: FuseNavigationItem[] = [
                                 type: 'basic',
                                 link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.METER_REPLACEMENT_ATTIRE,
                             },
-            //                 {
-            //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_CANCELLATION',
-            //                     type: 'basic',
-            //                     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
-            //                 },
+                            {
+                                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_CANCELLATION',
+                                type: 'basic',
+                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_ANNULMENT_ATTIRES,
+                            },
+                            // {
+                            //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.CALL_FITTER',
+                            //     type: 'basic',
+                            //     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
+                            // },
+                            {
+                                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.CALL_FITTER',
+                                type: 'basic',
+                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_CALL_ELECTRIAN_ATTIRES,
+                            },
             //                 {
             //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.CALL_FITTER',
             //                     type: 'basic',
             //                     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
             //                 },
+                            {
+                                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_SEALING',
+                                type: 'basic',
+                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_INSTALL_STAMP_ATTIRE,
+                            },
             //                 {
             //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_SEALING',
+            //                     type: 'basic',
+            //                     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
+            //                 },
+                            {
+                                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_HELP',
+                                type: 'basic',
+                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.METER_REFERENCE_ATTIRE,
+                            },
+            //                 {
+            //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_CHECKING',
             //                     type: 'basic',
             //                     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
             //                 },
@@ -701,11 +767,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
             //                     type: 'basic',
             //                     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
             //                 },
-            //                 {
-            //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_CHECKING',
-            //                     type: 'basic',
-            //                     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
-            //                 },
+                            {
+                                title: 'ACCOUNTING_SETTLEMENT_LC.FOR_CHECKING',
+                                type: 'basic',
+                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_CHECKING_ATTIRE,
+                            },
             //                 {
             //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.INSTALLATION_(NEW)',
             //                     type: 'basic',
@@ -727,9 +793,20 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ACT',
                         type: 'basic',
                         link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_ACT,
+                    },
+                    {
+                        title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.CONSUMER_STATEMENT',
+                        type: 'basic',
+                        link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.CONSUMER_STATEMENT,
+                    },
+                    {
+                        title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.HOUSEHOLD_READING_TASKS',
+                        type: 'basic',
+                        link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_READING_TASKS,
                     }
                 ]
             },
+
             // {
             //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.EANALYSIS_OF_PAYMENT_CALCULATIONS',
             //     type: 'basic',
@@ -745,11 +822,27 @@ export const mainMenuItems: FuseNavigationItem[] = [
             //     type: 'basic',
             //     link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
             // },
-            // {
-            //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENUMERATION_WORK',
-            //     type: 'basic',
-            //     link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
-            // },
+            {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENUMERATION_WORK.NAME',
+                type: 'collapsable',
+                children:[
+                        {
+                            title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ACCEPTANCE_AND_ADJ_OF_PAYMENTS_BY_TRANSFER',
+                            type: 'basic',
+                            link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_BANK_TRANSFER_ORDERS,
+                        },
+                        {
+                            title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENUMERATION_WORK.FIXING_PLACE_WORK',
+                            type: 'basic',
+                            link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.FIXING_PLACE_WORK,
+                        },
+                    {
+                        title: 'ACCOUNTING_SETTLEMENT_HC.SEPARATION_FROM_WORK',
+                        type: 'basic',
+                        link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.SEPARATION_FROM_WORK,
+                    },
+                    ]
+            },
             // {
             //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.AGMK',
             //     type: 'basic',
@@ -765,11 +858,7 @@ export const mainMenuItems: FuseNavigationItem[] = [
             //     type: 'basic',
             //     link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
             // },
-            // {
-            //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.CHANGE_METER_SERIAL_NUMBER',
-            //     type: 'basic',
-            //     link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
-            // },
+
             // {
             //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.TRANSFER_OF_A_CONSUMER_FROM_A_REP_TO_A_REP',
             //     type: 'basic',
@@ -805,14 +894,23 @@ export const mainMenuItems: FuseNavigationItem[] = [
                 type: 'basic',
                 link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.UPDATE_CONTRACT_VALUE,
             },
+            {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.REPLACEMENT_OF_THE_CONTRCT_VALUE',
+                type: 'basic',
+                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_CONSUMER_CONTRACT_UPDATE_CONSUMPTION_MENU,
+            },
+            {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.CHANGE_METER_SERIAL_NUMBER',
+                type: 'basic',
+                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_CONSUMER_METERS_UPDATE_SERIAL,
+            },
 
         ]
     },
     {
-        id      : 'dashboards',
+        id      : 'accounting-settlement-lc',
         title   : 'MENU.ACCOUNTING_SETTLEMENT_LEGAL_CONSUMERS.NAME',
         type    : 'collapsable',
-        link    : '/reference',
         children: [
             {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_LEGAL_CONSUMERS.CONTRACT',
@@ -823,25 +921,43 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         title: 'ACCOUNTING_SETTLEMENT_LC.MAINTAINING_CONTRACTS',
                         type: 'basic',
                         link: '/accounting-settlement-lc/'+ AccountingSettlementLCApiUrls.LEGAL_CONSUMER_CONTRACT,
-                        children: [
-                            {
-                                title: 'ACCOUNTING_SETTLEMENT_LC.VENUES',
-                                type: 'basic',
-                                link: '/accounting-settlement-lc/'+ AccountingSettlementLCApiUrls.LEGAL_FIELD,
-                            },
-                        ]
+                    },
+                    {
+                        title: 'ACCOUNTING_SETTLEMENT_LC.VENUES',
+                        type: 'basic',
+                        link: '/accounting-settlement-lc/'+ AccountingSettlementLCApiUrls.LEGAL_FIELD +'/\\d+',
+                        hidden: true,
+                        disabled: true,
+                    },
+                    {
+                        title: 'ACCOUNTING_SETTLEMENT_LC.METERS',
+                        type: 'basic',
+                        link: '/accounting-settlement-lc/'+ AccountingSettlementLCApiUrls.LEGAL_FIELD_ADD_METERS +'/\\d+',
+                        hidden: true,
+                        disabled: true,
                     },
                 ]
             },
+
             {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_LEGAL_CONSUMERS.LEGAL_PAYMENT',
                 type: 'basic',
                 link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_PAYMENTS,
             },
             {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_LEGAL_CONSUMERS.SETTLEMENT_AND_REVOLVING_LEGAL_CARD',
+                type: 'basic',
+                link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_CONSUMER_INVOICES,
+            },
+            {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_LEGAL_CONSUMERS.LEGAL_METER_READINGS',
                 type: 'basic',
                 link: '/accounting-settlement-lc/'+AccountingSettlementLCApiUrls.LEGAL_METER_READINGS_INITIAL,
+            },
+            {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.REPLACEMENT_OF_CONSUMER_DETAILS',
+                type: 'basic',
+                link: '/accounting-settlement-lc/'+AccountingSettlementLCApiUrls.LEGAL_CONSUMER_DETAILS,
             },
             {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.NAME',
@@ -872,12 +988,32 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         type: 'basic',
                         link: '/accounting-settlement-lc/'+AccountingSettlementLCApiUrls.LEGAL_ACTS + "/debt",
                     },
+                    {
+                        title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ACTS.ACT_RECONNECTION',
+                        type: 'basic',
+                        link: '/accounting-settlement-lc/'+AccountingSettlementLCApiUrls.LEGAL_ACTS + "/reconnection",
+                    },
+                    {
+                        title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ACTS.OTHER_ATTIRE',
+                        type: 'basic',
+                        link: '/accounting-settlement-lc/'+AccountingSettlementLCApiUrls.LEGAL_OTHER_ATTIRE,
+                    },
 
 
                     {
                         title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.NAME',
                         type: 'collapsable',
                         children: [
+                            {
+                                title: 'ACCOUNTING_SETTLEMENT_LC.SWITCHING_ATTIRES',
+                                type: 'basic',
+                                link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_SWITCHING_ATTIRES,
+                            },
+                            {
+                                title: 'ACCOUNTING_SETTLEMENT_LC.TERMINATE_CONTRACT_ATTIRES',
+                                type: 'basic',
+                                link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.TERMINATE_CONTRACT_ATTIRES,
+                            },
                             {
                                 title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.PER_INSTALLATION',
                                 type: 'basic',
@@ -888,9 +1024,30 @@ export const mainMenuItems: FuseNavigationItem[] = [
                                  type: 'basic',
                                  link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_METER_REPLACING_ATTIRES,
                              },
+                            {
+                                 title: 'ACCOUNTING_SETTLEMENT_LC.OUTFIT_REPLACEMENT_COEFFICIENT_TRANSFORMATION',
+                                 type: 'basic',
+                                 link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_REPLACEMENT_TRANSFORMATION_COEFFICIENT_ATTIRE,
+                             },
+                            {
+                                 title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_SEALING',
+                                 type: 'basic',
+                                 link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_STAMP_ATTIRES,
+                             },
                         ]
                     }
                 ]
+            },
+            {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_LEGAL_CONSUMERS.VIEW_TRANSLATED_CONSUMERS',
+                type: 'basic',
+                link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_CONSUMER_TRANSFER,
+            },
+
+            {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.TRANSFER_OF_A_CONSUMER_FROM_A_REP_TO_A_REP',
+                type: 'basic',
+                link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_CONSUMER_TRANSFER_RESP_TO_RESP,
             },
 
             ]
@@ -899,7 +1056,6 @@ export const mainMenuItems: FuseNavigationItem[] = [
         id: 'dashboards',
         title: 'MENU.ACCOUNTING_MOVEMENT_TECHNICAL_MEANS.NAME',
         type: 'collapsable',
-        link: '/reference',
         children: [
             {
                 title: 'MENU.ACCOUNTING_MOVEMENT_TECHNICAL_MEANS.WAREHOUSE_COUNTERS',
@@ -908,11 +1064,7 @@ export const mainMenuItems: FuseNavigationItem[] = [
             },
         ],
     },
-    //         {
-    //             title: 'MENU.ACCOUNTING_MOVEMENT_TECHNICAL_MEANS.HOUSEHOLD_CONSUMERS',
-    //             type: 'basic',
-    //             link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
-    //         },
+
     //         {
     //             title: 'MENU.ACCOUNTING_MOVEMENT_TECHNICAL_MEANS.LEGAL_CONSUMERS',
     //             type: 'basic',

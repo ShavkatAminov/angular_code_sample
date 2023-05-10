@@ -4,6 +4,9 @@ import {TranslocoService} from "@ngneat/transloco";
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {AbstractSearch} from "../../requests/AbstractSearch";
 import {FilterInput} from "@shared/helpers/table/datatable/filter/Input";
+import {UserManagementDropDownRequest} from "@app/modules/user-management/basic/UserManagementDropDownRequest";
+import {UserManagementApiUrls} from "@app/modules/user-management/userManagementApiUrls";
+import {transferStatus} from "@app/modules/accounting-settlement-lc/enums/transferStatus";
 
 @Component({
     template: ''
@@ -34,6 +37,8 @@ export abstract class BasicDataTable {
     @Input() dataKey: string | null = 'content'
     @Input() totalKey = 'totalElements'
     @Input() showFilter = true;
+    @Input() rowSelection: 'single' | 'multiple' | undefined = 'single';
+    @Input() suppressRowClickSelection: boolean | undefined = undefined;
 
 
 
@@ -44,6 +49,8 @@ export abstract class BasicDataTable {
     @Output() onDataLoad: EventEmitter<null> = new EventEmitter();
     @Output() onRowClicked:EventEmitter<any> = new EventEmitter();
     @Output() onRowDoubleClicked: EventEmitter<any> = new EventEmitter();
+    @Output() onRowSelected: EventEmitter<any> = new EventEmitter();
+    @Output() onFirstDataRendered: EventEmitter<any> = new EventEmitter();
 
     protected constructor(protected translate: TranslocoService) {}
 
@@ -57,13 +64,45 @@ export abstract class BasicDataTable {
 
     columnTypes =  {
         status: {
+            floatingFilterComponentParams: {
+                type: 'status',
+            },
             cellClass: params => params.value ? "text-green-500 font-semibold" : "text-orange-500 font-semibold",
             cellRenderer: params => (this.translate.translate((params.value ? "GENERAL.ACTIVE" : "GENERAL.INACTIVE")))
         },
+        transferStatus: {
+            floatingFilterComponentParams: {
+                type: 'select',
+                options: [
+                    {id: '', name: ''},
+                    {id: 'INTRODUCED', name: this.translate.translate("GENERAL.INTRODUCED")},
+                    {id: 'APPROVED', name: this.translate.translate("GENERAL.APPROVED")}
+                ]
+            },
+            cellRenderer: params => (this.translate.translate((params.value === transferStatus.INTRODUCED ? "GENERAL.INTRODUCED" : "GENERAL.APPROVED")))
+        },
+        electronicPaymentAccess: {
+            floatingFilterComponentParams: {
+                type: 'select',
+                options: [
+                    {id: null, name: ''},
+                    {id: true, name: this.translate.translate("GENERAL.INTRODUCED")},
+                    {id: false, name: this.translate.translate("GENERAL.APPROVED")}
+                ]
+            },
+            cellRenderer: params => (this.translate.translate((params.value === transferStatus.INTRODUCED ? "GENERAL.INTRODUCED" : "GENERAL.APPROVED")))
+        },
         yesNo: {
+            floatingFilterComponentParams: {
+                type: 'yesNo',
+            },
             cellRenderer: params => (this.translate.translate((params.value ? "GENERAL.YES" : "GENERAL.NO")))
         },
         date: {
+            floatingFilterComponentParams: {
+                type: 'date',
+            },
+            minWidth: 280,
             cellRenderer: params => DateUtil.formatDate(params.value)
         },
         address: {
@@ -75,6 +114,21 @@ export abstract class BasicDataTable {
                 params.value && params.value && params.value.corpusNumber ? address += params.value.corpusNumber + ' ' : address += ''
                 return address
             }
+        },
+        code_nameUz: {
+            cellRenderer: params => {
+                let result = ''
+                params.value && params.value && params.value.code ? result += params.value.code  + ' - ' : result += ''
+                params.value && params.value && params.value.nameUz ? result += params.value.nameUz + ' ' : result += ''
+                return result;
+            }
+        },
+        user: {
+            minWidth: 300,
+            floatingFilterComponentParams: {
+                type: 'autocomplete-search',
+                request: new UserManagementDropDownRequest(UserManagementApiUrls.USER)
+            },
         }
     };
 }
