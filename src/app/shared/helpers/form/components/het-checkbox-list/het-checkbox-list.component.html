@@ -1,9 +1,9 @@
-<div class="hel-select-row flex flex-row items-start  relative">
-    <mat-label class="font-bold pt-2" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
+<div [class]="allowLabelStart?'group checkbox-section flex items-start':'group checkbox-section flex items-center'">
+    <mat-label [ngClass]="labelPositionRight ? 'font-bold pt-2 text-right pr-2': 'font-bold pt-2'" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
         {{ label | transloco}}
         <span style="color:red" *ngIf="required">*</span>
     </mat-label>
-    <div [ngStyle]="label? { 'width': (widthInput-widthLabel) + '%'} : { 'width': '100%' }">
+    <div [ngStyle]="label? { 'width': (widthInput-widthLabel) + '%'} : { 'width': '100%' }" [class]="styles">
         <div *ngFor="let item of suggestions">
             <mat-checkbox
                     [(ngModel)]="item.checked"
@@ -17,7 +17,7 @@
             </mat-checkbox>
         </div>
     </div>
-    <div *ngIf="showError" error-popover>
+    <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
         {{errorMessage}}
     </div>
 </div>

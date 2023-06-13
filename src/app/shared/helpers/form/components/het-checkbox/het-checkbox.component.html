@@ -1,5 +1,5 @@
-<div class="checkbox-section flex items-center">
-    <div class="flex" [ngStyle]="{'width': widthLabel + '%'}">
+<div class="group checkbox-section flex items-center">
+    <div [ngClass]="labelPositionRight ? 'flex text-right pr-2': 'flex'" [ngStyle]="{'width': widthLabel + '%'}">
         <div  class="font-bold" [ngClass]="{'textWarnColor': showError}">{{label | transloco}}</div>
         <div  class="font-bold" style="color: red" *ngIf="required">* </div>
     </div>
@@ -12,7 +12,7 @@
             [disableRipple]="true"
             class="font-bold">
     </mat-checkbox>
-    <div *ngIf="showError" error-popover>
+    <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
         {{errorMessage}}
     </div>
 </div>

@@ -10,15 +10,17 @@
                 [label]="'REFERENCE.TARIFF_GROUP'"
                 [required]="true">
         </het-autocomplete>
-        <het-input
+        <het-number-input
+                [mask]="'00000'"
+                [readonly]="tariffId"
                 formControlName="code"
                 [errorMessage]="errorMessage('code')"
                 [showError]="showError('code')"
                 [label]="'REFERENCE.TARIFF_CODE'"
-                [required]="true">
-        </het-input>
+                [required]="true"
+        ></het-number-input>
         <het-input
-
+                [allowCrl]="true"
                 formControlName="nameUz"
                 [errorMessage]="errorMessage('nameUz')"
                 [showError]="showError('nameUz')"
@@ -26,7 +28,7 @@
                 [required]="true">
         </het-input>
         <het-input
-
+                [readonly]="isChangeTariff"
                 [inputType]="'number'"
                 formControlName="price"
                 [errorMessage]="errorMessage('price')"
@@ -51,14 +53,30 @@
                 [label]="'GENERAL.DEFAULT'"
                 [required]="true">
         </het-radio-static>
+        <het-radio-static
+                formControlName="isHousehold"
+                [type]="'yesNo'"
+                [errorMessage]="errorMessage('isDefault')"
+                [showError]="showError('isDefault')"
+                [label]="'REFERENCE.TARIFF_IS_HOUSEHOLD'"
+                [required]="true">
+        </het-radio-static>
         <het-autocomplete
-
+                [required]="true"
                 [request]="autoInticatorType"
                 formControlName="indicationTypeId"
                 [errorMessage]="errorMessage('indicationTypeId')"
                 [showError]="showError('indicationTypeId')"
                 [label]="'REFERENCE.INDICATION_TYPE'">
         </het-autocomplete>
+        <het-input [inputType]="'number'"
+                   *ngIf="form?.get('indicationTypeId').value === 3"
+                   formControlName="increasePercentage"
+                   [errorMessage]="errorMessage('increasePercentage')"
+                   [showError]="showError('increasePercentage')"
+                   [label]="'REFERENCE.INCREASE_PERCENTAGE'"
+                   [required]="true">
+        </het-input>
         <het-autocomplete
                 label="REFERENCE.BASE_RATE_CODE"
                 [request]="autoBaseRateCodeId"
@@ -77,16 +95,25 @@
         </het-autocomplete>
         <het-radio-static
                 formControlName="status"
+                (selectionChanged)="statusChanged = true"
                 [errorMessage]="errorMessage('status')"
                 [showError]="showError('status')"
                 [label]="'GENERAL.STATUS'"
                 [required]="true">
         </het-radio-static>
         <het-datepicker
-
-                formControlName="deactivationDate"
-                [errorMessage]="errorMessage('deactivationDate')"
-                [showError]="showError('deactivationDate')"
+                *ngIf="statusChanged"
+                formControlName="deactivatedAt"
+                [required]="true"
+                [errorMessage]="errorMessage('deactivatedAt')"
+                [showError]="showError('deactivatedAt')"
+                [label]="'REFERENCE.VALID_FROM_DATE_DEACTIVATE'">
+        </het-datepicker>
+        <het-datepicker
+                [required]="true"
+                formControlName="activatedAt"
+                [errorMessage]="errorMessage('activatedAt')"
+                [showError]="showError('activatedAt')"
                 [label]="'REFERENCE.VALID_FROM_DATE'">
         </het-datepicker>
     </div>

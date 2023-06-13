@@ -7,23 +7,23 @@
                 formControlName="baseTariffId"
                 [showError]="showError('baseTariffId')"
                 [errorMessage]="errorMessage('baseTariffId')"
-
+                [readonly]="request.id"
                 [required]="true">
         </het-autocomplete>
         <het-datepicker
-
                 formControlName="activationPeriod"
                 [showError]="showError('activationPeriod')"
                 [errorMessage]="errorMessage('activationPeriod')"
                 [label]="'REFERENCE.ACTIVATION_PERIOD'"
+                [readonly]="request.id"
                 [required]="true">
         </het-datepicker>
         <het-input
-
                 formControlName="code"
                 [showError]="showError('code')"
                 [errorMessage]="errorMessage('code')"
                 [label]="'REFERENCE.WINDOW_CODE'"
+                [readonly]="request.id"
                 [required]="true">
         </het-input>
         <het-input
@@ -35,39 +35,39 @@
                 [required]="true">
         </het-input>
         <het-input
-
                 [inputType]="'number'"
                 formControlName="fromKWhInterval"
                 [showError]="showError('fromKWhInterval')"
                 [errorMessage]="errorMessage('fromKWhInterval')"
                 [label]="'REFERENCE.INTERVAL_WITH_KWH'"
+                [readonly]="request.id"
                 [required]="true">
         </het-input>
         <het-input
-
                 [inputType]="'number'"
                 formControlName="toKWhInterval"
                 [showError]="showError('toKWhInterval')"
                 [errorMessage]="errorMessage('toKWhInterval')"
                 [label]="'REFERENCE.KWH_INTERVAL'"
+                [readonly]="request.id"
                 [required]="true">
         </het-input>
         <het-autocomplete
-
                 [request]="autoTariff"
                 formControlName="tariffId"
                 [showError]="showError('tariffId')"
                 [errorMessage]="errorMessage('tariffId')"
                 [label]="'REFERENCE.TARIFF_CODE'"
+                [readonly]="request.id"
                 [required]="true">
         </het-autocomplete>
         <het-input
-
                 [inputType]="'number'"
                 formControlName="price"
                 [showError]="showError('price')"
                 [errorMessage]="errorMessage('price')"
                 [label]="'GENERAL.PRICE'"
+                [readonly]="request.id"
                 [required]="true">
         </het-input>
         <het-radio-static
@@ -76,6 +76,7 @@
                 [showError]="showError('status')"
                 [errorMessage]="errorMessage('status')"
                 [label]="'GENERAL.STATUS'"
+                [disabled]="request.id"
                 [required]="true">
         </het-radio-static>
     </div>

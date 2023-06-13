@@ -7,24 +7,17 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
+import {ReferenceDropDownRequest} from "@app/modules/reference/basic/ReferenceDropDownRequest";
 
 @Component({
     template: basicTemplate(),
 })
-export class PsFiderTpCompoent extends BasicReferencePage implements OnInit{
+export class PsFiderTpCompoent extends BasicReferencePage implements OnInit {
     ngOnInit(): void {
         this.defaultColumnDef["minWidth"] = 150;
     }
+
     columnDefs: ColDef[] = [
-        {
-            field: 'code',
-            headerName: 'GENERAL.CODE',
-        },
-        {
-            field: 'nameUz',
-            headerName: 'GENERAL.NAME',
-        },
         {
             floatingFilterComponentParams: {
                 type: 'autocomplete',
@@ -32,16 +25,33 @@ export class PsFiderTpCompoent extends BasicReferencePage implements OnInit{
             },
             colId: 'psFiderTpTypeId',
             field: 'psFiderTPType.nameUz',
-            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.PS_FIDER_TP_TYPE',
+            headerName: 'GENERAL.TYPE',
+            pinned: 'left',
         },
         {
-            floatingFilterComponentParams: {
-                type: 'autocomplete',
-                request: new ReferenceDropDownRequest(ReferenceApiUrls.AFFILIATION),
-            },
-            colId: 'affiliationId',
-            field: 'affiliation.nameUz',
-            headerName: 'ACCOUNTING_SETTLEMENT_HC.AFFILIATION',
+            field: 'code',
+            headerName: 'GENERAL.CODE',
+            pinned: 'left',
+            maxWidth: 150
+        },
+        {
+            field: 'nameUz',
+            headerName: 'GENERAL.NAME',
+            pinned: 'left',
+            minWidth: 250
+        },
+
+        {
+            field: 'upSteamFider.code',
+            headerName: 'GENERAL.CODE',
+            minWidth: 150,
+            valueGetter: params => {
+                if (params.data && params.data.psFiderTPType && params.data.psFiderTPType.id === 2) {
+                    return params.data?.upSteamFider.code
+                } else {
+                    return params.data?.upSteamFider?.upSteamFider?.code || '';
+                }
+            }
         },
         {
             floatingFilterComponentParams: {
@@ -49,34 +59,84 @@ export class PsFiderTpCompoent extends BasicReferencePage implements OnInit{
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.PS_FIDER_TP),
             },
             colId: 'upSteamFiderId',
-            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.UP_STEAM_FIDER',
-            valueGetter:params=>{
-                console.log(params)
-                if (params.data && params.data.psFiderTpTypeId==3){
-                    return params?.data?.upSteamFider.nameUz
-                }else {
-                    return ''
+            field: 'upSteamFider.nameUz',
+            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.UPSTREAM_PS',
+            minWidth: 200,
+            valueGetter: params => {
+                if (params.data && params.data.psFiderTPType && params.data.psFiderTPType.id === 2) {
+                    return params.data?.upSteamFider.nameUz
+                } else {
+                    return params.data?.upSteamFider?.upSteamFider?.nameUz || '';
                 }
-            },
+            }
         },
         {
-            field: 'capacity',
-            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.СAPACITY',
+            colId: 'coatoCodeId',
+            field: 'upSteamFider.upSteamFider.coatoCode',
+            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.BRANCH',
+            valueGetter: params => {
+                if (params.data && params.data.psFiderTPType && params.data.psFiderTPType.id === 2) {
+                    return params.data?.upSteamFider.coatoCode;
+                } else {
+                    return params.data?.upSteamFider?.upSteamFider?.coatoCode || '';
+                }
+            }
+        },
+        {
+            field: 'upSteamFider.code',
+            headerName: 'GENERAL.CODE',
+            maxWidth: 130,
+            valueGetter: params => {
+                if (params.data && params.data.psFiderTPType && params.data.psFiderTPType.id === 2) {
+                    return '';
+                } else {
+                    return params.data?.upSteamFider?.code  || '';
+                }
+            }
+        },
+        {
+            colId: 'upSteamSubstationId',
+            field: 'upSteamFider.upSteamFider.nameUz',
+            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.UPSTREAM_FEEDER',
+            minWidth: 200,
+            valueGetter: params => {
+                if (params.data && params.data.psFiderTPType && params.data.psFiderTPType.id === 2) {
+                    return '';
+                } else {
+                    return params.data?.upSteamFider?.nameUz  || '';
+                }
+            }
+        },
+        {
+            colId: 'psFiderTpTypeCode',
+            field: 'upSteamFider.coatoCode',
+            headerName: 'MENU.REFERENCE.GENERAL_GUIDES.BRANCH',
+            valueGetter: params => {
+                if (params.data && params.data.psFiderTPType && params.data.psFiderTPType.id === 2) {
+                    return '';
+                } else {
+                    return params.data?.upSteamFider?.upSteamFider?.coatoCode || '';
+                }
+            }
         },
         {
             field: 'updatedAt',
             headerName: 'GENERAL.UPDATED_AT',
-            type: 'date'
+            type: 'date',
+            minWidth: 150
         },
         {
             type: 'user',
             field: 'createdByName',
-            headerName: 'GENERAL.CREATED_BY'
+            colId: 'createdBy',
+            headerName: 'GENERAL.CREATED_BY',
+            maxWidth: 250
         },
         {
             field: 'status',
             headerName: 'GENERAL.STATUS',
-            type: 'status'
+            type: 'status',
+            maxWidth: 130
         },
     ];
 

@@ -3,12 +3,23 @@
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
 
         <het-modal-autocomplete
+                (rowDataChange)="handleDistrictChange($event)"
                 formControlName="districtId"
                 [opts]="district"
                 [required]="true"
                 [errorMessage]="errorMessage('districtId')"
                 [showError]="showError('districtId')">
         </het-modal-autocomplete>
+        <het-input formControlName="code"
+                   mask="0*"
+                   [prefix]="districtCode"
+                   [dropSpecialCharacters]="false"
+                   maxLength="10"
+                   [errorMessage]="errorMessage('code')"
+                   [showError]="showError('code')"
+                   [required]="true"
+                   [label]="'GENERAL.CODE'"
+        ></het-input>
         <het-input formControlName="nameUz"
                    [errorMessage]="errorMessage('nameUz')"
                    [showError]="showError('nameUz')"

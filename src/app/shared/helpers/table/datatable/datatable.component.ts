@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ViewChild, Input} from '@angular/core';
+import {AfterContentInit, Component, ViewChild, Input, OnInit} from '@angular/core';
 import {
   GridApi,
   HeaderValueGetterParams,
@@ -15,7 +15,7 @@ import {BasicDataTable} from "../basic/BasicDataTable";
   templateUrl: './datatable.component.html',
   styleUrls: ['./datatable.component.scss']
 })
-export class DatatableComponent extends BasicDataTable implements AfterContentInit {
+export class DatatableComponent extends BasicDataTable implements AfterContentInit, OnInit {
 
 
   @ViewChild(PaginationComponent) paginationComponent: PaginationComponent;
@@ -32,6 +32,10 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
     });
 
   }
+
+  ngOnInit(): void {
+        this.gridOptions.rowModelType = this.rowModelType;
+    }
 
   paginationChanged(pageOptions) {
     this.request.body = {...this.request.body, ...{pageable: pageOptions}};
@@ -71,7 +75,9 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
         let filter = {};
         if(params.filterModel) {
           Object.keys(params.filterModel).forEach(key => {
-            filter[key] = JSON.parse(params.filterModel[key].filter);
+            let filterValue = params.filterModel[key].filter;
+            if(JSON.parse(filterValue)?.value != null && JSON.parse(filterValue)?.value != undefined)
+              filter[key] = JSON.parse(filterValue)?.value;
           })
         }
         this.request.setFilterProperties(filter, this.addedFilterParams);
@@ -98,9 +104,16 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
 
   onSelectionChangedEvent() {
     const selectedRows = this.gridApi.getSelectedRows();
-    this.onSelectionChanged.emit(selectedRows.length === 1 ? selectedRows[0] : null);
-  }
 
+    if(selectedRows.length === 1) {
+      this.onSelectionChanged.emit(selectedRows[0]);
+    }
+
+    this.onSelectedRowsChanged.emit(selectedRows);
+  }
+  onFilterChanged(event) {
+      this.filterChangeEmitter.emit(event)
+  }
   onRowSelectedEvent(event) {
     this.onRowSelected.emit(event);
   }
@@ -111,6 +124,7 @@ export class DatatableComponent extends BasicDataTable implements AfterContentIn
 
   handleRowClicked(event:any){
     this.onRowClicked.emit(event && event.data ? event.data : null);
+    this.onRowSelectIndex.emit(event.rowIndex)
   }
 
   handleRowDoubleClicked(event: any) {

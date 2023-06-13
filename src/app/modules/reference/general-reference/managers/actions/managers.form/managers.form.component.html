@@ -41,17 +41,16 @@
                 [errorMessage]="errorMessage('managementTypeId')"
                 [showError]="showError('managementTypeId')">
         </het-autocomplete>
-        <het-input
+        <het-tel-input
                 [required]="true"
                 class="mb-2"
                 formControlName="mobilePhone"
                 [label]="'GENERAL.MOBILE_PHONE'"
-                [placeholder]="'+99(8)'"
-                [mask]="'+000(00)-000-00-00'"
+
                 inputType="text"
                 [errorMessage]="errorMessage('mobilePhone')"
                 [showError]="showError('mobilePhone')">
-        </het-input>
+        </het-tel-input>
         <het-radio-static
                 type="status"
                 formControlName="status"

@@ -41,10 +41,11 @@ export class OperatorTypeBindingsComponent extends BasicReferencePage {
             type: 'status'
         },
         {
-            type: 'user',
-            field: 'login',
+            field: 'updatedByName',
             headerName: 'GENERAL.LOGIN',
             flex: 20,
+            type: 'user',
+            colId: "updatedBy"
         },
         {
             type: 'yesNo',

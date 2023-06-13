@@ -8,5 +8,5 @@ import {printOptions} from "@app/modules/reference/basic/printOptions";
     template: "",
 })
 export class BasicReferencePage extends BasicTablePage {
-    printOptions = printOptions
+
 }

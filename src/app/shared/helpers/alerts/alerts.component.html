@@ -1,25 +1,33 @@
-<div class="absolute w-1/4 top-0 right-0 z-[3000]">
-    <div *ngFor="let alert of alerts" class="{{cssClass(alert)}}" @fadeOutTop>
-        <div class="grid grid-cols-6 gap-4" *ngIf="alert.type == 0">
-            <div class="col-start-1 col-end-2">
+<div class="relative">
+    <button class="fixed top-20 right-5" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin"></button>
+</div>
+<ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="trigger"
+        [cdkConnectedOverlayOpen]="alerts.length > 0">
+    <div class="z-[999999]">
+        <div *ngFor="let alert of alerts" class="{{cssClass(alert)}}" @fadeOutTop>
+            <div class="grid grid-cols-6 gap-4" *ngIf="alert.type == 0">
+                <div class="col-start-1 col-end-2">
                 <span class="inline-block align-middle">  <mat-icon [ngClass]="'icon-size-8'"
                                                                     svgIcon="heroicons_outline:check"></mat-icon></span>
+                </div>
+                <div class="col-start-2 col-end-11">
+                    <div [class]="'text-2xl'">{{ alert.message | transloco}}</div>
+                </div>
             </div>
-            <div class="col-start-2 col-end-11">
-                <div [class]="'text-2xl'">{{ alert.message | transloco}}</div>
-            </div>
-        </div>
-        <div class="grid grid-cols-6 gap-4" *ngIf="alert.type == 1">
-            <div class="col-start-1 col-end-2">
+            <div class="grid grid-cols-6 gap-4" *ngIf="alert.type == 1">
+                <div class="col-start-1 col-end-2">
                 <span class="inline-block align-middle">  <mat-icon [ngClass]="'icon-size-8'"
                                                                     svgIcon="heroicons_outline:question-mark-circle"></mat-icon></span>
+                </div>
+                <div class="col-start-2 col-end-12">
+                    <div [class]="'text-[18px]'">{{ alert.message  }}</div>
+                </div>
+                <div class=" col-start-4 col-end-5">
+                    <a (click)="removeAlert(alert)" class="text-center cursor-pointer">close</a>
+                </div>
             </div>
-            <div class="col-start-2 col-end-12">
-                <div [class]="'text-[18px]'">{{ alert.message  }}</div>
-            </div>
-                   <div class=" col-start-4 col-end-5">
-                       <a (click)="removeAlert(alert)" class="text-center cursor-pointer">close</a>
-                   </div>
         </div>
     </div>
-</div>
+</ng-template>

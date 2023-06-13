@@ -11,13 +11,26 @@ import {ReferenceDropDownRequest} from "@app/modules/reference/basic/ReferenceDr
   styleUrls: ['./habitation.divisions.form.component.scss']
 })
 export class HabitationDivisionsFormComponent extends BasicModalForm {
-
+   districtCode
   
   override form = new FormGroup({
+    code:new FormControl(null,[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
     nameUz: new FormControl(null, [Validators.required]),
     districtId: new FormControl(null, [Validators.required]),
     status: new FormControl(true, [Validators.required]),
    });
+
+
+
+  handleDistrictChange (data) {
+    if(data?.code)  {
+      this.districtCode = data?.code
+      this.form.patchValue({
+        code:data?.code
+      })
+    }
+    else this.districtCode = ""
+  }
 
   district = {
     columns: [

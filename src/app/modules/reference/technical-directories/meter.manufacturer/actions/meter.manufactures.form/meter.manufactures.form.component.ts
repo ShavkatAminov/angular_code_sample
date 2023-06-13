@@ -16,7 +16,8 @@ export class MeterManufacturesFormComponent extends BasicModalForm {
     nameUz: new FormControl(null, [Validators.required]),
     status: new FormControl(true, [Validators.required]),
     amountOfSignsInSerialNumber: new FormControl(null, [Validators.required, Validators.maxLength(10)]),
-    presenceOfSymbols: new FormControl(null, [Validators.required]),
+    numberLetter: new FormControl(null, [Validators.maxLength(10)]),
+    presenceOfSymbols: new FormControl(true, [Validators.required]),
   });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.METER_MANUFACTURER);

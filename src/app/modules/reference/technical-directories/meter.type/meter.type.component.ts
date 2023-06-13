@@ -16,17 +16,20 @@ import {TranslocoService} from "@ngneat/transloco";
 import {HttpClientService} from "@shared/helpers/service/http/http.client.service";
 import {AlertServiceComponent} from "@shared/helpers/alerts/services/alert.service.component";
 import {OptionsObj} from "@shared/helpers/form/interfaces/options";
+import {AuthService} from "@app/core/auth/auth.service";
 
 @Component({
     template: basicTemplate(),
 })
 export class MeterTypeComponent extends BasicReferencePage {
-    constructor(private translate: TranslocoService, public http: HttpClientService, public alert: AlertServiceComponent) {
-        super(http, alert);
+    constructor(private translate: TranslocoService, public http: HttpClientService, public alert: AlertServiceComponent, protected auth: AuthService) {
+        super(http, alert, auth);
     }
+
     ngOnInit(): void {
         this.defaultColumnDef['minWidth'] = 150
     }
+
     measurementTypeOption = [
         {
             id: MEASUREMENT_TYPE_ENUM.ACTIVE,
@@ -44,46 +47,63 @@ export class MeterTypeComponent extends BasicReferencePage {
     options: OptionsObj[] = [{
         id: PHASE_TYPE.SINGLE_PHASE,
         name: 'REFERENCE.1PHASE',
-    },{
-        id: PHASE_TYPE.THREE_PHASE,
-        name: 'REFERENCE.3PHASE',
-    }]
-    meterView: OptionsObj[] = [{
-        id: METER_VIEW.ELECTRONIC,
-        name: 'REFERENCE.ELECTRONIC',
-    },{
-        id: METER_VIEW.DISK,
-        name: 'REFERENCE.DISK',
-    }]
-    YesNoSmart: OptionsObj[] = [{
-        id: ASKUE_COMPATABILITY.YES,
-        name: 'GENERAL.YES',
-    },{
-        id: ASKUE_COMPATABILITY.NO,
-        name: 'GENERAL.NO',
-    },{
-        id: ASKUE_COMPATABILITY.SMARTCARD,
-        name: 'GENERAL.SMARTCARD',
-    }
+    },
+        {
+            id: PHASE_TYPE.THREE_PHASE,
+            name: 'REFERENCE.3PHASE',
+        }
+    ]
+    meterView: OptionsObj[] = [
+        {
+            id: METER_VIEW.ELECTRONIC,
+            name: 'REFERENCE.ELECTRONIC',
+        },
+        {
+            id: METER_VIEW.DISK,
+            name: 'REFERENCE.DISK',
+        }
+    ]
+    YesNoSmart: OptionsObj[] = [
+        {
+            id: ASKUE_COMPATABILITY.YES,
+            name: 'GENERAL.YES',
+        },
+        {
+            id: ASKUE_COMPATABILITY.NO,
+            name: 'GENERAL.NO',
+        },
+        {
+            id: ASKUE_COMPATABILITY.SMARTCARD,
+            name: 'GENERAL.SMARTCARD',
+        }
     ]
     columnDefs: ColDef[] = [
         {
             headerName: 'REFERENCE.METER_TYPE_CODE',
             field: 'code',
+            pinned: 'left',
+            maxWidth: 180
         },
         {
             headerName: 'REFERENCE.METER_TYPE',
-
             field: 'nameUz',
+            pinned: 'left',
+            maxWidth: 180
         },
 
         {
             headerName: 'REFERENCE.TOTAL',
             field: 'average',
+            pinned: 'left',
+            maxWidth: 150
         },
         {
             headerName: 'REFERENCE.PHYSICAL_CONSUMER_AMOUNT',
             field: 'physicalConsumerAmount',
+        },
+        {
+            headerName: 'MENU.REFERENCE.TECHNICAL_GUIDES.OVERHAUL_PERIOD',
+            field: 'distributionPeriod',
         },
         {
             headerName: 'REFERENCE.LEGAL_CONSUMER_AMOUNT',
@@ -158,7 +178,6 @@ export class MeterTypeComponent extends BasicReferencePage {
             type: 'yesNo',
         },
     ];
-
 
 
     title = 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_COUNTER_TYPES';

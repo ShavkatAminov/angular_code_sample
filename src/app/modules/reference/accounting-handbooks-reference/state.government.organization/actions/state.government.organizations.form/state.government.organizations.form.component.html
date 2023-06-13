@@ -3,53 +3,54 @@
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <het-input
                 maxLength="10"
-                mask="0*"
+                [mask]="'00000'"
                 [errorMessage]="errorMessage('code')"
                 [showError]="showError('code')"
                 formControlName="code"
                 [label]="'GENERAL.CODE'"
                 [required]="true">
         </het-input>
-        <het-input formControlName="managingOrganizationCode"
-                   [maxLength]="10"
+        <het-number-input
+                formControlName="managingOrganizationCode"
+                   [mask]="'0000'"
                    [errorMessage]="errorMessage('managingOrganizationCode')"
                    [showError]="showError('managingOrganizationCode')"
                    [label]="'REFERENCE.MANAGING_ORGANIZATION_CODE'"
-                   [required]="true">
-        </het-input>
-
-        <het-input formControlName="nameUz"
+                   [required]="true"
+        ></het-number-input>
+        <het-input
+                [allowCrl]="true"
+                formControlName="nameUz"
                    [maxLength]="200"
                    [errorMessage]="errorMessage('nameUz')"
                    [showError]="showError('nameUz')"
                    [label]="'REFERENCE.NAME_GOVERNMENT_ORGANIZATION'"
                    [required]="true">
         </het-input>
-        <het-input formControlName="shortName"
+        <het-input
+                [allowCrl]="true"
+                formControlName="shortName"
                    [maxLength]="50"
                    [errorMessage]="errorMessage('shortName')"
                    [showError]="showError('shortName')"
                    [label]="'REFERENCE.SHORT_NAME'"
                    [required]="true">
         </het-input>
-
-
-        <het-input formControlName="budgetCode"
-                   [maxLength]="10"
+        <het-number-input
+                formControlName="budgetCode"
+                   [mask]="'000'"
                    [errorMessage]="errorMessage('budgetCode')"
                    [showError]="showError('budgetCode')"
                    [label]="'REFERENCE.BUDGET_CODE'"
-        >
-        </het-input>
-        <het-input
-                mask="0*"
-                [maxLength]="10"
+        ></het-number-input>
+        <het-number-input
+                [mask]="'0000'"
                 formControlName="ps9Number"
                 [errorMessage]="errorMessage('ps9Number')"
                 [showError]="showError('ps9Number')"
                 [label]="'REFERENCE.PS9NUMBER'"
                 [required]="true">
-        </het-input>
+        </het-number-input>
 
         <het-autocomplete
                 formControlName="stateComplexId"

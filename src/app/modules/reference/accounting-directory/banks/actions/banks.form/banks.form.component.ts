@@ -11,10 +11,8 @@ import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
 })
 export class BanksFormComponent extends BasicModalForm {
 
-  
-
   override form = new FormGroup({
-    code: new FormControl(null, [Validators.required, Validators.maxLength(3)]),
+    code: new FormControl(null, [Validators.required, Validators.maxLength(5)]),
     nameUz: new FormControl(null, [Validators.required]),
     status: new FormControl(true, [Validators.required]),
     paymentRequirement: new FormControl(null,[Validators.required])

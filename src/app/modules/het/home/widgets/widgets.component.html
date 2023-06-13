@@ -5,11 +5,46 @@
             <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden"
                   [formGroup]="form">
                 <div class="flex flex-col gt-xs:flex-row">
+                    <het-number-input
+                            [maxLength]="12"
+                            [label]="'Het input number'"
+                            formControlName="numberInput"
+                    >
+
+                    </het-number-input>
+
+                    <het-tel-input
+                    [label]="'tel input'"
+                    formControlName="phoneNumber"
+                    >
+
+                    </het-tel-input>
+                    <het-datepicker-range
+                            label="datepicker range"
+                            formControlName="datepickerrange"
+                    ></het-datepicker-range>
+                    <het-timepicker-range
+                            label="timepickerrange"
+                            formControlName="timepickerrange"
+                            [required]="true"
+                    >
+
+                    </het-timepicker-range>
+
+                    <het-yearpicker
+                            [mode]="'year'"
+                            [mask]="'9999'"
+                            [required]="true" [label]="'Year picker '" formControlName="year"></het-yearpicker>
+                    <het-yearpicker
+                            [mode]="'month'"
+                            [required]="true" [label]="'Month picker'"  formControlName="month"></het-yearpicker>
+                    <het-datepicker [required]="true" [label]="'Date'"  formControlName="date"></het-datepicker>
                     <het-button
                              color="primary" label="Submit" icon="home" ></het-button>
                     <het-select
                              [required]="true" [label]="'FirstName'" [options]="options" formControlName="select"></het-select>
                     <het-datepicker
+                            [readonly]="true"
                             [required]="true" [label]="'Date'" formControlName="date" [minDate]="minDate" [maxDate]="maxDate"></het-datepicker>
                     <het-radio-button
                              [label]="'Choose gender'" [class]="'flex flex-col'" [showError]="false" [errorMessage]="'this is it'" [options]="options" formControlName="radio"></het-radio-button>
@@ -46,7 +81,10 @@
                             inputType="text"
                             formControlName="textInput"
                     ></het-input>
-                    <het-autocomplete  [label]="'This is text'" [request]="request"></het-autocomplete>
+
+                    <app-het-timepicker [required]="true" formControlName="timepicker" [label]="'TimePicker'" ></app-het-timepicker>
+
+                    <het-autocomplete formControlName="autocomplete"  [label]="'This is text'" [request]="request"></het-autocomplete>
                     <het-checkbox-list formControlName="checkboxlist" [label]="'This is checkbox list'" [request]="request"></het-checkbox-list>
                     <het-modal-autocomplete
                             [opts]="modalAutoCompleteOpts"
@@ -66,9 +104,5 @@
 
             </form>
         </div>
-    </div>
-    <div>
-        <het-datatable [columnDefs]="columnDefs" [rowData]="rowData">
-        </het-datatable>
     </div>
 </div>

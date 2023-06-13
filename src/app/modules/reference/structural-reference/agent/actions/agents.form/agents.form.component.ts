@@ -14,7 +14,7 @@ export class AgentsFormComponent extends BasicModalForm {
 
   
   override form = new FormGroup({
-    code: new FormControl(null, [Validators.required]),
+    code: new FormControl(null, [Validators.required,Validators.minLength(4)]),
     positionId: new FormControl(null, [Validators.required]),
     brigadeId: new FormControl(null, [Validators.required]),
     firstName: new FormControl(null, [Validators.required]),

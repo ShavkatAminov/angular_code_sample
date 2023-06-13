@@ -8,6 +8,9 @@ export interface Options {
     name: string;
 }
 
-export interface OptionsCheckbox extends Options {
+export interface OptionsCheckbox {
+    code?: string;
+    id: any;
+    name: string;
     checked: boolean;
 }

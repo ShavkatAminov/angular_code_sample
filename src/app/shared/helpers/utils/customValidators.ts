@@ -1,5 +1,4 @@
 import {FormControl, ValidatorFn} from "@angular/forms";
-import {brewer} from "chroma-js";
 
 interface IIpAdressValidator {
     pattern:RegExp,
@@ -21,6 +20,30 @@ export class CustomValidators {
         };
     }
 
+    static ValidatorMax(max):ValidatorFn {
+        return (control: FormControl) => {
+            if(control.value && control.value > max) {
+                return {
+                    invalidMax: "DIGIT_COUNTER_NOT_CORRECT",
+                };
+            } else {
+                return null;
+            }
+        }
+    }
+    static ValidatorDivision(divisionNumber):ValidatorFn {
+        return (control: FormControl) => {
+            if(control.value && parseInt(control.value) % parseInt(divisionNumber) !== 0) {
+                return {
+                    invalidDivision: {
+                        divisionNumber: divisionNumber,
+                    },
+                };
+            } else {
+                return null;
+            }
+        }
+    }
     static pinflValidator():ValidatorFn {
 
 

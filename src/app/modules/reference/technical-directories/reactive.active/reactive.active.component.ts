@@ -59,6 +59,7 @@ export class ReactiveActiveComponent extends BasicReferencePage {
             type: 'user',
             field: 'createdByName',
             headerName: 'GENERAL.CREATED_BY',
+            colId:"createdBy",
             flex: 10,
         },
         {
@@ -71,6 +72,7 @@ export class ReactiveActiveComponent extends BasicReferencePage {
             type: 'user',
             field: 'updatedByName',
             headerName: 'GENERAL.UPDATED_BY',
+            colId:"updatedBy",
             flex: 10,
         },
         {

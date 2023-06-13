@@ -1,14 +1,14 @@
-<div class="het-modal">
+<div>
 
-    <div id="content" class="px-4 py-2 my-4 text-center font-semibold">
+    <div id="content" class="text-center font-semibold p-0">
         {{content | transloco}}
     </div>
-    <mat-dialog-content class="mat-typography het-modal-content px-7">
 
-        <div class="text-right pt-2">
+    <mat-dialog-content class="mat-typography p-0 overflow-hidden">
+
+        <div class="text-right mt-5">
+            <het-button color="primary" id="confirmBtn" class="ml-1" label="GENERAL.YES" (click)="confirm()"></het-button>
             <het-button id="closeBtn" class="ml-1" label="GENERAL.NO" (click)="close()"></het-button>
-            <het-button id="confirmBtn" class="ml-1" label="GENERAL.YES" (click)="confirm()"></het-button>
-
         </div>
     </mat-dialog-content>
 

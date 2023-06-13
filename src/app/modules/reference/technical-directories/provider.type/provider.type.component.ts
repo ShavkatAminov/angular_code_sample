@@ -9,7 +9,7 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {basicTemplate} from "../../basic/basicTemplate";
 
 @Component({
-  template: basicTemplate(),
+    template: basicTemplate(),
 })
 export class ProviderTypeComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
@@ -40,9 +40,10 @@ export class ProviderTypeComponent extends BasicReferencePage {
             type: 'date',
         },
         {
-            type: 'user',
-            field: 'login',
+            field: 'updatedByName',
             headerName: 'GENERAL.LOGIN',
+            flex: 3, type: 'user',
+            colId: "updatedBy"
         },
     ];
 

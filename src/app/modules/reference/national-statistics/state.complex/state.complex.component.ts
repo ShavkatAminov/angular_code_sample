@@ -7,7 +7,6 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-;
 
 @Component({
   template: basicTemplate(`
@@ -22,6 +21,7 @@ export class StateComplexComponent extends BasicReferencePage{
     {
       field: 'code',
       headerName: 'REFERENCE.CODE_COMPLEX',
+      maxWidth: 250
     },
     {
       field: 'nameUz',
@@ -30,6 +30,7 @@ export class StateComplexComponent extends BasicReferencePage{
     {
       field: 'budgetCode',
       headerName: 'REFERENCE.BUDGET_CODE',
+      maxWidth: 250
     },
 
   ];

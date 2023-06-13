@@ -17,9 +17,9 @@ export class MeterManufacturerComponent extends BasicReferencePage {
   }
   columnDefs: ColDef[] = [
     {
-      flex: 2,
       field: 'id',
       headerName: 'GENERAL.ID',
+      maxWidth: 130
     },
     {
       field: 'nameUz',
@@ -52,6 +52,7 @@ export class MeterManufacturerComponent extends BasicReferencePage {
       type: 'user',
       field: 'createdByName',
       headerName: 'GENERAL.LOGIN',
+      colId:'createdBy'
     },
   ];
 

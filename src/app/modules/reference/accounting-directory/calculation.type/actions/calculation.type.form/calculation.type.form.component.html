@@ -4,12 +4,13 @@
         <het-input
                    [showError]="showError('code')"
                    formControlName="code"
-                   [mask]="'N99999999999999999999999999999999999999999999999999999999999999999999999999999'"
+                   [mask]="'N9'"
                    [patterns]="pattern"
                    [errorMessage]="errorMessage('code')"
                    [label]="'REFERENCE.SETTLEMENT_CODE'" [required]="true">
         </het-input>
         <het-input formControlName="nameUz"
+                   [allowCrl]="true"
                    [showError]="showError('nameUz')"
                    [label]="'REFERENCE.NAME_CALCULATION_TYPE'"
                    [errorMessage]="errorMessage('nameUz')"

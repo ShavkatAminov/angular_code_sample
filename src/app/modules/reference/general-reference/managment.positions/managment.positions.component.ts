@@ -2,12 +2,12 @@ import {Component} from '@angular/core';
 import {ColDef} from "ag-grid-community";
 import {BasicReferencePage} from "../../basic.reference.page";
 import {SizeModal} from "@shared/helpers/modal/modal.component";
-import {ManagementPositionsFormComponent} from "./actions/management.positions.form/management.positions.form.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
+import {ManagementPositionsFormComponent} from "./actions/management.positions.form/management.positions.form.component";
 
 @Component({
   template: basicTemplate(),
@@ -20,12 +20,12 @@ export class ManagmentPositionsComponent extends BasicReferencePage {
                 type: 'autocomplete',
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS),
             },
-            colId: 'managementLevelId',
-            field: 'managementLevel.nameUz', maxWidth: 132, headerName: 'GENERAL.LEVEL'},
+        colId: 'managementLevelId',
+        field: 'managementLevel.nameUz', maxWidth: 132, headerName: 'GENERAL.LEVEL'},
         {field: 'nameUz', headerName: 'GENERAL.NAME'},
+        {field: 'createdByName', headerName: 'GENERAL.USER', colId: 'createdBy', type: 'user'},
+        {field: 'updatedAt', type: 'date', maxWidth: 172, headerName: 'GENERAL.UPDATED_AT'},
         {field: 'status', type: 'status', maxWidth: 132, headerName: 'GENERAL.STATUS'},
-        {field: 'updatedAt', type: 'date', headerName: 'GENERAL.UPDATED_AT'},
-        {field: 'createdByName', headerName: 'GENERAL.USER', type: 'user'},
     ];
 
     title='MENU.REFERENCE.GENERAL_GUIDES.MANAGEMENT_POSITIONS';

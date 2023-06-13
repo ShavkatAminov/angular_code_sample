@@ -13,6 +13,7 @@ export interface ModalAutocompleteField {
     inputGetter: (data) => any;
     inputGetterFull: (data) => any;
     mask: string;
+    class:string;
 }
 
 export interface ModalAutocompleteOpts {
@@ -21,6 +22,7 @@ export interface ModalAutocompleteOpts {
     request: AbstractSearch,
     labelWidth?: number,
     returnField?: any,
+    mainInputFilterField?: string,
     options?: {
         beforeFilter:  (a :AbstractSearch) => AbstractSearch
     },

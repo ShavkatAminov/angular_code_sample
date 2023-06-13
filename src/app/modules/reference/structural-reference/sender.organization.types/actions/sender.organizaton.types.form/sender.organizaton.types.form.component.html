@@ -1,6 +1,6 @@
 <form (ngSubmit)="saveProcess()" [formGroup]="form">
     <div class="flex flex-col">
-        <het-input class="mb-2"  formControlName="code" [label]="'GENERAL.CODE'" [required]="true"
+        <het-input class="mb-2" maxLength="20"  formControlName="code" [label]="'GENERAL.CODE'" [required]="true"
                    [showError]="showError('code')" [errorMessage]="errorMessage('code')">
         </het-input>
 

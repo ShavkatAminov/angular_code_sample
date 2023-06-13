@@ -1,5 +1,5 @@
-<div class="hel-select-row flex flex-row items-center relative">
-    <mat-label class="font-bold" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
+<div class="group hel-select-row flex flex-row items-center relative">
+    <mat-label [ngClass]="labelPositionRight ? 'font-bold text-right pr-2': 'font-bold'" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
         {{label | transloco}} <span *ngIf="required" style="color: red">*</span>
     </mat-label>
 
@@ -10,9 +10,11 @@
                 [(ngModel)]="value"
                 (input)="valueChange(value)"
                 [placeholder]="placeholder"
-                [type]="inputType"
+                [type]="getInputType()"
                 [mask]="mask"
                 [patterns]="patterns"
+                [dropSpecialCharacters]="dropSpecialCharacters"
+                [prefix]="prefix"
                 min="0"
                 [readonly]="readonly"
                 [disabled]="disabled"
@@ -25,14 +27,19 @@
         <mat-icon *ngIf="svgIcon"
                   class="icon-size-5"
                   matPrefix
-                  [svgIcon]="svgIcon"
-        ></mat-icon>
-        <span *ngIf="value?.length && !disabled && !readonly" (click)="toNull($event)" class="flex items-center py-2 bg-white clear-btn" matSuffix
+                  [svgIcon]="svgIcon">
+        </mat-icon>
+        <span *ngIf="inputType !== 'password' && value?.length && !disabled && !readonly" (click)="toNull($event)" class="flex items-center py-2 bg-white clear-btn" matSuffix
               mat-icon-button>
             <mat-icon class="font-black text-black">close</mat-icon>
         </span>
+
+        <span *ngIf="inputType === 'password'"  (click)="togglePasswordType()" class="flex items-center py-2 bg-white clear-btn" matSuffix
+              mat-icon-button>
+            <mat-icon class="font-black text-black">{{(passwordType == 'password' ? 'visibility' : 'visibility_off')}}</mat-icon>
+        </span>
     </mat-form-field>
-    <div *ngIf="showError" error-popover>
+    <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
         {{errorMessage}}
     </div>
 </div>

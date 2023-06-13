@@ -38,7 +38,8 @@ export class DateUtil {
 
   public static convert(vDate: string) {
     const [day, month, year] = vDate.split('.');
-    return new Date(month + '.' + day + '.' + year)
+    const isoDateString = `${year}-${month}-${day}`;
+    return new Date(isoDateString);
   }
 
 

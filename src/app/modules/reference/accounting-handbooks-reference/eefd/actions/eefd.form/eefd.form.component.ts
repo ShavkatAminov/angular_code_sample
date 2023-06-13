@@ -22,4 +22,13 @@ export class EefdFormComponent extends BasicModalForm {
 });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.EEFD);
+
+  pattern = {
+    N: {
+      pattern: new RegExp('^[0-9]'),
+    },
+    '9': {
+      pattern: new RegExp('^[0-9]'),
+    },
+  };
 }

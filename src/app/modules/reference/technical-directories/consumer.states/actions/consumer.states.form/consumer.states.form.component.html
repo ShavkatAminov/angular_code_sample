@@ -2,6 +2,8 @@
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <het-input
+                   mask="0*"
+                   maxLength="8"
                    [errorMessage]="errorMessage('code')"
                    [showError]="showError('code')"
                    formControlName="code"

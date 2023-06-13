@@ -18,19 +18,44 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 export class HetInputComponent extends BasicFormInput {
     @ViewChild('myInput') myInput: ElementRef;
     @Input() inputType: 'text' | 'number' | 'password' = 'text';
-
+    @Input() prefix  = ""
     @Input() placeholder: string = '';
     @Input() mask: string = '';
     @Input() maxLength: number = 200;
     @Input() svgIcon: string = '';
     @Input() allowCrl: boolean = false
+    @Input() underscoreMask;
     @Input() patterns
     @Output() change = new EventEmitter<string>();
-    @Input() fixedValueLength: number = 0;
+    @Output() clear = new EventEmitter<any>();
+    @Input () fixedValueLength: number = 0;
+    @Input () dropSpecialCharacters:boolean = true
 
     valueChange(value: string) {
+        if(this.underscoreMask) {
+            value = value.replaceAll('_',"").substring(0,this.underscoreMask.length)
+        }
         this.onChange(value);
         this.change.emit(value);
+    }
+
+    passwordType = 'password'
+    getInputType() {
+        if(this.inputType === 'password') {
+            return this.passwordType;
+        }
+        else {
+            return this.inputType;
+        }
+    }
+
+    togglePasswordType() {
+        if(this.passwordType == 'password') {
+            this.passwordType = 'text';
+        }
+        else {
+            this.passwordType = 'password';
+        }
     }
 
 
@@ -40,6 +65,7 @@ export class HetInputComponent extends BasicFormInput {
         this.value = null;
         this.onChange(null);
         this.valueChange(null)
+        this.clear.emit(null)
         $event.stopPropagation()
     }
 

@@ -4,7 +4,6 @@ import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
 import {ReferenceApiUrls} from "../../../../referenceApiUrls";
 import {ReferenceDropDownRequest} from "../../../../basic/ReferenceDropDownRequest";
 import {BasicModalForm} from "@shared/helpers/form/modal/basic.modal.form";
-import {ReferenceListRequest} from "@app/modules/reference/basic/ReferenceListRequest";
 
 @Component({
   templateUrl: './bank.mfos.form.component.html',

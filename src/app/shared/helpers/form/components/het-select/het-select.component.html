@@ -1,6 +1,6 @@
 <ng-container>
-    <div class="hel-select-row flex flex-row items-center relative" [ngClass]="computedClasses()">
-        <div class="het-select__title font-bold" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+    <div class="group hel-select-row flex flex-row items-center relative" [ngClass]="computedClasses()">
+        <div [ngClass]="labelPositionRight ? 'het-select__title font-bold text-right pr-2': 'het-select__title font-bold'" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
             {{ label | transloco}} <span *ngIf="required">*</span>
         </div>
 
@@ -23,14 +23,14 @@
                         *ngFor="let item of options">{{item.name | transloco}}</mat-option>
             </mat-select>
 
-            <span *ngIf="value && !readonly && showClearIcon" (click)="toNull($event)" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix mat-icon-button>
+            <span *ngIf="value != null && !readonly && showClearIcon" (click)="toNull($event)" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix mat-icon-button>
                 <mat-icon class="font-black text-black">close</mat-icon>
             </span>
-            <div *ngIf="!value" class="pointer-events-none absolute inset-y-0 right-0 flex items-center mr-2">
+            <div *ngIf="value === null" class="pointer-events-none absolute inset-y-0 right-0 flex items-center">
                 <mat-icon svgIcon="arrow_drop_down"></mat-icon>
             </div>
         </mat-form-field>
-        <div *ngIf="showError" error-popover>
+        <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
             {{errorMessage}}
         </div>
     </div>

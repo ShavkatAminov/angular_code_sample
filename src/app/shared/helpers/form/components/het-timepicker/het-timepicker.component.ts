@@ -2,7 +2,6 @@ import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angul
 
 import {BasicFormInput} from "@shared/helpers/form/basic/basic.form.input";
 import {FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {DateUtil} from "@shared/helpers/utils/DateUtil";
 import {TranslocoService} from "@ngneat/transloco";
 
 @Component({
@@ -17,7 +16,7 @@ import {TranslocoService} from "@ngneat/transloco";
     }
   ],
 })
-export class HetTimepickerComponent  extends BasicFormInput implements OnInit{
+export class HetTimepickerComponent  extends BasicFormInput{
   constructor(public translate: TranslocoService) {
     super();
   }
@@ -27,6 +26,7 @@ export class HetTimepickerComponent  extends BasicFormInput implements OnInit{
 
   @Input() color: string;
   @Input() placeholder: string;
+  @Input() isClose: boolean = false;
 
   @Output() datePickerChanged: EventEmitter<Date> = new EventEmitter<Date>();
 
@@ -41,40 +41,19 @@ export class HetTimepickerComponent  extends BasicFormInput implements OnInit{
     };
   }
   set strValue(value: any) {
-    if(value && value.length === 6) {
-      if(value.toString() !== "Invalid Date") {
-        this.onDatePickerChange(value);
-        this.showError = false;
-      }
-      else {
-        this.onDatePickerChange(null);
-        this.showError = true;
-        if(value.toString() !== 'Invalid Date') {
-          this.extraErrorMessage = this.translate.translate('ERROR_LIST.BETWEEN')
-        }
+      if (value &&value.length >= 5){
+        let asd = value.slice(0,5)
+        this.value = asd;
       }
     }
-    else {
-      if(value && value.length == 0) {
-        this.onDatePickerChange(null);
-      }
-    }
-  }
   onDatePickerChange(value: any) {
     this.strValue = value;
+
     this.showError = false;
     this.extraErrorMessage = ""
-    let fullTime = value + ':00'
-    this.onChange(fullTime);
+    this.onChange(value);
   }
   onClear($event: Event){
     this.control.setValue(null);
-  }
-
-  ngOnInit(): void {
-    this.control.valueChanges.subscribe(res=>{
-      console.log(res)
-      this.onDatePickerChange(res)
-    })
   }
 }

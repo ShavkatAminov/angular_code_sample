@@ -12,7 +12,7 @@ export class FilterField {
 export type fieldTypes =
     'input' | 'date' | 'radio' | 'datetime' | 'daterange' |
     'checkbox' | 'textarea' | 'autocomplete' | 'autocomplete-search' |
-    'yesNo' | 'status' | 'select';
+    'yesNo' | 'status' | 'select' | 'year-picker' | 'month-picker' | 'address';
 
 
 export interface FilterFieldGroup {

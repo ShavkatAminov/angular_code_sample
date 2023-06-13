@@ -1,10 +1,9 @@
-<div class="hel-select-row flex flex-row items-center relative">
-    <mat-label class="font-bold" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
-        {{label | transloco}}
-        <span *ngIf="required" style="color: red">*</span>
+<div class="group hel-select-row flex flex-row items-center relative">
+    <mat-label [ngClass]="labelPositionRight ? 'font-bold text-right pr-2': 'font-bold'" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
+        {{label | transloco}} <span *ngIf="required" style="color: red">*</span>
     </mat-label>
     <mat-radio-group
-            [class]="setBorder?'border border-indigo-600 rounded-md':''"
+            [class]="this.setBorder ? 'border border-indigo-600 rounded-md' :'border border-transparent'"
             (focusin)="setborder()"
             (focusout)="setborder()"
             [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }"
@@ -19,7 +18,7 @@
             {{option.name | transloco}}
         </mat-radio-button>
     </mat-radio-group>
-    <div *ngIf="showError" error-popover>
+    <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
         {{errorMessage}}
     </div>
 </div>

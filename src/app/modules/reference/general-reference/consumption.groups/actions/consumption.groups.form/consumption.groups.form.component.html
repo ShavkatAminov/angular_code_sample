@@ -2,18 +2,32 @@
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
 
-        <het-input class="mt-2"  formControlName="code" [label]="'GENERAL.CODE'" [required]="true" [mask]="'000'"
-                   [showError]="showError('code')" [errorMessage]="errorMessage('code')">
-        </het-input>
+        <het-input
+                class="mt-2"
+                [mask]="'000'"
+                formControlName="code"
+                [showError]="showError('code')"
+                [errorMessage]="errorMessage('code')"
+                [label]="'GENERAL.CODE'"
+                [required]="true"
+        ></het-input>
 
-        <het-input formControlName="nameUz" [label]="'GENERAL.NAMING_CONSUMPTION_GROUPS_BY_CODES'" [required]="true"
-                   [showError]="showError('nameUz')" [errorMessage]="errorMessage('nameUz')">
-        </het-input>
+        <het-input
+                [allowCrl]="true"
+                formControlName="nameUz"
+                [showError]="showError('nameUz')"
+                [errorMessage]="errorMessage('nameUz')"
+                [label]="'GENERAL.NAMING_CONSUMPTION_GROUPS_BY_CODES'"
+                [required]="true"
+        ></het-input>
 
-
-        <het-radio-static type="status" formControlName="status" [label]="'GENERAL.STATUS'" [required]="true"
-                          [showError]="showError('status')">
-        </het-radio-static>
+        <het-radio-static
+                type="status"
+                formControlName="status"
+                [label]="'GENERAL.STATUS'"
+                [showError]="showError('status')"
+                [required]="true"
+        ></het-radio-static>
 
     </div>
 </form>

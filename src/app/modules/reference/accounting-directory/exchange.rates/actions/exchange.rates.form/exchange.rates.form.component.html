@@ -6,20 +6,21 @@
                           label="GENERAL.CURRENCY_CODE"
                           [showError]="showError('currencyId')"
                           [errorMessage]="errorMessage('currencyId')"
+                          [readonly]="request.id"
                           [required]="true"></het-autocomplete>
 
-        <het-input widthLabel="25" [inputType]="'number'" [showError]="showError('exchangeRate')"
+        <het-input [inputType]="'number'" [showError]="showError('exchangeRate')"
                    [errorMessage]="errorMessage('exchangeRate')" formControlName="exchangeRate"
                    [label]="'GENERAL.EXCHANGE_RATE'" [required]="true">
         </het-input>
 
-        <het-input widthLabel="25" [inputType]="'number'" [showError]="showError('currencyUnit')"
+        <het-input [inputType]="'number'" [showError]="showError('currencyUnit')"
                    [errorMessage]="errorMessage('currencyUnit')" formControlName="currencyUnit"
                    [label]="'GENERAL.CURRENCY_UNIT'" [required]="true">
         </het-input>
 
 
-        <het-datepicker widthLabel="25" [showError]="showError('activationDate')" [errorMessage]="errorMessage('activationDate')"
+        <het-datepicker [showError]="showError('activationDate')" [errorMessage]="errorMessage('activationDate')"
                         formControlName="activationDate"
                         [label]="'GENERAL.ACTIVATION_DATE'" [required]="true">
         </het-datepicker>

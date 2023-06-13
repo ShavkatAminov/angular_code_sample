@@ -7,7 +7,6 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-;
 
 @Component({
   template: basicTemplate(`
@@ -23,12 +22,14 @@ export class CurrenciesComponent extends BasicReferencePage {
         {
             field: 'code',
             headerName: 'GENERAL.CURRENCY_CODE',
-            flex: 5
+            pinned: "left",
+            maxWidth: 150
         },
         {
             field: 'symbol',
             headerName: 'REFERENCE.SYMBOL',
-            flex: 5
+            pinned: "left",
+            maxWidth: 150
         },
         {
             field: 'nameUz',
@@ -37,39 +38,37 @@ export class CurrenciesComponent extends BasicReferencePage {
         {
             field: 'scope',
             headerName: 'REFERENCE.SCALE',
-            flex: 5
         },
         {
             field: 'scopeName',
             headerName: 'REFERENCE.SCALE_NAME',
+            minWidth: 280
         },
         {
             field: 'createdAt',
             headerName: 'GENERAL.CREATED_AT',
             type: 'date',
-            flex: 5,
         },
         {
             field: 'createdByName',
+            colId: 'createdBy',
             headerName: 'GENERAL.CREATED_BY',
-            flex: 6
+            minWidth: 280
         },
         {
             field: 'updatedAt',
             headerName: 'GENERAL.UPDATED_AT',
             type: 'date',
-            flex: 5,
         },
         {
             type: 'user',
             field: 'updatedByName',
+            colId: "updatedBy",
             headerName: 'GENERAL.UPDATED_BY',
-            flex: 6
         },
         {
             field: 'status',
             headerName: 'GENERAL.STATUS',
-            flex: 5,
             type: 'status',
         },
     ];

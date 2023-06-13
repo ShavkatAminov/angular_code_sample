@@ -3,16 +3,18 @@
         <div class="max-w-3xl">
             <form (ngSubmit)="saveProcess()" class="flex flex-col bg-card rounded-2xl"
                   [formGroup]="form">
-                <het-input
+                <het-number-input
+                        [mask]="'000'"
                         class="mb-2"
                         [errorMessage]="errorMessage('code')"
                         [showError]="showError('code')"
                         formControlName="code"
                         [label]="'GENERAL.CODE'"
                         [required]="true">
-                </het-input>
+                </het-number-input>
                 <het-input
                         class="mb-2"
+                        [allowCrl]="true"
                         formControlName="nameUz"
                         [errorMessage]="errorMessage('nameUz')"
                         [showError]="showError('nameUz')"

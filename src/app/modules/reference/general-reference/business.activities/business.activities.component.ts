@@ -22,8 +22,8 @@ export class BusinessActivitiesComponent extends BasicReferencePage{
   }
   columnDefs: ColDef[] = [
     {field: 'code', flex:3, headerName: 'GENERAL.CODE'},
-    {field: 'nameUz',flex:15, headerName: 'GENERAL.NAME'},
-    {field: 'shortName', flex:8,headerName: 'REFERENCE.SHORT_NAME'},
+    {field: 'shortName',flex:8, headerName: 'MENU.REFERENCE.GENERAL_GUIDES.ABBREVIATED_NAME'},
+    {field: 'nameUz', flex:15,headerName: 'ACCOUNTING_SETTLEMENT_LC.FULL_NAME_DIC'},
     {field: 'status',  flex:3, headerName: 'GENERAL.STATUS', type: 'status'},
   ];
 }

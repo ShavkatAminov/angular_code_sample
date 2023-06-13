@@ -1,19 +1,36 @@
-import {Component, Inject} from '@angular/core';
-import {ModalComponentInterface} from "../../../../../modal/modal.component.interface";
-import {Subject} from "rxjs";
-import {BasicReferencePage} from "@app/modules/reference/basic.reference.page";
+import {ChangeDetectorRef, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {ColDef} from "ag-grid-community";
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {FormControl, FormGroup} from "@angular/forms";
 import {debounceTime} from "rxjs";
 import {set} from "@shared/helpers/utils/Lodash";
+import {DatatableComponent} from "@shared/helpers/table/datatable/datatable.component";
+import {AbstractSearch} from "@shared/helpers/requests/AbstractSearch";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
     selector: 'app-het-modal-autocomplete-form',
     templateUrl: './het-modal-autocomplete-form.component.html',
     styleUrls: ['./het-modal-autocomplete-form.component.scss']
 })
-export class HetModalAutocompleteFormComponent extends BasicReferencePage implements ModalComponentInterface {
+export class HetModalAutocompleteFormComponent implements OnInit{
+
+    constructor(protected dialogRef: MatDialogRef<HetModalAutocompleteFormComponent>,
+                @Inject(MAT_DIALOG_DATA) private formData: any,
+                protected dc: ChangeDetectorRef) {
+    }
+
+    ngOnInit(): void {
+        this.setData(this.formData);
+    }
+    request: AbstractSearch;
+    @ViewChild(DatatableComponent) table: DatatableComponent;
+
+    reload() {
+        if(this.table) {
+            this.table.reloadGrid();
+        }
+    }
+
     columnDefs: ColDef[] = [];
     form: FormGroup = new FormGroup({});
     data = {
@@ -28,10 +45,9 @@ export class HetModalAutocompleteFormComponent extends BasicReferencePage implem
     }
 
     handleRowDoubleClicked(data) {
-        this.sendClose.next(data);
+        this.dialogRef.close(data);
     }
 
-    sendClose: Subject<any> = new Subject<any>();
 
     setData(data: any) {
         this.data = data;

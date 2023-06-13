@@ -8,13 +8,13 @@ import {
 export class InputToUppercase implements OnInit {
 
   private regex!: RegExp;
-  @Input() pattern: string = "[A-Z0-9]";
+
 
   constructor(private el: ElementRef) {
   }
 
   ngOnInit(): void {
-    this.regex = new RegExp(this.pattern);
+
     let input = this.el.nativeElement.querySelector('input[matInput]');
     input.setAttribute('autocomplete', 'off');
   }
@@ -37,11 +37,9 @@ export class InputToUppercase implements OnInit {
   }
 
   handleEvent(str: string, event: any) {
-    if (this.regex.test(str)) {
-      return true;
-    }
+
     str = str.toUpperCase();
-    str = this.getCharactersByPattern(str);
+
     if(str) {
       let input = this.el.nativeElement.querySelector('input[matInput]');
       if(input) input.value = input.value.substring(0, input.selectionStart) + str + input.value.substring(input.selectionEnd);
@@ -55,13 +53,5 @@ export class InputToUppercase implements OnInit {
     return false;
   }
 
-  getCharactersByPattern(str: string) {
-    let result: string = "";
-    for(let i = 0; i < str.length; i ++) {
-      if(this.regex.test(str[i])) {
-        result += str[i];
-      }
-    }
-    return result;
-  }
+
 }

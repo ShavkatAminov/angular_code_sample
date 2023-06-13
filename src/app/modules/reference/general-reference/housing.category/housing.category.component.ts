@@ -13,7 +13,7 @@ import {basicTemplate} from "../../basic/basicTemplate";
 })
 export class HousingCategoryComponent extends BasicReferencePage {
   columnDefs: ColDef[] = [
-      {field: 'code', flex: 1, headerName: 'GENERAL.CODE'},
+      {field: 'id', flex: 1, headerName: 'GENERAL.CODE'},
       {field: 'nameUz', headerName: 'REFERENCE.NAME_OF_HOUSING_CATEGORY'},
       {field: 'status', type: 'status', flex: 2, headerName: 'GENERAL.STATUS'},
   ];
@@ -23,7 +23,7 @@ export class HousingCategoryComponent extends BasicReferencePage {
   request = new ReferenceListRequest(ReferenceApiUrls.HOUSING_CATEGORY);
 
   addUpdate(id = null) {
-    FormModalComponent.showModal(HousingCategoryFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+    FormModalComponent.showModal(HousingCategoryFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
       if(res)
         this.reload();
     });

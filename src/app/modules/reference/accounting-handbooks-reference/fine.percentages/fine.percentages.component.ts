@@ -40,6 +40,7 @@ export class FinePercentagesComponent extends BasicReferencePage{
     {
       type: 'user',
       field: 'createdByName',
+      colId: 'createdBy',
       headerName: 'GENERAL.CREATED_BY',
       flex: 2,
     },

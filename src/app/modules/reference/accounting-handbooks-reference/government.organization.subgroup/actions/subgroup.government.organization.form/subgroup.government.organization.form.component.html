@@ -1,14 +1,14 @@
 <form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
-        <het-input
+        <het-number-input
+                [mask]="'0000'"
                    [label]="'GENERAL.CODE'"
                    formControlName="code"
                    [errorMessage]="errorMessage('code')"
                    [showError]="showError('code')"
-                   maxLength="20"
-                   [required]="true">
-        </het-input>
+                   [required]="true"
+        ></het-number-input>
         <het-input
                 [label]="'GENERAL.NAME'"
                 maxLength="200"
@@ -25,23 +25,22 @@
                    formControlName="stateGovernmentOrganizationId"
                    [required]="true">
         </het-autocomplete>
-        <het-input
-                   maxLength="10"
+        <het-number-input
+                [mask]="'0000'"
                    formControlName="ps9Code"
                    [errorMessage]="errorMessage('ps9Code')"
                    [showError]="showError('ps9Code')"
                    [label]="'REFERENCE.BINDING_CODE_TO_9PS'"
-                   [required]="true">
-        </het-input>
+                   [required]="true"
+        ></het-number-input>
 
-        <het-input
-                   maxLength="10"
+        <het-number-input
+                [mask]="'000'"
                    [errorMessage]="errorMessage('subgroupType')"
                    [showError]="showError('subgroupType')"
                    formControlName="subgroupType"
                    [label]="'REFERENCE.SUBGROUP_TYPE'"
-        >
-        </het-input>
+        ></het-number-input>
         <het-input
                 [inputType]="'number'"
                 formControlName="availability"
@@ -51,6 +50,5 @@
                 [label]="'REFERENCE.AVAILABILITY'"
                 [required]="true">
         </het-input>
-
     </div>
 </form>

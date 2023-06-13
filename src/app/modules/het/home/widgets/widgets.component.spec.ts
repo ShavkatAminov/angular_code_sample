@@ -1,24 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WidgetsComponent } from './widgets.component';
-import {AppModule} from "../../../../app.module";
-import {MatIconModule} from "@angular/material/icon";
-import {SharedModule} from "../../../../shared/shared.module";
 
+import {imports} from "@test/imports";
+import {login} from "@test/login";
 describe('WidgetsComponent', () => {
   let component: WidgetsComponent;
   let fixture: ComponentFixture<WidgetsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        AppModule,
-        MatIconModule,
-        SharedModule,
-      ],
+      imports: imports,
       declarations: [ WidgetsComponent ]
     })
     .compileComponents();
+    login();
 
     fixture = TestBed.createComponent(WidgetsComponent);
     component = fixture.componentInstance;

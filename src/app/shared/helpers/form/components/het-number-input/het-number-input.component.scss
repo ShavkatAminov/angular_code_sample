@@ -2,7 +2,6 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-
 .mat-icon{
   font-size: 16px !important;
   width: 16px !important;
@@ -13,4 +12,14 @@ input::-webkit-inner-spin-button {
   position: absolute;
   z-index: 1;
   right: 8px;
+}
+
+.input-right-style {
+  input{
+    text-align: right;
+    padding: 0 20px 0 8px;
+  }
+  .clear-btn {
+    right: 4px;
+  }
 }

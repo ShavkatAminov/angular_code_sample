@@ -26,7 +26,7 @@ export class ManagersFormComponent extends BasicModalForm {
   override request = new ReferenceFormRequest(ReferenceApiUrls.MANAGERS);
   managementLevelDropRequest = new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS, {
     pageable: {
-      sort: ["code"],
+      sort: ["id"],
       direction: 'ASC'
     }
   });

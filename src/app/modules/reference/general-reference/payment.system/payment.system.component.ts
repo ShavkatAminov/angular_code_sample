@@ -15,25 +15,28 @@ export class PaymentSystemComponent extends BasicTablePage {
   columnDefs: ColDef[] = [
       {
           field: 'code',
-          headerName: 'GENERAL.CODE',
+          headerName: 'REFERENCE.PAYMENT_SYSTEM_CODE',
+      },
+      {
+          flex: 5,
+          field: 'prefix',
+          headerName: 'REFERENCE.PREFIX',
       },
       {
         field: 'nameUz',
         headerName: 'GENERAL.NAME',
       },
       {
-        field: 'prefix',
-        headerName: 'REFERENCE.PREFIX',
+          field: 'shortName',
+          headerName: 'REFERENCE.SHORT_NAME',
       },
       {
-        field: 'shortName',
-        headerName: 'REFERENCE.SHORT_NAME',
-      },
-      {
+        flex: 4,
         field: 'percent',
         headerName: 'REFERENCE.PERCENTAGE',
       },
       {
+          flex: 5,
           field: 'status',
           headerName: 'GENERAL.STATUS',
           type: 'status',

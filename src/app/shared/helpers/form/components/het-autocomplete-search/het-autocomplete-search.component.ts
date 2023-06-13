@@ -47,7 +47,7 @@ export class HetAutocompleteSearchComponent extends HetAutocompleteComponent {
         filterValue = this.CodeAndName(search).toLowerCase();
       }
     }
-    this.request.body = {fullName: filterValue};
+    this.request.body = {...this.request.body, fullName: filterValue};
     this.http.request(this.request,'post').subscribe((data: any) => {
       this.suggestions = data['content'] || data;
       if(this.showOnlyName) {
@@ -55,6 +55,11 @@ export class HetAutocompleteSearchComponent extends HetAutocompleteComponent {
           item.code = null;
         });
       }
+
+      if(this.suggestions && !this.value) {
+          this.writeValue(this.selectedItem);
+      }
+
       this.filteredSuggestions = new Observable<Options[]>(ob => {ob.next(this.suggestions)});
     });
   }

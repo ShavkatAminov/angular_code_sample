@@ -4,6 +4,7 @@ import {HetDatepickerComponent} from './het-datepicker.component';
 
 import {imports} from "@test/imports";
 import {login} from "@test/login";
+
 describe('HetDatepickerComponent', () => {
     let component: HetDatepickerComponent;
     let fixture: ComponentFixture<HetDatepickerComponent>;
@@ -13,7 +14,7 @@ describe('HetDatepickerComponent', () => {
             imports: imports,
             declarations: [HetDatepickerComponent],
         }).compileComponents();
-    login();
+        login();
 
         fixture = TestBed.createComponent(HetDatepickerComponent);
         component = fixture.componentInstance;

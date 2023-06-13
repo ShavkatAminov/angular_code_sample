@@ -7,30 +7,47 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
+import {
+    AccountingSettlementLCDropDownRequest
+} from "@app/modules/accounting-settlement-lc/basic/AccountingSettlementLCDropDownRequest";
+import {AccountingSettlementLCApiUrls} from "@app/modules/accounting-settlement-lc/accountingSettlementLCApiUrls";
+import {ReferenceDropDownRequest} from "@app/modules/reference/basic/ReferenceDropDownRequest";
 
 @Component({
-    template: basicTemplate(),
+    template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions"  ></het-select>
+    <het-datepicker></het-datepicker>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `)
 })
 export class BrigadesComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
+
         {
             field: 'code',
             headerName: 'GENERAL.CODE_BRIGADE',
-            flex: 3
+            minWidth:100
         },
         {
             field: 'nameUz',
             headerName: 'GENERAL.NAME_BRIGADE',
+            minWidth:150
         },
         {
-            field: 'byTypeId',
-            headerName: 'GENERAL.TYPE',
-            flex: 4
+            field: 'byType.nameUz',
+            floatingFilterComponentParams: {
+                type:'autocomplete',
+                request:  new ReferenceDropDownRequest(ReferenceApiUrls.CONSUMER_TYPE),
+            },
+            colId:'byTypeId',
+            headerName: 'ACCOUNTING_SETTLEMENT_LC.TYPE',
+            minWidth:150
         },
         {
             field: '',
             headerName: 'GENERAL.DATE_OF_ACTIVATION',
-            flex: 4,
+            minWidth:150,
             type: 'date',
             valueGetter: (params) => {
                 return params.data && params.data.status ? params.data.updatedAt : "";
@@ -39,7 +56,7 @@ export class BrigadesComponent extends BasicReferencePage {
         {
             field: 'deActivationDate',
             headerName: 'GENERAL.DATE_OF_DEACTIVATION',
-            flex: 4,
+            minWidth:150,
             type: 'date',
             valueGetter: (params) => {
                 return params.data && !params.data.status ? params.data.updatedAt : "";
@@ -49,7 +66,7 @@ export class BrigadesComponent extends BasicReferencePage {
             field: 'status',
             headerName: 'GENERAL.STATUS',
             type: 'status',
-            flex: 3
+            minWidth:150
         },
     ];
 
@@ -57,7 +74,7 @@ export class BrigadesComponent extends BasicReferencePage {
     request = new ReferenceListRequest(ReferenceApiUrls.BRIGADES);
 
     addUpdate(id = null) {
-        FormModalComponent.showModal(BrigadesFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+        FormModalComponent.showModal(BrigadesFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
             if (res)
                 this.reload();
         });

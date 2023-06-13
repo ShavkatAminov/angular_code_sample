@@ -35,7 +35,7 @@ export class UserService
             this._user = data;
             if(this._user.loggedIn) {
                 this.setTokenExpire();
-                this.auth.coatoCode = this._user.coatoCode;
+                //this.auth.setCoatoCode(this._user.coatoCode);
             }
         }
     }
@@ -56,6 +56,7 @@ export class UserService
     }
 
     refreshToken() {
+        this.auth.signOut();
         let request: UserManagementFormRequest = new UserManagementFormRequest(UserManagementApiUrls.REFRESH_TOKEN);
         request.body = {
             refreshToken: this._user.refreshToken,

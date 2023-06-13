@@ -33,7 +33,7 @@ export class AbstractSearch implements IRequest {
 
   clearSort() {
     this.body.pageable.sort = ['id'];
-    this.body.pageable.direction = "ASC";
+    this.body.pageable.direction = "DESC";
   }
 }
 
@@ -41,5 +41,5 @@ export class Pageable {
   index: number = 0;
   size: number = 20;
   sort: string[] = ["id"];
-  direction: string = "ASC";
+  direction: string = "DESC";
 }

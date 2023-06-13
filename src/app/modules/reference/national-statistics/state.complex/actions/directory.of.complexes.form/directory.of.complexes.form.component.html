@@ -1,30 +1,31 @@
 <form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
-        <het-input
+        <het-number-input
+                [mask]="'0000'"
                 class="mt-2"
                 [required]="true"
                 formControlName="code"
                 label="GENERAL.CODE"
                 [showError]="showError('code')"
                 [errorMessage]="errorMessage('code')">
-        </het-input>
+        </het-number-input>
         <het-input
+                [allowCrl]="true"
                 [required]="true"
+                [allowCrl]="true"
                 formControlName="nameUz"
                 label="GENERAL.NAME"
                 [showError]="showError('nameUz')"
                 [errorMessage]="errorMessage('nameUz')">
         </het-input>
-
-        <het-input
-
+        <het-number-input
+                [mask]="'000'"
                 formControlName="budgetCode"
                 [showError]="showError('budgetCode')"
                 [errorMessage]="errorMessage('budgetCode')"
                 [label]="'REFERENCE.BUDGET_CODE'"
                 [required]="true">
-        </het-input>
-
+        </het-number-input>
     </div>
 </form>

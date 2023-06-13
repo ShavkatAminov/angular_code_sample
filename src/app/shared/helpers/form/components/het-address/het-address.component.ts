@@ -20,6 +20,7 @@ import {debounceTime} from "rxjs";
 })
 export class HetAddressComponent extends BasicFormInput implements OnInit {
   @Input() form: FormGroup = new FormGroup({});
+  @Input() styles: string = '';
   @Output() formChange: EventEmitter<any> = new EventEmitter<any>();
   habitationDivisionsRequest = new ReferenceDropDownRequest(ReferenceApiUrls.HABITATION_DIVISIONS);
   streetsRequest = new ReferenceDropDownRequest(ReferenceApiUrls.STREETS_DIRECTORY);

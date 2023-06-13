@@ -1,14 +1,610 @@
-<div class="flex flex-col flex-auto w-full">
+<div class="flex flex-col flex-auto w-full text-sm font-light main-bg pt-5">
+    <div class="flex flex-col justify-start w-full h-full max-w-[1920px] mx-auto">
+        <!--        svg top line-->
+        <div class="flex justify-between">
+            <svg width="652" height="47" viewBox="0 0 652 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M652 18.4375C567.321 18.4375 420.313 18.4375 420.313 18.4375L404.967 1H40.6046L1 46"
+                      stroke="white"/>
+            </svg>
+            <svg width="654" height="47" viewBox="0 0 654 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 18.4375C84.9395 18.4375 232.398 18.4375 232.398 18.4375L247.792 1H613.274L653 46"
+                      stroke="white"/>
+            </svg>
+        </div>
 
-    <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+        <!--        blocks-->
+        <div class="grid grid-cols-12 px-6 gap-x-2 py-2">
 
-        <!-- Title and action buttons -->
-        <div class="flex items-center justify-between w-full">
-            <div>
-                <div class="text-3xl font-semibold tracking-tight leading-8">Elektr istemoli analitikasi</div>
-                <div class="font-medium tracking-tight text-secondary">Yil davomida</div>
+            <!--            left column-->
+            <div class="col-span-3">
+
+                <!--                Количество потребителей-->
+                <div class="br-type-1 w-full mx-auto h-[224px] relative backdrop-blur-3xl backdrop-opacity-80">
+                    <div class="py-1 px-7 text-white bg-[#034055]">{{ "DASHBOARD.COUNT_OF_CONSUMERS" | transloco}}</div>
+                    <span class="absolute right-[14px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute right-[-7px] top-[8px] rotate-[45deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute left-[5px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute left-[-6px] bottom-[7px] rotate-[44deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <div class="mt-4 mx-auto">
+                        <p class="text-white text-[14px] font-semibold text-center">2 471 948</p>
+                        <p class="text-white text-[10px] font-normal text-center">Общее кол-во</p>
+                    </div>
+                    <div class="grid grid-cols-2 pb-1">
+                        <div class="h-full relative mt-[-5px] apexcharts-canvas">
+                            <double-bar-chart></double-bar-chart>
+                            <div class="mt-[-27px]">
+                                <div class="h-[1px] mx-auto w-[160px] bg-[#E0E0E0] absolute bottom-[23%] left-[14%]"></div>
+                                <div class="h-[100px] mx-auto w-[1px] bg-[#E0E0E0] absolute top-[7%] left-[14%]"></div>
+                                <p class="text-white text-[10px] font-normal text-center">Физ. лицо</p>
+                                <p class="text-white text-[14px] font-semibold text-center">1 235 974</p>
+                            </div>
+                        </div>
+                        <div class="h-full relative mt-[-5px] apexcharts-canvas">
+                            <double-bar-chart></double-bar-chart>
+                            <div class="mt-[-27px]">
+                                <div class="h-[1px] mx-auto w-[160px] bg-[#E0E0E0] absolute bottom-[23%] left-[14%]"></div>
+                                <div class="h-[100px] mx-auto w-[1px] bg-[#E0E0E0] absolute top-[7%] left-[14%]"></div>
+                                <p class="text-white text-[10px] font-normal text-center">Юр. лицо</p>
+                                <p class="text-white text-[14px] font-semibold text-center">1 235 974</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                Количество пр. учета-->
+                <div class="br-type-2 w-full mx-auto h-[224px] relative my-2 backdrop-blur-xl backdrop-opacity-80">
+                    <div class="py-1 px-7 text-white bg-[#034055]">{{ "DASHBOARD.NUMBER_PR_ACCOUNTING" | transloco}}</div>
+                    <span class="absolute left-[5px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute left-[-5px] top-[5px] rotate-[-42deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute right-[8px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute right-[-7px] bottom-[9px] rotate-[-48deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <div class="relative polar-area-chart">
+                        <polar-area-chart></polar-area-chart>
+                        <div class="text-white text-[10px] font-semibold absolute top-[33%] right-[52%]">20%</div>
+                        <div class="text-white text-[10px] font-semibold absolute bottom-[36%] right-[52%]">24.1%</div>
+                        <div class="text-white text-[10px] font-semibold absolute bottom-[33%] right-[38%]">26.9%</div>
+                        <div class="text-white text-[10px] font-semibold absolute top-[30%] right-[40%]">29%</div>
+                        <div class="flex flex-col text-white text-[10px] absolute top-[8%] left-[27%]">
+                            <span>Физ. лицо</span>
+                            <span>Не АСКУЭ</span>
+                        </div>
+                        <span class="absolute left-[28.3%] top-[45px] w-[28px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute left-[34%] top-[30%] rotate-[49deg] w-[25px] h-[1px] bg-white z-10"></span>
+                        <div class="flex flex-col text-white text-[10px] absolute top-[6%] right-[21%]">
+                            <span>Физ. лицо</span>
+                            <span>АСКУЭ</span>
+                        </div>
+                        <span class="absolute right-[24%] top-[22%] w-[28px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute right-[30%] top-[27%] rotate-[-40deg] w-[25px] h-[1px] bg-white z-10"></span>
+                        <div class="flex flex-col text-white text-[10px] absolute bottom-[45px] left-[23%]">
+                            <span>Юр. лицо</span>
+                            <span>АСКУЭ</span>
+                        </div>
+                        <span class="absolute left-[27.5%] bottom-[23%] w-[38px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute left-[36%] bottom-[26%] rotate-[-35deg] w-[20px] h-[1px] bg-white z-10"></span>
+                        <div class="flex flex-col text-white text-[10px] absolute bottom-[47px] right-[19%]">
+                            <span>Юр. лицо</span>
+                            <span>Не АСКУЭ</span>
+                        </div>
+                        <span class="absolute right-[20.7%] bottom-[23.8%] w-[47px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute right-[31%] bottom-[28%] rotate-[52deg] w-[20px] h-[1px] bg-white z-10"></span>
+                    </div>
+                </div>
+
+                <!--                Количество обходов-->
+                <div class="br-type-1 w-full mx-auto h-[224px] relative backdrop-blur-3xl backdrop-opacity-80">
+                    <div class="py-1 px-7 text-white bg-[#034055]">{{ "DASHBOARD.NUMBER_ROUNDS" | transloco}}</div>
+                    <span class="absolute right-[8px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute right-[-8px] top-[10px] rotate-[45deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute left-[5px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute left-[-6px] bottom-[7px] rotate-[45deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <div class="p-1">
+                        <div>
+                            <div class="flex justify-center items-center mt-1">
+                                <svg class="cursor-pointer" width="10" height="10" viewBox="0 0 8 8" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="3.33333" cy="3.33333" r="3.33333"
+                                            transform="matrix(-1 0 0 1 7.3335 0.666748)" fill="#7E869E"
+                                            fill-opacity="0.25"
+                                            stroke="white" stroke-width="0.4"/>
+                                    <path d="M4 4L4 6" stroke="white" stroke-width="0.4" stroke-linecap="square"/>
+                                    <path d="M4 2.33325L4 1.99992" stroke="white" stroke-width="0.4"
+                                          stroke-linecap="square"/>
+                                </svg>
+                                <span class="font-semibold text-white text-[10px] ml-1.5">Начало месяца</span>
+                            </div>
+                            <div class="w-full mt-[-20px] polar-area-chart">
+                                <difference-column-chart></difference-column-chart>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-center items-center mt-[-10px]">
+                                <svg class="cursor-pointer" width="10" height="10" viewBox="0 0 8 8" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="3.33333" cy="3.33333" r="3.33333"
+                                            transform="matrix(-1 0 0 1 7.3335 0.666748)" fill="#7E869E"
+                                            fill-opacity="0.25"
+                                            stroke="white" stroke-width="0.4"/>
+                                    <path d="M4 4L4 6" stroke="white" stroke-width="0.4" stroke-linecap="square"/>
+                                    <path d="M4 2.33325L4 1.99992" stroke="white" stroke-width="0.4"
+                                          stroke-linecap="square"/>
+                                </svg>
+                                <span class="font-semibold text-white text-[10px] ml-1.5">За день</span>
+                            </div>
+                            <div class="pl-4 mt-[-20px] polar-area-chart">
+                                <stepline-chart></stepline-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!--            central column-->
+            <div class="col-span-6">
+                <div class="h-full h-[60%]">
+                    <!--                Процент опрошенных по сравнению с общим числом потребителей-->
+                    <div class="br-type-3 max-h-[89.5%] mb-2 relative backdrop-blur-3xl backdrop-opacity-90">
+                        <div class="py-1 px-7 text-white bg-[#034055] flex justify-between">
+                            <div>
+                                {{ "DASHBOARD.PERCENTAGE_RESPONDENTS_COMPARED_TOTAL_NUMBER_CONSUMERS" | transloco}}
+                            </div>
+                            <button class="mr-4 border border-sky-500 px-2 rounded" (click)="openMap()">Карта</button>
+                        </div>
+                        <span class="absolute right-[10px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute left-[-7px] top-[10px] rotate-[-40deg] w-[40px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute left-[10px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute right-[-4px] top-[6px] rotate-[35deg] w-[40px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute right-[10px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute right-[-5px] bottom-[7px] rotate-[-34deg] w-[40px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute left-[10px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute left-[-6px] bottom-[8px] rotate-[35deg] w-[40px] h-[1px] bg-white z-10"></span>
+                        <div class="grid-rows-3 relative ">
+                            <div class="flex justify-between flex-wrap w-[445px] absolute right-0 top-0 p-3 mb-1">
+                                <div #cardGroup1 class="mb-1 visible">
+                                    <div class="flex gap-x-2">
+                                        <div class="mb-0.5">
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[0]"></map-mini-card>
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[1]"></map-mini-card>
+                                        </div>
+                                        <div class="mb-0.5">
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[2]"></map-mini-card>
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[3]"></map-mini-card>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <map-mini-card [mapMiniCard]="mapMiniCard[4]"></map-mini-card>
+                                    </div>
+                                </div>
+                                <div #cardGroup2 class="mb-1 hidden">
+                                    <div class="flex gap-x-2">
+                                        <div class="mb-0.5">
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[5]"></map-mini-card>
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[6]"></map-mini-card>
+                                        </div>
+                                        <div class="mb-0.5">
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[7]"></map-mini-card>
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[8]"></map-mini-card>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <map-mini-card [mapMiniCard]="mapMiniCard[9]"></map-mini-card>
+                                    </div>
+                                </div>
+                                <div #cardGroup3 class="mb-1 hidden">
+                                    <div class="flex gap-x-2">
+                                        <div class="mb-0.5">
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[10]"></map-mini-card>
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[11]"></map-mini-card>
+                                        </div>
+                                        <div class="mb-0.5">
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[12]"></map-mini-card>
+                                            <map-mini-card [mapMiniCard]="mapMiniCard[13]"></map-mini-card>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-span-2 mb-1 mx-auto relative w-[500px]">
+                                <uzbekistan-map></uzbekistan-map>
+                                <div #group1 class="visible">
+                                    <map-stick class="absolute top-[10%] left-[15%]" label="Каракалпак РЕС"
+                                               value="532 214"></map-stick>
+                                    <map-stick class="absolute top-[35%] right-[-9%]" label="Андижан РЕС"
+                                               value="532 214"></map-stick>
+                                    <map-stick class="absolute top-[40%] left-[40%]" label="Бухара РЕС"
+                                               value="532 214"></map-stick>
+                                    <map-stick class="absolute top-[40%] right-[18%]" label="Джиззах РЕС"
+                                               value="532 214"></map-stick>
+                                    <map-stick class="absolute top-[52%] right-[6%]" label="Ташкент РЕС"
+                                               value="532 214" [miniStick]="true"></map-stick>
+                                </div>
+                                <div #group2 class="hidden">
+                                    <map-stick class="absolute top-[28%] left-[23%]" label="Хоразм РЕС"
+                                               value="532 214"></map-stick>
+                                    <map-stick class="absolute top-[33%] right-[-2%]" label="Наманган РЕС"
+                                               value="532 214"></map-stick>
+                                    <map-stick class="absolute top-[44%] left-[54%]" label="Самарканд РЕС"
+                                               value="532 214"></map-stick>
+                                    <map-stick class="absolute top-[79%] right-[21%]" label="Сурхандарья РЕС"
+                                               value="532 214" [miniStick]="true"></map-stick>
+                                    <map-stick class="absolute top-[56%] right-[13%]" label="Сырхандарья РЕС"
+                                               value="532 214" [miniStick]="true"></map-stick>
+                                </div>
+                                <div #group3 class="hidden">
+                                    <map-stick class="absolute top-[29%] left-[39%]" label="Новоий РЕС"
+                                               value="532 214"></map-stick>
+                                    <map-stick class="absolute top-[50%] right-[8%]" label="Ташкент. обл РЕС"
+                                               value="532 214" [miniStick]="true"></map-stick>
+                                    <map-stick class="absolute top-[38%] right-[-5%]" label="Фергана РЕС"
+                                               value="532 214"></map-stick>
+                                    <map-stick class="absolute top-[68%] left-[57%]" label="Кашкадарья РЕС"
+                                               value="532 214" [miniStick]="true"></map-stick>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid h-[40%] grid-cols-2 gap-x-2 w-full">
+                        <div>
+                            <div class="br-type-4 h-[40%] mb-2 relative backdrop-blur-3xl backdrop-opacity-80">
+                                <div class="py-1 px-7 text-white bg-[#034055]">{{ "DASHBOARD.PAYMENT" | transloco}}</div>
+                                <span class="absolute left-[10px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                                <span class="absolute left-[-6px] top-[12px] rotate-[-46deg] w-[40px] h-[1px] bg-white z-10"></span>
+                                <span class="absolute right-[10px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                                <span class="absolute right-[-7px] bottom-[12px] rotate-[-44deg] w-[40px] h-[1px] bg-white z-10"></span>
+                                <div class="grid grid-cols-3 px-3 gap-x-2">
+                                    <div class="col-span-1 bg-[rgba(18,72,125,0.4)] text-[10px] py-1.5 px-1.5 mt-4">
+                                        <div class="flex justify-center">
+                                            <span class="text-[#00F7F2] text-[12px]">Всего</span>
+                                        </div>
+                                        <div class="flex justify-between py-0.5 text-white">
+                                            <span class="text-[#00F7F2]">За день</span>
+                                            <span class="text-[12px] font-semibold">592 146</span>
+                                        </div>
+                                        <div class="flex justify-between py-0.5 text-white">
+                                            <span class="text-[#00F7F2]">За месяц</span>
+                                            <span class="text-[12px] font-semibold">1 592 146</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-2 w-full text-[10px]">
+                                        <div class="flex justify-end mb-0.5">
+                                            <span class="text-[#00F7F2] font-light w-[33%]"></span>
+                                            <span class="text-[#00F7F2] font-light w-[33%] text-center">За день</span>
+                                            <span class="text-[#00F7F2] font-light w-[33%] text-center">Месяц</span>
+                                        </div>
+                                        <div class="py-2 mb-1.5 flex justify-between bg-[rgba(18,72,125,0.4)]">
+                                            <span class="text-[#94A3B8] w-[33%] pl-2">Физ. лицо</span>
+                                            <span class="text-white w-[33%] text-center text-[12px] font-semibold">391 005</span>
+                                            <span class="text-white w-[33%] text-center text-[12px] font-semibold">1 000 000</span>
+                                        </div>
+                                        <div class="py-2 flex justify-between bg-[rgba(18,72,125,0.4)]">
+                                            <span class="text-[#94A3B8] w-[33%] pl-2">Юр. лицо</span>
+                                            <span class="text-white w-[33%] text-center text-[12px] font-semibold">201 141</span>
+                                            <span class="text-white w-[33%] text-center text-[12px] font-semibold">592 146</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--                        Данные потребителя-->
+                            <div class="br-type-5 h-[58%] relative backdrop-blur-3xl backdrop-opacity-80">
+                                <div class="py-1 px-7 text-white bg-[#034055]">{{ "DASHBOARD.PAYMENT_SYSTEMS" | transloco}}</div>
+                                <div class="grid grid-cols-4 px-2 py-1 border-b-[1px] border-slate-500">
+                                    <span class="mx-auto text-[#00F7F2] px-2">{{ "DASHBOARD.SYSTEMS" | transloco}}</span>
+                                    <span class="mx-auto text-[#00F7F2] px-2">{{ "DASHBOARD.COUNT" | transloco}}</span>
+                                    <span class="mx-auto text-[#00F7F2] px-2">{{ "DASHBOARD.PERCENT" | transloco}}</span>
+                                    <span class="mx-auto text-[#00F7F2] px-2">{{ "DASHBOARD.SUM" | transloco}}</span>
+                                </div>
+                                <div class="h-[129px] overflow-y-auto px-1">
+                                    <div class="grid grid-cols-4 px-2 text-[10px] border-b-[1px] border-slate-500"
+                                         *ngFor="let value of paymentInfoCardData">
+                                        <span class="mx-auto text-white p-1 text-left">{{ value.title }}</span>
+                                        <span class="mx-auto text-gray-300 p-1">{{ value.consumerCount }}</span>
+                                        <span class="mx-auto text-gray-300 p-1">{{ value.percent }}</span>
+                                        <span class="mx-auto text-gray-300 p-1">{{ value.amountPay }}</span>
+                                    </div>
+                                </div>
+                                <span class="absolute left-[5px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                                <span class="absolute left-[-10px] bottom-[16px] rotate-[60deg] w-[40px] h-[1px] bg-white z-10"></span>
+                                <span class="absolute right-[10px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                                <span class="absolute right-[-6px] top-[13px] rotate-[47deg] w-[40px] h-[1px] bg-white z-10"></span>
+                            </div>
+                        </div>
+                        <div class="br-type-6 relative backdrop-blur-3xl backdrop-opacity-80">
+                            <div>
+                                <div class="py-1 px-7 text-white bg-[#034055]">{{ "DASHBOARD.CONSUMER_DATA" | transloco}}</div>
+                            </div>
+                            <span class="absolute right-[10px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                            <span class="absolute right-[-5px] top-[8px] rotate-[38deg] w-[40px] h-[1px] bg-white z-10"></span>
+                            <span class="absolute left-[13px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                            <span class="absolute left-[-7px] bottom-[14px] rotate-[44deg] w-[44px] h-[1px] bg-white z-10"></span>
+                            <div class="grid grid-rows-2 gap-y-2">
+                                <div class="grid grid-cols-2 row-span-1 gap-x-2 pb-3 h-[130px] max-h-[130px] w-full">
+                                    <div class="relative polar-area-chart h-[130px] max-h-[130px]">
+                                        <doughnut-chart
+                                                [chartLabel]="'Кадастр'"
+                                                class="mx-auto">
+                                        </doughnut-chart>
+                                        <div class="flex flex-col justify-center text-white absolute left-[1%] bottom-[10%]">
+                                            <span class="text-[#94A3B8] text-[10px]">Юр.лицо</span>
+                                            <span class="text-[#fff] text-[10px] mx-auto">72%</span>
+                                        </div>
+                                        <span class="absolute left-[19%] bottom-[14%] w-[14px] h-[1px] bg-white z-10"></span>
+                                        <span class="absolute left-[25%] bottom-[17%] rotate-[-40deg] w-[14px] h-[1px] bg-white z-10"></span>
+                                        <div class="flex flex-col justify-center text-white absolute right-[4%] top-[1%]">
+                                            <span class="text-[#94A3B8] text-[10px]">Физ.лицо</span>
+                                            <span class="text-[#fff] text-[10px] text-right">28%</span>
+                                        </div>
+                                        <span class="absolute right-[16%] top-[17%] w-[10px] h-[1px] bg-white z-10"></span>
+                                        <span class="absolute right-[20%] top-[20%] rotate-[-40deg] w-[14px] h-[1px] bg-white z-10"></span>
+                                    </div>
+                                    <div class="relative polar-area-chart">
+                                        <doughnut-chart
+                                                [chartLabel]="'Пасспорт'"
+                                                class="mx-auto">
+                                        </doughnut-chart>
+                                        <div class="flex flex-col justify-center text-white absolute left-[1%] bottom-[10%]">
+                                            <span class="text-[#94A3B8] text-[10px]">Юр.лицо</span>
+                                            <span class="text-[#fff] text-[10px] mx-auto">72%</span>
+                                        </div>
+                                        <span class="absolute left-[19%] bottom-[14%] w-[14px] h-[1px] bg-white z-10"></span>
+                                        <span class="absolute left-[25%] bottom-[17%] rotate-[-40deg] w-[14px] h-[1px] bg-white z-10"></span>
+                                        <div class="flex flex-col justify-center text-white absolute right-[4%] top-[1%]">
+                                            <span class="text-[#94A3B8] text-[10px]">Физ.лицо</span>
+                                            <span class="text-[#fff] text-[10px] text-right">28%</span>
+                                        </div>
+                                        <span class="absolute right-[16%] top-[17%] w-[10px] h-[1px] bg-white z-10"></span>
+                                        <span class="absolute right-[20%] top-[20%] rotate-[-40deg] w-[14px] h-[1px] bg-white z-10"></span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 row-span-1 gap-x-2 pb-3 h-[130px] max-h-[130px] w-full">
+                                    <div class="relative polar-area-chart">
+                                        <doughnut-chart
+                                                [chartLabel]="'ПИНФЛ'"
+                                                class="mx-auto">
+                                        </doughnut-chart>
+                                        <div class="flex flex-col justify-center text-white absolute left-[1%] bottom-[10%]">
+                                            <span class="text-[#94A3B8] text-[10px]">Юр.лицо</span>
+                                            <span class="text-[#fff] text-[10px] mx-auto">72%</span>
+                                        </div>
+                                        <span class="absolute left-[19%] bottom-[14%] w-[14px] h-[1px] bg-white z-10"></span>
+                                        <span class="absolute left-[25%] bottom-[17%] rotate-[-40deg] w-[14px] h-[1px] bg-white z-10"></span>
+                                        <div class="flex flex-col justify-center text-white absolute right-[4%] top-[1%]">
+                                            <span class="text-[#94A3B8] text-[10px]">Физ.лицо</span>
+                                            <span class="text-[#fff] text-[10px] text-right">28%</span>
+                                        </div>
+                                        <span class="absolute right-[16%] top-[17%] w-[10px] h-[1px] bg-white z-10"></span>
+                                        <span class="absolute right-[20%] top-[20%] rotate-[-40deg] w-[14px] h-[1px] bg-white z-10"></span>
+                                    </div>
+                                    <div class="relative polar-area-chart">
+                                        <doughnut-chart
+                                                [chartLabel]="'Телефон'"
+                                                class="mx-auto">
+                                        </doughnut-chart>
+                                        <div class="flex flex-col justify-center text-white absolute left-[1%] bottom-[10%]">
+                                            <span class="text-[#94A3B8] text-[10px]">Юр.лицо</span>
+                                            <span class="text-[#fff] text-[10px] mx-auto">72%</span>
+                                        </div>
+                                        <span class="absolute left-[19%] bottom-[14%] w-[14px] h-[1px] bg-white z-10"></span>
+                                        <span class="absolute left-[25%] bottom-[17%] rotate-[-40deg] w-[14px] h-[1px] bg-white z-10"></span>
+                                        <div class="flex flex-col justify-center text-white absolute right-[4%] top-[1%]">
+                                            <span class="text-[#94A3B8] text-[10px]">Физ.лицо</span>
+                                            <span class="text-[#fff] text-[10px] text-right">28%</span>
+                                        </div>
+                                        <span class="absolute right-[16%] top-[17%] w-[10px] h-[1px] bg-white z-10"></span>
+                                        <span class="absolute right-[20%] top-[20%] rotate-[-40deg] w-[14px] h-[1px] bg-white z-10"></span>
+                                    </div>
+                                </div>
+                                <!--                                <doughnut-chart></doughnut-chart>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            right column-->
+            <div class="col-span-3">
+                <!--                Кол-во расчитанных потребителей-->
+                <div class="br-type-2 w-full mx-auto h-[224px] relative backdrop-blur-3xl backdrop-opacity-80">
+                    <div class="py-1 px-7 text-white bg-[#034055]">{{ "DASHBOARD.NUMBER_CALCULATED_CONSUMERS" | transloco}}</div>
+                    <span class="absolute left-[5px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute left-[-7px] top-[5px] rotate-[-49deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute right-[8px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute right-[-8px] bottom-[7px] rotate-[-52deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <div class="relative polar-area-chart">
+                        <polar-area-chart></polar-area-chart>
+                        <div class="text-white text-[10px] font-semibold absolute top-[33%] right-[52%]">20%</div>
+                        <div class="text-white text-[10px] font-semibold absolute bottom-[36%] right-[52%]">24.1%</div>
+                        <div class="text-white text-[10px] font-semibold absolute bottom-[33%] right-[38%]">26.9%</div>
+                        <div class="text-white text-[10px] font-semibold absolute top-[30%] right-[40%]">29%</div>
+                        <div class="flex flex-col text-white text-[10px] absolute top-[8%] left-[27%]">
+                            <span>Физ. лицо</span>
+                            <span>Не АСКУЭ</span>
+                        </div>
+                        <span class="absolute left-[28.3%] top-[45px] w-[28px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute left-[34%] top-[30%] rotate-[49deg] w-[25px] h-[1px] bg-white z-10"></span>
+                        <div class="flex flex-col text-white text-[10px] absolute top-[6%] right-[21%]">
+                            <span>Физ. лицо</span>
+                            <span>АСКУЭ</span>
+                        </div>
+                        <span class="absolute right-[24%] top-[22%] w-[28px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute right-[30%] top-[27%] rotate-[-40deg] w-[25px] h-[1px] bg-white z-10"></span>
+                        <div class="flex flex-col text-white text-[10px] absolute bottom-[45px] left-[23%]">
+                            <span>Юр. лицо</span>
+                            <span>АСКУЭ</span>
+                        </div>
+                        <span class="absolute left-[27.5%] bottom-[23%] w-[38px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute left-[36%] bottom-[26%] rotate-[-35deg] w-[20px] h-[1px] bg-white z-10"></span>
+                        <div class="flex flex-col text-white text-[10px] absolute bottom-[47px] right-[19%]">
+                            <span>Юр. лицо</span>
+                            <span>Не АСКУЭ</span>
+                        </div>
+                        <span class="absolute right-[20.7%] bottom-[23.8%] w-[47px] h-[1px] bg-white z-10"></span>
+                        <span class="absolute right-[31%] bottom-[28%] rotate-[52deg] w-[20px] h-[1px] bg-white z-10"></span>
+                    </div>
+                </div>
+
+                <!--                Кол-во откл. и вкл. потребителей-->
+                <div class="br-type-1 w-full mx-auto h-[224px] relative my-2 backdrop-blur-3xl backdrop-opacity-80">
+                    <div class="py-1 px-7 text-white bg-[#034055]">{{ "DASHBOARD.NO_OFF_INCL_CONSUMERS" | transloco}}</div>
+                    <span class="absolute right-[8px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute right-[-7px] top-[8px] rotate-[42deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute left-[5px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute left-[-7px] bottom-[5px] rotate-[49deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <div>
+                        <div class="px-2">
+                            <div class="flex justify-center items-center mt-2">
+                                <svg class="cursor-pointer" width="10" height="10" viewBox="0 0 8 8" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="3.33333" cy="3.33333" r="3.33333"
+                                            transform="matrix(-1 0 0 1 7.3335 0.666748)" fill="#7E869E"
+                                            fill-opacity="0.25"
+                                            stroke="white" stroke-width="0.4"/>
+                                    <path d="M4 4L4 6" stroke="white" stroke-width="0.4" stroke-linecap="square"/>
+                                    <path d="M4 2.33325L4 1.99992" stroke="white" stroke-width="0.4"
+                                          stroke-linecap="square"/>
+                                </svg>
+                                <span class="font-semibold text-white text-[10px] ml-1.5">Начало месяца</span>
+                            </div>
+                            <div class="mt-[-27px] polar-area-chart">
+                                <smooth-line-chart></smooth-line-chart>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="px-2 mt-[-30px]">
+                                <div class="flex justify-center items-center">
+                                    <svg class="cursor-pointer" width="10" height="10" viewBox="0 0 8 8" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="3.33333" cy="3.33333" r="3.33333"
+                                                transform="matrix(-1 0 0 1 7.3335 0.666748)" fill="#7E869E"
+                                                fill-opacity="0.25"
+                                                stroke="white" stroke-width="0.4"/>
+                                        <path d="M4 4L4 6" stroke="white" stroke-width="0.4" stroke-linecap="square"/>
+                                        <path d="M4 2.33325L4 1.99992" stroke="white" stroke-width="0.4"
+                                              stroke-linecap="square"/>
+                                    </svg>
+                                    <span class="font-semibold text-white text-[10px] ml-1.5">За день</span>
+                                </div>
+                                <div class="mt-[-27px] polar-area-chart">
+                                    <smooth-line-chart></smooth-line-chart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                Задолженность-->
+                <div class="br-type-2 w-full mx-auto h-[224px] relative backdrop-blur-3xl backdrop-opacity-80">
+                    <div class="py-1 px-7 text-white bg-[#034055]">{{ "DASHBOARD.DEBT" | transloco}}</div>
+                    <span class="absolute left-[5px] top-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute left-[-7px] top-[5px] rotate-[-49deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute right-[8px] bottom-[-1px] w-[40px] h-[1px] bg-white z-10"></span>
+                    <span class="absolute right-[-8px] bottom-[7px] rotate-[-52deg] w-[40px] h-[1px] bg-white z-10"></span>
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <grouped-bar-chart></grouped-bar-chart>
+                        </div>
+                        <div>
+                            <radial-bar-chart></radial-bar-chart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--        svg bottom line-->
+        <div class="flex justify-between">
+            <svg width="652" height="47" viewBox="0 0 652 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M652 28.5625C567.321 28.5625 420.313 28.5625 420.313 28.5625L404.967 46H40.6045L0.999984 1"
+                      stroke="white"/>
+            </svg>
+            <svg width="654" height="47" viewBox="0 0 654 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 28.5625C84.9395 28.5625 232.398 28.5625 232.398 28.5625L247.792 46H613.274L653 1"
+                      stroke="white"/>
+            </svg>
         </div>
     </div>
 
+
+    <!--    <div class="my-4">-->
+    <!--        <het-title title="GENERAL.REPORT"></het-title>-->
+    <!--    </div>-->
+    <!--    <div class="px-4">-->
+    <!--        <div class="bg-white grid grid-cols-4 gap-x-4 p-3 rounded-xl">-->
+    <!--            <het-select [options]="regionSelect" value="bukhara" (selectChanged)="setRegionData($event)"-->
+    <!--                        label="GENERAL.REGION">-->
+
+    <!--            </het-select>-->
+    <!--            <het-datepicker label="GENERAL.DATE">-->
+
+    <!--            </het-datepicker>-->
+    <!--            <het-select label="DASHBOARD.COMPARE_BY_REGION">-->
+
+    <!--            </het-select>-->
+    <!--            <het-datepicker label="DASHBOARD.COMPARE_BY_DATE">-->
+
+    <!--            </het-datepicker>-->
+    <!--        </div>-->
+    <!--        <div class="flex items-center gap-x-3">-->
+    <!--            <div class="w-[75%] bar-chart-rounded  my-3">-->
+    <!--                <div class=" bg-white grid p-3 rounded-xl my-3  grid-cols-3 gap-x-3 ">-->
+    <!--                    <div (click)="setAnnualReport(info.field)" class="cursor-pointer"-->
+    <!--                         *ngFor="let info of cardInfo;let i = index">-->
+    <!--                        <dashboard-info-card [infoCardData]="info"-->
+    <!--                                             [isActive]="info.field === activeAnnualReport"></dashboard-info-card>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <bar-chart [chartData]="annualReportData[activeAnnualReport]"-->
+    <!--                           chartTitle="Годовая динамика количество потребителей " charTypeColor="gradient"-->
+    <!--                           [gradientColors]="['#fff']" chartType="bar" chartColor="#004AC1">-->
+    <!--                    <div chartHeader class="flex w-full justify-end">-->
+    <!--                    </div>-->
+    <!--                </bar-chart>-->
+    <!--            </div>-->
+    <!--            <div class="w-[25%] bg-white py-2 rounded-xl mt-[6px]">-->
+    <!--                <horizontal-bar-chart></horizontal-bar-chart>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="flex w-full my-3 gap-x-2">-->
+    <!--            <div class="w-1/2 bar-chart-rounded">-->
+    <!--                <bar-chart [chartData]="offMeterConsumer[activeUnPayed]" chartTitle="Отключенные счетчики потребителей"-->
+    <!--                           chartColor="#DC2626">-->
+    <!--                    <div chartHeader class="flex  w-full justify-end">-->
+    <!--                        <chart-information class="cursor-pointer" (click)="setActiveUnPayedChart(info.field)"-->
+    <!--                                           *ngFor="let info of barChartOffmeterInfo;let i = index"-->
+    <!--                                           [isActive]="info.field === activeUnPayed"-->
+    <!--                                           [chartInfo]="info"></chart-information>-->
+    <!--                    </div>-->
+    <!--                </bar-chart>-->
+    <!--            </div>-->
+    <!--            <div class="w-1/2 bar-chart-rounded">-->
+    <!--                <bar-chart [chartData]="onMeterConsumer[activePayed]" chartTitle="Включенные счетчики потребителей"-->
+    <!--                           chartColor="#22C55E">-->
+    <!--                    <div chartHeader class="flex w-full justify-end">-->
+    <!--                        <chart-information class="cursor-pointer" (click)="setActivePayedChart(info.field)"-->
+    <!--                                           *ngFor="let info of barChartOnmeterInfo;let i = index"-->
+    <!--                                           [isActive]="info.field === activePayed"-->
+    <!--                                           [chartInfo]="info"></chart-information>-->
+    <!--                    </div>-->
+    <!--                </bar-chart>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="flex items-center gap-x-3">-->
+    <!--            <div class="w-[80%]  my-3">-->
+    <!--                <bar-chart [chartData]="connectedPaymentASCUE[activeASCUE]"-->
+    <!--                           chartTitle="Оплата всего потребителей потключенных к АСКУЭ" chartType="line"-->
+    <!--                           chartColor="#000">-->
+    <!--                    <div chartHeader class="flex w-full justify-end">-->
+    <!--                        <chart-information class="cursor-pointer" (click)="setConnectedPaymentASCUE(info.field)"-->
+    <!--                                           *ngFor="let info of barChartOnmeterInfo;let i = index"-->
+    <!--                                           [isActive]="activeASCUE === info.field"-->
+    <!--                                           [chartInfo]="info"></chart-information>-->
+    <!--                    </div>-->
+    <!--                </bar-chart>-->
+    <!--            </div>-->
+    <!--            <div class="w-[25%] bg-white px-2 py-6 rounded-xl h-[500px]">-->
+    <!--                <donut-chart></donut-chart>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </div>
+

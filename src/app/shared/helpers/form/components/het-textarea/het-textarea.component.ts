@@ -19,6 +19,10 @@ export class HetTextareaComponent  extends BasicFormInput {
   @Input() color: string;
   @Input() placeholder: string = '';
   @Input() rows: number = 5;
+  @Input() maxLength: number = null;
+  @Input() allowCrl: boolean = false
+  @Input() showClearIcon: boolean = true
+
   @Output() textareaChange: EventEmitter<string> = new EventEmitter<string>();
 
   onTextareaChange(value: string){
@@ -32,5 +36,9 @@ export class HetTextareaComponent  extends BasicFormInput {
     this.onTextareaChange(null)
     $event.stopPropagation()
   }
-
+  checkLatin(event) {
+    if ((event.which >= 1040 && event.which <= 1103) || event.which == 60 || event.which == 62) {
+      event.preventDefault();
+    }
+  }
 }

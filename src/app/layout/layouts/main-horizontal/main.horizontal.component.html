@@ -2,16 +2,16 @@
 <fuse-loading-bar></fuse-loading-bar>
 
 <!-- Navigation -->
-<ng-container *ngIf="isScreenSmall">
+<!--<ng-container *ngIf="isScreenSmall">
     <fuse-vertical-navigation
             class="dark bg-gray-900 print:hidden"
             [mode]="'over'"
             [name]="'mainNavigation'"
             [navigation]="navigation.default"
             [opened]="false">
-        <!-- Navigation header hook -->
+        &lt;!&ndash; Navigation header hook &ndash;&gt;
         <ng-container fuseVerticalNavigationContentHeader>
-            <!-- Logo -->
+            &lt;!&ndash; Logo &ndash;&gt;
             <div class="flex items-center h-20 pt-6 px-8">
                 <img
                         class="w-12"
@@ -20,25 +20,38 @@
             </div>
         </ng-container>
     </fuse-vertical-navigation>
-</ng-container>
+</ng-container>-->
 
 <!-- Wrapper -->
 <div class="flex flex-col flex-auto items-center w-full min-w-0 bg-gray-200 dark:bg-card">
 
     <!-- Header -->
-    <div class="relative flex flex-col flex-0 justify-center w-full h-16 sm:h-15 md:h-15 overflow-hidden z-49 shadow dark:shadow-none print:hidden">
+    <div class="sticky top-0  flex flex-col flex-0 justify-center w-full h-16 sm:h-15 md:h-15 overflow-hidden z-49 shadow dark:shadow-none print:hidden">
         <!-- Top bar -->
-        <div class="relative dark flex flex-auto justify-center w-full px-4 md:px-8 bg-white dark:bg-gray-900">
-            <div class="flex items-center w-full h-16 sm:h-20">
+        <div class="relative flex flex-auto justify-center w-full px-4 md:px-8 bg-white dark:bg-gray-900">
+            <div class="flex grow  items-center w-full h-16 sm:h-20">
                 <!-- Logo -->
-                <ng-container *ngIf="!isScreenSmall">
                     <div class="flex items-center">
                         <img
                                 class="w-12"
                                 src="assets/images/logo/het-logo-icon.png"
                                 alt="Logo image">
                     </div>
-                </ng-container>
+                <!--<ng-container *ngIf="!isScreenSmall">
+                </ng-container>-->
+                <div class="ml-3">
+                    <div class="flex">
+                        {{'COMPANY_NAME' | transloco : {'coatoCode': this.user.coatoCode} }}
+                        <het-modal-autocomplete [formControl]="coatoControl" class="ml-7 w-52" [opts]="coatoOptions" (rowDataChange)="onCoatoChange($event)" (removeData)="onCoatoChange($event)">
+                        </het-modal-autocomplete>
+                        <!--<het-autocomplete class="ml-7 w-96" [formControl]="coatoControl" [widthLabel]="30" [request]="caoteReuqest" [label]="('GENERAL.COMPANY' | transloco) + ':'">
+                        </het-autocomplete>-->
+                    </div>
+                    <div>
+                        {{'GENERAL.USER' | transloco}}: {{getUserName()}}
+                    </div>
+                </div>
+
                 <!-- Navigation toggle button -->
                 <!--<ng-container *ngIf="isScreenSmall">
                     <button
@@ -48,7 +61,10 @@
                     </button>
                 </ng-container>-->
                 <!-- Components -->
-                <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
+                <div class="flex items-center pl-2 space-x-0.5 sm:space-x-2 self-start mt-[15px]">
+                    <div class="w-72">
+                        <het-input [widthLabel]="0" [readonly]="true" [formControl]="coatoNameControl"></het-input>
+                    </div>
                     <!--<languages></languages>-->
                     <!--<fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
                     <search [appearance]="'bar'"></search>
@@ -62,6 +78,16 @@
                         <mat-icon [svgIcon]="'heroicons_outline:chat-alt-2'"></mat-icon>
                     </button>-->
                     <!--<user [showAvatar]="false"></user>-->
+                </div>
+            </div>
+            <div class="flex-none mt-[15px]">
+                <div>
+                    {{'PERIOD_LG' | transloco}} :
+                    {{this.legalEntityCurrentPeriod}}
+                </div>
+                <div>
+                    {{'PERIOD_HD' | transloco}} :
+                    {{this.householdConsumerCurrentPeriod}}
                 </div>
             </div>
         </div>
@@ -78,9 +104,8 @@
         </ng-container>-->
     </div>
 
-    <div class="relative flex flex-col w-full">
+    <div class="sticky top-16 flex flex-col w-full z-49 sm:top-15 md:top-15">
         <app-breadcrumbs></app-breadcrumbs>
-        <alert></alert>
 
     </div>
     <!-- Content -->

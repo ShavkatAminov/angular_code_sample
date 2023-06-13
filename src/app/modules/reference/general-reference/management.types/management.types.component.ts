@@ -14,7 +14,7 @@ import {basicTemplate} from "../../basic/basicTemplate";
 export class ManagementTypesComponent extends BasicReferencePage{
   columnDefs: ColDef[] = [
     {
-      field: 'code',
+      field: 'id',
       headerName: 'GENERAL.CODE',
       flex: 3
     },
@@ -34,7 +34,7 @@ export class ManagementTypesComponent extends BasicReferencePage{
   request = new ReferenceListRequest(ReferenceApiUrls.MANAGEMENT_TYPES);
 
   addUpdate(id = null) {
-    FormModalComponent.showModal(ManagementTypesFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+    FormModalComponent.showModal(ManagementTypesFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
       if(res)
         this.reload();
     });

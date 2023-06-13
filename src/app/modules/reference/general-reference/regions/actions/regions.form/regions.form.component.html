@@ -1,7 +1,7 @@
 <form (ngSubmit)="saveProcess()"
       [formGroup]="form">
     <div class="grid gap-4">
-        <het-input  [mask]="'N9999'" [patterns]="pattern" formControlName="code" [label]="'GENERAL.CODE'" [required]="true" [errorMessage]="errorMessage('code')" [showError]="showError('code')">
+        <het-input  [mask]="'N999'" maxLength="4" [patterns]="pattern" formControlName="code" [label]="'GENERAL.CODE'" [required]="true" [errorMessage]="errorMessage('code')" [showError]="showError('code')">
         </het-input>
         <het-input  formControlName="nameUz" [label]="'GENERAL.NAME'" [required]="true" [errorMessage]="errorMessage('nameUz')" [showError]="showError('nameUz')">
         </het-input>

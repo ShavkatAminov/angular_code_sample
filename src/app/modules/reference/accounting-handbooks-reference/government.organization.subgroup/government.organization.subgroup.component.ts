@@ -10,7 +10,7 @@ import {
 } from "./actions/subgroup.government.organization.form/subgroup.government.organization.form.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
-;
+
 
 @Component({
   template: basicTemplate(`
@@ -82,7 +82,7 @@ export class GovernmentOrganizationSubgroupComponent extends BasicReferencePage 
   request = new ReferenceListRequest(ReferenceApiUrls.SUBGROUP_GOVERNMENT_ORGANIZATIONS);
 
   addUpdate(id = null) {
-    FormModalComponent.showModal(SubgroupGovernmentOrganizationFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+    FormModalComponent.showModal(SubgroupGovernmentOrganizationFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
       if (res)
         this.reload();
     });

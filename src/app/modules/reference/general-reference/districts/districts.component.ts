@@ -22,6 +22,14 @@ export class DistrictsComponent extends BasicReferencePage{
         this.reload();
     });
   }
+
+
+
+
+
+
+
+
   columnDefs: ColDef[] = [
     {field: 'code', maxWidth: 204, headerName: 'GENERAL.CODE'},
     {field: 'nameUz', headerName: 'GENERAL.NAME'},

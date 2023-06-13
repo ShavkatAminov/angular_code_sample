@@ -7,6 +7,11 @@ import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
+import {OptionsObj} from "@shared/helpers/form/interfaces/options";
+import {
+    AccountingSettlementLCDropDownRequest
+} from "@app/modules/accounting-settlement-lc/basic/AccountingSettlementLCDropDownRequest";
+import {AccountingSettlementLCApiUrls} from "@app/modules/accounting-settlement-lc/accountingSettlementLCApiUrls";
 
 @Component({
     template: basicTemplate(),
@@ -20,6 +25,16 @@ export class TransformerTypesComponent extends BasicReferencePage {
         },
         {
             headerName: 'REFERENCE.PTES_REP_SIGN',
+            floatingFilterComponentParams: {
+                type: 'select',
+                options: [{
+                    id: 'P',
+                    name: 'REFERENCE.PTES',
+                }, {
+                    id: 'R',
+                    name: 'REFERENCE.REP',
+                }]
+            },
             field: 'ptesRepSign',
             flex: 6
         },
@@ -42,6 +57,7 @@ export class TransformerTypesComponent extends BasicReferencePage {
             flex: 5
         },
     ];
+
 
     title = 'MENU.REFERENCE.TECHNICAL_GUIDES.DIRECTORY_OF_TRANSFORMER_TYPES';
     request = new ReferenceListRequest(ReferenceApiUrls.TRANSFORMER_TYPES);

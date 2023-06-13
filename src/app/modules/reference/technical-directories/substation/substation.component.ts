@@ -10,7 +10,11 @@ import {basicTemplate} from "../../basic/basicTemplate";
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
-    template: basicTemplate(),
+    template: basicTemplate(`
+    <het-button [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-select [options]="printOptions"  ></het-select>
+    <het-button [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class SubstationComponent extends BasicReferencePage {
     title = 'MENU.REFERENCE.TECHNICAL_GUIDES.SUBSTATION_DIRECTORY';
@@ -23,23 +27,25 @@ export class SubstationComponent extends BasicReferencePage {
         });
     }
     columnDefs: ColDef[] = [
-        {field: 'code', headerName: 'GENERAL.CODE', width: 90},
-        {field: 'nameUz', headerName: 'GENERAL.NAME', width: 90},
+        {field: 'code', headerName: 'ACCOUNTING_SETTLEMENT_HC.SUBSTATION_CODE', width: 90},
+        {field: 'nameUz', headerName: 'ACCOUNTING_SETTLEMENT_HC.SUBSTATION_NAME', width: 90},
+        {field: 'transformerTypeId', headerName: 'ACCOUNTING_SETTLEMENT_HC.TRANSFORMER_CODE', width: 90},
         {
             colId: 'transformerTypeId',
             floatingFilterComponentParams: {
                 type: 'autocomplete',
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.TRANSFORMER_TYPES),
             },
-            field: 'transformerType.nameUz', headerName: "REFERENCE.TRANSFORMER_TYPE_NAME"
+            field: 'transformerType.nameUz', headerName: "ACCOUNTING_SETTLEMENT_HC.TRANSFORMER"
         },
         {
-            colId: 'districtId',
+            colId: 'regionId',
             floatingFilterComponentParams: {
                 type: 'autocomplete',
-                request: new ReferenceDropDownRequest(ReferenceApiUrls.DISTRICTS),
+                request: new ReferenceDropDownRequest(ReferenceApiUrls.REGIONS),
             },
-            field: 'districts.nameUz', headerName: "GENERAL.DISTRICT"
+            field: 'districts.regions', headerName: "GENERAL.TERRITORY",
+            type:'code_nameUz'
         },
         {
             field: 'presenceOfMeter', type: 'yesNo', headerName: 'REFERENCE.PRESENCE_OF_METER'

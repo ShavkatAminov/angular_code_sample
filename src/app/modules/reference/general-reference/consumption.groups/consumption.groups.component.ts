@@ -17,16 +17,17 @@ export class ConsumptionGroupsComponent extends BasicReferencePage{
     {
       field: 'code',
       headerName: 'GENERAL.CODE',
+      maxWidth: 250
     },
     {
-      flex: 20,
       field: 'nameUz',
       headerName: 'GENERAL.NAMING_CONSUMPTION_GROUPS_BY_CODES',
     },
     {
       field: 'status',
       headerName: 'GENERAL.STATUS',
-      type: 'status'
+      type: 'status',
+      maxWidth: 250
     }
   ];
 

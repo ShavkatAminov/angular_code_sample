@@ -6,12 +6,15 @@
                    [showError]="showError('code')"
                    formControlName="code"
                    [label]="'REFERENCE.GROUP_CODE'"
+                   [mask]="'N9'"
+                   [patterns]="pattern"
                    [required]="true">
         </het-input>
         <het-input formControlName="nameUz"
                    [errorMessage]="errorMessage('nameUz')"
                    [showError]="showError('nameUz')"
                    [label]="'REFERENCE.GROUP_NAME'"
+                   [allowCrl]="true"
                    [required]="true">
         </het-input>
         <het-radio-static type="status"

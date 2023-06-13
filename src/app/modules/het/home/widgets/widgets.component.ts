@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {BasicForm} from "../../../../shared/helpers/form/basic/basic.form";
+import {BasicForm} from "@shared/helpers/form/basic/basic.form";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ColDef} from "ag-grid-community";
-import {OptionsObj} from "../../../../shared/helpers/form/interfaces/options";
-import {ModalComponent, SizeModal} from "../../../../shared/helpers/modal/modal.component";
-import {ModalComponentInterface} from "../../../../shared/helpers/modal/modal.component.interface";
+import {OptionsObj} from "@shared/helpers/form/interfaces/options";
+import {ModalComponent, SizeModal} from "@shared/helpers/modal/modal.component";
+import {ModalComponentInterface} from "@shared/helpers/modal/modal.component.interface";
 import {Subject} from 'rxjs';
 import {ReferenceDropDownRequest} from "../../../reference/basic/ReferenceDropDownRequest";
 import {ReferenceApiUrls} from "../../../reference/referenceApiUrls";
@@ -21,6 +21,16 @@ export class WidgetsComponent extends BasicForm implements OnInit, ModalComponen
 
     sendClose: Subject<any> = new Subject<any>();
     override form: FormGroup = new FormGroup({
+        numberInput: new FormControl('-4-4-'),
+        phoneNumber: new FormControl('998657776644'),
+        datepickerrange: new FormControl(null),
+        timepickerrange: new FormControl({
+            from: '00:00:00',
+            to: '00:00:00',
+        }, [Validators.required]),
+        year: new FormControl(null, [Validators.required]),
+        month: new FormControl(null, [Validators.required]),
+        multipleCheckbox: new FormControl(null, [Validators.required]),
         name: new FormControl(null, [Validators.required]),
         select: new FormControl(null, [Validators.required]),
         radio: new FormControl(null, [Validators.required]),
@@ -31,6 +41,7 @@ export class WidgetsComponent extends BasicForm implements OnInit, ModalComponen
         checkboxlist: new FormControl(null, [Validators.required]),
         autocomplete: new FormControl(null, [Validators.required]),
         autocompleteModal: new FormControl(null, [Validators.required]),
+        timepicker: new FormControl(null, [Validators.required]),
         newForm: new FormGroup({
             date: new FormControl(null, [Validators.required]),
         }),
@@ -41,7 +52,9 @@ export class WidgetsComponent extends BasicForm implements OnInit, ModalComponen
             console.log(value, 2222);
         });
     }
-
+    test(data){
+        console.log(data,22222)
+    }
     openModal(): void {
         ModalComponent.showModal(WidgetsComponent, "This is Title", SizeModal.xsm).subscribe(x => {
             console.log(x)
@@ -55,18 +68,6 @@ export class WidgetsComponent extends BasicForm implements OnInit, ModalComponen
         {field: 'price', headerName: 'mmm'}
     ];
 
-    rowData = [
-        {make: 'Toyota', model: 'Celica', price: 35000},
-        {make: 'Ford', model: 'Mondeo', price: 32000},
-        {make: 'Ford', model: 'Mondeo', price: 32000},
-        {make: 'Ford', model: 'Mondeo', price: 32000},
-        {make: 'Ford', model: 'Mondeo', price: 32000},
-        {make: 'Ford', model: 'Mondeo', price: 32000},
-        {make: 'Ford', model: 'Mondeo', price: 32000},
-        {make: 'Ford', model: 'Mondeo', price: 32000},
-        {make: 'Ford', model: 'Mondeo', price: 32000},
-        {make: 'Porsche', model: 'Boxster', price: 72000}
-    ];
 
     options: OptionsObj[] = [{
         id: 1,
@@ -80,6 +81,28 @@ export class WidgetsComponent extends BasicForm implements OnInit, ModalComponen
     }]
     request = new ReferenceDropDownRequest(ReferenceApiUrls.METER_TYPE);
 
+    multipleOptionsCheckbox = [
+        {
+            id: 'A',
+            name: 'A',
+            checked: false
+        },
+        {
+            id: 'B',
+            name: 'B',
+            checked: false
+        },
+        {
+            id: 'C',
+            name: 'C',
+            checked: false
+        },
+        {
+            id: 'D',
+            name: 'D',
+            checked: false
+        }
+    ];
 
     modalAutoCompleteOpts = {
         columns: [

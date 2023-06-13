@@ -15,10 +15,10 @@ export class NewPersonalAccountRangeFormComponent extends BasicModalForm {
     accountRangeFrom: new FormControl(null, [Validators.required, ]),
     accountRangeTo: new FormControl(null, [Validators.required, ]),
     coatoBranchId: new FormControl(null, [Validators.required, ]),
-    consumerActivityTypeId: new FormControl(null, [Validators.required, ]),
+    consumerTypeId: new FormControl(null, [Validators.required, ]),
    });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.NEW_PERSONAL_ACCOUNT_RANGE);
   coatoBranchRequest = new ReferenceDropDownRequest(ReferenceApiUrls.COATO_BRANCHES)
-  consumerActivityTypeRequest = new ReferenceDropDownRequest(ReferenceApiUrls.ACTIVITY_TYPE)
+  consumerTypeRequest = new ReferenceDropDownRequest(ReferenceApiUrls.CONSUMER_TYPE)
 }

@@ -2,16 +2,16 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm, Validators, FormGroup, FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {fuseAnimations} from '@fuse/animations';
-import {FuseAlertType} from '@fuse/components/alert';
-import {AuthService} from 'app/core/auth/auth.service';
-import {BasicForm} from "../../../shared/helpers/form/basic/basic.form";
-import {HttpClientService} from "../../../shared/helpers/service/http/http.client.service";
+import {BasicForm} from "@shared/helpers/form/basic/basic.form";
+import {HttpClientService} from "@shared/helpers/service/http/http.client.service";
 import {TranslocoService} from "@ngneat/transloco";
 import {UserManagementFormRequest} from "../../user-management/basic/UserManagementFormRequest";
 import {UserManagementApiUrls} from "../../user-management/userManagementApiUrls";
-import {AlertServiceComponent} from "../../../shared/helpers/alerts/services/alert.service.component";
-import {UserService} from "../../../core/user/user.service";
-import { User } from 'app/core/user/user.types';
+import {AlertServiceComponent} from "@shared/helpers/alerts/services/alert.service.component";
+import {UserService} from "@app/core/user/user.service";
+import {NavigationService} from "@app/core/navigation/navigation.service";
+import {AuthService} from "@app/core/auth/auth.service";
+import {User} from "@app/core/user/user.types";
 
 @Component({
     selector: 'auth-sign-in',
@@ -32,8 +32,9 @@ export class AuthSignInComponent extends BasicForm implements OnInit {
         public http: HttpClientService,
         public translate: TranslocoService,
         private _activatedRoute: ActivatedRoute,
-        private _authService: AuthService,
         private _userService: UserService,
+        private navigation: NavigationService,
+        private auth: AuthService,
         private _router: Router,
         public alert:AlertServiceComponent
     ) {
@@ -48,6 +49,8 @@ export class AuthSignInComponent extends BasicForm implements OnInit {
      * On init
      */
     ngOnInit(): void {
+
+        this.auth.signOut();
         // Create the form
         this.form = new FormGroup({
             login: new FormControl('', [Validators.required]),
@@ -74,11 +77,14 @@ export class AuthSignInComponent extends BasicForm implements OnInit {
 
         this.http.request(this.request, 'post').subscribe(
             {
-                next: (res: any) => {
-                    this._authService.accessToken = res.accessToken;
-                    this._userService.setToStorage(res);
-                    const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
-                    this._router.navigateByUrl(redirectURL);
+                next: (res: User) => {
+                    this._userService.setUser(res);
+                    this.auth.setCoatoCode(res.coatoCode);
+                    this._userService.setTokenExpire();
+                    this.navigation.get().subscribe((res) => {
+                        const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
+                        this._router.navigateByUrl(redirectURL);
+                    })
 
                 },
                 error: () => {

@@ -21,13 +21,10 @@ export class CalculationTypeFormComponent extends BasicModalForm {
 
   pattern = {
     N: {
-      pattern: new RegExp('^[1-9]'),
-
+      pattern: new RegExp('^[0-9]'),
     },
     '9': {
       pattern: new RegExp('^[0-9]'),
-
     },
   };
-
 }

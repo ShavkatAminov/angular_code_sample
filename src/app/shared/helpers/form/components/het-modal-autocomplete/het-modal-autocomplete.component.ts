@@ -11,6 +11,7 @@ import {AbstractSearch} from "../../../requests/AbstractSearch";
 import {ModalAutocompleteField} from "./ModalAutocompleteInterfaces";
 import {ModalAutocompleteOpts} from "./ModalAutocompleteInterfaces";
 import {getNestedObjectValue} from "../../../utils/Lodash";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
     selector: 'het-modal-autocomplete',
@@ -28,14 +29,17 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnC
     @Input() opts: ModalAutocompleteOpts;
     @Output() change = new EventEmitter<number>();
     @Output() rowDataChange = new EventEmitter<object>();
+    @Output() removeData = new EventEmitter<any>();
     colDefs: ColDef[] = [];
     fields: ModalAutocompleteField[] = [];
     columns: any[] = [];
     styles: string = '';
     labelWidth: number;
     returnField: any;
+    mainInputFilterField: string;
     request: AbstractSearch;
     options: any;
+    isModalOpened: boolean = false;
 
     valueChange(value: number) {
         this.onChange(value)
@@ -44,7 +48,7 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnC
 
     values = [];
 
-    constructor(private http: HttpClientService) {
+    constructor(private http: HttpClientService, private dialog: MatDialog) {
         super();
     }
 
@@ -53,8 +57,9 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnC
         this.styles = this.opts.styles;
         this.request = this.opts.request;
         this.labelWidth = this.opts.labelWidth || 50;
-        this.returnField = this.opts.returnField || 'id'
-        this.options = this.opts.options
+        this.returnField = this.opts.returnField || 'id';
+        this.options = this.opts.options;
+        this.mainInputFilterField = this.opts.mainInputFilterField || 'code';
 
         if (this.columns) {
             this.fields = [];
@@ -66,6 +71,7 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnC
                         name: currentObj.field,
                         label: currentObj.headerName,
                         type: currentObj.type,
+                        class: currentObj.class,
                         options: currentObj.options || null,
                         isPrimary: currentObj.isPrimary || false,
                         isFilter: currentObj.isFilter || false,
@@ -94,33 +100,43 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnC
     }
 
     onFocus() {
-        ModalComponent.showModal(HetModalAutocompleteFormComponent, null, {
-            fields: [...this.fields],
-            colDefs: this.colDefs,
-            request: this.request,
-            options: this.options,
-        }, SizeModal.md).subscribe(res => {
+        this.isModalOpened = true;
+        let dialogRef = this.dialog.open(HetModalAutocompleteFormComponent, {
+            data: {
+                fields: [...this.fields],
+                colDefs: this.colDefs,
+                request: this.request,
+                options: this.options,
+            },
+            width: '60vw',
+            maxWidth: '60vw',
+        });
+        dialogRef.afterClosed().subscribe(res => {
+            this.isModalOpened = false;
             if (res) {
                 this.setInputValues(res);
-
                 this.valueChange(res[this.returnField]);
             }
         })
     }
 
     onInputChange(event) {
-        this.request.body['code'] = event.target.value.trim();
+        let str = event.target.value.trim();
 
-        this.http.request(this.request, 'post').subscribe((data) => {
-            if(data && data['content'].length > 0) {
-                const obj = data['content'][0];
-                this.clearInputValues();
-                this.setInputValues(obj);
-                this.valueChange(obj[this.returnField]);
-            }
+        if(str && str.length > 0) {
+            this.request.body[this.mainInputFilterField] = str;
 
-            delete this.request.body['code'];
-        })
+            this.http.request(this.request, 'post').subscribe((data) => {
+                if(data && data['content'].length > 0) {
+                    const obj = data['content'][0];
+                    this.clearInputValues();
+                    this.setInputValues(obj);
+                    this.valueChange(obj[this.returnField]);
+                }
+
+                delete this.request.body[this.mainInputFilterField];
+            });
+        }
     }
 
     onInput(event, mask) {
@@ -163,6 +179,7 @@ export class HetModalAutocompleteComponent extends BasicFormInput implements OnC
         this.value = null;
         this.clearInputValues();
         this.valueChange(null);
+        this.removeData.emit(true);
     }
 
     override writeValue(obj: any): void {

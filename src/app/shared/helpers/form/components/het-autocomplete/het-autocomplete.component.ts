@@ -1,4 +1,4 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, forwardRef, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {IRequest} from "../../../service/http/IRequest";
 import {BasicFormInput} from "../../basic/basic.form.input";
@@ -25,6 +25,7 @@ export class HetAutocompleteComponent extends BasicFormInput implements OnInit {
   filteredSuggestions: Observable<Options[]> = new Observable<Options[]>();
   control = new FormControl();
   selectedItem : number;
+  test = 123123;
   edit:boolean = false;
   private _request: IRequest;
   @Input() set request(val: IRequest) {
@@ -38,8 +39,14 @@ export class HetAutocompleteComponent extends BasicFormInput implements OnInit {
   get request() :IRequest {
     return this._request;
   }
+
+  readonlyWhenSelectedItem = false;
+
+  @Input() placeholder: string = '';
   @Input() showOnlyName = false;
+  @Input() allowNameDisplay:boolean= false;
   @Output() selectChanged: EventEmitter<number> = new EventEmitter<number>();
+  @Output() autoCompleteChange:EventEmitter<any> = new EventEmitter();
 
   constructor(protected http: HttpClientService) {
     super();
@@ -62,26 +69,34 @@ export class HetAutocompleteComponent extends BasicFormInput implements OnInit {
 
   getSuggestions() {
     this.edit = true;
-      this.http.request(this.request,'post').subscribe((data: Options[]) => {
+    if(this.request) {
+      this.http.request(this.request, 'post').subscribe((data: Options[]) => {
         this.suggestions = data;
         this.control.setValue("");
-        if(this.selectedItem) {
+        if (this.selectedItem) {
           this.writeValue(this.selectedItem);
         }
       });
+    }
   }
-  toNull(){
+  toNull(outputEmit = true){
+      this.readonlyWhenSelectedItem = false;
       this.value = null;
+      if(outputEmit) {
+        this.onChange(null);
+        this.autoCompleteChange.emit(null)
+        this.selectChanged.emit(null);
+      }
       this.selectedItem = null;
-      this.onChange(null);
-      this.selectChanged.emit(null);
   }
   onValueChange(event: any) {
+    this.autoCompleteChange.emit(event.option.value)
     this.selectedItem = event.option.value.id;
     this.onChange(this.selectedItem);
     this.selectChanged.emit(this.selectedItem);
     setTimeout(() => {
-      this.onKeyDownEnter();
+      super.onKeyDownEnter();
+      this.readonlyWhenSelectedItem = true;
     }, 100);
   }
 
@@ -95,15 +110,30 @@ export class HetAutocompleteComponent extends BasicFormInput implements OnInit {
 
   @ViewChild('autoTrigger') autoTrigger: MatAutocompleteTrigger;
 
-  override writeValue(obj: any) {
+  override writeValue(obj: any, readonly = true) {
     this.selectedItem = obj;
     if(obj){
       this.loadAndCreate();
-      this.value = this.suggestions.find(suggestion => suggestion.id === obj);
+      this.value = this.suggestions.find(suggestion => suggestion.id == this.selectedItem);
+      if(this.value) {
+        this.readonlyWhenSelectedItem = readonly;
+      }
     }
     else {
-      this.toNull();
+      this.toNull(false);
     }
+  }
+
+  override onKeyDownEnter() {
+    if(this.control.value) {
+      let options: Options[] = this._filter(this.control.value);
+      if(options && options.length == 1) {
+        this.writeValue(options[0].id, false);
+        this.onValueChange({option: {value: options[0]}});
+        return ;
+      }
+    }
+      super.onKeyDownEnter();
   }
 
   loadAndCreate(){
@@ -121,6 +151,11 @@ export class HetAutocompleteComponent extends BasicFormInput implements OnInit {
         }
         return suggestion.name;
       }
+    }
+  }
+  displayNameFunction(suggestion){
+    if (suggestion) {
+        return suggestion.name;
     }
   }
 

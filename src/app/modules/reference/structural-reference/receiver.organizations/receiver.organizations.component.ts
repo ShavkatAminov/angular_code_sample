@@ -19,6 +19,7 @@ export class ReceiverOrganizationsComponent extends BasicReferencePage {
         {
             headerName: 'REFERENCE.SENDERS_CODE',
             field: 'code',
+            maxWidth: 150
         },
         {
             colId: 'sendersTypeId',
@@ -28,6 +29,7 @@ export class ReceiverOrganizationsComponent extends BasicReferencePage {
             },
             headerName: 'REFERENCE.SENDERS_TYPE',
             field: 'senderOrganizationTypes.nameUz',
+            maxWidth: 180
         },
         {
             colId: 'paymentSystemId',
@@ -37,6 +39,7 @@ export class ReceiverOrganizationsComponent extends BasicReferencePage {
             },
             headerName: 'REFERENCE.PAYMENT_SYSTEM_TYPE',
             field: 'paymentSystem.nameUz',
+            maxWidth: 200
         },
         {
             headerName: 'REFERENCE.SENDERS_NAME',
@@ -45,19 +48,23 @@ export class ReceiverOrganizationsComponent extends BasicReferencePage {
         {
             headerName: 'REFERENCE.MFO',
             field: 'mfo',
+            maxWidth: 150
         },
         {
             headerName: 'REFERENCE.ACCOUNT',
             field: 'account',
+            maxWidth: 150
         },
         {
             headerName: 'REFERENCE.PERCENTAGE',
             field: 'percentage',
+            maxWidth: 120
         },
         {
             headerName: 'GENERAL.STATUS',
             field: 'status',
             type: 'status',
+            maxWidth: 150
         },
     ];
 

@@ -1,7 +1,7 @@
 <div class="hel-select-row" [ngClass]="styles">
     <ng-container *ngFor="let field of fields; let i = index">
-        <div class="flex flex-row items-center w-full" *ngIf="field.type === 'input' && field.isPrimary">
-            <mat-label class="font-bold" *ngIf="field.label" [ngStyle]="{'width':labelWidth+'%'}">
+        <div class="group flex flex-row items-center w-full relative" *ngIf="field.type === 'input' && field.isPrimary" [ngClass]="field.class">
+            <mat-label [ngClass]="labelPositionRight ? 'font-bold text-right pr-2': 'text-right pr-2'" *ngIf="field.label" [ngStyle]="{'width':labelWidth+'%'}">
                 {{ field.label | transloco}} <span style="color: red" *ngIf="required">*</span>
             </mat-label>
             <mat-form-field
@@ -11,26 +11,27 @@
                        [disabled]="disabled"
                        autocomplete="off"
                        matInput
-                       [matTooltip]="errorMessage ? errorMessage : null"
-                       matTooltipPosition="above"
-                       matTooltipClass="matTooltipForSelect"
                        [value]="values[i]"
                        [name]="field.name"
                        required="false"
-                       (dblclick)="field.isClickable && onFocus()"
+                       (dblclick)="(field.isClickable && !isModalOpened) && onFocus()"
                        [required]="required"
                        (change)="onInputChange($event)"
                        (input)="onInput($event, field.mask)"
-                       [readonly]="!field.isClickable"
+                       [readonly]="!field.isClickable || values[i].length > 1"
                        [mask]="field.mask"
                 >
 
-                <span (click)="toNull()" *ngIf="values[i] && !readonly" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix mat-icon-button>
-                    <mat-icon *ngIf="values[i]" class="font-black text-black mat-clear-icon">close</mat-icon>
+                <span (click)="toNull()" *ngIf="values[i] && field.isClickable" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix mat-icon-button>
+                    <mat-icon *ngIf="values[i] && field.isClickable && !readonly" class="font-black text-black mat-clear-icon">close</mat-icon>
                 </span>
 
                 <mat-icon *ngIf="field.isClickable && !values[i]" class="mat-icon-rtl-mirror -mr-2">arrow_drop_down</mat-icon>
             </mat-form-field>
+
+            <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
+                {{errorMessage}}
+            </div>
         </div>
     </ng-container>
 </div>

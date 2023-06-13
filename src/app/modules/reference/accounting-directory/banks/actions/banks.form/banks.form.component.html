@@ -1,16 +1,25 @@
 <form (ngSubmit)="saveProcess()" class="flex flex-col bg-card  px-1"
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
-        <het-input class="mt-2"  [showError]="showError('code')" formControlName="code"
-                   [errorMessage]="errorMessage('code')"
-                   [label]="'GENERAL.CODE'" [required]="true"
-                [mask]="'000'">
-        </het-input>
+        <het-number-input
+                class="mt-2"
+                [mask]="'00000'"
+                formControlName="code"
+                [showError]="showError('code')"
+                [errorMessage]="errorMessage('code')"
+                [label]="'GENERAL.CODE'"
+                [required]="true"
+                [readonly]="request.id"
+        ></het-number-input>
 
-        <het-input formControlName="nameUz" [showError]="showError('nameUz')" [label]="'GENERAL.HEAD_BANK_NAME'"
-                   [errorMessage]="errorMessage('nameUz')"
-                   [required]="true">
-        </het-input>
+        <het-input
+                [allowCrl]="true"
+                formControlName="nameUz"
+                [showError]="showError('nameUz')"
+                [errorMessage]="errorMessage('nameUz')"
+                [label]="'GENERAL.HEAD_BANK_NAME'"
+                [required]="true"
+        ></het-input>
 
 
         <het-radio-static type="status" formControlName="status" [showError]="showError('status')"

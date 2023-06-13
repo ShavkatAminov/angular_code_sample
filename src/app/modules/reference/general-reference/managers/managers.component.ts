@@ -20,27 +20,22 @@ export class ManagersComponent extends BasicReferencePage implements OnInit {
         {
             field: 'id',
             headerName: 'GENERAL.NUMBER',
-            flex: 5
+            maxWidth: 100,
+            pinned: 'left'
         },
-
         {
-            minWidth: 200,
+            minWidth: 160,
             floatingFilterComponentParams: {
                 type: 'autocomplete',
-                request: new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS,
-                    {
-                        pageable: {
-                            sort: ["code"],
-                            direction: 'ASC'
-                        }
-                    }),
+                request: new ReferenceDropDownRequest(ReferenceApiUrls.MANAGEMENT_LEVELS),
             },
             colId: 'managementLevelId',
             field: 'managementLevel.nameUz',
             headerName: 'GENERAL.LEVEL',
+            pinned: 'left'
         },
         {
-            minWidth: 200,
+            minWidth: 300,
             field: 'firstName',
             headerName: 'GENERAL.F_I_O',
             valueFormatter: function ({data}) {
@@ -48,7 +43,7 @@ export class ManagersComponent extends BasicReferencePage implements OnInit {
                     return `${data.firstName} ${data.lastName} ${data.middleName}`
                 }
             },
-            flex: 20
+            pinned: 'left'
         },
         {
             minWidth: 200,
@@ -61,23 +56,26 @@ export class ManagersComponent extends BasicReferencePage implements OnInit {
             headerName: 'GENERAL.TYPE',
         },
         {
+            type: 'user',
+            field: 'createdByName',
+            colId: 'createdBy',
+            headerName: 'GENERAL.USER',
+        },
+        {
             field: 'mobilePhone',
             headerName: 'GENERAL.MOBILE_PHONE'
+        },
+        {
+            flex: 5,
+            field: 'updatedAt',
+            headerName: 'GENERAL.UPDATED_AT',
+            type: 'date',
+            minWidth: 280
         },
         {
             field: 'status',
             headerName: 'GENERAL.STATUS',
             type: 'status'
-        },
-        {
-            field: 'updatedAt',
-            headerName: 'GENERAL.UPDATED_AT',
-            type: 'date'
-        },
-        {
-            type: 'user',
-            field: 'createdByName',
-            headerName: 'GENERAL.USER',
         },
     ];
 
@@ -85,7 +83,7 @@ export class ManagersComponent extends BasicReferencePage implements OnInit {
     request = new ReferenceListRequest(ReferenceApiUrls.MANAGERS);
 
     addUpdate(id = null) {
-        FormModalComponent.showModal(ManagersFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+        FormModalComponent.showModal(ManagersFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
             if (res)
                 this.reload();
         });

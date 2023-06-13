@@ -1,18 +1,24 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import {LocalService} from "@shared/helpers/service/store/local.service";
+import {User} from "@app/core/user/user.types";
 
 @Injectable()
 export class AuthService
 {
     private _authenticated: boolean = false;
     AUTH_KEY  = 'access-token';
+    COATO_CODE_KEY  = 'coato-code';
 
     /**
      * Constructor
      */
-    constructor(private local: LocalService) {}
+    constructor(private local: LocalService) {
+        if(this.getCoatoCodeValue()) {
+            this.setCoatoCode(this.getCoatoCodeValue());
+        }
+    }
 
 
 
@@ -42,15 +48,31 @@ export class AuthService
     /**
      * Setter & getter for access token
      */
-    _coatoCode = "";
-    set coatoCode(value: string)
+    _coatoCode$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+    setCoatoCode(value: string)
     {
-        this._coatoCode = value;
+        this.local.saveData(this.COATO_CODE_KEY, value);
+        this._coatoCode$.next(value);
     }
 
-    get coatoCode(): string
+    getCoatoCode(): Observable<string>
     {
-        return this._coatoCode;
+        return this._coatoCode$.asObservable();
+    }
+
+    getCoatoCodeValue() {
+        let data = null;
+        try {
+            data = this.local.getData(this.COATO_CODE_KEY);
+        }
+        catch (e) {
+            console.log(e);
+        }
+        if(data) {
+            return data;
+
+        }
+        return null;
     }
 
 

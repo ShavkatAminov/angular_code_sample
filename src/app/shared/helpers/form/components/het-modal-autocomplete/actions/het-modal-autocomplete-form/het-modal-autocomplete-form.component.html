@@ -1,28 +1,41 @@
-<div class="flex">
-    <form [formGroup]="form" class="flex flex-wrap gap-2 w-full flex-auto items-center ml-3 justify-between">
-        <ng-container *ngFor="let item of this.data.fields">
-            <ng-container class="w-1/2" [ngSwitch]="item.type" *ngIf="item.isFilter">
-                <het-input class="w-[48%]" *ngSwitchCase="'input'" formControlName="{{item.name}}" [label]="item.label"></het-input>
-                <het-datepicker class="w-[48%]" *ngSwitchCase="'date'" formControlName="{{item.name}}" [label]="item.label"></het-datepicker>
-                <het-datepicker class="w-[48%]" *ngSwitchCase="'datetime'" [timePicker]="true" formControlName="{{item.name}}" [label]="item.label"></het-datepicker>
-                <het-radio-button class="w-[48%]" *ngSwitchCase="'radio'" [options]="item.options" formControlName="{{item.name}}" [label]="item.label"></het-radio-button>
-                <het-checkbox class="w-[48%]" *ngSwitchCase="'checkbox'" formControlName="{{item.name}}" [label]="item.label"></het-checkbox>
-                <het-textarea class="w-[48%]" *ngSwitchCase="'textarea'" formControlName="{{item.name}}" [label]="item.label"></het-textarea>
-                <het-autocomplete class="w-[48%]" *ngSwitchCase="'autocomplete'" [request]="item.options" formControlName="{{item.name}}" [label]="item.label"></het-autocomplete>
-                <het-radio-static class="w-[48%]" *ngSwitchCase="'yesNo'" [type]="'yesNo'" formControlName="{{item.name}}" [label]="item.label"></het-radio-static>
-                <het-radio-static class="w-[48%]" *ngSwitchCase="'status'" [type]="'status'" formControlName="{{item.name}}" [label]="item.label"></het-radio-static>
-                <het-select class="w-[48%]" *ngSwitchCase="'select'" [options]="item.options"  formControlName="{{item.name}}" [label]="item.label"></het-select>
-            </ng-container>
-        </ng-container>
-    </form>
-</div>
-<div class="w-full table-height">
-    <het-datatable #table
-                   [showFilter]="false"
-                   (gridReady)="reload()"
-                   [request]="request"
-                   (onSelectionChanged)="changeSelection($event)"
-                   (onRowDoubleClicked)="handleRowDoubleClicked($event)"
-                   [columnDefs]="columnDefs">
-    </het-datatable>
+<div class="het-modal">
+    <div mat-dialog-title
+         cdkDrag
+         cdkDragRootElement=".cdk-overlay-pane"
+         cdkDragHandle class="flex items-start justify-between border-b rounded-t dark:border-gray-600 het-modal-header">
+        <button mat-dialog-close type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="defaultModal">
+            <mat-icon svgIcon="close"></mat-icon>
+            <span class="sr-only">Close modal</span>
+        </button>
+    </div>
+    <mat-dialog-content class="mat-typography het-modal-content px-7">
+        <div class="flex">
+            <form [formGroup]="form" class="flex flex-wrap gap-2 w-full flex-auto items-center ml-3 justify-between">
+                <ng-container *ngFor="let item of this.data.fields">
+                    <ng-container class="w-1/2" [ngSwitch]="item.type" *ngIf="item.isFilter">
+                        <het-input class="w-[48%]" *ngSwitchCase="'input'" formControlName="{{item.name}}" [label]="item.label"></het-input>
+                        <het-datepicker class="w-[48%]" *ngSwitchCase="'date'" formControlName="{{item.name}}" [label]="item.label"></het-datepicker>
+                        <het-radio-button class="w-[48%]" *ngSwitchCase="'radio'" [options]="item.options" formControlName="{{item.name}}" [label]="item.label"></het-radio-button>
+                        <het-checkbox class="w-[48%]" *ngSwitchCase="'checkbox'" formControlName="{{item.name}}" [label]="item.label"></het-checkbox>
+                        <het-textarea class="w-[48%]" *ngSwitchCase="'textarea'" formControlName="{{item.name}}" [label]="item.label"></het-textarea>
+                        <het-autocomplete class="w-[48%]" *ngSwitchCase="'autocomplete'" [request]="item.options" formControlName="{{item.name}}" [label]="item.label"></het-autocomplete>
+                        <het-radio-static class="w-[48%]" *ngSwitchCase="'yesNo'" [type]="'yesNo'" formControlName="{{item.name}}" [label]="item.label"></het-radio-static>
+                        <het-radio-static class="w-[48%]" *ngSwitchCase="'status'" [type]="'status'" formControlName="{{item.name}}" [label]="item.label"></het-radio-static>
+                        <het-select class="w-[48%]" *ngSwitchCase="'select'" [options]="item.options"  formControlName="{{item.name}}" [label]="item.label"></het-select>
+                    </ng-container>
+                </ng-container>
+            </form>
+        </div>
+        <div class="w-full table-height">
+            <het-datatable #table
+                           [showFilter]="false"
+                           (gridReady)="reload()"
+                           [request]="request"
+                           (onRowDoubleClicked)="handleRowDoubleClicked($event)"
+                           [columnDefs]="columnDefs">
+            </het-datatable>
+        </div>
+    </mat-dialog-content>
 </div>

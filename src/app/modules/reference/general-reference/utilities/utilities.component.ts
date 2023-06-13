@@ -14,7 +14,7 @@ import {basicTemplate} from "../../basic/basicTemplate";
 export class UtilitiesComponent extends BasicReferencePage{
   columnDefs: ColDef[] = [
     {
-      field: 'code',
+      field: 'id',
       headerName: 'GENERAL.SERVICE_CODE',
     },
     {

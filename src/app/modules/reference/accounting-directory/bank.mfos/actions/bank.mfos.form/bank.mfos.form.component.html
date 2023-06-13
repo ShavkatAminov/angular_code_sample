@@ -18,22 +18,22 @@
             [required]="true">
         </het-autocomplete>
         <het-input
-
+            [mask]="'00000'"
+            formControlName="bankMfo"
             [showError]="showError('bankMfo')"
             [errorMessage]="errorMessage('bankMfo')"
-            formControlName="bankMfo"
-            [mask]="'00000'"
             [label]="'REFERENCE.MFO'"
-            [required]="true">
-        </het-input>
+            [required]="true"
+            [readonly]="request.id"
+        ></het-input>
         <het-input
-
-                [showError]="showError('nameUz')"
-                [errorMessage]="errorMessage('nameUz')"
-                formControlName="nameUz"
-                [label]="'REFERENCE.NAME_BANK_THEIR_BRANCHES'"
-                [required]="true">
-        </het-input>
+            [allowCrl]="true"
+            formControlName="nameUz"
+            [showError]="showError('nameUz')"
+            [errorMessage]="errorMessage('nameUz')"
+            [label]="'REFERENCE.NAME_BANK_THEIR_BRANCHES'"
+            [required]="true"
+        ></het-input>
         <het-radio-static
             type="status"
             formControlName="status"

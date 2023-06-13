@@ -140,6 +140,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
             },
             {
                 type: 'basic',
+                title: "MENU.ADMINISTRATION.SMS_PROVIDER_ACCOUNTS_REGION.NAME",
+                link: '/user-management/'  + MessageSenderApiUrls.GATEWAY_PROVIDER_ACCOUNT,
+            },
+            {
+                type: 'basic',
                 title: "MENU.ADMINISTRATION.EDIT_SMS_MESSAGES.NAME",
                 link: '/user-management/'  + MessageSenderApiUrls.SMS_MESSAGE_TEMPLATE,
             },
@@ -218,6 +223,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         link: '/reference/' + ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS,
                     },
 
+                    // {
+                    //     title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.COATO_LOCATION_DIRECTORY',
+                    //     type: 'basic',
+                    //     link: '',
+                    // },
 
                     {
                         title: 'MENU.REFERENCE.NATIONAL_STATISTICS_HANDBOOKS.SUBGROUP_OF_GOVERNMENT_ORGANIZATIONS',
@@ -242,6 +252,16 @@ export const mainMenuItems: FuseNavigationItem[] = [
                 type: 'collapsable',
                 title: "MENU.REFERENCE.GENERAL_GUIDES.NAME",
                 children: [
+                    // {
+                    //     title: 'MENU.REFERENCE.GENERAL_GUIDES.ESP_CODE_REFERENCE',
+                    //     type: 'basic',
+                    //     link: '',
+                    // },
+                    {
+                        title: 'ACCOUNTING_SETTLEMENT_HC.CONSUMER_AMOUNT',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.NUMBER_OF_CONSUMERS,
+                    },
                     {
                         title: 'MENU.REFERENCE.GENERAL_GUIDES.MANAGEMENT_POSITIONS',
                         type: 'basic',
@@ -280,6 +300,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
                     //     link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
                     // },
                     {
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.METER_STATE_REFERENCE',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.METER_STATE,
+                    },
+                    {
                         title: 'MENU.REFERENCE.GENERAL_GUIDES.BUSINESS_ACTIVITY',
                         type: 'basic',
                         link: '/reference/' + ReferenceApiUrls.BUSINESS_ACTIVITY,
@@ -316,7 +341,6 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         link: '/reference/' + ReferenceApiUrls.LANGUAGES,
                     },
 
-
                     {
                         title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_OF_HOUSING_CATEGORIES',
                         type: 'basic',
@@ -333,6 +357,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         link: '/reference/' + ReferenceApiUrls.PAYMENT_SYSTEM,
                     },
 
+                    {
+                        title: 'MENU.REFERENCE.GENERAL_GUIDES.DIRECTORY_ENTERPRISE_GROUP_BY_TYPES_OF_PAYMENTS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.ENTERPRISE_BY_PAYMENT_TYPES,
+                    },
                     {
                         title: 'MENU.REFERENCE.GENERAL_GUIDES.WORK_PLACES',
                         type: 'basic',
@@ -614,6 +643,26 @@ export const mainMenuItems: FuseNavigationItem[] = [
                 title: "MENU.REFERENCE.CB_HANDBOOKS.NAME",
                 children: [
                     {
+                        title: 'MENU.REFERENCE.CB_HANDBOOKS.NON_PAYMENT_CIPHERS',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.CB_HANDBOOKS.ASSIGNMENT_OF_PAYMENT_FOR_UNPAID',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.CB_HANDBOOKS.PAYMENT_TYPES',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
+                    },
+                    {
+                        title: 'MENU.REFERENCE.CB_HANDBOOKS.PURPOSE_OF_PAYMENT',
+                        type: 'basic',
+                        link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
+                    },
+                    {
                         title: 'MENU.REFERENCE.CB_HANDBOOKS.INFORMATION_SYSTEM_ERROR_CODE',
                         type: 'basic',
                         link: '/reference/' + ReferenceApiUrls.INFORMATION_SYSTEMS_ERROR_CODES,
@@ -660,11 +709,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         type: 'basic',
                         link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_METER_READING,
                     },
-                    {
-                        title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.VIEW_READINGS',
-                        type: 'basic',
-                        link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.VIEW_READINGS,
-                    }
+                    // {
+                    //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.VIEW_READINGS',
+                    //     type: 'basic',
+                    //     link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.VIEW_READINGS,
+                    // }
                 ]
             },
             {
@@ -677,9 +726,19 @@ export const mainMenuItems: FuseNavigationItem[] = [
                         link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_RECEIPT_PARCEL,
                     },
                     {
+                        title: 'MENU.ACCOUNTING_SETTLEMENT_LEGAL_CONSUMERS.LEGAL_PAYMENT',
+                        type: 'basic',
+                        link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_FOUND_RECEIPT,
+                    },
+                    {
                         title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.TRANSFER_PAYMENT_DOCUMENT',
                         type: 'basic',
                         link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.TRANSFER_PAYMENT_DOCUMENT,
+                    },
+                    {
+                        title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.VIEW_AND_APROVE_FOUND_RECEIPT',
+                        type: 'basic',
+                        link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.APPROVE_RECEIPT,
                     }
                 ]
                 ,
@@ -722,41 +781,41 @@ export const mainMenuItems: FuseNavigationItem[] = [
                                 type: 'basic',
                                 link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.METER_REPLACEMENT_ATTIRE,
                             },
-                            {
-                                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_CANCELLATION',
-                                type: 'basic',
-                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_ANNULMENT_ATTIRES,
-                            },
+                            // {
+                            //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_CANCELLATION',
+                            //     type: 'basic',
+                            //     link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_ANNULMENT_ATTIRES,
+                            // },
                             // {
                             //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.CALL_FITTER',
                             //     type: 'basic',
                             //     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
                             // },
-                            {
-                                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.CALL_FITTER',
-                                type: 'basic',
-                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_CALL_ELECTRIAN_ATTIRES,
-                            },
+                            // {
+                            //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.CALL_FITTER',
+                            //     type: 'basic',
+                            //     link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_CALL_ELECTRIAN_ATTIRES,
+                            // },
             //                 {
             //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.CALL_FITTER',
             //                     type: 'basic',
             //                     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
             //                 },
-                            {
-                                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_SEALING',
-                                type: 'basic',
-                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_INSTALL_STAMP_ATTIRE,
-                            },
+            //                 {
+            //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_SEALING',
+            //                     type: 'basic',
+            //                     link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_INSTALL_STAMP_ATTIRE,
+            //                 },
             //                 {
             //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_SEALING',
             //                     type: 'basic',
             //                     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
             //                 },
-                            {
-                                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_HELP',
-                                type: 'basic',
-                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.METER_REFERENCE_ATTIRE,
-                            },
+            //                 {
+            //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_HELP',
+            //                     type: 'basic',
+            //                     link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.METER_REFERENCE_ATTIRE,
+            //                 },
             //                 {
             //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.FOR_CHECKING',
             //                     type: 'basic',
@@ -767,11 +826,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
             //                     type: 'basic',
             //                     link: '/reference/' + AccountingSettlementHCApiUrls.TECHNICAL_WORK_UNDERWAY,
             //                 },
-                            {
-                                title: 'ACCOUNTING_SETTLEMENT_LC.FOR_CHECKING',
-                                type: 'basic',
-                                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_CHECKING_ATTIRE,
-                            },
+            //                 {
+            //                     title: 'ACCOUNTING_SETTLEMENT_LC.FOR_CHECKING',
+            //                     type: 'basic',
+            //                     link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.HOUSEHOLD_CHECKING_ATTIRE,
+            //                 },
             //                 {
             //                     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.ORDERS.INSTALLATION_(NEW)',
             //                     type: 'basic',
@@ -859,11 +918,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
             //     link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
             // },
 
-            // {
-            //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.TRANSFER_OF_A_CONSUMER_FROM_A_REP_TO_A_REP',
-            //     type: 'basic',
-            //     link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
-            // },
+            {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.TRANSFER_OF_A_CONSUMER_FROM_A_REP_TO_A_REP',
+                type: 'basic',
+                link: '/accounting-settlement-hc/' + AccountingSettlementHCApiUrls.TRANSFER_CONSUMER,
+            },
             // {
             //     title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.DATE_CORRECTION',
             //     type: 'basic',
@@ -945,6 +1004,11 @@ export const mainMenuItems: FuseNavigationItem[] = [
                 link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_PAYMENTS,
             },
             {
+                title: 'MENU.ACCOUNTING_UNCERTAIN_AMOUNTS_SUM.name',
+                type: 'basic',
+                link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_UNCERTAIN_AMOUNTS,
+            },
+            {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_LEGAL_CONSUMERS.SETTLEMENT_AND_REVOLVING_LEGAL_CARD',
                 type: 'basic',
                 link: '/accounting-settlement-lc/' + AccountingSettlementLCApiUrls.LEGAL_CONSUMER_INVOICES,
@@ -952,12 +1016,28 @@ export const mainMenuItems: FuseNavigationItem[] = [
             {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_LEGAL_CONSUMERS.LEGAL_METER_READINGS',
                 type: 'basic',
-                link: '/accounting-settlement-lc/'+AccountingSettlementLCApiUrls.LEGAL_METER_READINGS_INITIAL,
+                link: '/accounting-settlement-lc/'+AccountingSettlementLCApiUrls.LEGAL_METER_FOR_READING,
             },
             {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.REPLACEMENT_OF_CONSUMER_DETAILS',
                 type: 'basic',
                 link: '/accounting-settlement-lc/'+AccountingSettlementLCApiUrls.LEGAL_CONSUMER_DETAILS,
+            },
+            {
+                title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.INTERNAL_TRANSFER_OF_PAYMENT',
+                type: 'collapsable',
+                children: [
+                    {
+                        title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_INTERNAL_DISPLACEMENT',
+                        type: 'basic',
+                        link: '/accounting-settlement-lc/'+AccountingSettlementLCApiUrls.ENTERING_INTERNAL_DISPLACEMENT,
+                    },
+                    {
+                        title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.REPORT_ON_TRANSFERRED_PAYMENTS',
+                        type: 'basic',
+                        link: '',
+                    },
+                ]
             },
             {
                 title: 'MENU.ACCOUNTING_SETTLEMENT_HOUSEHOLD_CONSUMERS.ENTERING_AND_PRINTING_OPERATIONAL_INFORMATION.NAME',
@@ -1076,13 +1156,24 @@ export const mainMenuItems: FuseNavigationItem[] = [
     //             link: '/reference/' + ReferenceApiUrls.TECHNICAL_WORK_UNDERWAY,
     //         },
 
-    // {
-    //     id      : 'dashboards',
-    //     title   : 'MENU.OPERATIONAL_INFORMATION_CONSUMER.NAME',
-    //     type    : 'collapsable',
-    //     link    : '/reference',
-    //     children: []
-    // },
+    {
+        id      : 'dashboards',
+        title   : 'MENU.OPERATIONAL_INFORMATION_CONSUMER.NAME',
+        type    : 'collapsable',
+        children: [
+            {
+                title: 'MENU.OPERATIONAL_INFORMATION_CONSUMER.SENDING_SMS_MESSAGES',
+                type: 'basic',
+                link: '/message-sender/' + MessageSenderApiUrls.SMS_MESSAGE,
+            },
+            {
+                title: 'ACCOUNTING_SETTLEMENT_HC.SENDING_MESSAGES_TO_OFFICE',
+                type: 'basic',
+                link: '/message-sender/' + MessageSenderApiUrls.CABINET_SMS_MESSAGES,
+            },
+        ]
+    },
+
     // {
     //     id      : 'dashboards',
     //     title   : 'MENU.ENSURING_CLAIM_ACTIVITY.NAME',

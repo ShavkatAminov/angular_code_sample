@@ -26,24 +26,35 @@ export class FilterInput implements IFloatingFilterAngularComp  {
             this.request = params.request;
         if(params.options)
             this.options = params.options;
+        if(params.disabled) {
+            this.control.disable();
+        }
+        else {
+            this.control.enable();
+        }
         this.control.valueChanges.pipe(debounceTime(500)).subscribe( res => {
             if(res === '')
                 res = null;
             this.params.parentFilterInstance((instance) => {
-                instance.onFloatingFilterChanged('', JSON.stringify(res));
+                instance.onFloatingFilterChanged('equal',   JSON.stringify({value: res}));
             });
         });
     }
 
     onParentModelChanged(parentModel: any, filterChangedEvent?: FilterChangedEvent | null): void {
-
+        if(parentModel && parentModel.filter) {
+            let filterValue = parentModel.filter;
+                filterValue = JSON.parse(filterValue);
+            if(filterValue?.value && filterValue.value != this.control.value) {
+                this.control.setValue(filterValue.value, {emitEvent: false, onlySelf: false, });
+            }
+        }
     }
-
-
 }
 
 export interface FilterAdditionalParams {
     type: string,
     request: IRequest,
     options: OptionsObj[],
+    disabled: boolean,
 }

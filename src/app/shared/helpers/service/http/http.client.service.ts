@@ -14,15 +14,25 @@ import {AuthService} from "@app/core/auth/auth.service";
 export class HttpClientService {
 
   serverUrl = environment.apiUrl;
+  private headers = new HttpHeaders().append('Content-Type', 'application/json');
   constructor(private httpClient: HttpClient, private route: Router, private _authService: AuthService) {
-    this.headers = this.headers.
-      set('Authorization', 'Bearer ' + this._authService.accessToken).
-      set('Coato-Code', this._authService.coatoCode);
+    this._authService.getCoatoCode().subscribe(res => {
+      if(res) {
+        this.headers = this.headers.
+        set('Coato-Code', res);
+      }
+      else {
+        this.headers = this.headers.delete('Coato-Code');
+      }
+    })
   }
 
-  private headers = new HttpHeaders().append('Content-Type', 'application/json');
 
   request(request: IRequest, method: requestTypes = "get"): Observable<Object> {
+    if(this._authService.accessToken) {
+      this.headers = this.headers.
+      set('Authorization', 'Bearer ' + this._authService.accessToken)
+    }
     return this.httpClient.request(method, this.serverUrl + request.getUri(), {
       headers: this.headers,
       params: request.params,

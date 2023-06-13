@@ -65,7 +65,6 @@ export class ModalComponent implements OnInit {
         return modalSize
     }
 
-    public dialog: MatDialog = InjectorInstance.get(MatDialog)
 
     static showModal(component: any, title: string, formData: any = null, size: SizeModal = SizeModal.lg): Observable<any> {
         let dialog: MatDialog = InjectorInstance.get(MatDialog)

@@ -8,7 +8,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
-;
 
 @Component({
     template: basicTemplate(`
@@ -26,7 +25,7 @@ export class BankMfosComponent extends BasicReferencePage {
             },
             colId: 'regionCode',
             headerName: 'REFERENCE.AREA_CODE',
-            field: 'region.nameUz',
+            field: 'region.code',
             flex: 5
         },
         {
@@ -36,18 +35,21 @@ export class BankMfosComponent extends BasicReferencePage {
             },
             colId: 'bankId',
             headerName: 'REFERENCE.BANK_CODE',
-            field: 'nameUz',
+            field: 'bank.code',
             flex: 8
         },
         {
-
             headerName: 'REFERENCE.MFO',
             field: 'bankMfo',
             flex: 5
         },
         {
+            floatingFilterComponentParams: {
+                type: 'autocomplete',
+                request: new ReferenceDropDownRequest(ReferenceApiUrls.BANK_MFOS),
+            },
             headerName: 'REFERENCE.NAME_BANK_THEIR_BRANCHES',
-            field: 'bankName',
+            field: 'nameUz',
             flex: 15
         },
         {

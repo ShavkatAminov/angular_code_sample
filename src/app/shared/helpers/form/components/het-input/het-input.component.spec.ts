@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {SharedModule} from "../../../../shared.module";
-import {AppModule} from "../../../../../app.module";
 import {HetInputComponent} from './het-input.component';
+import {imports} from "@test/imports";
+import { login } from '@test/login';
 
 describe('HetInputComponent', () => {
     let component: HetInputComponent;
@@ -9,11 +9,10 @@ describe('HetInputComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [SharedModule, AppModule],
+            imports: imports,
             declarations: [HetInputComponent]
-        })
-            .compileComponents();
-
+        }).compileComponents();
+        login();
         fixture = TestBed.createComponent(HetInputComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -22,6 +21,7 @@ describe('HetInputComponent', () => {
     it('should create', () => {
         const fixture = TestBed.createComponent(HetInputComponent);
         const component = fixture.componentInstance;
+        // @ts-ignore
         expect(component).toBeTruthy();
     });
 });

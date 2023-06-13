@@ -18,12 +18,13 @@ import { UserModule } from 'app/layout/common/user/user.module';
 import { SharedModule } from 'app/shared/shared.module';
 import {MainLayoutComponent} from "./main.component";
 import {BreadcrumbsModule} from "../../common/breadcrumbs/breadcrumbs.module";
+import {TranslocoModule} from "@ngneat/transloco";
 
 @NgModule({
     declarations: [
         MainLayoutComponent,
     ],
-    imports     : [
+    imports: [
         HttpClientModule,
         RouterModule,
         MatButtonModule,
@@ -41,7 +42,8 @@ import {BreadcrumbsModule} from "../../common/breadcrumbs/breadcrumbs.module";
         ShortcutsModule,
         UserModule,
         SharedModule,
-        BreadcrumbsModule
+        BreadcrumbsModule,
+        TranslocoModule
     ],
     exports     : [
         MainLayoutComponent,

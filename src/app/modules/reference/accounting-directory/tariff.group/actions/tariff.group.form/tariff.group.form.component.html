@@ -4,11 +4,12 @@
         <het-input
                 [inputType]="'text'"
                 formControlName="nameUz"
+                [showError]="showError('nameUz')"
+                [errorMessage]="errorMessage('nameUz')"
                 [label]="'GENERAL.NAME'"
                 [required]="true"
-                [errorMessage]="errorMessage('nameUz')"
-                [showError]="showError('nameUz')">
-        </het-input>
+                [allowCrl]="true"
+        ></het-input>
         <het-input
                 [inputType]="'number'"
                 formControlName="baseTariff"
@@ -25,14 +26,14 @@
                 [errorMessage]="errorMessage('coefficient')"
                 [showError]="showError('coefficient')">
         </het-input>
-        <het-input
-                [inputType]="'number'"
-                formControlName="pkmGroupCode"
+        <het-number-input
+                [mask]="'00000'"
                 [label]="'REFERENCE.GROUP_CODE'"
-                [required]="true"
+                formControlName="pkmGroupCode"
                 [errorMessage]="errorMessage('pkmGroupCode')"
-                [showError]="showError('pkmGroupCode')">
-        </het-input>
+                [showError]="showError('pkmGroupCode')"
+                [required]="true"
+        ></het-number-input>
         <het-radio-static
                 type="status"
                 formControlName="status"

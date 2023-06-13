@@ -22,7 +22,8 @@ export class TimezonesComponent extends BasicReferencePage {
       {field: 'timezone', maxWidth: 156, headerName: 'MENU.REFERENCE.ACCOUNTING_HANDBOOKS.TIME_ZONES'},
       {field: 'nameUz', headerName: 'GENERAL.NAME'},
       {field: 'createdAt', type: 'date', headerName: 'GENERAL.CREATED_AT'},
-      {field: 'createdByName', headerName: 'GENERAL.CREATED_BY', type: 'user'},
+      {field: 'createdByName', headerName: 'GENERAL.CREATED_BY',
+          colId: 'createdBy', type: 'user'},
       {field: 'status', type: 'status', maxWidth: 126, headerName: 'GENERAL.STATUS'},
   ];
 

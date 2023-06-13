@@ -14,7 +14,7 @@ import {AlertServiceComponent} from "../../../../../../shared/helpers/alerts/ser
 })
 export class TimezonesFormComponent extends BasicModalForm {
 
-  
+
   override form = new FormGroup({
     nameUz: new FormControl(null, [Validators.required]),
     code: new FormControl(null, [Validators.required]),
@@ -23,4 +23,5 @@ export class TimezonesFormComponent extends BasicModalForm {
    });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.TIMEZONES);
+
 }

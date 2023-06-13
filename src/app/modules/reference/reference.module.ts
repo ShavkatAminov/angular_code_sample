@@ -179,6 +179,11 @@ import { PaymentSystemComponent } from './general-reference/payment.system/payme
 import { PaymentSystemFormComponent } from './general-reference/payment.system/actions/payment.system.form/payment.system.form.component';
 import {NewPersonalAccountRangeComponent} from "@app/modules/reference/general-reference/new.personal.account.range/new.personal.account.range.component";
 import {NewPersonalAccountRangeFormComponent} from "@app/modules/reference/general-reference/new.personal.account.range/actions/new.personal.account.range.form/new.personal.account.range.form.component";
+import {MeterStateComponent} from "@app/modules/reference/general-reference/meter.state/meter.state.component";
+import {MeterStateFormComponent} from "@app/modules/reference/general-reference/meter.state/actions/meter.state.form/meter.state.form.component";
+import {NumberOfConsumersComponent} from "@app/modules/reference/general-reference/number.of.consumers/number.of.consumers.component";
+import {EnterpriseByPaymentTypesComponent} from "@app/modules/reference/general-reference/enterprise.by.payment.types/enterprise.by.payment.types.component";
+import {EnterpriseByPaymentTypesFormComponent} from "@app/modules/reference/general-reference/enterprise.by.payment.types/actions/enterprise.by.payment.types.form/enterprise.by.payment.types.form.component";
 
 @NgModule({
   declarations: [
@@ -347,7 +352,12 @@ import {NewPersonalAccountRangeFormComponent} from "@app/modules/reference/gener
     PaymentSystemComponent,
     PaymentSystemFormComponent,
     NewPersonalAccountRangeComponent,
-    NewPersonalAccountRangeFormComponent
+    NewPersonalAccountRangeFormComponent,
+    MeterStateComponent,
+    MeterStateFormComponent,
+    NumberOfConsumersComponent,
+    EnterpriseByPaymentTypesComponent,
+    EnterpriseByPaymentTypesFormComponent
   ],
     imports: [
         CommonModule,

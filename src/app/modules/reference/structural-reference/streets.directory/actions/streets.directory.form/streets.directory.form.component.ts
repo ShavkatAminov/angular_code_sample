@@ -16,9 +16,7 @@ export class StreetsDirectoryFormComponent extends BasicModalForm {
   override form = new FormGroup({
     nameUz: new FormControl(null, [Validators.required]),
     status: new FormControl(true, [Validators.required]),
-    habitationDivisionId: new FormControl(null, [Validators.required]),
    });
 
   override request = new ReferenceFormRequest(ReferenceApiUrls.STREETS_DIRECTORY);
-  habitations = new ReferenceDropDownRequest(ReferenceApiUrls.HABITATION_DIVISIONS);
 }

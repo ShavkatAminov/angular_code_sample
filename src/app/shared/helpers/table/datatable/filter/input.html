@@ -1,7 +1,6 @@
 <ng-container [ngSwitch]="type">
     <het-input allowCrl="true" *ngSwitchCase="'input'" [formControl]="control"></het-input>
     <het-datepicker-range *ngSwitchCase="'date'" [formControl]="control"></het-datepicker-range>
-    <het-datepicker *ngSwitchCase="'datetime'" [timePicker]="true" [formControl]="control"></het-datepicker>
     <het-autocomplete *ngSwitchCase="'autocomplete'" [request]="request" [formControl]="control"></het-autocomplete>
     <het-autocomplete-search *ngSwitchCase="'autocomplete-search'" [request]="request" [formControl]="control"></het-autocomplete-search>
     <het-select-static *ngSwitchCase="'yesNo'" [type]="'yesNo'" [formControl]="control"></het-select-static>

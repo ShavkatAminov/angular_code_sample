@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 import {FuseNavigationModule} from "../../../../@fuse/components/navigation";
+import {SharedModule} from "@shared/shared.module";
 
 
 
@@ -14,7 +15,8 @@ import {FuseNavigationModule} from "../../../../@fuse/components/navigation";
   ],
     imports: [
         CommonModule,
-        FuseNavigationModule
+        FuseNavigationModule,
+        SharedModule
     ]
 })
 export class BreadcrumbsModule { }

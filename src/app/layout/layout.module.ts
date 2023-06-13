@@ -15,6 +15,7 @@ import { SettingsModule } from 'app/layout/common/settings/settings.module';
 import { SharedModule } from 'app/shared/shared.module';
 import {MainLayoutModule} from "./layouts/main/main.module";
 import {MainHorizontalModule} from "./layouts/main-horizontal/main.horizontal.module";
+import {BasicLayout} from "@app/layout/layouts/BasicLayout";
 
 const layoutModules = [
     // Empty
@@ -39,7 +40,8 @@ const layoutModules = [
 
 @NgModule({
     declarations: [
-        LayoutComponent
+        LayoutComponent,
+        BasicLayout
     ],
     imports     : [
         SharedModule,

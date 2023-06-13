@@ -7,6 +7,7 @@ import {FilterInput} from "@shared/helpers/table/datatable/filter/Input";
 import {UserManagementDropDownRequest} from "@app/modules/user-management/basic/UserManagementDropDownRequest";
 import {UserManagementApiUrls} from "@app/modules/user-management/userManagementApiUrls";
 import {transferStatus} from "@app/modules/accounting-settlement-lc/enums/transferStatus";
+import {RowModelType} from "ag-grid-community/dist/lib/interfaces/iRowModel";
 
 @Component({
     template: ''
@@ -34,15 +35,18 @@ export abstract class BasicDataTable {
     @Input() rowData!: any[];
     @Input() request!: AbstractSearch;
     @Input() rowClassRules!: RowClassRules;
+    @Input() rowModelType: RowModelType = 'infinite';
     @Input() dataKey: string | null = 'content'
     @Input() totalKey = 'totalElements'
     @Input() showFilter = true;
     @Input() rowSelection: 'single' | 'multiple' | undefined = 'single';
     @Input() suppressRowClickSelection: boolean | undefined = undefined;
-
+    @Input() rowMultiSelectWithClick: boolean | undefined = undefined;
 
 
     @Output() onSelectionChanged: EventEmitter<{}> = new EventEmitter();
+    @Output() onRowSelectIndex:EventEmitter<number> = new EventEmitter()
+    @Output() onSelectedRowsChanged: EventEmitter<{}> = new EventEmitter();
     @Output() gridReady: EventEmitter<{}> = new EventEmitter();
     @Output() filterButtonClick: EventEmitter<{}> = new EventEmitter();
     @Output() pageChanged: EventEmitter<number> = new EventEmitter();
@@ -51,6 +55,7 @@ export abstract class BasicDataTable {
     @Output() onRowDoubleClicked: EventEmitter<any> = new EventEmitter();
     @Output() onRowSelected: EventEmitter<any> = new EventEmitter();
     @Output() onFirstDataRendered: EventEmitter<any> = new EventEmitter();
+    @Output() filterChangeEmitter: EventEmitter<any> = new EventEmitter();
 
     protected constructor(protected translate: TranslocoService) {}
 
@@ -85,12 +90,12 @@ export abstract class BasicDataTable {
             floatingFilterComponentParams: {
                 type: 'select',
                 options: [
-                    {id: null, name: ''},
-                    {id: true, name: this.translate.translate("GENERAL.INTRODUCED")},
-                    {id: false, name: this.translate.translate("GENERAL.APPROVED")}
+                    {id: '', name: ''},
+                    {id: true, name: this.translate.translate("GENERAL.AVAILABLE")},
+                    {id: false, name: this.translate.translate("GENERAL.NOT_AVAILABLE")}
                 ]
             },
-            cellRenderer: params => (this.translate.translate((params.value === transferStatus.INTRODUCED ? "GENERAL.INTRODUCED" : "GENERAL.APPROVED")))
+            cellRenderer: params => (this.translate.translate((params.value ? "GENERAL.AVAILABLE" : "GENERAL.NOT_AVAILABLE")))
         },
         yesNo: {
             floatingFilterComponentParams: {

@@ -9,7 +9,9 @@ import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.componen
 import {basicTemplate} from "../../basic/basicTemplate";
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+  <het-button  [label]="'Restart Job'"></het-button>
+  `),
 })
 export class AskueTypesComponent extends BasicReferencePage {
   ngOnInit(): void {
@@ -28,6 +30,6 @@ export class AskueTypesComponent extends BasicReferencePage {
     { field: 'nameUz',  headerName:"REFERENCE.TYPE_NAME"},
     { field: 'status', headerName: 'GENERAL.STATUS',type:'status', flex: 3},
     { field: 'updatedAt', headerName: 'GENERAL.UPDATED_AT',type:'date', flex: 3},
-    { field: 'updatedByName', headerName: 'GENERAL.UPDATED_BY', flex: 3, type: 'user'},
+    { field: 'updatedByName', headerName: 'GENERAL.LOGIN', flex: 3, type: 'user',colId:"updatedBy"},
   ];
 }

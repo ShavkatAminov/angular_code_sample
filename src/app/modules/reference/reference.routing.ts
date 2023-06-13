@@ -111,6 +111,9 @@ import {
 } from "@app/modules/reference/accounting-handbooks-reference/fine.percentages/fine.percentages.component";
 import {PaymentSystemComponent} from "@app/modules/reference/general-reference/payment.system/payment.system.component";
 import {NewPersonalAccountRangeComponent} from "@app/modules/reference/general-reference/new.personal.account.range/new.personal.account.range.component";
+import {MeterStateComponent} from "@app/modules/reference/general-reference/meter.state/meter.state.component";
+import {NumberOfConsumersComponent} from "@app/modules/reference/general-reference/number.of.consumers/number.of.consumers.component";
+import {EnterpriseByPaymentTypesComponent} from "@app/modules/reference/general-reference/enterprise.by.payment.types/enterprise.by.payment.types.component";
 
 export const referenceRoutes: Route[] = [
     {
@@ -412,5 +415,17 @@ export const referenceRoutes: Route[] = [
     {
         path     : ReferenceApiUrls.NEW_PERSONAL_ACCOUNT_RANGE,
         component: NewPersonalAccountRangeComponent
+    },
+    {
+        path     : ReferenceApiUrls.METER_STATE,
+        component: MeterStateComponent
+    },
+    {
+        path     : ReferenceApiUrls.NUMBER_OF_CONSUMERS,
+        component: NumberOfConsumersComponent
+    },
+    {
+        path     : ReferenceApiUrls.ENTERPRISE_BY_PAYMENT_TYPES,
+        component: EnterpriseByPaymentTypesComponent
     },
 ];

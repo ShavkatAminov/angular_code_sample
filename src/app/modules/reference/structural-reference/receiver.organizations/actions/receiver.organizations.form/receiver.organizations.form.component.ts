@@ -12,10 +12,10 @@ import {ReferenceDropDownRequest} from "../../../../basic/ReferenceDropDownReque
 export class ReceiverOrganizationsFormComponent extends BasicModalForm {
   override form = new FormGroup({
     nameUz: new FormControl(null, [Validators.required]),
-    code: new FormControl(null, [Validators.required]),
+    code: new FormControl(null, [Validators.required,Validators.minLength(5)]),
     status: new FormControl(true, [Validators.required]),
     sendersTypeId: new FormControl(null, [Validators.required]),
-    mfo: new FormControl(null, [Validators.required]),
+    mfo: new FormControl(null, [Validators.required,Validators.minLength(5)]),
     account: new FormControl(null, []),
     percentage: new FormControl(null, [Validators.required]),
 });
@@ -29,7 +29,7 @@ export class ReceiverOrganizationsFormComponent extends BasicModalForm {
     this.request.body.sendersTypeId = parseInt(this.request.body.sendersTypeId);
     this.request.body.paymentSystemId = parseInt(this.request.body.paymentSystemId);
     this.request.body.account = parseInt(this.request.body.account);
-    this.request.body.percentage = parseInt(this.request.body.percentage);
+    this.request.body.percentage = parseFloat(this.request.body.percentage);
   }
 }
 

@@ -10,7 +10,9 @@ import {basicTemplate} from "../../basic/basicTemplate";
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-button  [label]="'GENERAL.PROTOCOL'"></het-button>
+  `),
 })
 export class CoatoAskueBindingComponent extends BasicReferencePage {
   ngOnInit(): void {
@@ -18,14 +20,25 @@ export class CoatoAskueBindingComponent extends BasicReferencePage {
   }
   columnDefs: ColDef[] = [
     {
+
+      floatingFilterComponentParams: {
+        type: 'autocomplete',
+        request: new ReferenceDropDownRequest(ReferenceApiUrls.COATO_BRANCHES),
+      },
+      flex: 20,
+      field: 'coatoBranch.code',
+      headerName: 'GENERAL.CODE_ESP',
+    },
+
+
+    {
       colId: 'coatoBranchId',
       floatingFilterComponentParams: {
         type: 'autocomplete',
         request: new ReferenceDropDownRequest(ReferenceApiUrls.COATO_BRANCHES),
       },
       flex: 20,
-      type: 'code_nameUz',
-      field: 'coatoBranch',
+      field: 'coatoBranch.nameUz',
       headerName: 'REFERENCE.COATO',
     },
     {

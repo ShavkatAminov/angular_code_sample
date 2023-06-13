@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ColDef} from "ag-grid-community";
 import {BasicReferencePage} from "../../basic.reference.page";
-import { SizeModal} from "@shared/helpers/modal/modal.component";
+import {SizeModal} from "@shared/helpers/modal/modal.component";
 import {ExchangeRatesFormComponent} from "./actions/exchange.rates.form/exchange.rates.form.component";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {ReferenceApiUrls} from "../../referenceApiUrls";
@@ -10,7 +10,7 @@ import {basicTemplate} from "../../basic/basicTemplate";
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
-  template: basicTemplate(),
+    template: basicTemplate(),
 })
 export class ExchangeRatesComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
@@ -22,14 +22,20 @@ export class ExchangeRatesComponent extends BasicReferencePage {
             colId: 'currencyId',
             field: 'currency.code',
             headerName: 'GENERAL.CURRENCY_CODE',
+            pinned: "left",
+            maxWidth: 150
         },
         {
             field: 'exchangeRate',
             headerName: 'GENERAL.EXCHANGE_RATE',
+            pinned: "left",
+            maxWidth: 150
         },
         {
             field: 'currencyUnit',
             headerName: 'GENERAL.CURRENCY_UNIT',
+            pinned: "left",
+            maxWidth: 150
         },
         {
             field: 'activationDate',
@@ -39,6 +45,7 @@ export class ExchangeRatesComponent extends BasicReferencePage {
         {
             field: 'updatedByName',
             type: 'user',
+            colId: "updatedBy",
             headerName: 'GENERAL.UPDATED_BY',
         },
         {
@@ -49,12 +56,14 @@ export class ExchangeRatesComponent extends BasicReferencePage {
         {
             type: 'user',
             field: 'createdByName',
+            colId: 'createdBy',
             headerName: 'GENERAL.CREATED_BY',
         },
         {
             field: 'status',
             type: 'status',
             headerName: 'GENERAL.STATUS',
+            minWidth: 150
         }
     ];
 
@@ -63,7 +72,7 @@ export class ExchangeRatesComponent extends BasicReferencePage {
     request = new ReferenceListRequest(ReferenceApiUrls.EXCHANGE_RATES);
 
     addUpdate(id = null) {
-        FormModalComponent.showModal(ExchangeRatesFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
+        FormModalComponent.showModal(ExchangeRatesFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
             if (res)
                 this.reload();
         });

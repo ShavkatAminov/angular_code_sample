@@ -13,6 +13,14 @@
         <het-radio-static [label]="'REFERENCE.INITIAL_SYMBOLS'" type="yesNo" formControlName="presenceOfSymbols" [showError]="showError('presenceOfSymbols')"
                           [required]="true" [errorMessage]="errorMessage('presenceOfSymbols')">
         </het-radio-static>
+        <het-number-input formControlName="numberLetter"
+                   [showError]="showError('numberLetter')"
+                   [errorMessage]="errorMessage('numberLetter')"
+                   [label]="'REFERENCE.NUMBER_OF_LETTERS_IN_SERIAL_NUMBER'"
+                   [required]="!this.form.controls.presenceOfSymbols.value"
+                   *ngIf="!this.form.controls.presenceOfSymbols.value"
+        >
+        </het-number-input>
         <het-radio-static type="status" formControlName="status" [showError]="showError('status')"
                            [required]="true" [label]="'GENERAL.STATUS'"
                           [errorMessage]="errorMessage('status')"

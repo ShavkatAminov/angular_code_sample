@@ -38,11 +38,18 @@ export class HetDatepickerRange extends HetDatepickerComponent implements OnInit
 
     @Output() datePickerRangeChanged: EventEmitter<DateRange> = new EventEmitter<DateRange>();
 
+    override toNull($event) {
+        this.onDatePickerChange(null);
+        this.form.reset();
+        $event.stopPropagation();
+    }
+
+
     onDatePickerChange(value: DateRange) {
-        if(value.from) {
+        if(value && value.from) {
             value.from = this.setTimeZoneOffset(value.from);
         }
-        if(value.to) {
+        if(value && value.to) {
             value.to.setHours(23);
             value.to.setMinutes(59);
             value.to = this.setTimeZoneOffset(value.to);
@@ -52,6 +59,16 @@ export class HetDatepickerRange extends HetDatepickerComponent implements OnInit
         this.extraErrorMessage = ""
         this.onChange(value);
         this.datePickerRangeChanged.emit(value);
+    }
+
+    override  writeValue(obj: any): void {
+        if(obj) {
+            obj.from = new Date(obj.from);
+            obj.to = new Date(obj.to);
+        }
+        if(obj && JSON.stringify(obj) != JSON.stringify(this.form.value)) {
+           this.form.patchValue(obj);
+        }
     }
 }
 

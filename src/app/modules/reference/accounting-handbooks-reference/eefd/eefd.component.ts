@@ -50,6 +50,7 @@ export class EefdComponent extends BasicReferencePage {
         {
             type: 'user',
             field: 'createdByName',
+            colId: 'createdBy',
             headerName: 'GENERAL.CREATED_BY',
             flex: 2,
         },

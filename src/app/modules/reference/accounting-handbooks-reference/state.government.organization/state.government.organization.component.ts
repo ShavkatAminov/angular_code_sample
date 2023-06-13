@@ -25,33 +25,36 @@ export class StateGovernmentOrganizationComponent extends BasicReferencePage imp
 
     columnDefs: ColDef[] = [
         {
-            flex:3,
+            maxWidth: 140,
             headerName: "REFERENCE.CODE_GOVERNMENT_ORGANIZATION",
             field: 'code',
+            pinned: 'left'
         },
         {
-            minWidth:250,
+            minWidth: 400,
             headerName: "REFERENCE.NAME_GOVERNMENT_ORGANIZATION",
             field: 'nameUz',
+            pinned: 'left'
         },
         {
-            minWidth:200,
+            minWidth: 200,
             headerName: "REFERENCE.SHORT_NAME",
             field: 'shortName',
+            pinned: 'left'
         },
         {
-            minWidth:150,
+            minWidth: 150,
             headerName: "REFERENCE.PS9NUMBER",
             field: 'ps9Number',
 
         },
         {
-            minWidth:150,
+            minWidth: 150,
             headerName: "REFERENCE.BUDGET_CODE",
             field: 'budgetCode',
         },
         {
-            minWidth:150,
+            minWidth: 150,
             headerName: "REFERENCE.CODE_COMPLEX",
             field: 'stateComplex.code',
             colId: 'stateComplexId',
@@ -61,18 +64,18 @@ export class StateGovernmentOrganizationComponent extends BasicReferencePage imp
             },
         },
         {
-            minWidth:200,
+            minWidth: 280,
             headerName: "REFERENCE.NAME_COMPLEX",
             filter:false,
             field: 'stateComplex.nameUz',
         },
         {
-            minWidth:150,
+            minWidth: 150,
             headerName: "REFERENCE.MANAGING_ORGANIZATION_CODE",
             field: 'managingOrganizationCode',
         },
         {
-            minWidth:150,
+            minWidth: 150,
             headerName: "GENERAL.STATUS",
             field: 'status',
             type: 'status'

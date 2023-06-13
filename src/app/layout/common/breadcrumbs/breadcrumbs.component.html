@@ -1,8 +1,10 @@
-<div class="flex flex-auto px-4 md:px-8 bg-blue-700 dark:bg-gray-700">
-    <div class="relative flex items-center w-full max-w-360 h-7 text-white">
+<div class="flex flex-auto px-4 md:pl-8 bg-blue-700 dark:bg-gray-700 gap-1">
+    <div class="relative flex grow items-center w-full h-7 text-white">
         <fuse-horizontal-navigation
                 class="-mx-4"
                 [name]="'breadCrumbs'"
                 [navigation]="breadCrumbsNavigation"></fuse-horizontal-navigation>
     </div>
+    <het-button class="flex-none" [icon]="'keyboard_arrow_left'" [label]="'GENERAL.BACK'" (btnClick)="goBack()"></het-button>
+    <het-button class="flex-none" [icon]="'logout'" [label]="'GENERAL.EXIT'" (btnClick)="logout()"></het-button>
 </div>

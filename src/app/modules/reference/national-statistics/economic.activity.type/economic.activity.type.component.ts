@@ -9,7 +9,6 @@ import {ReferenceApiUrls} from "../../referenceApiUrls";
 import {ReferenceListRequest} from "../../basic/ReferenceListRequest";
 import {FormModalComponent} from "@shared/helpers/form.modal/form.modal.component";
 import {basicTemplate} from "../../basic/basicTemplate";
-;
 
 @Component({
   template: basicTemplate(`
@@ -30,7 +29,7 @@ export class EconomicActivityTypeComponent extends BasicReferencePage {
             field: 'nameRu',
         },
         {
-            headerName: "GENERAL.NAME",
+            headerName: "GENERAL.NAME_LAT",
             field: 'nameUz',
         },
         {
@@ -49,7 +48,7 @@ export class EconomicActivityTypeComponent extends BasicReferencePage {
     request = new ReferenceListRequest(ReferenceApiUrls.ECONOMIC_ACTIVITY_TYPE);
 
     addUpdate(id = null) {
-        FormModalComponent.showModal(EconomicActivityTypeFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+        FormModalComponent.showModal(EconomicActivityTypeFormComponent, this.title, id, SizeModal.sm).subscribe(res => {
             if (res)
                 this.reload();
         });

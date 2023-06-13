@@ -1,8 +1,5 @@
-import {Component, EventEmitter, Inject, Output} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {InjectorInstance} from "../../shared.module";
-import {Observable, Subject} from "rxjs";
-import {ModalComponent, SizeModal} from "../modal/modal.component";
+import {Component} from '@angular/core';
+import {Subject} from "rxjs";
 import {ModalComponentInterface} from "../modal/modal.component.interface";
 
 @Component({
@@ -22,7 +19,7 @@ export class ConfirmComponent implements ModalComponentInterface{
 
   sendClose: Subject<any> = new Subject<any>();
 
-  setData(data: any) {
+  setData(data: string) {
     this.content = data;
   }
 

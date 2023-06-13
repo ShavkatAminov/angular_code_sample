@@ -2,11 +2,13 @@
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <het-input formControlName="code"
-
+                   [readonly]="this.request.id"
                    [label]="'ACCOUNTING_SETTLEMENT_LC.METER_CODE'"
                    [errorMessage]="errorMessage('code')"
                    [showError]="showError('code')"
-                   [required]="true">
+                   [required]="true"
+                   [mask]="'0*'"
+                   [maxLength]="4">
         </het-input>
         <het-input formControlName="nameUz"
                    [label]="'ACCOUNTING_SETTLEMENT_LC.METER_BRAND'"

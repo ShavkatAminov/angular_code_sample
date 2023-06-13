@@ -19,8 +19,8 @@
                     (ngSubmit)="signIn()"
                     #signInNgForm="ngForm">
 
-                <het-input [showError]="showError('login')" [label]="'Login'" [widthLabel]="30" formControlName="login"> </het-input>
-                <het-input [inputType]="'password'" [showError]="showError('password')" [label]="'Parol'" [widthLabel]="30" formControlName="password"> </het-input>
+                <het-input [labelPositionRight]="false" [showError]="showError('login')" [label]="'Login'" [widthLabel]="30" formControlName="login"> </het-input>
+                <het-input [labelPositionRight]="false" [inputType]="'password'" [showError]="showError('password')" [label]="'Parol'" [widthLabel]="30" formControlName="password"> </het-input>
                 <het-button [type]="'submit'" [class]="'center'"
                         [disabled]="form.disabled"
                         [label]="'Kirish'">

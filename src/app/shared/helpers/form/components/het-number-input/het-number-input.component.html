@@ -1,9 +1,9 @@
-<div class="hel-select-row flex flex-row items-center relative">
-    <mat-label class="font-bold" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
+<div class="group hel-select-row flex flex-row items-center relative">
+    <mat-label [ngClass]="labelPositionRight ? 'font-bold text-right pr-2': 'font-bold'" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
         {{label | transloco}} <span *ngIf="required" style="color: red">*</span>
     </mat-label>
 
-    <mat-form-field [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'errorInput' : showError, 'readonly-bg-color' : readonly}">
+    <mat-form-field [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'errorInput' : showError, 'readonly-bg-color' : readonly, 'input-right-style' : inputRightStyle}">
         <input
                 matInput
                 (focusout)="onTouch()"
@@ -17,8 +17,8 @@
                 min="0"
                 [readonly]="readonly"
                 [disabled]="disabled"
-                [maxlength]="maxLength"
-                (keypress)="!allowCrl ? checkLatin($event) :null"
+                (keydown)="onKeyDown($event)"
+
         >
         <mat-icon *ngIf="svgIcon"
                   class="icon-size-5"
@@ -30,7 +30,7 @@
             <mat-icon class="font-black text-black">close</mat-icon>
         </span>
     </mat-form-field>
-    <div *ngIf="showError" error-popover>
+    <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
         {{errorMessage}}
     </div>
 </div>

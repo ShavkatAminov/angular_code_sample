@@ -1,7 +1,8 @@
 <form (ngSubmit)="saveProcess()" [formGroup]="form">
     <div class="grid grid-cols-1 gap-4">
         <het-input formControlName="code" [label]="'GENERAL.CODE_BRIGADE'" [required]="true"
-                   [maxLength]="20" [mask]="'000000'"
+                   mask="0*"
+                   maxLength="5"
                    [errorMessage]="errorMessage('code')" [showError]="showError('code')">
         </het-input>
         <het-input formControlName="nameUz" [label]="'GENERAL.NAME'" [required]="true"

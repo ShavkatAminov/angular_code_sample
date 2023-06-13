@@ -31,8 +31,4 @@ export abstract class BasicModalForm extends BasicForm implements FormModalCompo
         this.sendClose.next(true);
     }
 
-    override beforeSave() {
-        this.request.body = this.form.value;
-    }
-
 }

@@ -18,7 +18,9 @@ import {HttpClientService} from "../../../service/http/http.client.service";
   ]
 })
 export class HetCheckboxListComponent extends BasicFormInput {
-  suggestions: OptionsCheckbox[] = [];
+  @Input() suggestions: OptionsCheckbox[] = [];
+  @Input() styles: string = '';
+  @Input() allowLabelStart: boolean = false;
   selectedItems: any;
   loaded = false;
   private _request: IRequest;
@@ -42,15 +44,20 @@ export class HetCheckboxListComponent extends BasicFormInput {
     this.getSuggestions();
   }
   getSuggestions() {
-    this.http.request(this.request,'post').subscribe((data: Options[]) => {
-      this.suggestions = data.map(item => {
-        return {...item, checked: false};
+    if(this.suggestions.length < 1 && this.request) {
+      this.http.request(this.request,'post').subscribe((data: Options[]) => {
+        this.suggestions = data.map(item => {
+          return {...item, checked: false};
+        });
+        this.loaded = true;
+        if(this.selectedItems) {
+          this.writeValue(this.selectedItems);
+        }
       });
+    } else {
       this.loaded = true;
-      if(this.selectedItems) {
-        this.writeValue(this.selectedItems);
-      }
-    });
+      return this.suggestions;
+    }
   }
   toNull() {
     this.value = null;
@@ -64,6 +71,7 @@ export class HetCheckboxListComponent extends BasicFormInput {
     this.onChange(this.value);
     this.selectChanged.emit(this.value);
   }
+
   override writeValue(obj: any) {
     this.selectedItems = obj;
     if(obj) {

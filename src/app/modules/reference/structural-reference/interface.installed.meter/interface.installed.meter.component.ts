@@ -17,7 +17,7 @@ export class InterfaceInstalledMeterComponent extends BasicReferencePage {
         {
             field: 'code',
             headerName:'REFERENCE.UPSTREAM_METER_CODE',
-            minWidth:140,
+            maxWidth:140,
             resizable: true,
             pinned:"left"
         },
@@ -68,7 +68,7 @@ export class InterfaceInstalledMeterComponent extends BasicReferencePage {
         },
         {
             field: 'askueConnection',
-            headerName:'REFERENCE.CONNECTION_TO_ASKUE',
+            headerName:'ACCOUNTING_SETTLEMENT_HC.CONNECTION_TO_ASKUE',
             minWidth:130
         },
         {
@@ -134,7 +134,7 @@ export class InterfaceInstalledMeterComponent extends BasicReferencePage {
                 return params.data?params.data.agent.lastName+' '+ params.data.agent.firstName+' '+params.data.agent.middleName:null
             },
             headerName:'REFERENCE.AGENT_ORC',
-            minWidth:200
+            minWidth:350
         },
         {
             field: 'status',

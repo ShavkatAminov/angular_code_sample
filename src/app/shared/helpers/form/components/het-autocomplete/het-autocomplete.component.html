@@ -1,5 +1,5 @@
-<div class="hel-select-row flex flex-row items-center relative">
-    <mat-label class="font-bold" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+<div class="group hel-select-row flex flex-row items-center relative">
+    <mat-label [ngClass]="labelPositionRight ? 'font-bold text-right pr-2': 'font-bold'" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
         {{ label | transloco}}
         <span style="color:red" *ngIf="required">*</span>
     </mat-label>
@@ -8,17 +8,18 @@
         <input type="text"
                #autoTrigger="matAutocompleteTrigger"
                matInput
-               [readonly]="readonly || this.selectedItem"
+               [readonly]="readonly || this.readonlyWhenSelectedItem"
                [disabled]=disabled
                [matAutocomplete]="auto"
                [formControl]="control"
+               [placeholder]="placeholder"
                (touchend)="onTouch()"
                (focus)="loadAndCreate()"
                (focusout)="closeAfterFocusOut()"
                [(ngModel)]="value"
                [matAutocompleteDisabled] = disabled
         >
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunction"
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="this.allowNameDisplay?displayNameFunction:displayFunction"
                           (optionSelected)='onValueChange($event)'>
             <mat-option *ngFor="let suggestion of filteredSuggestions | async" [value]="suggestion">
                 {{ CodeAndName(suggestion) }}
@@ -29,7 +30,7 @@
         </mat-autocomplete>
 
 
-        <span *ngIf="value && !readonly" (click)="toNull()" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix
+        <span *ngIf="value && !readonly && !disabled" (click)="toNull()" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix
               mat-icon-button>
             <mat-icon class="font-black text-black">close</mat-icon>
         </span>
@@ -37,7 +38,7 @@
             <mat-icon svgIcon="arrow_drop_down"></mat-icon>
         </div>
     </mat-form-field>
-    <div *ngIf="showError" error-popover>
+    <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
         {{errorMessage}}
     </div>
 </div>

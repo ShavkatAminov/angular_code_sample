@@ -15,16 +15,18 @@ import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 export class WorkplaceComponent extends BasicReferencePage{
   columnDefs: ColDef[] = [
     {
-      minWidth: 150,
+      maxWidth: 150,
       flex:3,
       field: 'code',
       headerName: 'GENERAL.CODE',
+      pinned: 'left'
     },
     {
-      minWidth: 150,
+      minWidth: 300,
       flex: 5,
       field: 'nameUz',
       headerName: 'GENERAL.NAME',
+      pinned: 'left'
     },
     {
       floatingFilterComponentParams: {
@@ -32,11 +34,12 @@ export class WorkplaceComponent extends BasicReferencePage{
         request: new ReferenceDropDownRequest(ReferenceApiUrls.ORGANIZATIONS),
       },
       colId: 'organizationId',
-      minWidth: 300,
+      minWidth: 350,
       flex: 5,
       field: 'organization',
       type: 'code_nameUz',
       headerName: 'REFERENCE.ORGANIZATION',
+      pinned: 'left'
     },
     {
       minWidth: 150,
@@ -45,18 +48,7 @@ export class WorkplaceComponent extends BasicReferencePage{
       headerName: 'REFERENCE.EMPLOYEES_NUMBER',
     },
     {
-      floatingFilterComponentParams: {
-        type: 'autocomplete',
-        request: new ReferenceDropDownRequest(ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS),
-      },
-      type: 'code_nameUz',
-      colId: 'stateGovernmentOrganizationId',
-      minWidth: 300,
-      field: 'stateGovernmentOrganization',
-      headerName: 'REFERENCE.GOVERNMENT_ORGANIZATION',
-    },
-    {
-      minWidth: 150,
+      minWidth: 120,
       flex:3,
       field: 'tin',
       headerName: 'REFERENCE.TIN',
@@ -64,36 +56,46 @@ export class WorkplaceComponent extends BasicReferencePage{
     {
       floatingFilterComponentParams: {
         type: 'autocomplete',
+        request: new ReferenceDropDownRequest(ReferenceApiUrls.STATE_GOVERNMENT_ORGANIZATIONS),
+      },
+      type: 'code_nameUz',
+      colId: 'stateGovernmentOrganizationId',
+      minWidth: 250,
+      field: 'stateGovernmentOrganization',
+      headerName: 'REFERENCE.GOVERNMENT_ORGANIZATION',
+    },
+    {
+      floatingFilterComponentParams: {
+        type: 'autocomplete',
         request: new ReferenceDropDownRequest(ReferenceApiUrls.ORGANIZATIONS),
       },
       colId: 'higherOrganizationId',
-      minWidth: 300,
+      minWidth: 250,
       flex:4,
       field: 'higherOrganization.nameUz',
       headerName: 'REFERENCE.HIGHER_ORGANIZATION',
     },
     {
+      field: 'updatedAt',
+      type: 'date',
+      headerName: 'GENERAL.UPDATED_AT',
+      minWidth: 280
+    },
+    {
       minWidth: 150,
-      flex:4,
       field: 'processed',
       type: 'status',
       headerName: 'REFERENCE.PROCESSED',
     },
     {
-      flex:3,
-      field: 'updatedAt',
-      type: 'date',
-      headerName: 'GENERAL.UPDATED_AT',
-    },
-    {
       type: 'user',
       flex:3,
       field: 'createdByName',
+      colId: 'createdBy',
       headerName: 'GENERAL.CREATED_BY',
     },
     {
       minWidth: 150,
-      flex:3,
       type: 'status',
       field: 'status',
       headerName: 'GENERAL.STATUS',

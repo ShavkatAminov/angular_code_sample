@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BasicModalForm} from "@shared/helpers/form/modal/basic.modal.form";
 import {ReferenceFormRequest} from "../../../../basic/ReferenceFormRequest";
@@ -19,7 +19,7 @@ import {OptionsObj} from "@shared/helpers/form/interfaces/options";
 export class MeterTypeFormComponent extends BasicModalForm {
 
 
-  
+
   override form = new FormGroup({
     nameUz: new FormControl(null, [Validators.required]),
     code: new FormControl(null, [Validators.required]),
@@ -42,6 +42,8 @@ export class MeterTypeFormComponent extends BasicModalForm {
     meterManufacturerId: new FormControl(null, []),
     detail: new FormControl(null, []),
    });
+
+
   measurementTypeOption = [
     {
       id:MEASUREMENT_TYPE_ENUM.ACTIVE,
@@ -80,9 +82,6 @@ export class MeterTypeFormComponent extends BasicModalForm {
   },{
     id: ASKUE_COMPATABILITY.NO,
     name: 'GENERAL.NO',
-  },{
-    id: ASKUE_COMPATABILITY.SMARTCARD,
-    name: 'GENERAL.SMARTCARD',
   }
   ]
 }

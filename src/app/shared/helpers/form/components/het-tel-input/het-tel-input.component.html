@@ -1,41 +1,51 @@
-<div class="hel-select-row flex flex-row items-center relative">
-    <mat-label class="font-bold" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
+<div class="group hel-select-row flex flex-row items-center relative">
+    <mat-label [ngClass]="labelPositionRight ? 'font-bold text-right pr-2': 'font-bold'" [ngStyle]="{'width': widthLabel + '%'}" *ngIf="label">
         {{label | transloco}} <span *ngIf="required" style="color: red">*</span>
     </mat-label>
 
-    <mat-form-field [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'errorInput' : showError, 'readonly-bg-color' : readonly}">
-        <input
-                matInput
-                (focusout)="onTouch()"
-                [(ngModel)]="value"
-                (input)="valueChange(value)"
-                [placeholder]="placeholder"
-                [type]="inputType"
-                [mask]="mask"
-                [patterns]="patterns"
-                min="0"
-                [prefix]="prefix"
-                [dropSpecialCharacters]="false"
-                [readonly]="readonly"
-                [disabled]="disabled"
-                [maxlength]="maxLength"
-                (keypress)="!allowCrl ? checkLatin($event) :null"
-                (keydown)="onKeyDown($event)"
-                (select)="onTextSelect($event)"
-                #myInput
-        >
-        <mat-icon *ngIf="svgIcon"
-                  class="icon-size-5"
-                  matPrefix
-                  [svgIcon]="svgIcon"
-        ></mat-icon>
+    <div [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }" class="flex">
+        <het-select (selectChanged)="onSelectChange($event)"
+                    [options]="areaCodeOptions"
+                    [ngModel]="selectedPrefixId"
+                    class="w-5/12"
+                    [showError]="showError || (value && !prefix)"
+                    [errorMessage]="(!prefix || value) && 'Choose prefix '"
 
-        <span *ngIf="value?.length && !disabled && !readonly" (click)="toNull($event)" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix
-              mat-icon-button>
+        ></het-select>
+
+        <mat-form-field class="w-7/12"  [ngClass]="{'errorInput' : showError, 'readonly-bg-color' : readonly}">
+            <input
+                    matInput
+                    (focusout)="onTouch()"
+                    [(ngModel)]="value"
+                    (input)="valueChange(value)"
+                    [placeholder]="placeholder"
+                    [type]="inputType"
+                    [mask]="mask"
+                    [patterns]="patterns"
+                    min="0"
+                    [dropSpecialCharacters]="false"
+                    [readonly]="readonly"
+                    [disabled]="disabled"
+                    [maxlength]="maxLength"
+                    (keypress)="!allowCrl ? checkLatin($event) :null"
+                    (keydown)="onKeyDown($event)"
+                    (select)="onTextSelect($event)"
+                    #myInput
+            >
+            <mat-icon *ngIf="svgIcon"
+                      class="icon-size-5"
+                      matPrefix
+                      [svgIcon]="svgIcon"
+            ></mat-icon>
+
+            <span *ngIf="value?.length && !disabled && !readonly" (click)="toNull($event)" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix
+                  mat-icon-button>
             <mat-icon class="font-black text-black">close</mat-icon>
         </span>
-    </mat-form-field>
-    <div *ngIf="showError" error-popover>
+        </mat-form-field>
+    </div>
+    <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
         {{errorMessage}}
     </div>
 </div>

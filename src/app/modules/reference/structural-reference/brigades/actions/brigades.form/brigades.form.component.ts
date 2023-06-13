@@ -15,7 +15,7 @@ export class BrigadesFormComponent extends BasicModalForm {
   override form = new FormGroup({
     nameUz: new FormControl(null, [Validators.required]),
     byTypeId: new FormControl(null, [Validators.required]),
-    code: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+    code: new FormControl(null, [Validators.required, Validators.minLength(5)]),
     status: new FormControl(true, [Validators.required]),
   });
 

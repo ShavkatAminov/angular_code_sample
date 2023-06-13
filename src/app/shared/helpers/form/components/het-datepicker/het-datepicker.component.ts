@@ -66,7 +66,7 @@ export class HetDatepickerComponent extends BasicFormInput implements OnInit {
                     const newValue = new Date().getFullYear().toString().slice(0, 2) + array[2]
                     array[2] = newValue
                     value = array.join('.')
-                    this.control.patchValue(value)
+                    this.control.patchValue(value, {emitEvent: false});
                 }
                 this.strValue(value);
             }
@@ -78,15 +78,22 @@ export class HetDatepickerComponent extends BasicFormInput implements OnInit {
     extraErrorMessage = "";
 
 
-    writeValue(obj: any) {
-        super.writeValue(obj);
-        this.control.patchValue(DateUtil.formatDate(obj), {emitEvent: false, onlySelf: false});
+    override writeValue(obj: any) {
+        //super.writeValue(obj);
+        if(obj) {
+            this.control.setValue(DateUtil.formatDate(obj))
+        } else {
+            this.onDatePickerChange(null);
+        }
     }
 
     strValue(value: any) {
         if (value.length === 10) {
             value = DateUtil.convert(value);
-            if (value.toString() !== "Invalid Date" && (this.minDate < value && this.maxDate > value)) {
+            const minDate = new Date(this.minDate).setHours(0,0,0,0)
+            const maxDate = new Date(this.maxDate).setHours(23,59,0,0)
+
+            if (value.toString() !== "Invalid Date" && (minDate <= value && maxDate >= value)) {
                 this.onDatePickerChange(value);
                 this.showError = false;
             } else {
@@ -108,17 +115,15 @@ export class HetDatepickerComponent extends BasicFormInput implements OnInit {
 
 
     toNull($event) {
-        this.value = null;
-        this.onChange(null);
-        this.onDatePickerChange(null)
-        $event.stopPropagation()
+        this.onDatePickerChange(null);
+        $event.stopPropagation();
     }
 
 
     setTimeZoneOffset(value: Date | null) {
         if (value) {
             let time = value.getTime();
-            time -= value.getTimezoneOffset() * 60000
+            time -= value.getTimezoneOffset() * 60000;
             value = new Date(time);
         }
         return value;

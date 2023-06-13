@@ -2,26 +2,28 @@
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <het-input
-                   [errorMessage]="errorMessage('code')"
-                   [showError]="showError('code')"
-                   formControlName="code"
-                   [mask]="'000'"
-                   [label]="'GENERAL.CODE'"
-                   [required]="true">
-        </het-input>
-        <het-input formControlName="nameUz"
-                   [errorMessage]="errorMessage('nameUz')"
-                   [showError]="showError('nameUz')"
-                   [label]="'GENERAL.NAME'"
-                   [required]="true">
-        </het-input>
-
-        <het-radio-static type="status"
-                          formControlName="status"
-                          [errorMessage]="errorMessage('status')"
-                          [showError]="showError('status')"
-                          [label]="'GENERAL.STATUS'"
-                          [required]="true">
-        </het-radio-static>
+                [mask]="'000'"
+                formControlName="code"
+                [showError]="showError('code')"
+                [errorMessage]="errorMessage('code')"
+                [label]="'GENERAL.CODE'"
+                [required]="true"
+        ></het-input>
+        <het-input
+                [allowCrl]="true"
+                formControlName="nameUz"
+                [showError]="showError('nameUz')"
+                [errorMessage]="errorMessage('nameUz')"
+                [label]="'GENERAL.NAME'"
+                [required]="true"
+        ></het-input>
+        <het-radio-static
+                type="status"
+                formControlName="status"
+                [errorMessage]="errorMessage('status')"
+                [showError]="showError('status')"
+                [label]="'GENERAL.STATUS'"
+                [required]="true"
+        ></het-radio-static>
     </div>
 </form>

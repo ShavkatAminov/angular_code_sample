@@ -1,6 +1,6 @@
 <ng-container>
-    <div class="het-datepicker flex flex-row items-center relative" [ngClass]="computedClasses()">
-        <div class="het-select__title font-bold" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+    <div class="group het-datepicker flex flex-row items-center relative" [ngClass]="computedClasses()">
+        <div [ngClass]="labelPositionRight ? 'het-select__title font-bold text-right pr-2': 'het-select__title font-bold'" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
             {{ label | transloco }} <span *ngIf="required" style="color: red">*</span>
         </div>
         <mat-form-field [ngStyle]="label?{'width':(widthInput-widthLabel)+'%'} : { 'width':'100%' }"
@@ -11,11 +11,11 @@
                     [dropSpecialCharacters]="false"
                     [leadZeroDateTime]="true"
                     [formControl]="control"
+                    (input)="onDatePickerChange(value)"
                     [(ngModel)]="strValue"
                     matInput
                     [placeholder]="placeholder"
                     width="100">
-
             <input matInput
                    hidden="hidden"
                    [ngxTimepicker]="fullTime"
@@ -27,7 +27,7 @@
 
             <mat-icon
                     matPrefix
-                    *ngIf="control.value && !control.disabled"
+                    *ngIf="control.value && !control.disabled && isClose==false"
                     (click)="onClear($event)"
                     class="cursor-pointer"
             >
@@ -36,10 +36,11 @@
             <ngx-material-timepicker-toggle [for]="fullTime">
 
             </ngx-material-timepicker-toggle>
-            <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+            <ngx-material-timepicker #fullTime (timeChanged)="onDatePickerChange($event)"></ngx-material-timepicker>
+
 
         </mat-form-field>
-        <div *ngIf="showError" error-popover>
+        <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
             {{errorMessage + extraErrorMessage}}
         </div>
     </div>

@@ -16,7 +16,7 @@ import {basicTemplate} from "../../basic/basicTemplate";
 export class HabitationDivisionsComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
         {
-            field: 'id',
+            field: 'code',
             headerName: 'GENERAL.CODE',
             flex: 2
         },

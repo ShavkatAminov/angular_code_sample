@@ -20,7 +20,7 @@ export class BooksFormComponent extends BasicModalForm {
     nameUz: new FormControl(null, [Validators.required]),
     nameRu: new FormControl(null, []),
     nameCrl: new FormControl(null, []),
-    code: new FormControl(null, [Validators.required]),
+    code: new FormControl(null, [Validators.required,Validators.minLength(4)]),
     status: new FormControl(true, [Validators.required]),
 });
 

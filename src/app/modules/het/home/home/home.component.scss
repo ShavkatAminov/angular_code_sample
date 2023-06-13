@@ -1,0 +1,43 @@
+.br-type-1, .br-type-2, .br-type-3, .br-type-4, .br-type-5, .br-type-6 {
+  border: 1px solid #4697E3;
+}
+.br-type-1 {
+  clip-path: polygon(0 0, 95% 0, 100% 10%, 100% 100%, 5% 100%, 0 90%);
+}
+
+.br-type-2 {
+  clip-path: polygon(5% 0%, 100% 0, 100% 89%, 95% 100%, 0 100%, 0 9%);
+}
+
+.br-type-3 {
+  clip-path: polygon(3% 0%, 97% 0%, 100% 5%, 100% 95%, 97% 100%, 3% 100%, 0% 95%, 0% 6%);
+}
+
+.br-type-4 {
+  clip-path: polygon(6% 0%, 100% 0, 100% 80%, 94% 100%, 0 100%, 0 23%);
+}
+
+.br-type-5 {
+  clip-path: polygon(0% 0%, 93% 0, 100% 15%, 100% 100%, 5% 100%, 0 83%);
+}
+
+.br-type-6 {
+  clip-path: polygon(0 0, 94% 0, 100% 7%, 100% 100%, 7% 100%, 0 90%);
+}
+
+.main-bg{
+  background-image: url("../../../../../assets/images/dashboard/dashboard-bg-img.png");
+  background-size: cover;
+}
+
+.visible {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}

@@ -8,6 +8,7 @@ import {TranslocoService} from "@ngneat/transloco";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ErrorCodes} from "../../service/http/errorCodes";
 import {AlertServiceComponent} from "../../alerts/services/alert.service.component";
+import {requestTypes} from "@shared/helpers/service/http/http.requests";
 
 @Injectable()
 export abstract class BasicForm implements OnDestroy, OnSave {
@@ -25,7 +26,8 @@ export abstract class BasicForm implements OnDestroy, OnSave {
   }
 
   beforeSave(): void {
-    this.request.body = this.form.value;
+    if(this.request)
+      this.request.body = this.form.value;
   }
 
   onValidError(): void{ }
@@ -74,7 +76,7 @@ export abstract class BasicForm implements OnDestroy, OnSave {
 
   request: any;
 
-  getMethod() {
+  getMethod(): requestTypes {
     if(this.request.id) {
       return "put";
     }
@@ -85,13 +87,15 @@ export abstract class BasicForm implements OnDestroy, OnSave {
 
   private sendRequest(): void {
     this.errorMessages = {};
-    this.subscription$.add(this.http
-        .request(this.request, this.getMethod())
-        .subscribe({
-          next: (v) => this.saveCallback(v),
-          error: (e) => this.errorCallback(e),
-          complete: () => this.afterSave()
-        }));
+    if(this.request) {
+      this.subscription$.add(this.http
+          .request(this.request, this.getMethod())
+          .subscribe({
+            next: (v) => this.saveCallback(v),
+            error: (e) => this.errorCallback(e),
+            complete: () => this.afterSave()
+          }));
+    }
   }
 
   public saveProcess() {

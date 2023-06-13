@@ -6,12 +6,14 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 import { filter } from 'rxjs/operators'
 import {NavigationService} from "@app/core/navigation/navigation.service";
 import {environment} from "../../../../environments/environment";
+import {Location} from "@angular/common";
+import {TranslocoService} from "@ngneat/transloco";
 
 
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
-  styleUrls: ['./breadcrumbs.component.scss']
+  styleUrls: ['./breadcrumbs.component.scss'],
 })
 export class BreadcrumbsComponent implements OnInit{
 
@@ -19,7 +21,9 @@ export class BreadcrumbsComponent implements OnInit{
   constructor(
       private router: Router,
       private _fuseNavigationService: FuseNavigationService,
-      private navigationService: NavigationService
+      private navigationService: NavigationService,
+      private translate: TranslocoService,
+      private location: Location,
   ) {
     if(environment.production) {
       //this.hideNotAvailableItems(this.breadCrumbsNavigation);
@@ -75,9 +79,11 @@ export class BreadcrumbsComponent implements OnInit{
       title: "MENU.MENU",
       type: "collapsable",
       isBreadCrumbs: true,
+      classes: {
+        title: 'font-black',
+      },
       children: copyOfMenuItems,
     }, ...this.breadCrumbsNavigation]
-
   }
 
   ngOnInit(): void {
@@ -86,5 +92,15 @@ export class BreadcrumbsComponent implements OnInit{
         .subscribe((event:NavigationEnd) => {
           this.createBreadCrumb(event.urlAfterRedirects)
         });
+  }
+
+  goBack() {
+    this.location.back()
+  }
+
+  logout() {
+    if(confirm(this.translate.translate("LOGOUT_MESSAGE"))) {
+      this.router.navigate(['sign-out'])
+    }
   }
 }

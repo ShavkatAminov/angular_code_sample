@@ -3,6 +3,7 @@
     <div class="flex flex-col gt-xs:flex-row gap-y-3">
         <het-input
                 formControlName="code"
+                mask="00000"
                 [showError]="showError('code')"
                 [label]="'REFERENCE.SENDERS_CODE'"
                 [errorMessage]="errorMessage('code')"
@@ -25,6 +26,7 @@
         </het-autocomplete>
         <het-input
                 formControlName="mfo"
+                mask="00000"
                 [showError]="showError('mfo')"
                 [label]="'REFERENCE.MFO'"
                 [errorMessage]="errorMessage('mfo')"
@@ -38,14 +40,15 @@
                 [label]="'REFERENCE.ACCOUNT'"
                 [required]="false">
         </het-input>
-        <het-input
-                [inputType]="'number'"
+        <het-number-input
+                [mask]="'000.*00'"
+                maxLength="6"
                 [showError]="showError('percentage')"
                 formControlName="percentage"
                 [errorMessage]="errorMessage('percentage')"
                 [label]="'REFERENCE.PERCENTAGE'"
                 [required]="true">
-        </het-input>
+        </het-number-input>
         <het-radio-static
                 type="status"
                 formControlName="status"

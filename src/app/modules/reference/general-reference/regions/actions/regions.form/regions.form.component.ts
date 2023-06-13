@@ -12,7 +12,7 @@ import {ReferenceApiUrls} from "../../../../referenceApiUrls";
 export class RegionsFormComponent extends BasicModalForm {
   
   override form = new FormGroup({
-    code: new FormControl(null, [Validators.required]),
+    code: new FormControl(null, [Validators.required,Validators.minLength(4),Validators.maxLength(4)]),
     nameUz: new FormControl(null, [Validators.required]),
     status: new FormControl(true, [Validators.required]),
   });

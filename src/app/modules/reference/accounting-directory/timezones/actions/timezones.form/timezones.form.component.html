@@ -3,7 +3,6 @@
       [formGroup]="form">
     <div class="flex flex-col gt-xs:flex-row gap-y-3 p-2">
         <het-input
-
                 formControlName="code"
                 [showError]="showError('code')"
                 [errorMessage]="errorMessage('code')"
@@ -22,6 +21,7 @@
                 [showError]="showError('nameUz')"
                 [errorMessage]="errorMessage('nameUz')"
                 [label]="'GENERAL.NAME'"
+                [allowCrl]="true"
                 [required]="true">
         </het-input>
         <het-radio-static

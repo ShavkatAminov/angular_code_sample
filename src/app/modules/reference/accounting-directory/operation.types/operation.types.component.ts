@@ -16,24 +16,29 @@ export class OperationTypesComponent extends BasicReferencePage{
     {
       field: 'code',
       headerName: 'REFERENCE.OPERATION_CODE',
-      resizable: true
+      resizable: true,
+      flex: 5
     },
     {
       field: 'nameUz',
       headerName: 'GENERAL.NAME',
+      flex: 12
     },
     {
       field: 'debitAccountCode',
       headerName: 'REFERENCE.DEBIT_ACCOUNT_CODE',
+      flex: 5
     },
     {
       field: 'creditAccountCode',
       headerName: 'REFERENCE.CREDIT_ACCOUNT_CODE',
+      flex: 5
     },
     {
       field: 'status',
       headerName: 'GENERAL.STATUS',
-      type: 'status'
+      type: 'status',
+      flex: 5
     },
   ];
 

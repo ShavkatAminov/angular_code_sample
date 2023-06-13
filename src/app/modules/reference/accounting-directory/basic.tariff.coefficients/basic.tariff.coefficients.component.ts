@@ -18,7 +18,8 @@ export class BasicTariffCoefficientsComponent extends BasicReferencePage {
       {field: 'meaning', headerName: 'REFERENCE.VALUE',},
       {field: 'status', type: 'status', maxWidth: 204, headerName: 'GENERAL.STATUS',},
       {field: 'createdAt', type: 'date', headerName: 'GENERAL.CREATED_AT'},
-      {field: 'createdByName', headerName: 'GENERAL.CREATED_BY', type: 'user'},
+      {field: 'createdByName', headerName: 'GENERAL.CREATED_BY',
+          colId: 'createdBy', type: 'user'},
   ];
 
   title = 'MENU.REFERENCE.ACCOUNTING_HANDBOOKS.COEFFICIENTS_TO_BASIC_TARIFFS';

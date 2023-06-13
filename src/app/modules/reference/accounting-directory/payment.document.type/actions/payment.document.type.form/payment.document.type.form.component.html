@@ -11,8 +11,9 @@
                             [showError]="showError('nameUz')"
                             [errorMessage]="errorMessage('nameUz')"
                             [label]="'GENERAL.NAME'"
-                            [required]="true">
-                    </het-input>
+                            [required]="true"
+                            [allowCrl]="true"
+                    ></het-input>
                     <het-radio-static
                             type="yesNo"
                             formControlName="specialAccount"

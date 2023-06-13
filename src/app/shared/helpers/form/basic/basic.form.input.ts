@@ -7,7 +7,7 @@ import {Component, HostListener, Input} from "@angular/core";
 export abstract class BasicFormInput implements ControlValueAccessor {
 
     @Input() label: string = '';
-
+    @Input() labelPositionRight: boolean = true;
     @Input() widthLabel: number = 50;
     @Input() widthInput: number = 100;
 
@@ -58,12 +58,11 @@ export abstract class BasicFormInput implements ControlValueAccessor {
 
     protected getNextFocusableElement(): HTMLElement | null {
         const focusableElements = document.querySelectorAll(
-            'input:not([hidden],[readonly=true]), select:not([hidden],[readonly=true]), textarea:not([hidden],[readonly=true])'
+            'input:not([hidden],[readonly=true],[disabled]), select:not([hidden],[readonly=true],[disabled]), textarea:not([hidden],[readonly=true],[disabled])'
         ) as NodeListOf<HTMLElement>;
 
         const currentIndex = Array.from(focusableElements).indexOf(document.activeElement as HTMLElement);
         const nextIndex = currentIndex + 1;
-
         if (nextIndex < focusableElements.length) {
             return focusableElements[nextIndex];
         }

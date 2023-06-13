@@ -10,29 +10,23 @@ import {basicTemplate} from "../../basic/basicTemplate";
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
-  template: basicTemplate(),
+    template: basicTemplate(),
 })
 export class StreetsDirectoryComponent extends BasicReferencePage {
-  columnDefs: ColDef[] = [
-      {field: 'id', flex: 3, headerName: 'GENERAL.CODE'},
-      {field: 'nameUz', headerName: 'GENERAL.NAME'},
-      {field: 'status', type: 'status', flex: 3, headerName: 'GENERAL.STATUS'},
-      {
-        colId: 'habitationDivisionId',
-        floatingFilterComponentParams: {
-          type: 'autocomplete',
-          request: new ReferenceDropDownRequest(ReferenceApiUrls.HABITATION_DIVISIONS),
-        },
-        field: 'habitationDivision.nameUz', flex: 3, headerName: 'ACCOUNTING_SETTLEMENT_HC.HABIBATION_DIVISION'},
-  ];
+    columnDefs: ColDef[] = [
+        {field: 'id', flex: 3, headerName: 'GENERAL.CODE'},
+        {field: 'nameUz', headerName: 'GENERAL.NAME'},
 
-  title = 'MENU.REFERENCE.STRUCTURAL_GUIDES.STREETS_DIRECTORY';
-  request = new ReferenceListRequest(ReferenceApiUrls.STREETS_DIRECTORY);
+        {field: 'status', type: 'status', flex: 3, headerName: 'GENERAL.STATUS'},
+    ];
 
-  addUpdate(id = null) {
-    FormModalComponent.showModal(StreetsDirectoryFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
-      if(res)
-        this.reload();
-    });
-  }
+    title = 'MENU.REFERENCE.STRUCTURAL_GUIDES.STREETS_DIRECTORY';
+    request = new ReferenceListRequest(ReferenceApiUrls.STREETS_DIRECTORY);
+
+    addUpdate(id = null) {
+        FormModalComponent.showModal(StreetsDirectoryFormComponent, this.title, id, SizeModal.xsm).subscribe(res => {
+            if (res)
+                this.reload();
+        });
+    }
 }

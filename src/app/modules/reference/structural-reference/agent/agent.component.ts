@@ -10,14 +10,27 @@ import {basicTemplate} from "../../basic/basicTemplate";
 import {ReferenceDropDownRequest} from "../../basic/ReferenceDropDownRequest";
 
 @Component({
-  template: basicTemplate(),
+  template: basicTemplate(`
+    <het-button  [label]="'GENERAL.CHANGE_PROTOCOL'"></het-button>
+    <het-button  [label]="'GENERAL.STORY'"></het-button>
+    <het-select  [options]="printOptions"  ></het-select>
+    <het-datepicker></het-datepicker>
+    <het-button  [label]="'GENERAL.PRINT'"></het-button>
+  `),
 })
 export class AgentComponent extends BasicReferencePage {
     columnDefs: ColDef[] = [
         {
             colId: "code",
             field: 'code',
-            headerName:'REFERENCE.AGENT_CODE'
+            headerName:'REFERENCE.AGENT_CODE',
+            minWidth:100
+        },
+        {
+            colId: "fullName",
+            minWidth: 250,
+            headerName:'GENERAL.FULL_NAME',
+            valueGetter: "data.firstName + ' ' + data.lastName + ' ' + data.middleName"
         },
         {
             floatingFilterComponentParams: {
@@ -27,6 +40,7 @@ export class AgentComponent extends BasicReferencePage {
             colId: 'positionId',
             field: 'position.nameUz',
             headerName:'REFERENCE.POSITION',
+            minWidth: 150,
         },
         {
             floatingFilterComponentParams: {
@@ -34,18 +48,17 @@ export class AgentComponent extends BasicReferencePage {
                 request: new ReferenceDropDownRequest(ReferenceApiUrls.BRIGADES),
             },
             colId: 'brigadeId',
-            field: 'brigade.nameUz',
+            field: 'brigade',
+            type:'code_nameUz',
             headerName:'REFERENCE.BRIGADE',
-        },
-        {
-            colId: "fullName",
-            headerName:'GENERAL.FULL_NAME',
-            valueGetter: "data.firstName + ' ' + data.lastName + ' ' + data.middleName"
+            minWidth: 150,
         },
         {
             field: 'mobilePhone',
-            headerName:'GENERAL.MOBILE_PHONE'
+            headerName:'GENERAL.MOBILE_PHONE',
+            minWidth: 150,
         },
+
         {
             floatingFilterComponentParams: {
                 type: 'autocomplete',
@@ -53,12 +66,32 @@ export class AgentComponent extends BasicReferencePage {
             },
             colId: 'byTypeId',
             field: 'byType.nameUz',
-            headerName:'REFERENCE.CONSUMER_TYPE'
+            headerName:'REFERENCE.CONSUMER_TYPE',
+            minWidth: 150,
+        },
+
+        {
+            field: 'mobilePhone',
+            minWidth: 150,
+            headerName:'GENERAL.MOBILE_PHONE'
+        },
+        {
+            field: 'createdAt',
+            minWidth: 150,
+            headerName:'GENERAL.DATE_OF_ACTIVATION',
+            type:"date"
+        },
+        {
+            field: 'deletedAt',
+            minWidth: 150,
+            headerName:'GENERAL.DATE_OF_DEACTIVATION',
+            type:"date"
         },
         {
             field: 'status',
             headerName:'GENERAL.STATUS',
-            type:"status"
+            type:"status",
+            minWidth: 150,
         }
     ];
 

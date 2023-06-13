@@ -29,6 +29,8 @@ export class PsFiderTpFormComponent extends BasicModalForm implements OnInit {
     affiliationId: new FormControl(null, [Validators.required]),
     upSteamFiderId: new FormControl(null, []),
     capacity: new FormControl(null, [Validators.required]),
+    lat: new FormControl(null, [Validators.required]),
+    lan: new FormControl(null, [Validators.required]),
     status: new FormControl(true, [Validators.required]),
   });
 
