@@ -1,0 +1,27 @@
+<div id="chart">
+    <div class=" pt-3 px-2 bg-white rounded-xl">
+        <div class="char__header mb-3 px-1  flex justify-between items-center">
+            <div class="font-bold">{{chartTitle | transloco}}</div>
+            <div >
+                <het-select [options]="selectOption"></het-select>
+            </div>
+        </div>
+        <div class="my-2">
+            <ng-content select="[chartHeader]"></ng-content>
+        </div>
+        <apx-chart
+                #chart
+                [series]="chartOptions.series"
+                [chart]="chartOptions.chart"
+                [dataLabels]="chartOptions.dataLabels"
+                [plotOptions]="chartOptions.plotOptions"
+                [yaxis]="chartOptions.yaxis"
+                [xaxis]="chartOptions.xaxis"
+                [stroke]="chartOptions.stroke"
+                [grid]="chartOptions.grid"
+                [fill]="chartOptions.fill"
+                [annotations]="chartOptions.annotations"
+        ></apx-chart>
+    </div>
+
+</div>

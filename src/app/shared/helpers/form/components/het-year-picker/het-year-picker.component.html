@@ -1,0 +1,49 @@
+<ng-container>
+    <div class="group het-datepicker flex flex-row items-center relative" [ngClass]="computedClasses()">
+        <div [ngClass]="labelPositionRight ? 'het-select__title font-bold text-right pr-2': 'het-select__title font-bold'"  [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+            {{ label | transloco }} <span *ngIf="required" style="color: red;">*</span>
+        </div>
+
+        <mat-form-field appearance="fill" [ngStyle]="label?{'width':(100-widthLabel)+'%'} : { 'width':'100%' }" [ngClass]="{'readonly-bg-color' : readonly}">
+            <input matInput
+                   [mask]="mask"
+                   [dropSpecialCharacters]="false"
+                   [leadZeroDateTime]="true"
+                   [placeholder]="placeholder"
+                   [readonly]="mode === 'month'"
+                   [formControl]="control"
+                   [disabled]="disabled"
+
+            >
+            <input matInput
+                   hidden="hidden"
+                   [matDatepicker]="yearPicker"
+                   class="hide-header-datepicker"
+                   [(ngModel)]="value"
+                   (dateChange)="onDatePickerChange($event.value)"
+                   [disabled]="disabled"
+                   [min]="minDate"
+                   [max]="maxDate"
+            >
+
+
+            <span *ngIf="value" (click)="toNull($event)" class="absolute inset-y-0 right-2 flex items-center py-2 bg-white" matSuffix mat-icon-button>
+                <mat-icon class="font-black text-black mat-clear-icon">close</mat-icon>
+            </span>
+
+            <mat-datepicker-toggle *ngIf="!value" matIconSuffix [for]="yearPicker"></mat-datepicker-toggle>
+
+
+            <mat-datepicker
+                    (monthSelected)="monthSelected($event)"
+                    (yearSelected)="yearSelected($event)"
+                    [startView]="mode === 'year' ? 'multi-year' : (mode === 'month' ? 'year' : 'month')"
+                    [panelClass]="[color, mode === 'month' ? 'yearpicker-header-hide' : '']"
+                    #yearPicker
+            ></mat-datepicker>
+        </mat-form-field>
+        <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
+            {{errorMessage + extraErrorMessage}}
+        </div>
+    </div>
+</ng-container>

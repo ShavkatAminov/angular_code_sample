@@ -1,0 +1,14 @@
+<div [ngClass]="{active:isActive}"  class="info__card h-full  p-3 flex flex-col justify-between">
+<div >
+    {{infoCardData.title}}
+</div>
+    <div class="flex items-center justify-between">
+        <div>
+            <img [src]="infoCardData.image" alt="lineImage">
+        </div>
+        <div class="mr-2">
+            <span class="font-bold text-lg">{{infoCardData.amount | number}}</span>
+            <p>Кол-во</p>
+        </div>
+    </div>
+</div>

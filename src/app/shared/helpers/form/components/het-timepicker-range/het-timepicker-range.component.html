@@ -1,0 +1,106 @@
+<ng-container>
+    <div class=" group flex items-center het-timepicker-range">
+        <div [ngClass]="labelPositionRight ? 'het-select__title font-bold text-right pr-2': 'het-select__title font-bold'" [ngStyle]="{'width':widthLabel+'%'}" *ngIf="label">
+            {{ label | transloco }} <span *ngIf="required" style="color: red">*</span>
+        </div>
+
+        <div [formGroup]="form" class="het-datepicker flex flex-row items-center relative"
+             [ngClass]="computedClasses()"
+             [ngStyle]="{'width': (100 - widthLabel)+'%'}"
+        >
+            <div class="grid grid-cols-2 grid-rows-1 w-full gap-x-5">
+                <div class="flex items-center">
+                    <div class="w-1/6">
+                        {{ 'ACCOUNTING_SETTLEMENT_HC.FROM' | transloco }}
+                    </div>
+
+                    <mat-form-field
+                            class="w-5/6"
+                            [ngClass]="{'errorInput' : showError, 'readonly-bg-color' : readonly} ">
+                        <input
+                                [mask]="mask"
+                                [specialCharacters]="[':']"
+                                [dropSpecialCharacters]="false"
+                                [leadZeroDateTime]="true"
+                                formControlName="from"
+                                (input)="onInputChange($event, 1)"
+                                matInput
+                                [placeholder]="placeholder"
+                                [required]="required"
+                                width="100">
+                        <input matInput
+                               hidden="hidden"
+                               formControlName="from"
+                               [ngxTimepicker]="fullTimeFrom"
+                               [format]="24"
+                               [disabled]="disabled"
+                        >
+
+                        <mat-icon
+                                matPrefix
+                                *ngIf="form.get('from').value && !form.get('from').disabled"
+                                (click)="onClear(1)"
+                                class="cursor-pointer"
+                                style="margin-right: 0 !important;"
+                        >
+                            close
+                        </mat-icon>
+                        <ngx-material-timepicker-toggle [for]="fullTimeFrom">
+
+                        </ngx-material-timepicker-toggle>
+                        <ngx-material-timepicker #fullTimeFrom (timeChanged)="onValueFromChange($event)"></ngx-material-timepicker>
+
+                    </mat-form-field>
+                </div>
+
+                <div class="flex items-center">
+                    <div class="w-1/6">
+                        {{ 'ACCOUNTING_SETTLEMENT_HC.BEFORE' | transloco }}
+                    </div>
+
+                    <mat-form-field
+                            class="w-5/6"
+                            [ngClass]="{'errorInput' : showError, 'readonly-bg-color' : readonly} ">
+                        <input
+                                [mask]="mask"
+                                [specialCharacters]="[':']"
+                                [dropSpecialCharacters]="false"
+                                [leadZeroDateTime]="true"
+                                formControlName="to"
+                                (input)="onInputChange($event, 2)"
+                                matInput
+                                [placeholder]="placeholder"
+                                [required]="required"
+                                width="100">
+                        <input matInput
+                               hidden="hidden"
+                               [ngxTimepicker]="fullTimeTo"
+                               formControlName="to"
+                               [format]="24"
+                               [disabled]="disabled"
+                        >
+
+                        <mat-icon
+                                matPrefix
+                                *ngIf="form.get('to').value && !form.get('to').disabled"
+                                (click)="onClear(2)"
+                                class="cursor-pointer"
+                                style="margin-right: 0 !important;"
+                        >
+                            close
+                        </mat-icon>
+                        <ngx-material-timepicker-toggle [for]="fullTimeTo">
+
+                        </ngx-material-timepicker-toggle>
+                        <ngx-material-timepicker #fullTimeTo (timeChanged)="onValueToChange($event)"></ngx-material-timepicker>
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="invisible group-hover:visible" *ngIf="showError" error-popover>
+                {{errorMessage + extraErrorMessage}}
+            </div>
+        </div>
+    </div>
+</ng-container>

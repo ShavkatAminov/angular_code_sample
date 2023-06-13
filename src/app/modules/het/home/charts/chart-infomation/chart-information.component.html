@@ -1,0 +1,13 @@
+<div class="mx-2">
+    <div [ngClass]="{'hide':!isActive}" class="header__line"></div>
+    <div class="px-2 text-center">
+        <div class="info__title text-sm">{{chartInfo.title}}</div>
+        <div class="font-bold">
+            {{chartInfo.amount | number}} <span class="ml-1 text-secondary">{{chartInfo.currency}}</span>
+        </div>
+        <div class="text-secondary text-sm">
+            {{chartInfo.text}}
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,18 @@
+<div id="chart">
+    <div class="flex justify-between px-4">
+        <p>Кол-во:</p>
+        <het-select
+                [options]=""
+        ></het-select>
+    </div>
+    <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [dataLabels]="chartOptions.dataLabels"
+            [colors]="chartOptions.colors"
+            [plotOptions]="chartOptions.plotOptions"
+            [yaxis]="chartOptions.yaxis"
+            [xaxis]="chartOptions.xaxis"
+            [fill]="chartOptions.fill"
+    ></apx-chart>
+</div>

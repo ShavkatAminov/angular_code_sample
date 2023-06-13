@@ -1,0 +1,39 @@
+<form (ngSubmit)="saveProcess()" class="flex flex-col bg-card "
+      [formGroup]="form">
+    <div class="flex flex-col gt-xs:flex-row gap-y-3">
+        <het-input
+                [required]="true"
+                formControlName="code"
+                [maxLength]="2"
+                [showError]="showError('code')"
+                [errorMessage]="errorMessage('code')"
+                [label]="'GENERAL.CODE'"
+        ></het-input>
+        <het-input
+                [allowCrl]="true"
+                [required]="true"
+                [maxLength]="100"
+                formControlName="shortName"
+                [showError]="showError('shortName')"
+                [errorMessage]="errorMessage('shortName')"
+                [label]="'MENU.REFERENCE.GENERAL_GUIDES.ABBREVIATED_NAME'"
+        ></het-input>
+        <het-input
+                [allowCrl]="true"
+                [required]="true"
+                [maxLength]="200"
+                formControlName="fullName"
+                [showError]="showError('fullName')"
+                [errorMessage]="errorMessage('fullName')"
+                [label]="'ACCOUNTING_SETTLEMENT_LC.FULL_NAME_DIC'"
+        ></het-input>
+        <het-radio-static
+                type="status"
+                [required]="true"
+                formControlName="status"
+                [showError]="showError('status')"
+                [label]="'GENERAL.STATUS'"
+        ></het-radio-static>
+    </div>
+</form>
+

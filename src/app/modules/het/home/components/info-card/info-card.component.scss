@@ -1,0 +1,16 @@
+.info__card {
+  width: 100%;
+  min-height: 104px;
+  border: 1px solid #C7D2FE;
+  border-radius: 10px;
+
+}
+
+.active {
+  color:white;
+  background: linear-gradient(100.64deg, #468AFF -0.6%, #005EFF 102.06%);
+}
+
+.info__card.active img  {
+  filter: brightness(0) invert(1);
+}
